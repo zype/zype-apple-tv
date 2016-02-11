@@ -1,0 +1,67 @@
+"Home.TabTitle" = "<TAB_TITLE>";
+"Home.ReloadButton" = "Reload";
+"Home.DefaultErrorMessage" = "Server issue. Please try again later.";
+
+"ShowDetails.Favorite" = "Favorite";
+"ShowDetails.Unfavorite" = "Unfavorite";
+"ShowDetails.FavoriteLoginNeeded" = "Please login before making video favorite";
+"ShowDetails.SubscribeButton" = "Subscribe";
+"ShowDetails.SubscribedButton" = "Play";
+"ShowDetails.EpisodesCount" = "%d Episodes";
+"ShowDetails.Episode" = "%d Episode";
+"ShowDetails.SubscribeLoginNeeded" = "Please login before subscribing";
+
+"Favorites.TabTitle" = "Favorites";
+"Favorites.Title" = "Favorites";
+"Favorites.LoginNeededMsg" = "Please Login to get Favorites list";
+"Favorites.NoFavorites" = "You don't currently have any favorites. Click the \"favorite\" button next to an episode to make it a favorite.";
+
+"Search.TabTitle" = "Search";
+"Search.Results" = "Found %d results";
+"Search.NothingFound" = "Nothing found";
+"Search.Placeholder" = "Enter keywords";
+
+"Login.TabTitle" = "Account";
+"Login.LoginTitle" = "Login";
+"Login.LogoutTitle" = "Logout";
+"Login.LoginButton" = "Login";
+"Login.LogoutButton" = "Logout";
+"Login.RegisterButton" = "Register";
+"Login.LoggedAs" = "Logged in as";
+"Login.UsernamePlaceholder" = "Email";
+"Login.PasswordPlaceholder" = "Password";
+"Login.RestoringPurchases" = "Restoring Purchases...";
+"Login.PurchasesRestored" = "Purchases successfully restored";
+"Login.EmailNotValid" = "Email not valid";
+"Login.CredentialsEmpty" = "Please enter email and password";
+
+"Register.RegisterButton" = "Register";
+"Register.Title" = "Register";
+"Register.RepeatPasswordPlaceholder" = "Repeat Password";
+"Register.UsernamePlaceholder" = "Email";
+"Register.PasswordPlaceholder" = "Password";
+"Register.PasswordsNotMatch" = "Passwords not match";
+"Register.EmailNotValid" = "Email not valid";
+"Register.PasswordEmpty" = "Please enter password";
+"Register.EmailEmpty" = "Please enter email";
+
+"Messages.OK" = "OK";
+"Messages.ErrorTitle" = "Error";
+
+"Subscription.Success" = "You are successfully subscripted!";
+"Subscription.NotPurchased" = "Please subscribe before watching this video!";
+"Subscription.ButtonFormat" = "%@ %@";
+"Subscription.ExpirationStatus" = "Your subscription expires on %@";
+"Subscription.NotSubscribed" = "You are not subscibed";
+"Subscription.ExpirationInfoError" = "Cannot get info about you subscription status";
+"Subscription.VideoLoginNeeded" = "Please login before watching this video";
+
+"Progress.Purchasing" = "Please wait. Connecting to server.";
+"Progress.Login" = "Please wait, Logging in";
+"Progress.Default" = "Please wait...";
+
+"Errors.ZYPE.kErrorIncorrectLoginParameters" = "Incorrect Email or Password";
+"Errors.ZYPE.kErrorConsumerNotLoggedIn" = "Please Login before";
+"Errors.ZYPE.kErrorItemNotInFavorites" = "Item is not added to favorite list";
+"Errors.ZYPE.Common" = "Server Error. Please try again later.";
+"Errors.Common" = "Server Error. Please try again later.";

@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="AppleTV" propertyAccessControl="none" initialViewController="cZF-Ut-RTH">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <scenes>
+        <!--Hooplakidz Home-->
+        <scene sceneID="ugO-7g-EEs">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="xzF-oj-98R" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Hooplakidz Home" id="pJZ-Vw-Pfb"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KMU-Ue-Ka9">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="e6U-ja-SND" kind="relationship" relationship="rootViewController" id="9Au-DT-75C"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ymT-3z-Cen" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4459" y="-75"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="Wl3-IK-18H">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o88-iA-HRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="4Hn-K8-xKk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" id="DOW-9B-O11"/>
+                    <simulatedTabBarMetrics key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="21F-ve-TDn">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="iVJ-rO-YcO" kind="relationship" relationship="rootViewController" id="ZAH-8T-4Ni"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-6555" y="1329"/>
+        </scene>
+        <!--SearchVC-->
+        <scene sceneID="nBv-Zg-8D2">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" modalTransitionStyle="crossDissolve" id="iVJ-rO-YcO" customClass="SearchVC" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8yg-r8-s7K">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yU1-Dv-iKT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Clz-nT-YZp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4436" y="1321"/>
+        </scene>
+        <!--Favorites-->
+        <scene sceneID="7K9-mn-0kU">
+            <objects>
+                <navigationController storyboardIdentifier="FavoritesNavigationVC" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" navigationBarHidden="YES" id="w5d-bj-FQ9" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Favorites" id="FDB-Us-1eB"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ayg-AG-lrB">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Teu-ca-loB" kind="relationship" relationship="rootViewController" id="zNa-30-Sz8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hqh-eI-hXx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4519" y="-1531"/>
+        </scene>
+        <!--FavoritesVC-->
+        <scene sceneID="5Mc-sa-hcA">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Teu-ca-loB" customClass="FavoritesVC" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fro-XQ-biX">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please LogIn to get Favorites list" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="usN-mc-95a" customClass="StyledLabel" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" id="yab-nS-IEE">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <segue destination="6Pp-yV-woX" kind="embed" id="yeN-qd-JmN"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                    </view>
+                    <navigationItem key="navigationItem" id="h5c-z7-cmd"/>
+                    <connections>
+                        <outlet property="dataView" destination="yab-nS-IEE" id="vKk-qw-Ofg"/>
+                        <outlet property="infoLabel" destination="usN-mc-95a" id="LHV-P4-cmt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SuJ-FU-uvj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1241" y="-1510"/>
+        </scene>
+        <!--Tab BarVC-->
+        <scene sceneID="tUh-MA-OMl">
+            <objects>
+                <tabBarController storyboardIdentifier="TabBarVC" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" id="cZF-Ut-RTH" customClass="TabBarVC" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target" sceneMemberID="viewController">
+                    <simulatedTabBarMetrics key="simulatedTopBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="YxL-xQ-lzN">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="140"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="xzF-oj-98R" kind="relationship" relationship="viewControllers" id="HQm-qf-hQk"/>
+                        <segue destination="4Hn-K8-xKk" kind="relationship" relationship="viewControllers" id="Buy-gI-Sy1"/>
+                        <segue destination="w5d-bj-FQ9" kind="relationship" relationship="viewControllers" id="Pii-Wf-wgn"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WTb-SO-vhN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-6563" y="-75"/>
+        </scene>
+        <!--Modal ProgressVC-->
+        <scene sceneID="Ol8-xW-Fcc">
+            <objects>
+                <viewController storyboardIdentifier="ModalProgressVC" id="ikl-2V-gb6" customClass="ModalProgressVC" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mui-UI-Nkg">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="9Oh-Sa-2U1">
+                                <rect key="frame" x="710" y="440" width="500" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ZX0-PR-BaD">
+                                    <rect key="frame" x="0.0" y="0.0" width="500" height="200"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1EZ-nD-Dl2" customClass="StyledLabel" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="8" width="484" height="94"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                                    <integer key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" id="YYf-H2-JDx">
+                                            <rect key="frame" x="240" y="139" width="20" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="YYf-H2-JDx" id="P9J-VO-aoZ"/>
+                        <outlet property="blurView" destination="9Oh-Sa-2U1" id="1Uz-8t-iDw"/>
+                        <outlet property="label" destination="1EZ-nD-Dl2" id="P7H-1G-DG7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hq6-jk-vuw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3129" y="-1597"/>
+        </scene>
+        <!--Scrollable Text AlertVC-->
+        <scene sceneID="73p-E4-NMb">
+            <objects>
+                <viewController storyboardIdentifier="ScrollableTextAlertVC" automaticallyAdjustsScrollViewInsets="NO" id="b0p-De-89k" customClass="ScrollableTextAlertVC" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qok-vI-6H6">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="puE-EZ-Clf">
+                                <rect key="frame" x="190" y="120" width="1540" height="840"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" id="DEw-UM-A2k">
+                                        <rect key="frame" x="0.0" y="0.0" width="1540" height="840"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="30"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </view>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="clipView" destination="puE-EZ-Clf" id="f6B-is-h73"/>
+                        <outlet property="textView" destination="DEw-UM-A2k" id="hcZ-6t-EIi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="25N-b3-Yqx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1691" y="1329"/>
+        </scene>
+        <!--Show DetailsVC-->
+        <scene sceneID="Vld-u9-x4h">
+            <objects>
+                <viewController storyboardIdentifier="ShowDetailsVC" automaticallyAdjustsScrollViewInsets="NO" id="QVW-Vl-rtx" customClass="ShowDetailsVC" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ly7-0E-dRD">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="GmF-HL-8Sq">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="593"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="hhs-yQ-xcJ">
+                                        <rect key="frame" x="100" y="121" width="820" height="315"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e12-YQ-hF7" customClass="StyledLabel" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                                <rect key="frame" x="10" y="0.0" width="810" height="63"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                                        <integer key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wkv-cB-oiB" customClass="StyledLabel" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                                <rect key="frame" x="10" y="63" width="810" height="82"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <view contentMode="scaleToFill" id="4To-KK-0YS" customClass="FocusableView" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="169" width="820" height="146"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cxd-tF-0RV">
+                                                        <rect key="frame" x="10" y="8" width="800" height="130"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </view>
+                                        </subviews>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="3yy-ku-ozB">
+                                        <rect key="frame" x="110" y="444" width="1780" height="129"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Gr6-o5-BOz" customClass="FocusableButton" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="10" width="150" height="84"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" backgroundImage="Subscribe"/>
+                                                <connections>
+                                                    <action selector="onSubscribe:" destination="QVW-Vl-rtx" eventType="primaryActionTriggered" id="i30-9K-87D"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="kB2-gZ-9oS" customClass="FocusableButton" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                                <rect key="frame" x="170" y="10" width="150" height="84"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" backgroundImage="FavoritesAdd"/>
+                                                <connections>
+                                                    <action selector="onFavorites:" destination="QVW-Vl-rtx" eventType="primaryActionTriggered" id="G7L-Ga-Lct"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bTn-j7-y56" customClass="StyledLabel" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="100" width="150" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <size key="shadowOffset" width="1" height="1"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                                        <integer key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorite" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dSI-Rh-6hd" customClass="StyledLabel" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                                <rect key="frame" x="170" y="100" width="150" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <size key="shadowOffset" width="1" height="1"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                                        <integer key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                    </view>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="cDg-pl-fwV" customClass="URLImageView" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                        <rect key="frame" x="1020" y="121" width="800" height="452"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </imageView>
+                                </subviews>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" id="q49-b9-37Z">
+                                <rect key="frame" x="0.0" y="630" width="1920" height="450"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <segue destination="6Pp-yV-woX" kind="embed" id="a18-Ts-CvM"/>
+                                </connections>
+                            </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6lY-nt-SuW" customClass="StyledLabel" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                <rect key="frame" x="110" y="658" width="571" height="52"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="bottomBarView" destination="3yy-ku-ozB" id="AES-ik-5Pr"/>
+                        <outlet property="containerView" destination="q49-b9-37Z" id="IF3-3u-rvV"/>
+                        <outlet property="descriptionLabel" destination="Cxd-tF-0RV" id="ZiN-Zd-V2d"/>
+                        <outlet property="descriptionView" destination="4To-KK-0YS" id="pK6-VK-4aZ"/>
+                        <outlet property="detailsView" destination="GmF-HL-8Sq" id="yR4-rb-Xvz"/>
+                        <outlet property="episodesCountLabel" destination="6lY-nt-SuW" id="5EK-zD-12f"/>
+                        <outlet property="favoriteLabel" destination="dSI-Rh-6hd" id="9N8-cL-PBj"/>
+                        <outlet property="favoritesButton" destination="kB2-gZ-9oS" id="BMH-E8-5bw"/>
+                        <outlet property="labelsView" destination="hhs-yQ-xcJ" id="nPl-A3-hEL"/>
+                        <outlet property="posterImage" destination="cDg-pl-fwV" id="0Zj-Ys-93W"/>
+                        <outlet property="subTitleLabel" destination="wkv-cB-oiB" id="cnv-pl-gEp"/>
+                        <outlet property="subscribeButton" destination="Gr6-o5-BOz" id="gOl-Ak-jEJ"/>
+                        <outlet property="subscribeLabel" destination="bTn-j7-y56" id="XiO-pL-TnS"/>
+                        <outlet property="titleLabel" destination="e12-YQ-hF7" id="ALd-vU-SdG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CJc-21-h02" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="539" y="-97"/>
+        </scene>
+        <!--HomeVC-->
+        <scene sceneID="hpN-Og-wkj">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="e6U-ja-SND" customClass="HomeVC" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NOl-ef-c1s">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" id="UUm-NE-Zhb">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please LogIn to get Favorites list" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NUA-WI-o1T" customClass="StyledLabel" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                        <rect key="frame" x="460" y="0.0" width="1000" height="1080"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                                <integer key="value" value="7"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8M0-12-Jp5">
+                                        <rect key="frame" x="810" y="650" width="300" height="86"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <state key="normal" title="Reload"/>
+                                        <connections>
+                                            <action selector="onReload:" destination="e6U-ja-SND" eventType="primaryActionTriggered" id="ITE-a8-glH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" id="pqb-dn-qlw">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <segue destination="6Pp-yV-woX" kind="embed" id="FCR-gJ-gcb"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                    </view>
+                    <navigationItem key="navigationItem" id="bZB-t8-NLQ">
+                        <nil key="title"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionWrapperView" destination="pqb-dn-qlw" id="IR7-hZ-gjw"/>
+                        <outlet property="infoLabel" destination="NUA-WI-o1T" id="hsj-yE-vve"/>
+                        <outlet property="infoView" destination="UUm-NE-Zhb" id="vw7-2T-7jJ"/>
+                        <outlet property="reloadButton" destination="8M0-12-Jp5" id="1yN-FS-mYi"/>
+                        <segue destination="QVW-Vl-rtx" kind="show" identifier="ShowDetails" id="2qJ-Hs-qPp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xwt-Dd-GnH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2325" y="-97"/>
+        </scene>
+        <!--Base CollectionVC-->
+        <scene sceneID="AKE-fp-1PD">
+            <objects>
+                <collectionViewController storyboardIdentifier="BaseCollectionVC" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="6Pp-yV-woX" customClass="BaseCollectionVC" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="CX6-6d-zQs">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aF6-sY-Nvx">
+                            <size key="itemSize" width="500" height="500"/>
+                            <size key="headerReferenceSize" width="50" height="45"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="vP8-eg-LL0">
+                            <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
+                        <cells>
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PagerCell" id="fvq-qC-BVZ" customClass="PagerCell" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="45" width="500" height="500"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageWhenAncestorFocused="YES" id="awk-V3-Fs5" customClass="URLImageView" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="imageView" destination="awk-V3-Fs5" id="Y9u-hx-XAN"/>
+                                </connections>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="b7a-kj-grq" customClass="ImageCell" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                <rect key="frame" x="1420" y="45" width="500" height="500"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageWhenAncestorFocused="YES" id="fuT-eh-Lml" customClass="URLImageView" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="500" height="455"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="adT-Wt-FvD" customClass="StyledLabel" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="454" width="484" height="46"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                                    <integer key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFade" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="imageView" destination="fuT-eh-Lml" id="WOb-um-8UA"/>
+                                    <outlet property="label" destination="adT-Wt-FvD" id="eXl-Vc-TwH"/>
+                                </connections>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ControllerCell" id="Adw-a8-YCY" customClass="ControllerCell" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="555" width="1920" height="1080"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <size key="customSize" width="1920" height="1080"/>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="tqX-PM-AmK" customClass="HeaderCell" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="1920" height="45"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shows" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mjn-Tp-JNC" customClass="StyledLabel" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target">
+                                    <rect key="frame" x="90" y="0.0" width="1740" height="45"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                            <integer key="value" value="2"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                            </subviews>
+                            <connections>
+                                <outlet property="label" destination="mjn-Tp-JNC" id="qfk-PQ-jGP"/>
+                            </connections>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="6Pp-yV-woX" id="eET-Cm-2ZK"/>
+                            <outlet property="delegate" destination="6Pp-yV-woX" id="iLh-mo-C1O"/>
+                        </connections>
+                    </collectionView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="vP8-eg-LL0" id="uWL-9y-NX7"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qz0-e2-Bf0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1039" y="-1577"/>
+        </scene>
+        <!--AV Player View Controller-->
+        <scene sceneID="z39-of-MwK">
+            <objects>
+                <avPlayerViewController storyboardIdentifier="PlayerVC" automaticallyAdjustsScrollViewInsets="NO" videoGravity="AVLayerVideoGravityResizeAspect" id="9o9-Bw-tKR" customClass="PlayerVC" customModule="<CUSTOM_MODULE_NAME>" customModuleProvider="target" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </avPlayerViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tAL-HP-Y0Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1241" y="1303"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="FavoritesAdd" width="180" height="100"/>
+        <image name="Subscribe" width="180" height="100"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="yeN-qd-JmN"/>
+    </inferredMetricsTieBreakers>
+</document>
