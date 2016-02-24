@@ -5,6 +5,7 @@
 //  Created by Eugene Lizhnyk on 10/9/15.
 //  Copyright © 2015 Eugene Lizhnyk. All rights reserved.
 //
+// GIT DESCRIPTION: <GIT_DESCRIPTION>
 
 import UIKit
 import ZypeSDK
