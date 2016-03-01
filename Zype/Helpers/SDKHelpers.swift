@@ -21,7 +21,7 @@ extension VideoModel {
             }
         }
     }
-    return nil
+    return  NSURL(string: "")
   }
 
   func posterURL() -> NSURL? {
