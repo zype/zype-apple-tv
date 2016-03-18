@@ -30,7 +30,11 @@ class StyledLabel: UILabel {
     didSet {
       if let computedFont = StyledLabel.fontForStyle(LabelStyle(rawValue: self.style)!) {
         self.font = computedFont
-        self.textColor = StyledLabel.kBaseColor
+      }
+       
+      // custom colors
+      if let computedColor = StyledLabel.textColorForStyle(LabelStyle(rawValue: self.style)!) {
+        self.textColor = computedColor
       }
     }
   }
@@ -83,5 +87,38 @@ class StyledLabel: UILabel {
     }
     return font
   }
+    
+    static func textColorForStyle(style: LabelStyle) -> UIColor? {
+        var color: UIColor? = StyledLabel.kBaseColor
+        switch style {
+        case .ShowCell:
+            color = StyledLabel.kBaseColor
+            break
+        case .HeaderCell:
+            color = StyledLabel.kBaseColor
+            break
+        case .SubButton:
+            color = StyledLabel.kBaseColor
+            break
+        case .MainHeader:
+            color = StyledLabel.kBaseColor
+            break
+        case .SubHeader:
+            color = StyledLabel.kBaseColor
+            break
+        case .ScreenHeader:
+            color = StyledLabel.kBaseColor
+        case .MainInfo:
+            color = StyledLabel.kBaseColor
+            break
+        case .ModalInfo:
+            color = StyledLabel.kBaseColor
+            break
+        default:
+            color = StyledLabel.kBaseColor
+            break
+        }
+        return color
+    }
   
 }
