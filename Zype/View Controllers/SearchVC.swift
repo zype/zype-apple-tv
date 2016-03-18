@@ -37,7 +37,13 @@ class SearchVC: UISearchContainerViewController, UISearchControllerDelegate, UIS
         self.cachedVC.delegate = self
         self.cachedVC.searchResultsUpdater = self
         self.cachedVC.hidesNavigationBarDuringPresentation = false
+        
+        // search bar and keyboard styles
         self.cachedVC.searchBar.placeholder = localized("Search.Placeholder")
+        self.cachedVC.searchBar.tintColor = UIColor.blackColor()
+        self.cachedVC.searchBar.barTintColor = UIColor.blackColor()
+        self.cachedVC.searchBar.searchBarStyle = .Minimal
+        self.cachedVC.searchBar.keyboardAppearance = UIKeyboardAppearance.Light
       }
       return self.cachedVC
     }
