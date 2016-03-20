@@ -29,9 +29,15 @@ public class ZypeSDK: NSObject {
         completion:(error: NSError?) -> Void)
     {
         dataManager = ZypeDataManager(settings: settings)
-        dataManager!.initializeLoadCategories(loadCategories, error: nil) { (error) -> Void in
-            self.dataManager!.initializeLoadPlaylists(loadPlaylists, error: error, completion:completion)
-        }
+        
+        let queryModel = QueryAppModel()
+        
+        dataManager!.getApp(queryModel, completion:{(app, error) in
+            print(app)
+            self.dataManager!.initializeLoadCategories(loadCategories, error: nil) { (error) -> Void in
+                self.dataManager!.initializeLoadPlaylists(loadPlaylists, error: error, completion:completion)
+            }
+        })
     }
     
     public func reset()
