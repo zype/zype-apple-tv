@@ -25,12 +25,12 @@ public class QueryVideosModel: QueryBaseModel {
     public var exceptZObjectID: String = ""
     public var createdDate: NSDate? = nil
     public var publishedDate: NSDate? = nil
-    public var dpt: Bool = false
+    public var dpt: Bool = true
 //    public var sortBy: String = ""
     public var onAir: Bool = false
     public var sort: String?
     public var ascending: Bool = false
-    
+
     public init(categoryValue: CategoryValueModel? = nil,
         exceptCategoryValue: CategoryValueModel? = nil,
         searchString: String = "",
@@ -50,5 +50,5 @@ public class QueryVideosModel: QueryBaseModel {
         }
         self.searchString = searchString
     }
-    
+
 }
