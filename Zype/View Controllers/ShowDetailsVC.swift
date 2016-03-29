@@ -102,7 +102,7 @@ class ShowDetailsVC: CollectionContainerVC {
     for label in self.labelsView.subviews {
       if(label.isKindOfClass(UILabel)) {
         label.width = self.labelsView.width
-        label.sizeToFit()
+        // label.sizeToFit()
       }
     }
     self.subTitleLabel.top = self.titleLabel.bottom + ShowDetailsVC.kSubtitleTopMargin
