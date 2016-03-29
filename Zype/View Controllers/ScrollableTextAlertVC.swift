@@ -37,8 +37,8 @@ class ScrollableTextAlertVC: UIViewController {
     string.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(24), range: NSMakeRange(text.characters.count - self.text.characters.count, self.text.characters.count))
     self.textView.attributedText = string
   }
-  func configWithText(text: String, header: String? = nil){
-    self.text = text
+  func configWithText(text: String, header: String? = nil, title: String){
+    self.text = title + "\n\n" + text
     self.header = header
   }
 
