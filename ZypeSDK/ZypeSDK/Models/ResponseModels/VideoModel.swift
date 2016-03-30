@@ -52,11 +52,11 @@ public class VideoModel: BaseModel {
         var value = thumbnails.first
         for thumbnail in self.thumbnails
         {
-            if thumbnail.height > height
+            value = thumbnail
+            if thumbnail.height >= height
             {
                 break
             }
-            value = thumbnail
         }
         return value
     }

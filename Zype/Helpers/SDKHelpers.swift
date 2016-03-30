@@ -25,7 +25,7 @@ extension VideoModel {
   }
 
   func posterURL() -> NSURL? {
-    if let model = self.getThumbnailByHeight(1080) {
+    if let model = self.getThumbnailByHeight(720) {
       return NSURL(string: model.imageURL)
     }
     return nil
