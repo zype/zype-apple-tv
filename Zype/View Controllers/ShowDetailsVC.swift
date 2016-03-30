@@ -153,7 +153,7 @@ class ShowDetailsVC: CollectionContainerVC {
   func onExpandDescription() {
     if(self.selectedVideo != nil) {
       let alertVC = self.storyboard?.instantiateViewControllerWithIdentifier("ScrollableTextAlertVC") as! ScrollableTextAlertVC
-      alertVC.configWithText(self.selectedVideo.descriptionString, header: self.selectedShow.titleString, title: self.selectedVideo.titleString)
+      alertVC.configWithText(self.selectedVideo.descriptionString, header: self.selectedVideo.titleString, title: "")
       self.navigationController?.presentViewController(alertVC, animated: true, completion: nil)
     }
   }
