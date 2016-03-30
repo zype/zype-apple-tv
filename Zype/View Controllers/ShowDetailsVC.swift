@@ -10,9 +10,9 @@ import UIKit
 import ZypeSDK
 
 class ShowDetailsVC: CollectionContainerVC {
-  
-  static let kDescriptionTopMargin: CGFloat = 30.0
-  static let kSubtitleTopMargin: CGFloat = 20.0
+
+  static let kDescriptionTopMargin: CGFloat = 0.0
+  static let kSubtitleTopMargin: CGFloat = -15.0
 
   @IBOutlet weak var posterImage: URLImageView!
   @IBOutlet weak var titleLabel: UILabel!
@@ -106,7 +106,8 @@ class ShowDetailsVC: CollectionContainerVC {
       }
     }
     self.subTitleLabel.top = self.titleLabel.bottom + ShowDetailsVC.kSubtitleTopMargin
-    self.descriptionView.height = self.labelsView.height - self.descriptionView.top
+    self.descriptionView.top = self.subTitleLabel.bottom
+//    self.descriptionView.height = self.labelsView.height - self.descriptionView.top
   }
   
   override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {

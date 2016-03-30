@@ -64,10 +64,10 @@ class StyledLabel: UILabel {
       font = UIFont.systemFontOfSize(24)
       break
     case .MainHeader:
-      font = UIFont.systemFontOfSize(70, weight: UIFontWeightSemibold)
+      font = UIFont.systemFontOfSize(21)
       break
     case .SubHeader:
-      font = UIFont.systemFontOfSize(38)
+      font = UIFont.systemFontOfSize(50)
       break
     case .ScreenHeader:
       font = UIFont.boldSystemFontOfSize(45)
