@@ -24,6 +24,7 @@ class ZypeCacheManager: NSObject {
     
     func synchronizePlaylists(playlists: Array<PlaylistModel>) -> Array<PlaylistModel>
     {
+        var sortedPlaylists = playlists.sort({$0.priority < $1.priority})
         return self.synchronizeObjects(&loadedPlaylists, addObjects: playlists)!
     }
     
