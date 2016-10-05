@@ -12,8 +12,8 @@ import ZypeSDK
 
 class Const: NSObject {
 
-  static let sdkSettings = SettingsModel(clientID: "",
-    secret: "",
+  static let sdkSettings = SettingsModel(clientID: "<CLIENT_ID>",
+    secret: "<CLIENT_SECRET>",
     appKey: "<APP_KEY>",
     apiDomain:"https://api.zype.com",
     tokenDomain: "https://login.zype.com",
