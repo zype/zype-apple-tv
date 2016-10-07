@@ -12,6 +12,8 @@ class ZypeRESTController: NSObject, NSURLSessionDelegate {
     //
     // constants
     //
+    
+    private let kGetApp = "%@/app/?app_key=%@"
 
     //favorites
     private let kGetFavorites = "%@/consumers/%@/video_favorites/?access_token=%@&page=%d"
@@ -147,6 +149,12 @@ class ZypeRESTController: NSObject, NSURLSessionDelegate {
     func getFavorites(accessToken: String,consumerId: String, page: Int, completion:(jsonDic: Dictionary<String, AnyObject>?, error: NSError?) -> Void)
     {
         let urlAsString = String(format: kGetFavorites, self.keys.apiDomain, consumerId, accessToken, page)
+        getQuery(urlAsString, withCompletion: completion)
+    }
+    
+    // MARK: App Settings
+    func getApp(queryModel: QueryAppModel, completion:(jsonDic: Dictionary<String, AnyObject>?, error: NSError?) -> Void) {
+        let urlAsString = String(format: kGetApp, self.keys.apiDomain, keys.appKey)
         getQuery(urlAsString, withCompletion: completion)
     }
 

@@ -249,7 +249,26 @@ class ZypeDataManager : NSObject {
             }
          }, update: serviceController.refreshAccessTokenWithCompletionHandler)
     }
-
+    
+    //MARK: app
+    func getApp(queryModel: QueryAppModel, completion: (app: AppModel?, error: NSError?) -> Void)
+    {
+        self.serviceController.getApp(queryModel, completion: {(jsonDic, var error) -> Void in
+            var app: AppModel?
+            if (jsonDic != nil)
+            {
+                error = self.isServiceError(jsonDic!)
+                if error == nil {
+                    app = AppModel(fromJson: jsonDic![kJSONResponse] as! Dictionary<String, AnyObject>)
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion(app: app, error: error)
+                })
+            }
+        })
+    }
+    
     //MARK: zobjects
     func getZobjectTypes(queryModel: QueryZobjectTypesModel, var toArray: Array<ZobjectTypeModel> = Array<ZobjectTypeModel>(),
         completion:(objectTypes: Array<ZobjectTypeModel>, error: NSError?) -> Void)

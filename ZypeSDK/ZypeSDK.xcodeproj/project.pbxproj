@@ -47,6 +47,8 @@
 		64F58A311BD8154200777E4A /* ZypeCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F58A2A1BD8154200777E4A /* ZypeCacheManager.swift */; };
 		64F58A321BD8154200777E4A /* ZypeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F58A2B1BD8154200777E4A /* ZypeDataManager.swift */; };
 		64F58A331BD8154200777E4A /* ZypeSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F58A2C1BD8154200777E4A /* ZypeSDK.swift */; };
+		81521FCF1C9F487300B12F18 /* QueryAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81521FCE1C9F487300B12F18 /* QueryAppModel.swift */; };
+		81521FD11C9F487D00B12F18 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81521FD01C9F487D00B12F18 /* AppModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +105,8 @@
 		64F58A2A1BD8154200777E4A /* ZypeCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZypeCacheManager.swift; sourceTree = "<group>"; };
 		64F58A2B1BD8154200777E4A /* ZypeDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ZypeDataManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		64F58A2C1BD8154200777E4A /* ZypeSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ZypeSDK.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		81521FCE1C9F487300B12F18 /* QueryAppModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryAppModel.swift; sourceTree = "<group>"; };
+		81521FD01C9F487D00B12F18 /* AppModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +199,7 @@
 		64F58A051BD814BA00777E4A /* QueryModels */ = {
 			isa = PBXGroup;
 			children = (
+				81521FCE1C9F487300B12F18 /* QueryAppModel.swift */,
 				64F58A061BD814BA00777E4A /* QueryBaseModel.swift */,
 				64F58A071BD814BA00777E4A /* QueryCategoriesModel.swift */,
 				64F58A081BD814BA00777E4A /* QueryVideosModel.swift */,
@@ -210,6 +215,7 @@
 		64F58A0B1BD814BA00777E4A /* ResponseModels */ = {
 			isa = PBXGroup;
 			children = (
+				81521FD01C9F487D00B12F18 /* AppModel.swift */,
 				64F58A0C1BD814BA00777E4A /* BaseModel.swift */,
 				64F58A0D1BD814BA00777E4A /* CategoryModel.swift */,
 				64F58A0E1BD814BA00777E4A /* CategoryValueModel.swift */,
@@ -384,6 +390,7 @@
 				64C1F4F41BE0DC11001D0F67 /* QueryPlaylistsModel.swift in Sources */,
 				64B85CCD1BE3788A00B782A8 /* ZypeFactory.swift in Sources */,
 				64F58A321BD8154200777E4A /* ZypeDataManager.swift in Sources */,
+				81521FD11C9F487D00B12F18 /* AppModel.swift in Sources */,
 				6470AD281BD9500B002D8D4C /* ZypeLog.swift in Sources */,
 				64F58A181BD814BA00777E4A /* QueryZobjectTypesModel.swift in Sources */,
 				64C1F4F81BE11788001D0F67 /* QueryRetrieveVideosInPlaylistModel.swift in Sources */,
@@ -399,6 +406,7 @@
 				64B85CD41BE37ECB00B782A8 /* VimeoUrl.swift in Sources */,
 				64BD4B021BE90B0400B90A29 /* ContentModel.swift in Sources */,
 				64C1F4FC1BE1243E001D0F67 /* ZypeJSONConstants.swift in Sources */,
+				81521FCF1C9F487300B12F18 /* QueryAppModel.swift in Sources */,
 				64F58A331BD8154200777E4A /* ZypeSDK.swift in Sources */,
 				64F58A1B1BD814BA00777E4A /* CategoryValueModel.swift in Sources */,
 				64EC01431BDE8AA000588E4C /* SettingsModel.swift in Sources */,
