@@ -206,7 +206,7 @@ class BaseCollectionVC: UICollectionViewController {
   }
   
   func reloadHeaders() {
-    for (var index = 0; index < self.sections.count; index++) {
+    for (index) in 0 ..< self.sections.count {
       let indexPath = NSIndexPath(forRow: 0, inSection: index)
       if let header = self.collectionView?.supplementaryViewForElementKind(UICollectionElementKindSectionHeader, atIndexPath: indexPath) as? HeaderCell {
         self.configHeader(header, indexPath: indexPath)
