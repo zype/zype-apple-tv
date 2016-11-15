@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A161E9CA1DDBBAA800D01C70 /* DVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */; };
+		A161E9CB1DDBBAA800D01C70 /* DVIABPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9A31DDBBAA800D01C70 /* DVIABPlayer.m */; };
+		A161E9CC1DDBBAA800D01C70 /* DVInlineVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9A51DDBBAA800D01C70 /* DVInlineVideoAd.m */; };
+		A161E9CD1DDBBAA800D01C70 /* DVTimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9A81DDBBAA800D01C70 /* DVTimeIntervalFormatter.m */; };
+		A161E9CE1DDBBAA800D01C70 /* DVVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9AB1DDBBAA800D01C70 /* DVVideoAd.m */; };
+		A161E9CF1DDBBAA800D01C70 /* DVVideoAdServingTemplate+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9AD1DDBBAA800D01C70 /* DVVideoAdServingTemplate+Parsing.m */; };
+		A161E9D01DDBBAA800D01C70 /* DVVideoAdServingTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9AF1DDBBAA800D01C70 /* DVVideoAdServingTemplate.m */; };
+		A161E9D11DDBBAA800D01C70 /* DVVideoMultipleAdPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9B11DDBBAA800D01C70 /* DVVideoMultipleAdPlaylist.m */; };
+		A161E9D21DDBBAA800D01C70 /* DVVideoPlayBreak.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9B31DDBBAA800D01C70 /* DVVideoPlayBreak.m */; };
+		A161E9D31DDBBAA800D01C70 /* DVWrapperVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9B51DDBBAA800D01C70 /* DVWrapperVideoAd.m */; };
+		A161E9D41DDBBAA800D01C70 /* DVVAST.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A161E9B61DDBBAA800D01C70 /* DVVAST.podspec */; };
+		A161E9D51DDBBAA800D01C70 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = A161E9B71DDBBAA800D01C70 /* LICENSE.txt */; };
+		A161E9D61DDBBAA800D01C70 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9BC1DDBBAA800D01C70 /* DDXMLElementAdditions.m */; };
+		A161E9D71DDBBAA800D01C70 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9BF1DDBBAA800D01C70 /* NSString+DDXML.m */; };
+		A161E9D81DDBBAA800D01C70 /* DDXML.swift in Sources */ = {isa = PBXBuildFile; fileRef = A161E9C11DDBBAA800D01C70 /* DDXML.swift */; };
+		A161E9D91DDBBAA800D01C70 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9C31DDBBAA800D01C70 /* DDXMLDocument.m */; };
+		A161E9DA1DDBBAA800D01C70 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9C51DDBBAA800D01C70 /* DDXMLElement.m */; };
+		A161E9DB1DDBBAA800D01C70 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9C71DDBBAA800D01C70 /* DDXMLNode.m */; };
 		F51158161BDE441000DB1774 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F51158181BDE441000DB1774 /* Localizable.strings */; };
 		F511581D1BDE6CFC00DB1774 /* FocusableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */; };
 		F5534D251BCFC64100BEA509 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5534D241BCFC64100BEA509 /* FavoritesVC.swift */; };
@@ -51,6 +69,44 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A161E99E1DDBBAA800D01C70 /* DVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVPlayerView.h; sourceTree = "<group>"; };
+		A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVPlayerView.m; sourceTree = "<group>"; };
+		A161E9A21DDBBAA800D01C70 /* DVIABPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVIABPlayer.h; sourceTree = "<group>"; };
+		A161E9A31DDBBAA800D01C70 /* DVIABPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVIABPlayer.m; sourceTree = "<group>"; };
+		A161E9A41DDBBAA800D01C70 /* DVInlineVideoAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVInlineVideoAd.h; sourceTree = "<group>"; };
+		A161E9A51DDBBAA800D01C70 /* DVInlineVideoAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVInlineVideoAd.m; sourceTree = "<group>"; };
+		A161E9A61DDBBAA800D01C70 /* DVLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVLog.h; sourceTree = "<group>"; };
+		A161E9A71DDBBAA800D01C70 /* DVTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTimeIntervalFormatter.h; sourceTree = "<group>"; };
+		A161E9A81DDBBAA800D01C70 /* DVTimeIntervalFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVTimeIntervalFormatter.m; sourceTree = "<group>"; };
+		A161E9A91DDBBAA800D01C70 /* DVVAST.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVAST.pch; sourceTree = "<group>"; };
+		A161E9AA1DDBBAA800D01C70 /* DVVideoAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVideoAd.h; sourceTree = "<group>"; };
+		A161E9AB1DDBBAA800D01C70 /* DVVideoAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVideoAd.m; sourceTree = "<group>"; };
+		A161E9AC1DDBBAA800D01C70 /* DVVideoAdServingTemplate+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVVideoAdServingTemplate+Parsing.h"; sourceTree = "<group>"; };
+		A161E9AD1DDBBAA800D01C70 /* DVVideoAdServingTemplate+Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVVideoAdServingTemplate+Parsing.m"; sourceTree = "<group>"; };
+		A161E9AE1DDBBAA800D01C70 /* DVVideoAdServingTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVideoAdServingTemplate.h; sourceTree = "<group>"; };
+		A161E9AF1DDBBAA800D01C70 /* DVVideoAdServingTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVideoAdServingTemplate.m; sourceTree = "<group>"; };
+		A161E9B01DDBBAA800D01C70 /* DVVideoMultipleAdPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVideoMultipleAdPlaylist.h; sourceTree = "<group>"; };
+		A161E9B11DDBBAA800D01C70 /* DVVideoMultipleAdPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVideoMultipleAdPlaylist.m; sourceTree = "<group>"; };
+		A161E9B21DDBBAA800D01C70 /* DVVideoPlayBreak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVideoPlayBreak.h; sourceTree = "<group>"; };
+		A161E9B31DDBBAA800D01C70 /* DVVideoPlayBreak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVideoPlayBreak.m; sourceTree = "<group>"; };
+		A161E9B41DDBBAA800D01C70 /* DVWrapperVideoAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVWrapperVideoAd.h; sourceTree = "<group>"; };
+		A161E9B51DDBBAA800D01C70 /* DVWrapperVideoAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVWrapperVideoAd.m; sourceTree = "<group>"; };
+		A161E9B61DDBBAA800D01C70 /* DVVAST.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DVVAST.podspec; sourceTree = "<group>"; };
+		A161E9B71DDBBAA800D01C70 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		A161E9B81DDBBAA800D01C70 /* DVVAST-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVVAST-Bridging-Header.h"; sourceTree = "<group>"; };
+		A161E9BB1DDBBAA800D01C70 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
+		A161E9BC1DDBBAA800D01C70 /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
+		A161E9BE1DDBBAA800D01C70 /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
+		A161E9BF1DDBBAA800D01C70 /* NSString+DDXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DDXML.m"; sourceTree = "<group>"; };
+		A161E9C01DDBBAA800D01C70 /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXML.h; sourceTree = "<group>"; };
+		A161E9C11DDBBAA800D01C70 /* DDXML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDXML.swift; sourceTree = "<group>"; };
+		A161E9C21DDBBAA800D01C70 /* DDXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLDocument.h; sourceTree = "<group>"; };
+		A161E9C31DDBBAA800D01C70 /* DDXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLDocument.m; sourceTree = "<group>"; };
+		A161E9C41DDBBAA800D01C70 /* DDXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElement.h; sourceTree = "<group>"; };
+		A161E9C51DDBBAA800D01C70 /* DDXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElement.m; sourceTree = "<group>"; };
+		A161E9C61DDBBAA800D01C70 /* DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLNode.h; sourceTree = "<group>"; };
+		A161E9C71DDBBAA800D01C70 /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
+		A161E9C91DDBBAA800D01C70 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
 		F51158171BDE441000DB1774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusableButton.swift; sourceTree = "<group>"; };
 		F5534D241BCFC64100BEA509 /* FavoritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
@@ -94,9 +150,103 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A161E99D1DDBBAA800D01C70 /* AVOD */ = {
+			isa = PBXGroup;
+			children = (
+				A161E99E1DDBBAA800D01C70 /* DVPlayerView.h */,
+				A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */,
+				A161E9A01DDBBAA800D01C70 /* DVVAST */,
+				A161E9B81DDBBAA800D01C70 /* DVVAST-Bridging-Header.h */,
+				A161E9B91DDBBAA800D01C70 /* KissXML */,
+			);
+			path = AVOD;
+			sourceTree = "<group>";
+		};
+		A161E9A01DDBBAA800D01C70 /* DVVAST */ = {
+			isa = PBXGroup;
+			children = (
+				A161E9A11DDBBAA800D01C70 /* Classes */,
+				A161E9B61DDBBAA800D01C70 /* DVVAST.podspec */,
+				A161E9B71DDBBAA800D01C70 /* LICENSE.txt */,
+			);
+			path = DVVAST;
+			sourceTree = "<group>";
+		};
+		A161E9A11DDBBAA800D01C70 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A161E9A21DDBBAA800D01C70 /* DVIABPlayer.h */,
+				A161E9A31DDBBAA800D01C70 /* DVIABPlayer.m */,
+				A161E9A41DDBBAA800D01C70 /* DVInlineVideoAd.h */,
+				A161E9A51DDBBAA800D01C70 /* DVInlineVideoAd.m */,
+				A161E9A61DDBBAA800D01C70 /* DVLog.h */,
+				A161E9A71DDBBAA800D01C70 /* DVTimeIntervalFormatter.h */,
+				A161E9A81DDBBAA800D01C70 /* DVTimeIntervalFormatter.m */,
+				A161E9A91DDBBAA800D01C70 /* DVVAST.pch */,
+				A161E9AA1DDBBAA800D01C70 /* DVVideoAd.h */,
+				A161E9AB1DDBBAA800D01C70 /* DVVideoAd.m */,
+				A161E9AC1DDBBAA800D01C70 /* DVVideoAdServingTemplate+Parsing.h */,
+				A161E9AD1DDBBAA800D01C70 /* DVVideoAdServingTemplate+Parsing.m */,
+				A161E9AE1DDBBAA800D01C70 /* DVVideoAdServingTemplate.h */,
+				A161E9AF1DDBBAA800D01C70 /* DVVideoAdServingTemplate.m */,
+				A161E9B01DDBBAA800D01C70 /* DVVideoMultipleAdPlaylist.h */,
+				A161E9B11DDBBAA800D01C70 /* DVVideoMultipleAdPlaylist.m */,
+				A161E9B21DDBBAA800D01C70 /* DVVideoPlayBreak.h */,
+				A161E9B31DDBBAA800D01C70 /* DVVideoPlayBreak.m */,
+				A161E9B41DDBBAA800D01C70 /* DVWrapperVideoAd.h */,
+				A161E9B51DDBBAA800D01C70 /* DVWrapperVideoAd.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		A161E9B91DDBBAA800D01C70 /* KissXML */ = {
+			isa = PBXGroup;
+			children = (
+				A161E9BA1DDBBAA800D01C70 /* Additions */,
+				A161E9BD1DDBBAA800D01C70 /* Categories */,
+				A161E9C01DDBBAA800D01C70 /* DDXML.h */,
+				A161E9C11DDBBAA800D01C70 /* DDXML.swift */,
+				A161E9C21DDBBAA800D01C70 /* DDXMLDocument.h */,
+				A161E9C31DDBBAA800D01C70 /* DDXMLDocument.m */,
+				A161E9C41DDBBAA800D01C70 /* DDXMLElement.h */,
+				A161E9C51DDBBAA800D01C70 /* DDXMLElement.m */,
+				A161E9C61DDBBAA800D01C70 /* DDXMLNode.h */,
+				A161E9C71DDBBAA800D01C70 /* DDXMLNode.m */,
+				A161E9C81DDBBAA800D01C70 /* Private */,
+			);
+			path = KissXML;
+			sourceTree = "<group>";
+		};
+		A161E9BA1DDBBAA800D01C70 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				A161E9BB1DDBBAA800D01C70 /* DDXMLElementAdditions.h */,
+				A161E9BC1DDBBAA800D01C70 /* DDXMLElementAdditions.m */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
+		A161E9BD1DDBBAA800D01C70 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				A161E9BE1DDBBAA800D01C70 /* NSString+DDXML.h */,
+				A161E9BF1DDBBAA800D01C70 /* NSString+DDXML.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		A161E9C81DDBBAA800D01C70 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				A161E9C91DDBBAA800D01C70 /* DDXMLPrivate.h */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
 		F553AD171BC660B400A093EF = {
 			isa = PBXGroup;
 			children = (
+				A161E99D1DDBBAA800D01C70 /* AVOD */,
 				F5582CAC1BC7DB8B0089E5E7 /* Zype */,
 				F553AD211BC660B400A093EF /* Products */,
 			);
@@ -248,6 +398,8 @@
 			files = (
 				F5582CB91BC7DB8B0089E5E7 /* Assets.xcassets in Resources */,
 				F51158161BDE441000DB1774 /* Localizable.strings in Resources */,
+				A161E9D41DDBBAA800D01C70 /* DVVAST.podspec in Resources */,
+				A161E9D51DDBBAA800D01C70 /* LICENSE.txt in Resources */,
 				F5582CBA1BC7DB8B0089E5E7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,27 +412,43 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5E6DA3F1BCEB03A00BE842B /* SearchVC.swift in Sources */,
+				A161E9D91DDBBAA800D01C70 /* DDXMLDocument.m in Sources */,
 				F5582CD01BC7FA350089E5E7 /* ControllerCell.swift in Sources */,
 				F5582CD21BC818CA0089E5E7 /* ShowDetailsVC.swift in Sources */,
 				F55957DB1BD7D1B2004A01A9 /* SDKHelpers.swift in Sources */,
 				F5534D271BCFEB8200BEA509 /* CollectionContainerVC.swift in Sources */,
+				A161E9D01DDBBAA800D01C70 /* DVVideoAdServingTemplate.m in Sources */,
+				A161E9CC1DDBBAA800D01C70 /* DVInlineVideoAd.m in Sources */,
+				A161E9D11DDBBAA800D01C70 /* DVVideoMultipleAdPlaylist.m in Sources */,
+				A161E9D61DDBBAA800D01C70 /* DDXMLElementAdditions.m in Sources */,
 				F5D98CE81BE3BFBB00C986B4 /* TabBarVC.swift in Sources */,
+				A161E9D31DDBBAA800D01C70 /* DVWrapperVideoAd.m in Sources */,
 				F55940391C048F2700A0ECFF /* FadeNavigationAnimationController.swift in Sources */,
+				A161E9CE1DDBBAA800D01C70 /* DVVideoAd.m in Sources */,
 				F5582CB81BC7DB8B0089E5E7 /* AppDelegate.swift in Sources */,
 				F559403C1C048F4200A0ECFF /* FocusableView.swift in Sources */,
+				A161E9D21DDBBAA800D01C70 /* DVVideoPlayBreak.m in Sources */,
 				F5582CCB1BC7E2E10089E5E7 /* HomeVC.swift in Sources */,
 				F5577D971BCE5AE000F174CE /* UIView+Positioning.swift in Sources */,
+				A161E9DB1DDBBAA800D01C70 /* DDXMLNode.m in Sources */,
 				F55957D91BD77D3E004A01A9 /* PagerCell.swift in Sources */,
+				A161E9D81DDBBAA800D01C70 /* DDXML.swift in Sources */,
 				F5D98CCF1BE3B09500C986B4 /* HeaderCell.swift in Sources */,
 				F5582CCE1BC7F9DC0089E5E7 /* ImageCell.swift in Sources */,
+				A161E9CF1DDBBAA800D01C70 /* DVVideoAdServingTemplate+Parsing.m in Sources */,
 				F55732141BDA4EBC00D323A0 /* Utils.swift in Sources */,
 				F5534D251BCFC64100BEA509 /* FavoritesVC.swift in Sources */,
 				F5577D931BCE4FDC00F174CE /* URLImageView.swift in Sources */,
+				A161E9CB1DDBBAA800D01C70 /* DVIABPlayer.m in Sources */,
+				A161E9DA1DDBBAA800D01C70 /* DDXMLElement.m in Sources */,
 				F5582CCA1BC7E2E10089E5E7 /* PlayerVC.swift in Sources */,
 				F558AC851BD508E600D8E677 /* ScrollableTextAlertVC.swift in Sources */,
 				F511581D1BDE6CFC00DB1774 /* FocusableButton.swift in Sources */,
 				F5D98CE31BE3B8F200C986B4 /* ModalProgressVC.swift in Sources */,
+				A161E9CA1DDBBAA800D01C70 /* DVPlayerView.m in Sources */,
+				A161E9CD1DDBBAA800D01C70 /* DVTimeIntervalFormatter.m in Sources */,
 				F5582CD41BC819110089E5E7 /* Const.swift in Sources */,
+				A161E9D71DDBBAA800D01C70 /* NSString+DDXML.m in Sources */,
 				F55669321BE8DADC006A3138 /* StyledLabel.swift in Sources */,
 				F5586B091BCBD1D6001DEB5B /* BaseCollectionVC.swift in Sources */,
 				F5D98CC01BE3855D00C986B4 /* GradientMaskView.swift in Sources */,
@@ -404,7 +572,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = <PRODUCT_BUNDLE_IDENTIFIER>;
-				PRODUCT_NAME = "<PRODUCT_NAME>";
+				PRODUCT_NAME = <PRODUCT_NAME>;
 				SDKROOT = appletvos;
 			};
 			name = Debug;
@@ -421,7 +589,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = <PRODUCT_BUNDLE_IDENTIFIER>;
-				PRODUCT_NAME = "<PRODUCT_NAME>";
+				PRODUCT_NAME = <PRODUCT_NAME>;
 				SDKROOT = appletvos;
 			};
 			name = Release;
