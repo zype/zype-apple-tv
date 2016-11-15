@@ -32,43 +32,10 @@
 		F55957DB1BD7D1B2004A01A9 /* SDKHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55957DA1BD7D1B2004A01A9 /* SDKHelpers.swift */; };
 		F5D98CC01BE3855D00C986B4 /* GradientMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D98CBF1BE3855D00C986B4 /* GradientMaskView.swift */; };
 		F5D98CCF1BE3B09500C986B4 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D98CCE1BE3B09500C986B4 /* HeaderCell.swift */; };
-		F5D98CD91BE3B6A200C986B4 /* ZypeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F589FF1BD8145600777E4A /* ZypeSDK.framework */; };
-		F5D98CDA1BE3B6A200C986B4 /* ZypeSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64F589FF1BD8145600777E4A /* ZypeSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F5D98CE31BE3B8F200C986B4 /* ModalProgressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D98CE21BE3B8F200C986B4 /* ModalProgressVC.swift */; };
 		F5D98CE81BE3BFBB00C986B4 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D98CE71BE3BFBB00C986B4 /* TabBarVC.swift */; };
 		F5E6DA3F1BCEB03A00BE842B /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6DA3E1BCEB03A00BE842B /* SearchVC.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		64F589FE1BD8145600777E4A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64F589FA1BD8145500777E4A /* ZypeSDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 64F589EF1BD8145500777E4A;
-			remoteInfo = ZypeSDK;
-		};
-		64F58A001BD8149000777E4A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64F589FA1BD8145500777E4A /* ZypeSDK.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 64F589EE1BD8145500777E4A;
-			remoteInfo = ZypeSDK;
-		};
-		F511581A1BDE441000DB1774 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64F589FA1BD8145500777E4A /* ZypeSDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 642056FB1BDA52D200531C50;
-			remoteInfo = ZypeSDKTests;
-		};
-		F5D98CDB1BE3B6A200C986B4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64F589FA1BD8145500777E4A /* ZypeSDK.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 64F589EE1BD8145500777E4A;
-			remoteInfo = ZypeSDK;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		F5D98CDD1BE3B6A300C986B4 /* Embed Frameworks */ = {
@@ -77,7 +44,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F5D98CDA1BE3B6A200C986B4 /* ZypeSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,7 +51,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		64F589FA1BD8145500777E4A /* ZypeSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZypeSDK.xcodeproj; path = ZypeSDK/ZypeSDK.xcodeproj; sourceTree = "<group>"; };
 		F51158171BDE441000DB1774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusableButton.swift; sourceTree = "<group>"; };
 		F5534D241BCFC64100BEA509 /* FavoritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
@@ -123,26 +88,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5D98CD91BE3B6A200C986B4 /* ZypeSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		64F589FB1BD8145500777E4A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				64F589FF1BD8145600777E4A /* ZypeSDK.framework */,
-				F511581B1BDE441000DB1774 /* ZypeSDKTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		F553AD171BC660B400A093EF = {
 			isa = PBXGroup;
 			children = (
-				64F589FA1BD8145500777E4A /* ZypeSDK.xcodeproj */,
 				F5582CAC1BC7DB8B0089E5E7 /* Zype */,
 				F553AD211BC660B400A093EF /* Products */,
 			);
@@ -247,8 +201,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				64F58A011BD8149000777E4A /* PBXTargetDependency */,
-				F5D98CDC1BE3B6A200C986B4 /* PBXTargetDependency */,
 			);
 			name = <PROJECT_NAME>;
 			productName = UITest;
@@ -282,35 +234,12 @@
 			mainGroup = F553AD171BC660B400A093EF;
 			productRefGroup = F553AD211BC660B400A093EF /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 64F589FB1BD8145500777E4A /* Products */;
-					ProjectRef = 64F589FA1BD8145500777E4A /* ZypeSDK.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				F553AD1F1BC660B400A093EF /* <PROJECT_NAME> */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		64F589FF1BD8145600777E4A /* ZypeSDK.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ZypeSDK.framework;
-			remoteRef = 64F589FE1BD8145600777E4A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F511581B1BDE441000DB1774 /* ZypeSDKTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ZypeSDKTests.xctest;
-			remoteRef = F511581A1BDE441000DB1774 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		F553AD1E1BC660B400A093EF /* Resources */ = {
@@ -359,19 +288,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		64F58A011BD8149000777E4A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ZypeSDK;
-			targetProxy = 64F58A001BD8149000777E4A /* PBXContainerItemProxy */;
-		};
-		F5D98CDC1BE3B6A200C986B4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ZypeSDK;
-			targetProxy = F5D98CDB1BE3B6A200C986B4 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F51158181BDE441000DB1774 /* Localizable.strings */ = {
