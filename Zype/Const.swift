@@ -8,7 +8,7 @@
 // GIT DESCRIPTION: <GIT_DESCRIPTION>
 
 import UIKit
-import ZypeSDK
+import ZypeAppleTVBase
 
 class Const: NSObject {
 

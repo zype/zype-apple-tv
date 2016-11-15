@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ZypeSDK
+import ZypeAppleTVBase
 
 class ShowDetailsVC: CollectionContainerVC {
 

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ZypeSDK
+import ZypeAppleTVBase
 import AVKit
 import AVFoundation
 
@@ -24,7 +24,7 @@ class FavoriteCollectionItem: CollectionLabeledItem {
   override func loadResources(){
     let queryModel = QueryVideosModel()
     queryModel.videoID = self.videoID
-    ZypeSDK.sharedInstance.getVideos(queryModel, completion: {(videos: Array<VideoModel>?, error: NSError?) in
+    ZypeAppleTVBase.sharedInstance.getVideos(queryModel, completion: {(videos: Array<VideoModel>?, error: NSError?) in
       if let _ = videos where videos!.count > 0 {
         let video = videos!.first! as VideoModel
         self.object = video

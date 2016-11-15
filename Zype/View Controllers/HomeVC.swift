@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ZypeSDK
+import ZypeAppleTVBase
 
 class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
   
@@ -47,7 +47,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
   
   func reloadData() {
     self.hideErrorInfo()
-    ZypeSDK.sharedInstance.getPlaylists(completion: {[unowned self] (playlists: Array<PlaylistModel>?, error: NSError?) in
+    ZypeAppleTVBase.sharedInstance.getPlaylists(completion: {[unowned self] (playlists: Array<PlaylistModel>?, error: NSError?) in
       if(error == nil && playlists != nil) {
         self.playlists = playlists!
         self.getLivestreamItem({(result: CollectionLabeledItem?) in
@@ -67,7 +67,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
     queryModel.onAir = true
     queryModel.sort = "published_at"
     queryModel.ascending = false
-    ZypeSDK.sharedInstance.getVideos(queryModel, completion: {(videos: Array<VideoModel>?, error: NSError?) in
+    ZypeAppleTVBase.sharedInstance.getVideos(queryModel, completion: {(videos: Array<VideoModel>?, error: NSError?) in
       if let _ = videos where videos!.count > 0 {
         let video = videos!.first!
         let item = CollectionLabeledItem()
@@ -91,7 +91,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
   func getFeaturedVideos(livestreamItem: CollectionLabeledItem?, callback: () -> Void) {
     let type = QueryZobjectsModel()
     type.zobjectType = "top_playlists"
-    ZypeSDK.sharedInstance.getZobjects(type, completion: {(objects: Array<ZobjectModel>?, error: NSError?) in
+    ZypeAppleTVBase.sharedInstance.getZobjects(type, completion: {(objects: Array<ZobjectModel>?, error: NSError?) in
       if let _ = objects where objects!.count > 0 {
         var items = CollectionContainerVC.featuresToCollectionItems(objects)
         if let _ = livestreamItem {
@@ -233,8 +233,8 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
   }
   
   @IBAction func onReload(sender: AnyObject) {
-    ZypeSDK.sharedInstance.reset()
-    ZypeSDK.sharedInstance.initialize(Const.sdkSettings, loadCategories: false, loadPlaylists: false, completion: {_ in})
+    ZypeAppleTVBase.sharedInstance.reset()
+    ZypeAppleTVBase.sharedInstance.initialize(Const.sdkSettings, loadCategories: false, loadPlaylists: false, completion: {_ in})
     self.hideErrorInfo()
     self.reloadData()
   }

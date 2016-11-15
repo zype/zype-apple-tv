@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ZypeSDK
+import ZypeAppleTVBase
 
 class FavoritesVC: CollectionContainerVC {
   
@@ -69,7 +69,7 @@ class FavoritesVC: CollectionContainerVC {
       self.displayInfo(localized("Favorites.NoFavorites"))
     }
     
-//    ZypeSDK.sharedInstance.getFavorites({ (videos, error) -> Void in
+//    ZypeAppleTVBase.sharedInstance.getFavorites({ (videos, error) -> Void in
 //      let section = CollectionSection()
 //      section.headerStyle = .Centered
 //      section.title = localized("Favorites.Title")

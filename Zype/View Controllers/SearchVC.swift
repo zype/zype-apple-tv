@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ZypeSDK
+import ZypeAppleTVBase
 
 class SearchController: UISearchController {
   override func viewDidAppear(animated: Bool) {
@@ -51,7 +51,7 @@ class SearchVC: UISearchContainerViewController, UISearchControllerDelegate, UIS
         self.collectionVC.configWithSections([CollectionSection()])
         return
       }
-      ZypeSDK.sharedInstance.getVideos(QueryVideosModel(searchString: searchController.searchBar.text!, perPage: 100), completion: { (videos, error) -> Void in
+      ZypeAppleTVBase.sharedInstance.getVideos(QueryVideosModel(searchString: searchController.searchBar.text!, perPage: 100), completion: { (videos, error) -> Void in
           if(searchString == searchController.searchBar.text) {
               let section = CollectionSection()
               section.title = String(format: localized("Search.Results"), arguments: [videos == nil ? 0 : videos!.count])

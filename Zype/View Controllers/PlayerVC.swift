@@ -9,7 +9,7 @@
 import UIKit
 import AVKit
 import AVFoundation
-import ZypeSDK
+import ZypeAppleTVBase
 
 class PlayerVC: AVPlayerViewController {
   

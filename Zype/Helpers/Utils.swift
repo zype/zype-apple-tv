@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ZypeSDK
+import ZypeAppleTVBase
 
 func localized(key: String) -> String {
   return NSLocalizedString(key, comment: "")

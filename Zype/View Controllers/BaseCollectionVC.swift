@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ZypeSDK
+import ZypeAppleTVBase
 
 enum CollectionSectionHeaderStyle {
   case Regular

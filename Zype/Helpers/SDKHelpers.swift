@@ -8,7 +8,7 @@
 
 
 import UIKit
-import ZypeSDK
+import ZypeAppleTVBase
 
 extension VideoModel {
 
