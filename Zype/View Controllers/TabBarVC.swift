@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ZypeAppleTVBase
 
 class TabBarVC: UITabBarController {
 
@@ -135,5 +136,5 @@ class TabBarVC: UITabBarController {
         }
     }
 
-  
+
 }
