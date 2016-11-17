@@ -85,9 +85,22 @@ class TabBarVC: UITabBarController {
                     if (!favoritesText.isEmpty) {
                         NSUserDefaults.standardUserDefaults().setObject(favoritesText, forKey: kFavoritesMessage)
                     }
-                }                catch _ {
+                }
+                catch _ {
                     ZypeLog.error("Exception: ZobjectModel - Favorites")
                 }
+                
+                do {
+                    let rootPlaylistIdText = try SSUtils.stringFromDictionary(tvOSSettings?.json, key: "root_playlist_id")
+                    if (!rootPlaylistIdText.isEmpty) {
+                        NSUserDefaults.standardUserDefaults().setObject(rootPlaylistIdText, forKey: "root_playlist_id")
+                    }
+                }
+                catch _ {
+                    ZypeLog.error("Exception: ZobjectModel - Root Playlist Id")
+                }
+                
+                NSNotificationCenter.defaultCenter().postNotificationName("ready_to_load_playlists", object: nil)
                 
                 NSUserDefaults.standardUserDefaults().synchronize()
             }
@@ -130,11 +143,10 @@ class TabBarVC: UITabBarController {
         }
         
         if (needToBeRemoved) {
-            // self.tabBar.selectedItem = self.tabBar.items![0]
             self.selectedIndex = 0
             self.viewControllers?.removeLast()
         }
     }
 
-
+  
 }
