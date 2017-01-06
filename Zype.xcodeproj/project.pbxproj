@@ -576,6 +576,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = <PRODUCT_BUNDLE_IDENTIFIER>;
 				PRODUCT_NAME = <PRODUCT_NAME>;
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -593,6 +594,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = <PRODUCT_BUNDLE_IDENTIFIER>;
 				PRODUCT_NAME = <PRODUCT_NAME>;
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
