@@ -113,7 +113,7 @@ class URLImageView: UIImageView {
     let outputImage = gaussianBlurFilter.outputImage
     let context = CIContext(options:nil)
     let cgimg = context.createCGImage(outputImage!, fromRect: inputImage.extent)
-    let image = UIImage(CGImage: cgimg)
+    let image = UIImage(CGImage: cgimg!)
     return image
   }
   

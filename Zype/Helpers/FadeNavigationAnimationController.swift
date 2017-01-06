@@ -20,7 +20,7 @@ class FadeNavigationAnimationController: NSObject, UIViewControllerAnimatedTrans
     let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
     let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
     let finalFrameForVC = transitionContext.finalFrameForViewController(toViewController)
-    let containerView = transitionContext.containerView()!
+    let containerView = transitionContext.containerView()
     
     toViewController.view.frame = finalFrameForVC
     if(!self.reverse) {
