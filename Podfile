@@ -2,7 +2,8 @@ use_frameworks!
 
 platform :tvos, '9.0'
 
-target '<PRODUCT_NAME>' do
+#need to change builder to automatically change <PRODUCT_NAME>
+target 'ZypeAppName' do
 
 
 # Uncomment for development
