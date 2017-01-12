@@ -12,14 +12,14 @@ class HeaderCell: UICollectionReusableView {
         
   @IBOutlet weak var label: UILabel!
   
-  var style: CollectionSectionHeaderStyle = .Regular {
+  var style: CollectionSectionHeaderStyle = .regular {
     didSet {
       switch self.style {
-      case .Regular:
-        self.label.textAlignment = .Left
+      case .regular:
+        self.label.textAlignment = .left
         break
-      case .Centered:
-        self.label.textAlignment = .Center
+      case .centered:
+        self.label.textAlignment = .center
         break
       }
     }

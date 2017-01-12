@@ -10,10 +10,10 @@ import UIKit
 import ZypeAppleTVBase
 
 class SearchController: UISearchController {
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    if let effectView = self.view.superview?.subviews.first! where effectView.isKindOfClass(UIVisualEffectView) {
-      effectView.hidden = true
+    if let effectView = self.view.superview?.subviews.first!, effectView.isKind(of: UIVisualEffectView.self) {
+      effectView.isHidden = true
     }
   }
 }
@@ -28,7 +28,7 @@ class SearchVC: UISearchContainerViewController, UISearchControllerDelegate, UIS
   override internal var searchController: UISearchController {
     get {
       if(self.cachedVC == nil){
-        self.collectionVC = self.storyboard?.instantiateViewControllerWithIdentifier("BaseCollectionVC") as! BaseCollectionVC
+        self.collectionVC = self.storyboard?.instantiateViewController(withIdentifier: "BaseCollectionVC") as! BaseCollectionVC
         self.collectionVC.configWithSections([CollectionSection()])
         self.collectionVC.itemSelectedCallback = {(item: CollectionLabeledItem, section: CollectionSection) in
           self.playVideo(item.object as! VideoModel)
@@ -43,7 +43,7 @@ class SearchVC: UISearchContainerViewController, UISearchControllerDelegate, UIS
     }
   }
   
-  func updateSearchResultsForSearchController(searchController: UISearchController) {
+  func updateSearchResults(for searchController: UISearchController) {
     let searchString = searchController.searchBar.text ?? ""
     if(self.lastSearchString != searchString) {
       self.lastSearchString = searchString

@@ -10,33 +10,33 @@ import UIKit
 extension UIView{
     // MARK: - Basic Properties
     var x:CGFloat{
-        set{ self.frame = CGRectMake(_pixelIntegral(newValue), self.y, self.width, self.height) }
+        set{ self.frame = CGRect(x: _pixelIntegral(newValue), y: self.y, width: self.width, height: self.height) }
         get{ return self.frame.origin.x }
     }
     
     var y:CGFloat{
-        set { self.frame = CGRectMake(self.x, _pixelIntegral(newValue), self.width, self.height) }
+        set { self.frame = CGRect(x: self.x, y: _pixelIntegral(newValue), width: self.width, height: self.height) }
         get { return self.frame.origin.y }
     }
     
     var width: CGFloat{
-        set { self.frame = CGRectMake(self.x, self.y, _pixelIntegral(newValue), self.height) }
+        set { self.frame = CGRect(x: self.x, y: self.y, width: _pixelIntegral(newValue), height: self.height) }
         get { return self.frame.size.width }
     }
     
     var height: CGFloat{
-        set { self.frame = CGRectMake(self.x, self.y, self.width, _pixelIntegral(newValue)) }
+        set { self.frame = CGRect(x: self.x, y: self.y, width: self.width, height: _pixelIntegral(newValue)) }
         get { return self.frame.size.height }
     }
     
     // MARK: - Origin and Size
     var origin: CGPoint{
-        set { self.frame = CGRectMake(_pixelIntegral(newValue.x), _pixelIntegral(newValue.y), self.width, self.height) }
+        set { self.frame = CGRect(x: _pixelIntegral(newValue.x), y: _pixelIntegral(newValue.y), width: self.width, height: self.height) }
         get { return self.frame.origin }
     }
     
     var size: CGSize{
-        set { self.frame = CGRectMake(self.x, self.y, _pixelIntegral(newValue.width), _pixelIntegral(newValue.height)) }
+        set { self.frame = CGRect(x: self.x, y: self.y, width: _pixelIntegral(newValue.width), height: _pixelIntegral(newValue.height)) }
         get { return self.frame.size }
     }
     
@@ -62,12 +62,12 @@ extension UIView{
     }
     
     var centerX: CGFloat{
-        set { self.center = CGPointMake(newValue, self.centerY) }
+        set { self.center = CGPoint(x: newValue, y: self.centerY) }
         get { return self.center.x }
     }
     
     var centerY: CGFloat {
-        set { self.center = CGPointMake(self.centerX, newValue) }
+        set { self.center = CGPoint(x: self.centerX, y: newValue) }
         get { return self.center.y }
     }
     
@@ -97,28 +97,28 @@ extension UIView{
     
     // MARK: - Bounds Methods
     var boundsX:CGFloat{
-        set{ self.bounds = CGRectMake(_pixelIntegral(newValue), self.boundsY, self.boundsWidth, self.boundsHeight) }
+        set{ self.bounds = CGRect(x: _pixelIntegral(newValue), y: self.boundsY, width: self.boundsWidth, height: self.boundsHeight) }
         get{ return self.bounds.origin.x }
     }
     
     var boundsY:CGFloat{
-        set { self.frame = CGRectMake(self.boundsX, _pixelIntegral(newValue), self.boundsWidth, self.boundsHeight) }
+        set { self.frame = CGRect(x: self.boundsX, y: _pixelIntegral(newValue), width: self.boundsWidth, height: self.boundsHeight) }
         get { return self.bounds.origin.y }
     }
     
     var boundsWidth: CGFloat{
-        set { self.frame = CGRectMake(self.boundsX, self.boundsY, _pixelIntegral(newValue), self.boundsHeight) }
+        set { self.frame = CGRect(x: self.boundsX, y: self.boundsY, width: _pixelIntegral(newValue), height: self.boundsHeight) }
         get { return self.bounds.size.width }
     }
     
     var boundsHeight: CGFloat{
-        set { self.frame = CGRectMake(self.boundsX, self.boundsY, self.boundsWidth, _pixelIntegral(newValue)) }
+        set { self.frame = CGRect(x: self.boundsX, y: self.boundsY, width: self.boundsWidth, height: _pixelIntegral(newValue)) }
         get { return self.bounds.size.height }
     }
     
     // MARK: - Private Methods
-    private func _pixelIntegral(pointValue:CGFloat) -> CGFloat{
-        let scale   = UIScreen.mainScreen().scale
+    fileprivate func _pixelIntegral(_ pointValue:CGFloat) -> CGFloat{
+        let scale   = UIScreen.main.scale
         return (round(pointValue * scale) / scale)
     }
 }

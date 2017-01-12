@@ -20,28 +20,29 @@ class PagerCell: UICollectionViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    self.imageView.roundedCorners = [.BottomLeft, .BottomRight]
+    self.imageView.roundedCorners = [.bottomLeft, .bottomRight]
     self.imageView.thumbnail = UIImage(named: "slider_thumbnail")
   }
   
-  override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-    super.didUpdateFocusInContext(context, withAnimationCoordinator: coordinator)
+  override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+    super.didUpdateFocus(in: context, with: coordinator)
     coordinator.addCoordinatedAnimations({ [unowned self] in
-      if(self.focused){
+      if(self.isFocused){
         self.layer.zPosition = 999
-        self.imageView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0, PagerCell.kVerticalShiftOnFocus)
+        self.imageView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: PagerCell.kVerticalShiftOnFocus)
       } else {
         self.layer.zPosition = 0
-        self.imageView.transform = CGAffineTransformIdentity
+        self.imageView.transform = CGAffineTransform.identity
       }
       }, completion: nil)
   }
   
-  func configWithURL(url: NSURL?){
+  func configWithURL(_ url: URL?){
+    
     self.imageView.configWithURL(url)
   }
   
-  func configWithImageName(name: String){
+  func configWithImageName(_ name: String){
     self.imageView.image = UIImage(named: name)
   }
   

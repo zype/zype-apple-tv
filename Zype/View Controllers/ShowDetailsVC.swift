@@ -43,23 +43,23 @@ class ShowDetailsVC: CollectionContainerVC {
     self.descriptionView.onSelected = {
       self.onExpandDescription()
     }
-    self.subscribeButton.setBackgroundImage(UIImage(named: "Subscribed"), forState: .Normal)
+    self.subscribeButton.setBackgroundImage(UIImage(named: "Subscribed"), for: UIControlState())
     
     let distance = (self.containerView.top - self.detailsView.bottom) / 2
     
     self.focusGuide = UIFocusGuide()
     self.view.addLayoutGuide(focusGuide)
-    self.focusGuide.leftAnchor.constraintEqualToAnchor(self.detailsView.leftAnchor).active = true
-    self.focusGuide.bottomAnchor.constraintEqualToAnchor(self.containerView.topAnchor, constant: -distance).active = true
-    self.focusGuide.topAnchor.constraintEqualToAnchor(self.detailsView.bottomAnchor).active = true
-    self.focusGuide.rightAnchor.constraintEqualToAnchor(self.detailsView.rightAnchor).active = true
+    self.focusGuide.leftAnchor.constraint(equalTo: self.detailsView.leftAnchor).isActive = true
+    self.focusGuide.bottomAnchor.constraint(equalTo: self.containerView.topAnchor, constant: -distance).isActive = true
+    self.focusGuide.topAnchor.constraint(equalTo: self.detailsView.bottomAnchor).isActive = true
+    self.focusGuide.rightAnchor.constraint(equalTo: self.detailsView.rightAnchor).isActive = true
     
     let favoritesButtonGuide = UIFocusGuide()
     self.view.addLayoutGuide(favoritesButtonGuide)
-    favoritesButtonGuide.leftAnchor.constraintEqualToAnchor(self.detailsView.leftAnchor).active = true
-    favoritesButtonGuide.bottomAnchor.constraintEqualToAnchor(self.containerView.topAnchor).active = true
-    favoritesButtonGuide.topAnchor.constraintEqualToAnchor(self.detailsView.bottomAnchor, constant: distance).active = true
-    favoritesButtonGuide.rightAnchor.constraintEqualToAnchor(self.detailsView.rightAnchor).active = true
+    favoritesButtonGuide.leftAnchor.constraint(equalTo: self.detailsView.leftAnchor).isActive = true
+    favoritesButtonGuide.bottomAnchor.constraint(equalTo: self.containerView.topAnchor).isActive = true
+    favoritesButtonGuide.topAnchor.constraint(equalTo: self.detailsView.bottomAnchor, constant: distance).isActive = true
+    favoritesButtonGuide.rightAnchor.constraint(equalTo: self.detailsView.rightAnchor).isActive = true
     favoritesButtonGuide.preferredFocusedView = self.favoritesButton
     
     self.favoritesButton.label = self.favoriteLabel
@@ -70,10 +70,10 @@ class ShowDetailsVC: CollectionContainerVC {
     self.loadVideos()
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     if let path = self.indexPathForselectedVideo() {
-      self.collectionVC.collectionView?.scrollToItemAtIndexPath(path, atScrollPosition: .CenteredHorizontally, animated: false)
+      self.collectionVC.collectionView?.scrollToItem(at: path, at: .centeredHorizontally, animated: false)
     }
   }
   
@@ -85,22 +85,22 @@ class ShowDetailsVC: CollectionContainerVC {
   override weak var preferredFocusedView: UIView? {
     get {
       if let path = self.indexPathForselectedVideo() {
-        return self.collectionVC.collectionView?.cellForItemAtIndexPath(path)
+        return self.collectionVC.collectionView?.cellForItem(at: path)
       }
       return super.preferredFocusedView
     }
   }
   
-  func indexPathForselectedVideo() -> NSIndexPath? {
+  func indexPathForselectedVideo() -> IndexPath? {
     if(self.selectedVideo != nil) {
-      return NSIndexPath(forRow: self.videos.indexOf(self.selectedVideo)!, inSection: 0)
+      return IndexPath(row: self.videos.index(of: self.selectedVideo)!, section: 0)
     }
     return nil
   }
 
   func layoutLabels(){
     for label in self.labelsView.subviews {
-      if(label.isKindOfClass(UILabel)) {
+      if(label.isKind(of: UILabel.self)) {
         label.width = self.labelsView.width
         // label.sizeToFit()
       }
@@ -110,21 +110,21 @@ class ShowDetailsVC: CollectionContainerVC {
 //    self.descriptionView.height = self.labelsView.height - self.descriptionView.top
   }
   
-  override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-    super.didUpdateFocusInContext(context, withAnimationCoordinator: coordinator)
+  override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+    super.didUpdateFocus(in: context, with: coordinator)
     self.focusGuide.preferredFocusedView = self.preferredFocusedView
   }
   
-  override func onItemFocused(item: CollectionLabeledItem, section: CollectionSection?) {
+  override func onItemFocused(_ item: CollectionLabeledItem, section: CollectionSection?) {
     self.onVideoFocused(item.object as! VideoModel)
   }
   
-  override func onItemSelected(item: CollectionLabeledItem, section: CollectionSection?) {
+  override func onItemSelected(_ item: CollectionLabeledItem, section: CollectionSection?) {
     self.playVideo(item.object as! VideoModel, playlist: section?.allObjects() as? Array<VideoModel>)
   }
   
   func loadVideos(){
-    self.selectedShow.getVideos(NSDate.distantPast(), completion: {[unowned self] (videos: Array<VideoModel>?, error: NSError?) -> Void in
+    self.selectedShow.getVideos(Date.distantPast, completion: {[unowned self] (videos: Array<VideoModel>?, error: NSError?) -> Void in
       self.videos = videos
       let videosCount = videos?.count ?? 0
       self.episodesCountLabel.text = String(format: localized(videosCount == 1 ? "ShowDetails.Episode" : "ShowDetails.EpisodesCount"), arguments: [videosCount])
@@ -134,9 +134,9 @@ class ShowDetailsVC: CollectionContainerVC {
     })
   }
 
-  func onVideoFocused(video: VideoModel){
+  func onVideoFocused(_ video: VideoModel){
     self.selectedVideo = video
-    self.posterImage.configWithURL(video.posterURL())
+    self.posterImage.configWithURL(video.posterURL() as URL?)
     self.subTitleLabel.text = video.titleString
     self.descriptionLabel.text = video.descriptionString
     self.layoutLabels()
@@ -146,31 +146,31 @@ class ShowDetailsVC: CollectionContainerVC {
   func refreshFavoritesStatus(){
     if(self.selectedVideo != nil) {
       self.favoriteLabel.text = localized(self.selectedVideo.isInFavorites() ? "ShowDetails.Unfavorite" : "ShowDetails.Favorite")
-      self.favoritesButton.setBackgroundImage(UIImage(named: self.selectedVideo.isInFavorites() ? "FavoritesRemoveFocused" : "FavoritesAddFocused"), forState: .Normal)
+      self.favoritesButton.setBackgroundImage(UIImage(named: self.selectedVideo.isInFavorites() ? "FavoritesRemoveFocused" : "FavoritesAddFocused"), for: .normal)
     }
   }
   
   func onExpandDescription() {
     if(self.selectedVideo != nil) {
-      let alertVC = self.storyboard?.instantiateViewControllerWithIdentifier("ScrollableTextAlertVC") as! ScrollableTextAlertVC
+      let alertVC = self.storyboard?.instantiateViewController(withIdentifier: "ScrollableTextAlertVC") as! ScrollableTextAlertVC
       alertVC.configWithText(self.selectedVideo.descriptionString, header: self.selectedVideo.titleString, title: "")
-      self.navigationController?.presentViewController(alertVC, animated: true, completion: nil)
+      self.navigationController?.present(alertVC, animated: true, completion: nil)
     }
   }
   
-  @IBAction func onFavorites(sender: AnyObject) {
+  @IBAction func onFavorites(_ sender: AnyObject) {
     if(self.selectedVideo != nil) {
       self.selectedVideo.toggleFavorite()
       self.refreshFavoritesStatus()
     }
   }
   
-  @IBAction func onSubscribe(sender: AnyObject) {
+  @IBAction func onSubscribe(_ sender: AnyObject) {
     self.playVideo(self.selectedVideo, playlist: self.videos)
   }
   
   func onPurchased() {
-    self.dismissViewControllerAnimated(true, completion: nil)
+    self.dismiss(animated: true, completion: nil)
   }
   
 }

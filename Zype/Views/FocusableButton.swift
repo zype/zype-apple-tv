@@ -16,11 +16,11 @@ class FocusableButton: UIButton {
     super.awakeFromNib()
   }
 
-  override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-    super.didUpdateFocusInContext(context, withAnimationCoordinator: coordinator)
+  override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+    super.didUpdateFocus(in: context, with: coordinator)
     if(self.label != nil) {
-      self.label.textColor = self.focused ? StyledLabel.kFocusedColor : StyledLabel.kBaseColor
-      self.label.shadowColor = !self.focused ? StyledLabel.kFocusedColor : StyledLabel.kBaseColor
+      self.label.textColor = self.isFocused ? StyledLabel.kFocusedColor : StyledLabel.kBaseColor
+      self.label.shadowColor = !self.isFocused ? StyledLabel.kFocusedColor : StyledLabel.kBaseColor
     }
 //    coordinator.addCoordinatedAnimations({ [unowned self] in
 //      if(self.focused){

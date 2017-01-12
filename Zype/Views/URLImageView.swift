@@ -10,17 +10,17 @@ import UIKit
 
 class URLImageView: UIImageView {
   
-  static var cache = NSCache()
+  static var cache = NSCache<AnyObject, AnyObject>()
   static let kAnimationKey = "URLImageViewAnimationKey"
   static let kCornerRadius: CGFloat = 6.0
   
-  var downloadTask: NSURLSessionDataTask!
+  var downloadTask: URLSessionDataTask!
   var thumbnail: UIImage!
-  var url: NSURL!
+  var url: URL!
   var isBlurred: Bool = false
   var roundedCorners: UIRectCorner!
   var shouldAnimate: Bool = false
-  private  var lastImage: UIImage?
+  fileprivate  var lastImage: UIImage?
   
   override var image: UIImage? {
     didSet {
@@ -43,7 +43,7 @@ class URLImageView: UIImageView {
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut);
         transition.type = kCATransitionFade;
-        self.layer.addAnimation(transition, forKey:URLImageView.kAnimationKey)
+        self.layer.add(transition, forKey:URLImageView.kAnimationKey)
       }
     }
   }
@@ -55,13 +55,13 @@ class URLImageView: UIImageView {
   override func layoutSubviews() {
     super.layoutSubviews()
     if(self.roundedCorners != nil && self.image != nil) {
-    if(self.roundedCorners != nil && self.image != nil && !CGSizeEqualToSize(self.frame.size, self.image!.size)) {
+    if(self.roundedCorners != nil && self.image != nil && !self.frame.size.equalTo(self.image!.size)) {
       self.configWithURL(self.url)
     }
     }
   }
   
-  func roundedCornerImage(sourceImage: UIImage) -> UIImage? {
+  func roundedCornerImage(_ sourceImage: UIImage) -> UIImage? {
     let targetSize = self.frame.size
     var newImage: UIImage? = nil
     let imageSize = sourceImage.size
@@ -72,8 +72,8 @@ class URLImageView: UIImageView {
     var scaleFactor: CGFloat = 0.0
     var scaledWidth = targetWidth
     var scaledHeight = targetHeight
-    var thumbnailPoint = CGPointZero
-    if (CGSizeEqualToSize(imageSize, targetSize) == false) {
+    var thumbnailPoint = CGPoint.zero
+    if (imageSize.equalTo(targetSize) == false) {
       let widthFactor = targetWidth / width
       let heightFactor = targetHeight / height
       if (widthFactor > heightFactor) {
@@ -91,33 +91,33 @@ class URLImageView: UIImageView {
       }
     }
     UIGraphicsBeginImageContext(targetSize)
-    UIBezierPath(roundedRect: CGRect(origin: CGPointZero, size: targetSize), byRoundingCorners: self.roundedCorners, cornerRadii: CGSize(width: URLImageView.kCornerRadius, height: URLImageView.kCornerRadius)).addClip()
+    UIBezierPath(roundedRect: CGRect(origin: CGPoint.zero, size: targetSize), byRoundingCorners: self.roundedCorners, cornerRadii: CGSize(width: URLImageView.kCornerRadius, height: URLImageView.kCornerRadius)).addClip()
     
-    var thumbnailRect = CGRectZero
+    var thumbnailRect = CGRect.zero
     thumbnailRect.origin = thumbnailPoint
     thumbnailRect.size.width  = scaledWidth
     thumbnailRect.size.height = scaledHeight
-    sourceImage.drawInRect(thumbnailRect)
+    sourceImage.draw(in: thumbnailRect)
     newImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     return newImage
   }
   
   
-  func blurredImage(inputImage: UIImage) -> UIImage{
+  func blurredImage(_ inputImage: UIImage) -> UIImage{
     let gaussianBlurFilter = CIFilter(name: "CIGaussianBlur")!
     gaussianBlurFilter.setDefaults()
-    let inputImage = CIImage(CGImage: inputImage.CGImage!);
+    let inputImage = CIImage(cgImage: inputImage.cgImage!);
     gaussianBlurFilter.setValue(inputImage, forKey:kCIInputImageKey);
     gaussianBlurFilter.setValue(10, forKey:kCIInputRadiusKey);
     let outputImage = gaussianBlurFilter.outputImage
     let context = CIContext(options:nil)
-    let cgimg = context.createCGImage(outputImage!, fromRect: inputImage.extent)
-    let image = UIImage(CGImage: cgimg!)
+    let cgimg = context.createCGImage(outputImage!, from: inputImage.extent)
+    let image = UIImage(cgImage: cgimg!)
     return image
   }
   
-  func configWithURL(url: NSURL?) {
+  func configWithURL(_ url: URL?) {
     self.url = url
     
     if(self.downloadTask != nil){
@@ -129,38 +129,58 @@ class URLImageView: UIImageView {
       return
     }
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {()in
-      let data: NSData? = URLImageView.cache.objectForKey(url!) as? NSData
+  
+    getDataFromUrl(url: url!) { (data, response, error)  in
+            guard let data = data, error == nil else { return }
+        
+            DispatchQueue.main.async() { () -> Void in
+                self.image = UIImage(data: data)
+             //   self.downloadTask = nil //do I need this?
+            }
+    }
+    
+    
+    
+    /*
+    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background).async(execute: {()in
+      let data: Data? = URLImageView.cache.object(forKey: url! as AnyObject) as? Data
       if let goodData = data {
         let image = UIImage(data: goodData)
-        dispatch_async(dispatch_get_main_queue(), {() in
+        DispatchQueue.main.async(execute: {() in
           self.image = image
         })
         return
       } else {
-        dispatch_async(dispatch_get_main_queue(), {() in
+        DispatchQueue.main.async(execute: {() in
           self.image = nil
         })
       }
       
-      self.downloadTask = NSURLSession.sharedSession().dataTaskWithURL(url!, completionHandler: {(data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-        if (error != nil) {
-          self.url = nil
-          return
-        }
-        
-        if(data != nil) {
-          let image = UIImage(data: data!)
-          URLImageView.cache.setObject(data!, forKey: url!)
-          dispatch_async(dispatch_get_main_queue(), {() in
-            self.image = image
-            self.downloadTask = nil
-          })
-        }
-      })
+        self.downloadTask = URLSession.shared.dataTask(with: url!, completionHandler: ({(data: Data?, response: URLResponse?, error: NSError?) -> Void in
+            if (error != nil) {
+                self.url = nil
+                return
+            }
+            
+            if(data != nil) {
+                let image = UIImage(data: data!)
+                URLImageView.cache.setObject(data! as AnyObject, forKey: url! as AnyObject)
+                DispatchQueue.main.async(execute: {() in
+                    self.image = image
+                    self.downloadTask = nil
+                })
+            }
+            } as? (Data?, URLResponse?, Error?) -> Void)!)
       self.downloadTask.resume()
-    })
+    })*/
     
   }
+    
+    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+        URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            completion(data, response, error)
+            }.resume()
+    }
   
 }

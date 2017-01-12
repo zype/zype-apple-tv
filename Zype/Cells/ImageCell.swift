@@ -14,7 +14,7 @@ class ImageCell: UICollectionViewCell {
   @IBOutlet weak var label: UILabel!
   
   var item: CollectionLabeledItem!
-  private var observerContext = 0
+  fileprivate var observerContext = 0
   
   deinit {
     self.removeItemObservers()
@@ -29,21 +29,21 @@ class ImageCell: UICollectionViewCell {
     super.prepareForReuse()
   }
   
-  override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-    super.didUpdateFocusInContext(context, withAnimationCoordinator: coordinator)
+  override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+    super.didUpdateFocus(in: context, with: coordinator)
     coordinator.addCoordinatedAnimations({ [unowned self] in
-      if(self.focused) {
-        self.label.transform = CGAffineTransformConcat(CGAffineTransformMakeScale(1.2, 1.2), CGAffineTransformMakeTranslation(0, 20)) ;
+      if(self.isFocused) {
+        self.label.transform = CGAffineTransform(scaleX: 1.2, y: 1.2).concatenating(CGAffineTransform(translationX: 0, y: 20)) ;
         self.label.textColor = StyledLabel.kFocusedColor
       }
       else {
-        self.label.transform = CGAffineTransformIdentity
+        self.label.transform = CGAffineTransform.identity
         self.label.textColor = StyledLabel.kBaseColor
       }
     }, completion: nil)
   }
   
-  override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
     if(context == &self.observerContext) {
       let item = object as! CollectionLabeledItem
       if(keyPath == CollectionLabeledItem.kImageObservableKey) {
@@ -52,14 +52,14 @@ class ImageCell: UICollectionViewCell {
         self.label.text = item.title
       }
     } else {
-      super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+      super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
     }
   }
   
   func addItemObservers(){
     if(self.item != nil){
-      self.item.addObserver(self, forKeyPath: CollectionLabeledItem.kImageObservableKey, options: .New, context: &self.observerContext)
-      self.item.addObserver(self, forKeyPath: CollectionLabeledItem.kTitleObservableKey, options: .New, context: &self.observerContext)
+      self.item.addObserver(self, forKeyPath: CollectionLabeledItem.kImageObservableKey, options: .new, context: &self.observerContext)
+      self.item.addObserver(self, forKeyPath: CollectionLabeledItem.kTitleObservableKey, options: .new, context: &self.observerContext)
     }
   }
   
@@ -70,7 +70,7 @@ class ImageCell: UICollectionViewCell {
     }
   }
   
-  func configWithItem(item: CollectionLabeledItem){
+  func configWithItem(_ item: CollectionLabeledItem){
     self.removeItemObservers()
     self.label.text = item.title
     if(item.imageURL == nil && item.imageName != nil) {

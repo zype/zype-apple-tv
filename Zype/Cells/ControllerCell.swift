@@ -22,10 +22,10 @@ class ControllerCell: UICollectionViewCell {
     }
   }
   
-  func config(controller: UIViewController) {
-    controller.view.origin = CGPointZero
+  func config(_ controller: UIViewController) {
+    controller.view.origin = CGPoint.zero
     controller.view.width = self.contentView.width
-    controller.view.autoresizingMask = .FlexibleWidth
+    controller.view.autoresizingMask = .flexibleWidth
     self.contentView.addSubview(controller.view)
     self.controller = controller
   }

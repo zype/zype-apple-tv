@@ -9,24 +9,24 @@
 import UIKit
 
 enum LabelStyle: Int {
-  case Default = 0
-  case ShowCell = 1
-  case HeaderCell = 2
-  case SubButton = 3
-  case MainHeader = 4
-  case SubHeader = 5
-  case ScreenHeader = 6
-  case MainInfo = 7
-  case ModalInfo = 8
+  case `default` = 0
+  case showCell = 1
+  case headerCell = 2
+  case subButton = 3
+  case mainHeader = 4
+  case subHeader = 5
+  case screenHeader = 6
+  case mainInfo = 7
+  case modalInfo = 8
 }
 
 @IBDesignable
 class StyledLabel: UILabel {
   
   static let kBaseColor = UIColor(colorLiteralRed: 98/255, green: 93/255, blue: 104/255, alpha: 1)
-  static let kFocusedColor = UIColor.whiteColor()
+  static let kFocusedColor = UIColor.white
   
-  @IBInspectable var style: Int = LabelStyle.Default.rawValue {
+  @IBInspectable var style: Int = LabelStyle.default.rawValue {
     didSet {
       if let computedFont = StyledLabel.fontForStyle(LabelStyle(rawValue: self.style)!) {
         self.font = computedFont
@@ -38,47 +38,47 @@ class StyledLabel: UILabel {
   @IBInspectable var shouldFade: Bool = false {
     didSet {
       if(self.shouldFade) {
-        self.lineBreakMode = .ByClipping
-        self.maskView = GradientMaskView(frame: self.bounds, insets: UIEdgeInsetsMake(0, 0, 0, 15.0))
+        self.lineBreakMode = .byClipping
+        self.mask = GradientMaskView(frame: self.bounds, insets: UIEdgeInsetsMake(0, 0, 0, 15.0))
       } else {
-        self.maskView = nil
+        self.mask = nil
       }
     }
   }
   
   override func layoutSubviews() {
     super.layoutSubviews()
-    self.maskView?.frame = self.bounds
+    self.mask?.frame = self.bounds
   }
   
-  static func fontForStyle(style: LabelStyle) -> UIFont? {
+  static func fontForStyle(_ style: LabelStyle) -> UIFont? {
     var font: UIFont? = nil
     switch style {
-    case .ShowCell:
-      font = UIFont.systemFontOfSize(24)
+    case .showCell:
+      font = UIFont.systemFont(ofSize: 24)
       break
-    case .HeaderCell:
-      font = UIFont.boldSystemFontOfSize(38)
+    case .headerCell:
+      font = UIFont.boldSystemFont(ofSize: 38)
       break
-    case .SubButton:
-      font = UIFont.systemFontOfSize(24)
+    case .subButton:
+      font = UIFont.systemFont(ofSize: 24)
       break
-    case .MainHeader:
-      font = UIFont.systemFontOfSize(21)
+    case .mainHeader:
+      font = UIFont.systemFont(ofSize: 21)
       break
-    case .SubHeader:
-      font = UIFont.systemFontOfSize(50)
+    case .subHeader:
+      font = UIFont.systemFont(ofSize: 50)
       break
-    case .ScreenHeader:
-      font = UIFont.boldSystemFontOfSize(45)
-    case .MainInfo:
-      font = UIFont.boldSystemFontOfSize(36)
+    case .screenHeader:
+      font = UIFont.boldSystemFont(ofSize: 45)
+    case .mainInfo:
+      font = UIFont.boldSystemFont(ofSize: 36)
       break
-    case .ModalInfo:
-      font = UIFont.boldSystemFontOfSize(30)
+    case .modalInfo:
+      font = UIFont.boldSystemFont(ofSize: 30)
       break
     default:
-      font = UIFont.systemFontOfSize(32)
+      font = UIFont.systemFont(ofSize: 32)
       break
     }
     return font

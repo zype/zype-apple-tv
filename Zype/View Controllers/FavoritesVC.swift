@@ -20,24 +20,24 @@ class FavoritesVC: CollectionContainerVC {
     self.collectionVC.collectionView?.contentInset.top = Const.kBaseSectionInsets.top
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.hideInfo()
     self.getFavorites()
   }
   
-  func displayInfo(info: String) {
+  func displayInfo(_ info: String) {
     self.infoLabel.text = info
-    self.infoLabel.hidden = false
-    self.dataView.hidden = true
+    self.infoLabel.isHidden = false
+    self.dataView.isHidden = true
   }
   
   func hideInfo() {
-    self.infoLabel.hidden = true
-    self.dataView.hidden = false
+    self.infoLabel.isHidden = true
+    self.dataView.isHidden = false
   }
   
-  func cachedFavoriteByVideoID(ID: String) -> FavoriteCollectionItem? {
+  func cachedFavoriteByVideoID(_ ID: String) -> FavoriteCollectionItem? {
     if(self.collectionVC.sections.count > 0){
       for item in self.collectionVC.sections.first!.items as! Array<FavoriteCollectionItem> {
         if(item.videoID == ID) {
@@ -49,10 +49,10 @@ class FavoritesVC: CollectionContainerVC {
   }
   
   func getFavorites(){
-    let defaults = NSUserDefaults.standardUserDefaults()
-    let favorites = defaults.arrayForKey(Const.kFavoritesKey) as? Array<String> ?? [String]()
+    let defaults = UserDefaults.standard
+    let favorites = defaults.array(forKey: Const.kFavoritesKey) as? Array<String> ?? [String]()
     let section = CollectionSection()
-    section.headerStyle = .Centered
+    section.headerStyle = .centered
     section.title = localized("Favorites.Title")
     for videoID in favorites {
       let item = self.cachedFavoriteByVideoID(videoID) ?? FavoriteCollectionItem(videoID: videoID)
@@ -90,7 +90,7 @@ class FavoritesVC: CollectionContainerVC {
 //    })
   }
   
-  override func onItemSelected(item: CollectionLabeledItem, section: CollectionSection?) {
+  override func onItemSelected(_ item: CollectionLabeledItem, section: CollectionSection?) {
     let favorite = item as! FavoriteCollectionItem
     if let _ = favorite.object {
       self.playVideo(favorite.object as! VideoModel)

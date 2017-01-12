@@ -13,12 +13,12 @@ class FocusableView: UIView, UIGestureRecognizerDelegate {
   
   static let scaleSize: CGFloat = 15.0
   
-  private var contentView: UIView!
+  fileprivate var contentView: UIView!
   
   var onSelected: (()->())?
   @IBInspectable var usesTransforms: Bool = true
 
-  override func canBecomeFocused() -> Bool {
+  override var canBecomeFocused : Bool {
     return true
   }
   
@@ -27,66 +27,66 @@ class FocusableView: UIView, UIGestureRecognizerDelegate {
     self.clipsToBounds = false
     
     self.contentView = UIView(frame: self.bounds)
-    self.contentView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+    self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     self.contentView.layer.cornerRadius = 10
-    self.contentView.layer.shadowOffset = CGSizeMake(0, 15)
+    self.contentView.layer.shadowOffset = CGSize(width: 0, height: 15)
     self.contentView.layer.shadowRadius = 10
-    self.contentView.layer.shadowPath = UIBezierPath(rect: self.contentView.bounds).CGPath
+    self.contentView.layer.shadowPath = UIBezierPath(rect: self.contentView.bounds).cgPath
     for view in self.subviews {
       self.contentView.addSubview(view)
     }
     self.addSubview(self.contentView)
   }
   
-  override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-    super.didUpdateFocusInContext(context, withAnimationCoordinator: coordinator)
-    if(!self.focused) {
+  override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+    super.didUpdateFocus(in: context, with: coordinator)
+    if(!self.isFocused) {
       self.contentView.layer.shadowOpacity = 0
     }
     coordinator.addCoordinatedAnimations({ [unowned self] in
-      if(self.focused){
+      if(self.isFocused){
         self.contentView.layer.zPosition = 999
-        self.contentView.layer.backgroundColor = UIColor.whiteColor().CGColor
+        self.contentView.layer.backgroundColor = UIColor.white.cgColor
         self.resizeContent(false)
       } else {
         self.contentView.layer.zPosition = 0
-        self.contentView.layer.backgroundColor = UIColor.clearColor().CGColor
+        self.contentView.layer.backgroundColor = UIColor.clear.cgColor
         self.resizeContent(true)
       }
     }, completion: {
-      if(self.focused) {
+      if(self.isFocused) {
         self.contentView.layer.shadowOpacity = 0.2
       }
     })
   }
   
-  func resizeContent(toIdentity: Bool) {
+  func resizeContent(_ toIdentity: Bool) {
     if(toIdentity) {
       if(self.usesTransforms) {
-        self.contentView.transform = CGAffineTransformIdentity
+        self.contentView.transform = CGAffineTransform.identity
       } else {
         self.contentView.frame = self.bounds
       }
     } else {
       if(self.usesTransforms) {
         let scaleFactor = 1.0 + FocusableView.scaleSize / max(self.width, self.height)
-        self.contentView.transform = CGAffineTransformMakeScale(scaleFactor, scaleFactor)
+        self.contentView.transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
       } else {
         let maxDimension = max(self.width, self.height)
         let scalingX = FocusableView.scaleSize * (self.width / maxDimension)
         let scalingY = FocusableView.scaleSize * (self.height / maxDimension)
-        let resultRect = CGRectMake(
-          -scalingX / 2.0,
-          -scalingY / 2.0,
-          self.width + scalingX,
-          self.height + scalingY)
+        let resultRect = CGRect(
+          x: -scalingX / 2.0,
+          y: -scalingY / 2.0,
+          width: self.width + scalingX,
+          height: self.height + scalingY)
         self.contentView.frame = resultRect.integral
       }
     }
   }
   
-  func pressAnimation(isDown: Bool, completion: (()->())? = nil) {
-    UIView.animateWithDuration(0.3, animations: {
+  func pressAnimation(_ isDown: Bool, completion: (()->())? = nil) {
+    UIView.animate(withDuration: 0.3, animations: {
       self.resizeContent(isDown)
     }, completion: { _ in
       if let _ = completion {
@@ -95,28 +95,28 @@ class FocusableView: UIView, UIGestureRecognizerDelegate {
     })
   }
   
-  override func pressesBegan(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
+  override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
     for item in presses {
-      if item.type == .Select {
+      if item.type == .select {
         self.pressAnimation(true)
       }
     }
   }
   
-  override func pressesEnded(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
+  override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
     for item in presses {
-      if item.type == .Select {
+      if item.type == .select {
         self.pressAnimation(false, completion: self.onSelected)
       }
     }
   }
   
-  override func pressesChanged(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
+  override func pressesChanged(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
   }
   
-  override func pressesCancelled(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
+  override func pressesCancelled(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
     for item in presses {
-      if item.type == .Select {
+      if item.type == .select {
         self.pressAnimation(false)
       }
     }

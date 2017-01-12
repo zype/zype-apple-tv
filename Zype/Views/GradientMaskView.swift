@@ -10,9 +10,9 @@ class GradientMaskView: UIView {
   var gradients = [CAGradientLayer(), CAGradientLayer(), CAGradientLayer(), CAGradientLayer()]
   var visible = CALayer()
   
-  private let gradientLayer: CAGradientLayer = {
+  fileprivate let gradientLayer: CAGradientLayer = {
     let layer = CAGradientLayer()
-    layer.colors = [UIColor(white: 0.0, alpha: 0.0).CGColor, UIColor(white: 0.0, alpha: 1.0).CGColor]
+    layer.colors = [UIColor(white: 0.0, alpha: 0.0).cgColor, UIColor(white: 0.0, alpha: 1.0).cgColor]
     
     return layer
   }()
@@ -20,21 +20,21 @@ class GradientMaskView: UIView {
   func prepareGradients() {
     for gradient in self.gradients {
       layer.addSublayer(gradient)
-      gradient.colors = [UIColor(white: 0.0, alpha: 0.0).CGColor, UIColor(white: 0.0, alpha: 1.0).CGColor]
+      gradient.colors = [UIColor(white: 0.0, alpha: 0.0).cgColor, UIColor(white: 0.0, alpha: 1.0).cgColor]
     }
     layer.addSublayer(self.visible)
-    self.visible.backgroundColor = UIColor.blackColor().CGColor
+    self.visible.backgroundColor = UIColor.black.cgColor
   }
   
   init(frame: CGRect, insets: UIEdgeInsets) {
     self.maskInsets = insets
     super.init(frame: frame)
     self.prepareGradients()
-    self.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+    self.autoresizingMask = [.flexibleHeight, .flexibleWidth]
   }
   
   required init?(coder aDecoder: NSCoder) {
-    self.maskInsets = UIEdgeInsetsZero
+    self.maskInsets = UIEdgeInsets.zero
     self.maskInsets.top = 20
     self.maskInsets.bottom = 20
     super.init(coder: aDecoder)
@@ -46,7 +46,7 @@ class GradientMaskView: UIView {
     updateGradientLayer()
   }
   
-  private func updateGradientLayer() {
+  fileprivate func updateGradientLayer() {
     var gradient: CAGradientLayer
     if(self.maskInsets.top > 0) {
       gradient = self.gradients[0]

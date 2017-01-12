@@ -9,23 +9,30 @@
 import UIKit
 import ZypeAppleTVBase
 
+@available(tvOS 10.0, *)
 class TabBarVC: UITabBarController {
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    self.tabBar.items![0].title = localized("Home.TabTitle")
-    self.tabBar.items![1].title = localized("Search.TabTitle")
-    self.tabBar.items![2].title = localized("Favorites.TabTitle")
-    let background = UIImageView(frame: self.view.bounds)
-    background.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
-    background.image = UIImage(named: "background")
-    self.view.insertSubview(background, atIndex: 0)
-
-     self.loadDynamicData()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(modifyTabs), name: kZypeReloadScreenNotification, object: nil)
-  }
-  
- func loadDynamicData() {
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tabBar.items![0].title = localized("Home.TabTitle")
+        self.tabBar.items![1].title = localized("Search.TabTitle")
+        self.tabBar.items![2].title = localized("Favorites.TabTitle")
+        
+        
+        let background = UIImageView(frame: self.view.bounds)
+        background.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        
+        background.image = UIImage(named: "background_dark")
+        self.view.insertSubview(background, at: 0)
+        
+        self.loadDynamicData()
+        NotificationCenter.default.addObserver(self, selector: #selector(modifyTabs), name: NSNotification.Name(rawValue: kZypeReloadScreenNotification), object: nil)
+        
+    }
+    
+    func loadDynamicData() {
         //ZypeUtilities.checkDeviceLinkingWithServer()
         ZypeUtilities.loadLimitLivestreamZObject()
         loadAppSettings()
@@ -40,7 +47,7 @@ class TabBarVC: UITabBarController {
         let type = QueryZobjectsModel()
         type.zobjectType = "tvos_settings"
         ZypeAppleTVBase.sharedInstance.getZobjects(type, completion: {(objects: Array<ZobjectModel>?, error: NSError?) in
-            if let _ = objects where objects!.count > 0 {
+            if let _ = objects, objects!.count > 0 {
                 let tvOSSettings = objects?.first
                 do {
                     let aboutText = try SSUtils.stringFromDictionary(tvOSSettings?.json, key: "about")
@@ -56,11 +63,11 @@ class TabBarVC: UITabBarController {
                 do {
                     let pageHeaderText = try SSUtils.stringFromDictionary(tvOSSettings?.json, key: kLoginPageHeader)
                     if (!pageHeaderText.isEmpty) {
-                        NSUserDefaults.standardUserDefaults().setObject(pageHeaderText, forKey: kLoginPageHeader)
+                        UserDefaults.standard.set(pageHeaderText, forKey: kLoginPageHeader)
                     }
                     let pageFooterText = try SSUtils.stringFromDictionary(tvOSSettings?.json, key: kLoginPageFooter)
                     if (!pageFooterText.isEmpty) {
-                        NSUserDefaults.standardUserDefaults().setObject(pageFooterText, forKey: kLoginPageFooter)
+                        UserDefaults.standard.set(pageFooterText, forKey: kLoginPageFooter)
                     }
                 }
                 catch _ {
@@ -69,11 +76,11 @@ class TabBarVC: UITabBarController {
                 do {
                     let pageHeaderText = try SSUtils.stringFromDictionary(tvOSSettings?.json, key: kLogoutPageHeader)
                     if (!pageHeaderText.isEmpty) {
-                        NSUserDefaults.standardUserDefaults().setObject(pageHeaderText, forKey: kLogoutPageHeader)
+                        UserDefaults.standard.set(pageHeaderText, forKey: kLogoutPageHeader)
                     }
                     let pageFooterText = try SSUtils.stringFromDictionary(tvOSSettings?.json, key: kLogoutPageFooter)
                     if (!pageFooterText.isEmpty) {
-                        NSUserDefaults.standardUserDefaults().setObject(pageFooterText, forKey: kLogoutPageFooter)
+                        UserDefaults.standard.set(pageFooterText, forKey: kLogoutPageFooter)
                     }
                 }
                 catch _ {
@@ -83,32 +90,19 @@ class TabBarVC: UITabBarController {
                 do {
                     let favoritesText = try SSUtils.stringFromDictionary(tvOSSettings?.json, key: kFavoritesMessage)
                     if (!favoritesText.isEmpty) {
-                        NSUserDefaults.standardUserDefaults().setObject(favoritesText, forKey: kFavoritesMessage)
+                        UserDefaults.standard.set(favoritesText, forKey: kFavoritesMessage)
                     }
-                }
-                catch _ {
+                }                catch _ {
                     ZypeLog.error("Exception: ZobjectModel - Favorites")
                 }
                 
-                do {
-                    let rootPlaylistIdText = try SSUtils.stringFromDictionary(tvOSSettings?.json, key: "root_playlist_id")
-                    if (!rootPlaylistIdText.isEmpty) {
-                        NSUserDefaults.standardUserDefaults().setObject(rootPlaylistIdText, forKey: "root_playlist_id")
-                    }
-                }
-                catch _ {
-                    ZypeLog.error("Exception: ZobjectModel - Root Playlist Id")
-                }
-                
-                NSNotificationCenter.defaultCenter().postNotificationName("ready_to_load_playlists", object: nil)
-                
-                NSUserDefaults.standardUserDefaults().synchronize()
+                UserDefaults.standard.synchronize()
             }
         })
     }
     
-    func addAboutScreen(title : String, text : String) {
-        let aboutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ScrollableTextAlertVC") as! ScrollableTextAlertVC
+    func addAboutScreen(_ title : String, text : String) {
+        let aboutViewController = self.storyboard?.instantiateViewController(withIdentifier: "ScrollableTextAlertVC") as! ScrollableTextAlertVC
         aboutViewController.configWithText(text, header: title, title: "")
         self.viewControllers?.append(aboutViewController)
         self.tabBar.items![3].title = "About"
@@ -143,10 +137,9 @@ class TabBarVC: UITabBarController {
         }
         
         if (needToBeRemoved) {
+            // self.tabBar.selectedItem = self.tabBar.items![0]
             self.selectedIndex = 0
             self.viewControllers?.removeLast()
         }
     }
-
-  
 }

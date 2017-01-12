@@ -10,6 +10,30 @@ import UIKit
 import AVKit
 import AVFoundation
 import ZypeAppleTVBase
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class PlayerVC: UIViewController, DVIABPlayerDelegate
 {
@@ -17,13 +41,13 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
     var playerLayer = AVPlayerLayer()
     var playerItem: AVPlayerItem!
     var playerController = AVPlayerViewController()
-    var playerURL = NSURL()
+    var playerURL : URL!
     var playerView: DVPlayerView?
     var isSkippable = false
     
     var playlist: Array<VideoModel>? = nil
     var currentVideo: VideoModel!
-    var adTimer: NSTimer!
+    var adTimer: Timer!
     
     var adsData: [adObject] = [adObject]()
     
@@ -32,7 +56,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
     deinit {
         print("Destroying")
         
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         if self.adPlayer != nil
         {
             print("ad Player")
@@ -68,18 +92,18 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
         //    NSNotificationCenter.defaultCenter().addObserver(self, selector: "videoReachedEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: nil)
     }
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
         
         self.play(self.currentVideo)
     }
     
-    override func pressesBegan(presses: Set<UIPress>, withEvent event: UIPressesEvent?)
+    override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?)
     {
         print("presses began \(presses.first?.type)")
         //type == .Select
-        if let type = presses.first?.type where type == .PlayPause
+        if let type = presses.first?.type, type == .playPause
         {
             if self.adPlayer != nil
             {
@@ -93,7 +117,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
                  }*/
             }
         }
-        else if let type = presses.first?.type where type == .Select
+        else if let type = presses.first?.type, type == .select
         {
             if self.adPlayer != nil
             {
@@ -107,32 +131,30 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
                     //                    self.setupAVPlayer()
                 }
             }
-        }/* else if let type = presses.first?.type where type == .Menu
-         {
-         print("menu clicked")
-         NSNotificationCenter.defaultCenter().removeObserver(self)
-         if self.adPlayer != nil
-         {
-         self.adPlayer?.pause()
-         }
-         if self.playerController.player != nil
-         {
-         self.playerController.player?.pause()
-         }
-         
-         }*/
-
+        } else if let type = presses.first?.type, type == .menu
+        {
+            print("menu clicked")
+            NotificationCenter.default.removeObserver(self)
+            if self.adPlayer != nil
+            {
+                self.adPlayer?.pause()
+            }
+            if self.playerController.player != nil
+            {
+                self.playerController.player?.pause()
+            }
+            
+        }
     }
     
-    override func pressesEnded(presses: Set<UIPress>, withEvent event: UIPressesEvent?)
+    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?)
     {
-        super.pressesEnded(presses, withEvent: event)
+        super.pressesEnded(presses, with: event)
     }
     
-    func videoReachedEnd(notification: NSNotification) {
+    func videoReachedEnd(_ notification: Notification) {
         if let _ = self.playlist,
-            let currentVideoIndex = self.playlist?.indexOf(self.currentVideo)
-            where self.playlist?.count > 0 {
+            let currentVideoIndex = self.playlist?.index(of: self.currentVideo), self.playlist?.count > 0 {
             if(currentVideoIndex + 1 < self.playlist!.count) {
                 let nextVideo = self.playlist![currentVideoIndex + 1]
                 self.play(nextVideo)
@@ -142,14 +164,14 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
         }
     }
     
-    func play(model: VideoModel)
+    func play(_ model: VideoModel)
     {
         model.getVideoObject(.kVimeoHls, completion: {[unowned self] (playerObject: VideoObjectModel?, error: NSError?) in
-            if let _ = playerObject, let videoURL = playerObject?.videoURL, let url = NSURL(string: videoURL) where error == nil
+            if let _ = playerObject, let videoURL = playerObject?.videoURL, let url = NSURL(string: videoURL), error == nil
             {
                 let adsArray = self.getAdsFromResponse(playerObject)
                 
-                self.playerURL = url
+                self.playerURL = url as URL!
                 
                 if adsArray.count == 0
                 {
@@ -159,8 +181,8 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
                 {
                     self.adPlayer = DVIABPlayer()
                     
-                    let screenSize = UIScreen.mainScreen().bounds
-                    self.playerView = DVPlayerView(frame: CGRectMake(0, 0, screenSize.width, screenSize.height))
+                    let screenSize = UIScreen.main.bounds
+                    self.playerView = DVPlayerView(frame: CGRect(x: 0,y: 0,width: screenSize.width, height: screenSize.height))
                     
                     self.adPlayer!.playerLayer = self.playerView?.layer as! AVPlayerLayer
                     (self.playerView?.layer as! AVPlayerLayer).player = self.adPlayer
@@ -174,21 +196,21 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
                     self.adPlayer!.adPlaylist = adPlaylist
                     self.adPlayer!.delegate = self
                     
-                    self.playerItem = AVPlayerItem(URL: url)
-                    self.playerItem.addObserver(self, forKeyPath: "status", options: [.New], context: nil)
+                    self.playerItem = AVPlayerItem(url: url as URL)
+                    self.playerItem.addObserver(self, forKeyPath: "status", options: [.new], context: nil)
                     self.adPlayer!.contentPlayerItem = self.playerItem
-                    self.adPlayer!.replaceCurrentItemWithPlayerItem(self.playerItem)
+                    self.adPlayer!.replaceCurrentItem(with: self.playerItem)
                     
-                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlayerVC.setupAdTimer), name: "setupAdTimer", object: nil)
+                    NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.setupAdTimer), name: NSNotification.Name(rawValue: "setupAdTimer"), object: nil)
                     
-                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlayerVC.removeAdTimer), name: "removeAdTimer", object: nil)
+                    NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.removeAdTimer), name: NSNotification.Name(rawValue: "removeAdTimer"), object: nil)
                     
-                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlayerVC.addAdLabel), name: "adPlaying", object: nil)
+                    NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.addAdLabel), name: NSNotification.Name(rawValue: "adPlaying"), object: nil)
                     
                     //this is called when there are ad tags, but they don't return any ads
-                     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlayerVC.removeAdsAndPlayVideo), name: "noAdsToPlay", object: nil)
+                     NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.removeAdsAndPlayVideo), name: NSNotification.Name(rawValue: "noAdsToPlay"), object: nil)
                     
-                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: self.adPlayer!.contentPlayerItem)
+                    NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.adPlayer!.contentPlayerItem)
                 }
                 
                 self.currentVideo = model
@@ -196,13 +218,13 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
             }
             else
             {
-                self.navigationController?.popViewControllerAnimated(true)
+                self.navigationController?.popViewController(animated: true)
                 displayError(error)
             }
             })
     }
     
-    func contentDidFinishPlaying(notification: NSNotification)
+    func contentDidFinishPlaying(_ notification: Notification)
     {
         print("content did finish playing")
         // Make sure we don't call contentComplete as a result of an ad completing.
@@ -210,12 +232,11 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
         {
             self.playerController.removeFromParentViewController()
             self.playerController.view.removeFromSuperview()
-            self.playerController.player?.replaceCurrentItemWithPlayerItem(nil)
+            self.playerController.player?.replaceCurrentItem(with: nil)
             self.playerController = AVPlayerViewController()
             
             if let _ = self.playlist,
-                let currentVideoIndex = self.playlist?.indexOf(self.currentVideo)
-                where self.playlist?.count > 0 {
+                let currentVideoIndex = self.playlist?.index(of: self.currentVideo), self.playlist?.count > 0 {
                 if(currentVideoIndex + 1 < self.playlist!.count) {
                     let nextVideo = self.playlist![currentVideoIndex + 1]
                     self.play(nextVideo)
@@ -226,10 +247,10 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
         }
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>)
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
     {
         print(self.adPlayer?.status)
-        if self.adPlayer!.status == .ReadyToPlay
+        if self.adPlayer!.status == .readyToPlay
         {
             print("ready to play: \(self.adPlayer!.contentPlayerItem.currentTime().seconds)")
             if self.adPlayer?.contentPlayerItem.currentTime().seconds < 0.5 && self.adPlayer?.contentPlayerItem.currentTime().seconds > 0.0 //|| self.adPlayer?.currentInlineAd == nil
@@ -242,13 +263,13 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
             else
             {
                 print("play ads")
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.adPlayer!.play()
                 })
                 
             }
         }
-        else if self.adPlayer!.status == .Failed
+        else if self.adPlayer!.status == .failed
         {
             print("ad player failed")
             print(self.adPlayer!.currentItem?.error)
@@ -260,7 +281,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
         else
         {
             print("some other status")
-            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     
@@ -281,12 +302,12 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
         self.playerLayer.removeFromSuperlayer()
         self.adPlayer!.adPlaylist = DVVideoMultipleAdPlaylist()
         self.adPlayer!.contentPlayerItem = nil
-        self.adPlayer?.replaceCurrentItemWithPlayerItem(nil)
+        self.adPlayer?.replaceCurrentItem(with: nil)
         self.adPlayer = nil
         self.playerItem = nil
         self.playerView!.removeFromSuperview()
         self.playerView = nil
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     func removeAdTimer()
@@ -309,7 +330,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
     
     func setupAdTimer()
     {
-        self.adTimer = NSTimer.scheduledTimerWithTimeInterval(self.adPlayer!.currentInlineAd.skippableDuration, target: self, selector: #selector(PlayerVC.adTimerDidFire), userInfo: nil, repeats: false)
+        self.adTimer = Timer.scheduledTimer(timeInterval: self.adPlayer!.currentInlineAd.skippableDuration, target: self, selector: #selector(PlayerVC.adTimerDidFire), userInfo: nil, repeats: false)
     }
     
     func adTimerDidFire()
@@ -319,23 +340,23 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
         {
             viewWithTag.removeFromSuperview()
         }
-        let screenSize = UIScreen.mainScreen().bounds
-        let skipView = UIView(frame: CGRectMake(screenSize.width,screenSize.height - 300,400,200))
+        let screenSize = UIScreen.main.bounds
+        let skipView = UIView(frame: CGRect(x: screenSize.width,y: screenSize.height - 300,width: 400,height: 200))
         skipView.tag = 1001
-        skipView.backgroundColor = UIColor.blackColor()
+        skipView.backgroundColor = UIColor.black
         skipView.alpha = 0.7
-        let skipLabel = UILabel(frame: CGRectMake(skipView.bounds.size.width - 250,skipView.bounds.size.height - 200,100,100))
+        let skipLabel = UILabel(frame: CGRect(x: skipView.bounds.size.width - 250,y: skipView.bounds.size.height - 200,width: 100,height: 100))
         skipLabel.text = "Skip"
-        skipLabel.font = UIFont.systemFontOfSize(30)
-        skipLabel.textColor = UIColor.whiteColor()
-        skipLabel.textAlignment = .Center
+        skipLabel.font = UIFont.systemFont(ofSize: 30)
+        skipLabel.textColor = UIColor.white
+        skipLabel.textAlignment = .center
         skipView.addSubview(skipLabel)
         self.view.addSubview(skipView)
-        self.view.bringSubviewToFront(skipView)
+        self.view.bringSubview(toFront: skipView)
         
-        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(), animations: {
             
-            skipView.frame = CGRectMake(screenSize.width - 400,screenSize.height - 300,400,100)
+            skipView.frame = CGRect(x: screenSize.width - 400,y: screenSize.height - 300,width: 400,height: 100)
             
         }) { (done) in
             self.isSkippable = true
@@ -368,13 +389,13 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
     }
     
     //MARK DVIABPlayerDelegate
-    func player(player: DVIABPlayer!, shouldPauseForAdBreak playBreak: DVVideoPlayBreak!) -> Bool
+    func player(_ player: DVIABPlayer!, shouldPauseForAdBreak playBreak: DVVideoPlayBreak!) -> Bool
     {
         print("should pause for ad break? Yes")
         return true
     }
     
-    func player(player: DVIABPlayer!, didFailPlayBreak playBreak:DVVideoPlayBreak!, withError:NSError ) {
+    func player(_ player: DVIABPlayer!, didFail playBreak:DVVideoPlayBreak!, withError:NSError ) {
         print("did fail playback")
     }
     
@@ -390,46 +411,47 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
         {
             viewWithTag.removeFromSuperview()
         }
-        let player = AVPlayer(URL: self.playerURL)
+        let player = AVPlayer(url: self.playerURL)
         self.playerController.player = player
         self.addChildViewController(self.playerController)
         self.view.addSubview(self.playerController.view)
         self.playerController.view.frame = self.view.frame
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: player.currentItem)
+        NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
         player.play()
     }
     
     func addAdLabel() {
         print("adding ad label \(self.adsData)")
         
-        let screenSize = UIScreen.mainScreen().bounds
-        let skipView = UIView(frame: CGRectMake(screenSize.width-250,30,250,40))
+        let screenSize = UIScreen.main.bounds
+        let skipView = UIView(frame: CGRect(x: screenSize.width-250,y: 30,width: 250,height: 40))
         skipView.tag = 1002
-        skipView.backgroundColor = UIColor.blackColor()
+        skipView.backgroundColor = UIColor.black
         skipView.alpha = 0.7
-        let skipLabel = UILabel(frame: CGRectMake(0,0,100,40))
+        let skipLabel = UILabel(frame: CGRect(x: 0,y: 0,width: 100,height: 40))
         skipLabel.text = "Ad"
-        skipLabel.font = UIFont.systemFontOfSize(30)
-        skipLabel.textColor = UIColor.whiteColor()
-        skipLabel.textAlignment = .Center
+        skipLabel.font = UIFont.systemFont(ofSize: 30)
+        skipLabel.textColor = UIColor.white
+        skipLabel.textAlignment = .center
         skipView.addSubview(skipLabel)
         self.playerView?.addSubview(skipView)
         //self.view.bringSubviewToFront(skipView)
     }
     
-    func getAdsFromResponse(playerObject: VideoObjectModel?) -> NSMutableArray {
+    func getAdsFromResponse(_ playerObject: VideoObjectModel?) -> NSMutableArray {
         var adsArray = NSMutableArray()
-        print(playerObject?.json)
-        if let body = playerObject?.json?["response"]?["body"]
+        //print(playerObject?.json ?? <#default value#>)
+        if let body = playerObject?.json?["response"]?["body"] as? NSDictionary
         {
-            let schedule = body?["advertising"]??["schedule"] as? NSArray
+            let advertising = body["advertising"] as! NSDictionary
+            let schedule = advertising["schedule"] as? NSArray
             
             self.adsData = [adObject]()
             
             if (schedule != nil) {
                 for i in 0..<schedule!.count
                 {
-                    let adDict = schedule![i]
+                    let adDict = schedule![i] as! NSDictionary
                     let ad = adObject(offset: adDict["offset"] as? Double, tag:adDict["tag"] as? String)
                     self.adsData.append(ad)
                 }
@@ -450,7 +472,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
                 if ad.offset == 0
                 {
                     print(ad.tag!)
-                    adsArray.addObject(DVVideoPlayBreak.playBreakBeforeStartWithAdTemplateURL(NSURL(string: ad.tag!)!))
+                    adsArray.add(DVVideoPlayBreak.playBreakBeforeStart(withAdTemplateURL: URL(string: ad.tag!)!))
                     // adsArray.addObject(DVVideoPlayBreak.playBreakAtTimeFromStart(CMTimeMake(10,1), withAdTemplateURL: NSURL(string: ad.tag!)!))
                     //  adsArray.addObject(DVVideoPlayBreak.playBreakAtTimeFromStart(CMTimeMake(20,1), withAdTemplateURL: NSURL(string: ad.tag!)!))
                 } else {

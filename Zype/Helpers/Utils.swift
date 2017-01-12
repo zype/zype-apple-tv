@@ -9,30 +9,30 @@
 import UIKit
 import ZypeAppleTVBase
 
-func localized(key: String) -> String {
+func localized(_ key: String) -> String {
   return NSLocalizedString(key, comment: "")
 }
 
 func getAppDelegate() -> AppDelegate {
-  return UIApplication.sharedApplication().delegate as! AppDelegate
+  return UIApplication.shared.delegate as! AppDelegate
 }
 
-func alert(message: String, title: String = "", action: (()->())? = nil) {
-  let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-  let acceptAction = UIAlertAction(title: localized("Messages.OK"), style: .Default) { _ in
+func alert(_ message: String, title: String = "", action: (()->())? = nil) {
+  let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+  let acceptAction = UIAlertAction(title: localized("Messages.OK"), style: .default) { _ in
     if(action != nil){
       action!()
     }
   }
   alertController.addAction(acceptAction)
-  getAppDelegate().window?.rootViewController!.presentViewController(alertController, animated: true, completion: nil)
+  getAppDelegate().window?.rootViewController!.present(alertController, animated: true, completion: nil)
 }
 
-func errorAlert(message: String) {
+func errorAlert(_ message: String) {
   alert(message, title: localized("Messages.ErrorTitle"))
 }
 
-func errorDescription(error: NSError) -> String {
+func errorDescription(_ error: NSError) -> String {
   var descriptionKey: String
   if(error.domain == kErrorDomaine) {
     switch error.code {
@@ -52,36 +52,36 @@ func errorDescription(error: NSError) -> String {
   return error.localizedDescription.isEmpty ? localized("Errors.Common") : error.localizedDescription
 }
 
-func displayError(error: NSError?){
+func displayError(_ error: NSError?){
   let description = error == nil ? localized("Errors.ZYPE.Common") : errorDescription(error!)
   errorAlert(description)
 }
 
-func showModalProgress(text: String? = nil){
+func showModalProgress(_ text: String? = nil){
   if let rootVC = getAppDelegate().window?.rootViewController {
-    let modalVC = rootVC.storyboard?.instantiateViewControllerWithIdentifier("ModalProgressVC") as! ModalProgressVC
-    modalVC.modalPresentationStyle = .Custom
+    let modalVC = rootVC.storyboard?.instantiateViewController(withIdentifier: "ModalProgressVC") as! ModalProgressVC
+    modalVC.modalPresentationStyle = .custom
     modalVC.text = text ?? localized("Progress.Default")
-    rootVC.presentViewController(modalVC, animated: true, completion: nil)
+    rootVC.present(modalVC, animated: true, completion: nil)
   }
 }
 
 func hideModalProgress(){
   if let rootVC = getAppDelegate().window?.rootViewController {
-    rootVC.dismissViewControllerAnimated(true, completion: nil)
+    rootVC.dismiss(animated: true, completion: nil)
   }
 }
 
 func isFirstLaunch() -> Bool {
-  let defaults = NSUserDefaults.standardUserDefaults()
-  let isFirstLaunch = !NSUserDefaults.standardUserDefaults().boolForKey("wasFirstLaunch")
-  defaults.setBool(true, forKey: "wasFirstLaunch")
+  let defaults = UserDefaults.standard
+  let isFirstLaunch = !UserDefaults.standard.bool(forKey: "wasFirstLaunch")
+  defaults.set(true, forKey: "wasFirstLaunch")
   defaults.synchronize()
   return isFirstLaunch
 }
 
-func isValidEmail(email:String) -> Bool {
+func isValidEmail(_ email:String) -> Bool {
   let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
   let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-  return emailTest.evaluateWithObject(email)
+  return emailTest.evaluate(with: email)
 }

@@ -32,22 +32,22 @@ extension VideoModel {
   }
 
   func isInFavorites() -> Bool{
-    let defaults = NSUserDefaults.standardUserDefaults()
-    if let favorites = defaults.arrayForKey(Const.kFavoritesKey) as? Array<String> {
+    let defaults = UserDefaults.standard
+    if let favorites = defaults.array(forKey: Const.kFavoritesKey) as? Array<String> {
       return favorites.contains(self.ID)
     }
     return false
   }
 
   func toggleFavorite() {
-    let defaults = NSUserDefaults.standardUserDefaults()
-    var favorites = defaults.arrayForKey(Const.kFavoritesKey) as? Array<String> ?? [String]()
+    let defaults = UserDefaults.standard
+    var favorites = defaults.array(forKey: Const.kFavoritesKey) as? Array<String> ?? [String]()
     if(self.isInFavorites()) {
-      favorites.removeAtIndex(favorites.indexOf(self.ID)!)
+      favorites.remove(at: favorites.index(of: self.ID)!)
     } else {
       favorites.append(self.ID)
     }
-    defaults.setObject(favorites, forKey: Const.kFavoritesKey)
+    defaults.set(favorites, forKey: Const.kFavoritesKey)
     defaults.synchronize()
   }
 
