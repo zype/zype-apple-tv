@@ -23,6 +23,7 @@ class ImageCell: UICollectionViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     self.imageView.thumbnail = UIImage(named: "show_thumbnail")
+    self.imageView.image = self.imageView.thumbnail
   }
   
   override func prepareForReuse() {

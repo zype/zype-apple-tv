@@ -22,6 +22,7 @@ class PagerCell: UICollectionViewCell {
     super.awakeFromNib()
     self.imageView.roundedCorners = [.bottomLeft, .bottomRight]
     self.imageView.thumbnail = UIImage(named: "slider_thumbnail")
+    self.imageView.image = self.imageView.thumbnail
   }
   
   override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
