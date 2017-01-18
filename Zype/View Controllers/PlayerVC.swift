@@ -443,20 +443,20 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
         //print(playerObject?.json ?? <#default value#>)
         if let body = playerObject?.json?["response"]?["body"] as? NSDictionary
         {
-              if let advertising = body["advertising"] as! NSDictionary{
-        let schedule = advertising["schedule"] as? NSArray
-        
-        self.adsData = [adObject]()
-        
-        if (schedule != nil) {
-            for i in 0..<schedule!.count
-            {
-                let adDict = schedule![i] as! NSDictionary
-                let ad = adObject(offset: adDict["offset"] as? Double, tag:adDict["tag"] as? String)
-                self.adsData.append(ad)
+            if let advertising = body["advertising"] as? NSDictionary{
+                let schedule = advertising["schedule"] as? NSArray
+                
+                self.adsData = [adObject]()
+                
+                if (schedule != nil) {
+                    for i in 0..<schedule!.count
+                    {
+                        let adDict = schedule![i] as! NSDictionary
+                        let ad = adObject(offset: adDict["offset"] as? Double, tag:adDict["tag"] as? String)
+                        self.adsData.append(ad)
+                    }
+                }
             }
-        }
-    }
         }
         
         if self.adsData.count > 0
