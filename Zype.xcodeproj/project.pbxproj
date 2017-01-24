@@ -69,6 +69,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A13DE31B1E32742D00EBBC57 /* SplashScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenVC.swift; sourceTree = "<group>"; };
+		A13DE31D1E32B23000EBBC57 /* ReplaceSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceSegue.swift; sourceTree = "<group>"; };
 		A161E99E1DDBBAA800D01C70 /* DVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVPlayerView.h; sourceTree = "<group>"; };
 		A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVPlayerView.m; sourceTree = "<group>"; };
 		A161E9A21DDBBAA800D01C70 /* DVIABPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVIABPlayer.h; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				F558AC841BD508E600D8E677 /* ScrollableTextAlertVC.swift */,
 				F5582CD11BC818CA0089E5E7 /* ShowDetailsVC.swift */,
 				F5D98CE71BE3BFBB00C986B4 /* TabBarVC.swift */,
+				A13DE31B1E32742D00EBBC57 /* SplashScreenVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				F55957DA1BD7D1B2004A01A9 /* SDKHelpers.swift */,
 				F55732131BDA4EBC00D323A0 /* Utils.swift */,
 				F55940381C048F2700A0ECFF /* FadeNavigationAnimationController.swift */,
+				A13DE31D1E32B23000EBBC57 /* ReplaceSegue.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -414,9 +418,11 @@
 				F5E6DA3F1BCEB03A00BE842B /* SearchVC.swift in Sources */,
 				A161E9D91DDBBAA800D01C70 /* DDXMLDocument.m in Sources */,
 				F5582CD01BC7FA350089E5E7 /* ControllerCell.swift in Sources */,
+				A13DE31E1E32B23100EBBC57 /* ReplaceSegue.swift in Sources */,
 				F5582CD21BC818CA0089E5E7 /* ShowDetailsVC.swift in Sources */,
 				F55957DB1BD7D1B2004A01A9 /* SDKHelpers.swift in Sources */,
 				F5534D271BCFEB8200BEA509 /* CollectionContainerVC.swift in Sources */,
+				A13DE31C1E32742D00EBBC57 /* SplashScreenVC.swift in Sources */,
 				A161E9D01DDBBAA800D01C70 /* DVVideoAdServingTemplate.m in Sources */,
 				A161E9CC1DDBBAA800D01C70 /* DVInlineVideoAd.m in Sources */,
 				A161E9D11DDBBAA800D01C70 /* DVVideoMultipleAdPlaylist.m in Sources */,
@@ -514,10 +520,12 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = appletvos;
 				SWIFT_OBJC_BRIDGING_HEADER = "AVOD/DVVAST-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -536,8 +544,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -554,8 +564,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = appletvos;
 				SWIFT_OBJC_BRIDGING_HEADER = "AVOD/DVVAST-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";		
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
@@ -565,6 +578,7 @@
 		F553AD301BC660B400A093EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -583,6 +597,7 @@
 		F553AD311BC660B400A093EF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

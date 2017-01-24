@@ -19,6 +19,8 @@ class Const: NSObject {
     tokenDomain: "https://login.zype.com",
     userAgent: "zype tvos")
 
+  static let kLimitLivestreamEnabled = false
+  static let kAppStyleLight = true
 
   static let kBaseSectionInsets: UIEdgeInsets = UIEdgeInsets(top: 50, left: 90, bottom: 50, right: 90)
   static let kCollectionCellSize: CGSize = CGSize(width: 308, height: 220)
@@ -26,10 +28,18 @@ class Const: NSObject {
   static let kCollectionHorizontalSpacing: CGFloat = 50.0
   static let kCollectionVerticalSpacing: CGFloat = 50.0
   static let kCollectionSectionHeaderHeight: CGFloat = 45.0
-  static let kCollectionPagerCellSize: CGSize = CGSize(width: 1740, height: 490)
-  static let kCollectionPagerVCBottomMargin: CGFloat = 70.0
-  static let kCollectionSectionHeaderBottomMargin: CGFloat = 25.0
-  static let kCollectionPagerHorizontalSpacing: CGFloat = 20.0
-  static let kScrollableTextVCMaskInsets: UIEdgeInsets = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0)
-  static let kFavoritesKey = "Favorites"
+  static let kCollectionPagerCellSize: CGSize = CGSize(width: 1920, height: 700) //1450 x 630 or 1740 x 490
+    
+    static let kCollectionPagerVCBottomMargin: CGFloat = 70.0
+    static let kCollectionSectionHeaderBottomMargin: CGFloat = 25.0
+    static let kCollectionPagerHorizontalSpacing: CGFloat = 20.0
+    static let kScrollableTextVCMaskInsets: UIEdgeInsets = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0)
+    static let kFavoritesKey = "Favorites"
+    
+    static let kDefaultsRootPlaylistId = "root_playlist_id"
+    static let kDefaultsBackgroundUrl = "background_url"
+    
+    //Segues
+    static let kShowTabBarSegueId = "ShowTabBar"
+
 }

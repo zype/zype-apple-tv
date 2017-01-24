@@ -24,11 +24,15 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
   var selectedVideo: VideoModel!
   var selectedShow: PlaylistModel!
   var playlists = [PlaylistModel]()
+  var playlistParent: PlaylistModel?
+  var playlistParentAsId: String?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationController?.delegate = self
     self.reloadButton.setTitle(localized("Home.ReloadButton"), for: UIControlState())
+    
+     NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name(rawValue: "ready_to_load_playlists"), object: nil)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -47,11 +51,31 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
   
   func reloadData() {
     self.hideErrorInfo()
-    ZypeAppleTVBase.sharedInstance.getPlaylists(completion: {[unowned self] (playlists: Array<PlaylistModel>?, error: NSError?) in
+    
+    let queryModel = QueryPlaylistsModel()
+    if(self.playlistParent != nil){
+        queryModel.parentId = self.playlistParent!.pId
+    } else {
+        if(self.playlistParentAsId != nil){
+            queryModel.parentId = self.playlistParentAsId!
+        } else {
+            let rootPlaylistId = UserDefaults.standard.object(forKey: Const.kDefaultsRootPlaylistId)
+            if (rootPlaylistId != nil) {
+                queryModel.parentId = (rootPlaylistId as? String)!
+            } else {
+                // self.showErrorInfo("Booooooo. Can't find root_playlist_id in app settings. Please add it in the platform and relaunch the app.")
+                queryModel.parentId = ""
+            }
+        }
+        
+    }
+
+    
+    ZypeAppleTVBase.sharedInstance.getPlaylists(queryModel, completion: {[unowned self] (playlists: Array<PlaylistModel>?, error: NSError?) in
       if(error == nil && playlists != nil) {
         self.playlists = playlists!
         self.getLivestreamItem({(result: CollectionLabeledItem?) in
-          self.getFeaturedVideos(result, callback: {[unowned self] in
+          self.getFeaturedVideos(livestreamItem: result, callback: {[unowned self] in
             self.fillSections()
           })
         })
@@ -88,54 +112,109 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
     return nil
   }
   
-  func getFeaturedVideos(_ livestreamItem: CollectionLabeledItem?, callback: @escaping () -> Void) {
-    let type = QueryZobjectsModel()
-    type.zobjectType = "top_playlists"
-    ZypeAppleTVBase.sharedInstance.getZobjects(type, completion: {(objects: Array<ZobjectModel>?, error: NSError?) in
-      if let _ = objects, objects!.count > 0 {
-        var items = CollectionContainerVC.featuresToCollectionItems(objects)
-        if let _ = livestreamItem {
-          items.insert(livestreamItem!, at: items.count / 2)
+    func getFeaturedVideos(livestreamItem: CollectionLabeledItem?, callback: @escaping () -> Void) {
+        
+        if(self.playlistParentAsId == nil) {//use only for Home Screen
+            
+            let type = QueryZobjectsModel()
+            type.zobjectType = "top_playlists"
+            ZypeAppleTVBase.sharedInstance.getZobjects(type, completion: {(objects: Array<ZobjectModel>?, error: NSError?) in
+                if let _ = objects, objects!.count > 0 {
+                    var items = CollectionContainerVC.featuresToCollectionItems(objects)
+                    if let _ = livestreamItem {
+                        items.insert(livestreamItem!, at: items.count / 2)
+                    }
+                    let section = CollectionSection()
+                    section.isPager = true
+                    section.items = items
+                    section.insets.top = 0
+                    section.insets.bottom = 0
+                    section.horizontalSpacing = Const.kCollectionPagerHorizontalSpacing
+                    //section.cellSize = Const.kCollectionPagerCellSize
+                    section.cellSize = CGSize(width: 1740, height: 700)//490 //original iamge is 1450 x 630 //1920
+                    
+                    if(self.pagerVC == nil) {
+                        self.pagerVC = self.storyboard?.instantiateViewController(withIdentifier: "BaseCollectionVC") as! BaseCollectionVC
+                        self.pagerVC.view.height = 700
+                        self.pagerVC.isInfinityScrolling = true
+                        self.collectionVC.addChildViewController(self.pagerVC)
+                        self.pagerVC.didMove(toParentViewController: self.collectionVC)
+                        self.pagerVC.itemSelectedCallback = {[unowned self] (item: CollectionLabeledItem, section: CollectionSection) in
+                            
+                            if(item.object is VideoModel) {
+                                self.playVideo(item.object as! VideoModel)
+                                return
+                            }
+                            let zObject = (item as! PagerCollectionItem).object as! ZobjectModel
+                            if let playlist = self.playlistForZObject(zObject) {
+                                playlist.getVideos(completion: {(videos: Array<VideoModel>?, error: NSError?) -> Void in
+                                    if((videos?.count)! > 0) {
+                                        self.selectedVideo = videos!.first!
+                                        self.selectedShow = playlist
+                                        self.performSegue(withIdentifier: HomeVC.kShowDetailsSegueID, sender: section)
+                                    } else {//load playlist with playlists
+                                        let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
+                                        let selectedPlaylist = item.object as! PlaylistModel
+                                        homeVC.playlistParent = selectedPlaylist
+                                        self.navigationController?.pushViewController(homeVC, animated: true)
+                                    }
+                                })
+                            } else {
+                                //load playlist that is not on the screen with playlists
+                                let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
+                                homeVC.playlistParentAsId = zObject.getStringValue("playlistid")
+                                self.navigationController?.pushViewController(homeVC, animated: true)
+                            }
+                        }
+                        self.pagerVC.configWithSection(section)
+                    } else {
+                        self.pagerVC.update([section])
+                    }
+                }
+                
+                callback()
+            }) } else {//configure header for child playlists
+            self.addPager()
+            callback()
         }
+        
+    }
+    
+    func addPager(){
+        let objects : Array<PlaylistModel> = []
+        let items = CollectionContainerVC.categoryValuesToCollectionItems(objects)
+        
+        /*for (index,zObject) in objects.enumerate() {
+         for picture in zObject.pictures {
+         if picture.titleString == "banner"{
+         items[index].imageURL = NSURL(string:picture.url)
+         }
+         }
+         }*/
+        
         let section = CollectionSection()
         section.isPager = true
         section.items = items
+        section.insets.left = 0
         section.insets.top = 0
         section.insets.bottom = 0
-        section.horizontalSpacing = Const.kCollectionPagerHorizontalSpacing
+        section.horizontalSpacing = 0.0
         section.cellSize = Const.kCollectionPagerCellSize
         
         if(self.pagerVC == nil) {
-          self.pagerVC = self.storyboard?.instantiateViewController(withIdentifier: "BaseCollectionVC") as! BaseCollectionVC
-          self.pagerVC.view.height = Const.kCollectionPagerCellSize.height
-          self.pagerVC.isInfinityScrolling = true
-          self.collectionVC.addChildViewController(self.pagerVC)
-          self.pagerVC.didMove(toParentViewController: self.collectionVC)
-          self.pagerVC.itemSelectedCallback = {[unowned self] (item: CollectionLabeledItem, section: CollectionSection) in
-            if(item.object is VideoModel) {
-              self.playVideo(item.object as! VideoModel)
-              return
+            self.pagerVC = self.storyboard?.instantiateViewController(withIdentifier: "BaseCollectionVC") as! BaseCollectionVC
+            self.pagerVC.view.height = 70.0
+            self.pagerVC.isInfinityScrolling = false
+            self.collectionVC.addChildViewController(self.pagerVC)
+            self.pagerVC.didMove(toParentViewController: self.collectionVC)
+            self.pagerVC.itemSelectedCallback = {[unowned self] (item: CollectionLabeledItem, section: CollectionSection) in
+                
             }
-            let zObject = (item as! PagerCollectionItem).object as! ZobjectModel
-            if let playlist = self.playlistForZObject(zObject) {
-              playlist.getVideos(completion: {(videos: Array<VideoModel>?, error: NSError?) -> Void in
-                if((videos?.count)! > 0) {
-                  self.selectedVideo = videos!.first!
-                  self.selectedShow = playlist
-                  self.performSegue(withIdentifier: HomeVC.kShowDetailsSegueID, sender: section)
-                }
-              })
-            }
-          }
-          self.pagerVC.configWithSection(section)
+            self.pagerVC.configWithSection(section)
         } else {
-          self.pagerVC.update([section])
+            self.pagerVC.update([section])
         }
-      }
-      
-      callback()
-    })
-  }
+    }
   
   func fillSections(){
     var sections = [] as Array<CollectionSection>
@@ -165,39 +244,87 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
     var controller: BaseCollectionVC
     
     if let existedSection = self.collectionVC.sectionForObject(value), existedSection.controller != nil {
-      controllerSection = existedSection
-      controller = existedSection.controller as! BaseCollectionVC
+        controllerSection = existedSection
+        controller = existedSection.controller as! BaseCollectionVC
     } else {
-      controllerSection = CollectionSection()
-      controller = self.storyboard?.instantiateViewController(withIdentifier: "BaseCollectionVC") as! BaseCollectionVC
+        controllerSection = CollectionSection()
+        controller = self.storyboard?.instantiateViewController(withIdentifier: "BaseCollectionVC") as! BaseCollectionVC
     }
-
-    value.getVideos(completion: {(videos: Array<VideoModel>?, error: NSError?) -> Void in
-      var videoItems = CollectionContainerVC.videosToCollectionItems(videos)
-      if(videoItems.count > HomeVC.kMaxVideosInSection) {
-        let lastVideo = videoItems[HomeVC.kMaxVideosInSection] as! VideoCollectionItem
-        videoItems = Array(videoItems[0..<HomeVC.kMaxVideosInSection])
-        videoItems.append(lastVideo.convertToMore())
-      }
-      let videosSection = CollectionSection()
-      videosSection.items = videoItems
-      videosSection.object = value
-      videosSection.insets.top = 0
-      videosSection.insets.bottom = 0
-      if(!controller.isConfigurated) {
-        controller.configWithSection(videosSection)
-      } else {
-        controller.update([videosSection])
-      }
-    })
+    
+    if (value.playlistItemCount > 0) {
+        value.getVideos(completion: {(videos: Array<VideoModel>?, error: NSError?) -> Void in
+            var videoItems = CollectionContainerVC.videosToCollectionItems(videos)
+            if(videoItems.count > HomeVC.kMaxVideosInSection) {
+                let lastVideo = videoItems[HomeVC.kMaxVideosInSection] as! VideoCollectionItem
+                videoItems = Array(videoItems[0..<HomeVC.kMaxVideosInSection])
+                videoItems.append(lastVideo.convertToMore())
+            }
+            let videosSection = CollectionSection()
+            videosSection.items = videoItems
+            videosSection.object = value
+            videosSection.insets.top = 0
+            videosSection.insets.bottom = 0
+            if(!controller.isConfigurated) {
+                controller.configWithSection(videosSection)
+            } else {
+                controller.update([videosSection])
+            }
+        })
+    } else {
+        let queryModel = QueryPlaylistsModel()
+        queryModel.parentId = value.pId
+        ZypeAppleTVBase.sharedInstance.getPlaylists(queryModel, completion: {(playlists: Array<PlaylistModel>?, error: NSError?) in
+            if(error == nil && playlists != nil) {
+                let playlistItems = CollectionContainerVC.categoryValuesToCollectionItems(playlists)
+                let videosSection = CollectionSection()
+                videosSection.items = playlistItems
+                videosSection.object = value
+                videosSection.insets.top = 0
+                videosSection.insets.bottom = 0
+                if(!controller.isConfigurated) {
+                    controller.configWithSection(videosSection)
+                } else {
+                    controller.update([videosSection])
+                }
+            } else {
+                
+            }
+        })
+    }
     
     controller.view.height = Const.kCollectionCellSize.height
-    controller.itemSelectedCallback = {[unowned self] (item: CollectionLabeledItem, section: CollectionSection) in
-      self.selectedVideo = item.object as! VideoModel
-      self.selectedShow = section.object as! PlaylistModel
-      self.performSegue(withIdentifier: HomeVC.kShowDetailsSegueID, sender: section)
+    
+    if (value.playlistItemCount > 0) {//load screen with videos
+        controller.itemSelectedCallback = {[unowned self] (item: CollectionLabeledItem, section: CollectionSection) in
+            self.selectedVideo = item.object as! VideoModel
+            self.selectedShow = section.object as! PlaylistModel
+            self.performSegue(withIdentifier: HomeVC.kShowDetailsSegueID, sender: section)
+        }
+    } else {
+        controller.itemSelectedCallback = {[unowned self] (item: CollectionLabeledItem, section: CollectionSection) in
+            let selectedPlaylist = item.object as! PlaylistModel
+            if (selectedPlaylist.playlistItemCount > 0){
+                //load screen with videos focusing first one
+                
+                self.selectedShow = item.object as! PlaylistModel
+                self.selectedShow.getVideos(completion: {(videos: Array<VideoModel>?, error: NSError?) -> Void in
+                    if((videos?.count)! > 0) {
+                        self.selectedVideo = videos!.first!
+                        self.performSegue(withIdentifier: HomeVC.kShowDetailsSegueID, sender: section)
+                    }
+                })
+                
+            } else {
+                //load playlist with playlists
+                let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
+                homeVC.playlistParent = selectedPlaylist
+                homeVC.playlistParentAsId = selectedPlaylist.ID
+                self.navigationController?.pushViewController(homeVC, animated: true)
+            }
+        }
+        
     }
-  
+    
     controllerSection.controller = controller
     controllerSection.title = value.titleString
     controllerSection.object = value
@@ -205,15 +332,15 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
     controllerSection.insets.bottom = Const.kBaseSectionInsets.bottom
     return controllerSection
   }
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if(segue.identifier == HomeVC.kShowDetailsSegueID) {
-      let detailsVC = segue.destination as! ShowDetailsVC
-      detailsVC.selectedShow = self.selectedShow
-      detailsVC.selectedVideo = self.selectedVideo
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+        if(segue.identifier == HomeVC.kShowDetailsSegueID) {
+            let detailsVC = segue.destination as! ShowDetailsVC
+            detailsVC.selectedShow = self.selectedShow
+            detailsVC.selectedVideo = self.selectedVideo
+        }
+        super.prepare(for: segue, sender: sender)
     }
-    super.prepare(for: segue, sender: sender)
-  }
   
   func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     let animationController = FadeNavigationAnimationController()

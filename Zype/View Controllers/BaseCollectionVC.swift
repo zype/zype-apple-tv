@@ -158,7 +158,7 @@ class BaseCollectionVC: UICollectionViewController {
     self.isConfigurated = true
   }
   
-  func configWithSection(_ section: CollectionSection) -> CollectionSection {
+  @discardableResult func configWithSection(_ section: CollectionSection) -> CollectionSection {
     self.isHorizontal = true
     self.collectionView?.clipsToBounds = false
     self.configWithSections([section])
