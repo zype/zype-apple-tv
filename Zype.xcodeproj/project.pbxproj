@@ -25,6 +25,7 @@
 		A161E9D91DDBBAA800D01C70 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9C31DDBBAA800D01C70 /* DDXMLDocument.m */; };
 		A161E9DA1DDBBAA800D01C70 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9C51DDBBAA800D01C70 /* DDXMLElement.m */; };
 		A161E9DB1DDBBAA800D01C70 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9C71DDBBAA800D01C70 /* DDXMLNode.m */; };
+		A1C0CF131E37BFEF007ED6C0 /* SplashScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0CF121E37BFEF007ED6C0 /* SplashScreenVC.swift */; };
 		F51158161BDE441000DB1774 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F51158181BDE441000DB1774 /* Localizable.strings */; };
 		F511581D1BDE6CFC00DB1774 /* FocusableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */; };
 		F5534D251BCFC64100BEA509 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5534D241BCFC64100BEA509 /* FavoritesVC.swift */; };
@@ -69,7 +70,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A13DE31B1E32742D00EBBC57 /* SplashScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenVC.swift; sourceTree = "<group>"; };
 		A13DE31D1E32B23000EBBC57 /* ReplaceSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceSegue.swift; sourceTree = "<group>"; };
 		A161E99E1DDBBAA800D01C70 /* DVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVPlayerView.h; sourceTree = "<group>"; };
 		A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVPlayerView.m; sourceTree = "<group>"; };
@@ -109,6 +109,7 @@
 		A161E9C61DDBBAA800D01C70 /* DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLNode.h; sourceTree = "<group>"; };
 		A161E9C71DDBBAA800D01C70 /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
 		A161E9C91DDBBAA800D01C70 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
+		A1C0CF121E37BFEF007ED6C0 /* SplashScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenVC.swift; sourceTree = "<group>"; };
 		F51158171BDE441000DB1774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusableButton.swift; sourceTree = "<group>"; };
 		F5534D241BCFC64100BEA509 /* FavoritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
@@ -300,7 +301,7 @@
 				F558AC841BD508E600D8E677 /* ScrollableTextAlertVC.swift */,
 				F5582CD11BC818CA0089E5E7 /* ShowDetailsVC.swift */,
 				F5D98CE71BE3BFBB00C986B4 /* TabBarVC.swift */,
-				A13DE31B1E32742D00EBBC57 /* SplashScreenVC.swift */,
+				A1C0CF121E37BFEF007ED6C0 /* SplashScreenVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -426,6 +427,7 @@
 				A161E9D01DDBBAA800D01C70 /* DVVideoAdServingTemplate.m in Sources */,
 				A161E9CC1DDBBAA800D01C70 /* DVInlineVideoAd.m in Sources */,
 				A161E9D11DDBBAA800D01C70 /* DVVideoMultipleAdPlaylist.m in Sources */,
+				A1C0CF131E37BFEF007ED6C0 /* SplashScreenVC.swift in Sources */,
 				A161E9D61DDBBAA800D01C70 /* DDXMLElementAdditions.m in Sources */,
 				F5D98CE81BE3BFBB00C986B4 /* TabBarVC.swift in Sources */,
 				A161E9D31DDBBAA800D01C70 /* DVWrapperVideoAd.m in Sources */,
