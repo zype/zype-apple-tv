@@ -44,6 +44,7 @@ class ShowDetailsVC: CollectionContainerVC {
       self.onExpandDescription()
     }
     self.subscribeButton.setBackgroundImage(UIImage(named: "Subscribed"), for: UIControlState())
+    self.favoritesButton.setBackgroundImage(UIImage(named: "FavoritesAddFocused"), for: UIControlState())
     
     let distance = (self.containerView.top - self.detailsView.bottom) / 2
     
