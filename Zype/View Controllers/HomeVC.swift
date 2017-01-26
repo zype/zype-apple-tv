@@ -228,7 +228,11 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
     self.collectionVC.configWithSections(sections)
     if(sections.count == 0 && self.pagerVC == nil) {
       self.showErrorInfo()
+    } else if (sections.count == 1 && self.pagerVC != nil){
+        //only pager and pager can be empty
+        self.showErrorInfo("No videos available")
     }
+
   }
   
   func getSectionsForShows() -> Array<CollectionSection> {
