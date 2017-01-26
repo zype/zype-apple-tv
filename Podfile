@@ -10,6 +10,6 @@ target 'ZypeAppName' do
 #pod 'ZypeAppleTVBase', :path => '../ZypeAppleTVBase'
 
 # Uncomment for release and update tag here as well as in ZypeAppleTVBase.podspec
-pod 'ZypeAppleTVBase', :git => 'https://github.com/zype/ZypeAppleTVBase.git', :tag => '0.4.2'
+pod 'ZypeAppleTVBase', :git => 'https://github.com/zype/ZypeAppleTVBase.git', :tag => '0.4.3'
 
 end
