@@ -36,9 +36,7 @@ This SDK allows you to set up an eye-catching, easy to use Apple TV video stream
 
 5. You can now take a look at your app by running it in tvOS Simulator.
 
-6. Update the _title_ in _manifest_ to the title of your Roku app. This is the title that the users will see once the app is installed.
-
-7. __(Optional)__ You can update the app's theme color by setting the _theme_ inside _Zype/Info.plist_. The theme can be set to: "dark" or "light". 
+6. __(Optional)__ You can update the app's theme color by setting the _theme_ inside _Zype/Info.plist_. The theme can be set to: "dark" or "light". 
 
 ## Requirements and Prerequisites
 
