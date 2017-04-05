@@ -66,7 +66,7 @@ For the versions available, see the [tags on this repository](https://github.com
 
 * **Andrey Kasatkin** - *Initial work* - [Svetliy](https://github.com/svetdev)
 * **Khurshid Fayzullaev** - *Native In-App subscription* - [khfayzullaev](https://github.com/khfayzullaev)
-* **Jeremy Kay** - *Zype platform integrateion* - [jeremykay](https://github.com/jeremykay)
+* **Jeremy Kay** - *Zype platform integration* - [jeremykay](https://github.com/jeremykay)
 
 See also the list of [contributors](https://github.com/zype/zype-ios/graphs/contributors) who participated in this project.
 
