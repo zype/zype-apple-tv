@@ -88,7 +88,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
   
   func getLivestreamItem(_ callback: @escaping (_ result: CollectionLabeledItem?)->()) {
     let queryModel = QueryVideosModel()
-    queryModel.onAir = true
+    queryModel.onAir = "true"
     queryModel.sort = "published_at"
     queryModel.ascending = false
     ZypeAppleTVBase.sharedInstance.getVideos(queryModel, completion: {(videos: Array<VideoModel>?, error: NSError?) in
