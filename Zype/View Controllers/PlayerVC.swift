@@ -13,25 +13,25 @@ import ZypeAppleTVBase
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l < r
+    case (nil, _?):
+        return true
+    default:
+        return false
+    }
 }
 
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l > r
+    default:
+        return rhs < lhs
+    }
 }
 
 
@@ -44,6 +44,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
     var playerURL : URL!
     var playerView: DVPlayerView?
     var isSkippable = false
+    var isResuming = true
     
     var playlist: Array<VideoModel>? = nil
     var currentVideo: VideoModel!
@@ -52,6 +53,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
     var adsData: [adObject] = [adObject]()
     
     var currentTime : CMTime!
+    var userDefaults = UserDefaults.standard
     
     deinit {
         print("Destroying")
@@ -101,7 +103,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
     
     override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?)
     {
-        print("presses began \(presses.first?.type)")
+        print("presses began \(String(describing: presses.first?.type))")
         //type == .Select
         if let type = presses.first?.type, type == .playPause
         {
@@ -134,6 +136,14 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
         } else if let type = presses.first?.type, type == .menu
         {
             print("menu clicked")
+            if !currentVideo.onAir
+            {
+                let timeStamp = self.playerController.player?.currentTime().seconds
+                if timeStamp > 30.0 {
+                    userDefaults.setValue(timeStamp, forKey: "\(currentVideo.getId())")
+                }
+            }
+            
             NotificationCenter.default.removeObserver(self)
             if self.adPlayer != nil
             {
@@ -172,7 +182,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
                 let adsArray = self.getAdsFromResponse(playerObject)
                 
                 self.playerURL = url as URL!
-                
+
                 if adsArray.count == 0
                 {
                     self.setupVideoPlayer()
@@ -208,7 +218,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
                     NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.addAdLabel), name: NSNotification.Name(rawValue: "adPlaying"), object: nil)
                     
                     //this is called when there are ad tags, but they don't return any ads
-                     NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.removeAdsAndPlayVideo), name: NSNotification.Name(rawValue: "noAdsToPlay"), object: nil)
+                    NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.removeAdsAndPlayVideo), name: NSNotification.Name(rawValue: "noAdsToPlay"), object: nil)
                     
                     NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.adPlayer!.contentPlayerItem)
                 }
@@ -221,12 +231,13 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
                 self.navigationController?.popViewController(animated: true)
                 displayError(error)
             }
-            })
+        })
     }
     
     func contentDidFinishPlaying(_ notification: Notification)
     {
-        print("content did finish playing")
+        userDefaults.removeObject(forKey: self.currentVideo.getId())
+        print("\n\n---content did finish playing---\n\n")
         // Make sure we don't call contentComplete as a result of an ad completing.
         if ((notification.object as! AVPlayerItem) == self.playerController.player!.currentItem)
         {
@@ -271,7 +282,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
         else if self.adPlayer!.status == .failed
         {
             print("ad player failed")
-        
+            
             self.removeAdPlayer()
             
             self.setupVideoPlayer()
@@ -415,6 +426,18 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate
         self.view.addSubview(self.playerController.view)
         self.playerController.view.frame = self.view.frame
         NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+        
+        // resume if possible
+        if isResuming {
+            if !currentVideo.onAir
+            {
+                if let timeStamp = userDefaults.object(forKey: "\(currentVideo.getId())")
+                {
+                    let time = CMTimeMakeWithSeconds(timeStamp as! Float64, 1)
+                    player.seek(to: time)
+                }
+            }
+        }
         player.play()
     }
     
