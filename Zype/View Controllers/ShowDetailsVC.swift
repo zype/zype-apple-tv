@@ -163,14 +163,17 @@ class ShowDetailsVC: CollectionContainerVC {
                 self.resumeLabel.text = localized(self.selectedVideo.isInFavorites() ? "ShowDetails.Unfavorite" : "ShowDetails.Favorite")
                 self.resumeButton.setBackgroundImage(UIImage(named: self.selectedVideo.isInFavorites() ? "FavoritesRemoveFocused" : "FavoritesAddFocused"), for: .normal)
                 self.favoriteLabel.text = "Play"
-                self.favoritesButton.setBackgroundImage(#imageLiteral(resourceName: "Subscribed"), for: .normal)
+                self.favoritesButton.setBackgroundImage(UIImage(named: "Subscribed"), for: .normal)
                 self.subscribeLabel.text = "Resume"
+                self.subscribeButton.setBackgroundImage(UIImage(named: "Resume"), for: .normal)
             }
             else {
                 self.favoriteLabel.text = localized(self.selectedVideo.isInFavorites() ? "ShowDetails.Unfavorite" : "ShowDetails.Favorite")
                 self.favoritesButton.setBackgroundImage(UIImage(named: self.selectedVideo.isInFavorites() ? "FavoritesRemoveFocused" : "FavoritesAddFocused"), for: .normal)
                 self.resumeButton.isHidden = true
                 self.resumeLabel.text = ""
+                self.subscribeLabel.text = "Play"
+                self.subscribeButton.setBackgroundImage(UIImage(named: "Subscribed"), for: .normal)
             }
         }
     }
