@@ -35,7 +35,7 @@ Terminal Commands:
   
   cd .. => goes back one directory level up
   
-<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oZUFDbjZzVGx1RlE"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oZUFDbjZzVGx1RlE" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oNDA0WEVkSnBybVE"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oNDA0WEVkSnBybVE" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
 4. Open your new project in XCode by clicking on [Your_app_name].xcworkspace - (NOT .xcodeproj). If this is not available, something went wrong in step 3 :( Copy the error in your terminal and paste it into [Stack Overflow](http://stackoverflow.com/) to find a solution.
 
