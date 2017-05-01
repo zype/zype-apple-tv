@@ -2,14 +2,14 @@
 
 ## Requirements and Prerequisites
 
-Zype Apple TV Endpoint
-1. To have a Zype Apple TV app you need to hold a valid license for Zype Apple TV API endpoint. Lear more about it [here](http://www.zype.com/services/endpoint-api/).
+#### Zype Apple TV Endpoint
+⋅⋅⋅ To have a Zype Apple TV app you need to hold a valid license for Zype Apple TV API endpoint. Lear more about it [here](http://www.zype.com/services/endpoint-api/).
 
-Mac with XCode installed
-2. In order to use build, run and package an app you need latest XCode to be installed on your Mac computer. Xcode can be downloaded from [App Store](https://developer.apple.com/xcode/). 
+#### Mac with XCode installed
+⋅⋅⋅ In order to use build, run and package an app you need latest XCode to be installed on your Mac computer. Xcode can be downloaded from [App Store](https://developer.apple.com/xcode/). 
 
-Apple Developer Program
-3. Apple Developer program can be purcased [here](https://developer.apple.com/programs/).
+#### Apple Developer Program
+⋅⋅⋅ Apple Developer program can be purcased [here](https://developer.apple.com/programs/).
 
 ## Creating New App with the SDK
 
