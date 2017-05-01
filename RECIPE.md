@@ -49,7 +49,7 @@ The Apple Developer Program can be enrolled in via [Apple's website](https://dev
 
 <a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oZFZOTjdCRFpxZms"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oZFZOTjdCRFpxZms" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
-#### Submitting to the app store
+#### Submitting to the Apple App Store
 
 7. Once you like the look of your app you can archive and export the app into iTunesConnect. Helpful documentation about archiving and exporting your app can be found in [Apple's distribution documentation](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html).
 
