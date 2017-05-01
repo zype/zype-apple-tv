@@ -25,15 +25,15 @@ Apple Developer program can be purchased via [Apple](https://developer.apple.com
 
 3. Open Terminal, navigate to your project folder, and type _pod install_. You'll need to have Cocoapods installed in order to do this step. To install them on your Mac follow [Cocoapods guide](https://guides.cocoapods.org/using/getting-started.html). You can find your Terminal in Finder -> Applications or CMD + SpaceBar -> type in _terminal_ and hit enter.
 
-Terminal Commands:
+###### Terminal Commands:
   
-  ls => shows folders in current directory
++ _ls_ => shows folders in current directory
   
-  cd downloads => goes into downloads if available (see ls)
++ _cd downloads_ => goes into downloads if available (see ls)
   
-  cd downloads/myproject => goes into downloads/myproject if available (see ls)
++ _cd downloads/myproject_ => goes into downloads/myproject if available (see ls)
   
-  cd .. => goes back one directory level up
++ _cd .._ => goes back one directory level up
   
 <a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oNDA0WEVkSnBybVE"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oNDA0WEVkSnBybVE" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
