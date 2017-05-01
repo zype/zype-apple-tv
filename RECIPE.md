@@ -17,19 +17,35 @@ Apple Developer program can be purchased via [Apple](https://developer.apple.com
 
 1. In order to create an Apple TV app using the SDK, you will need to create an Apple TV app on the Zype platform. If you have not done this you can do that on the Zype platform in the Dashboard in the __Manage Apps__ tab under __Publish__. You will see a button to create a new app; just follow the instructions there.
 
-2. Once you have your Apple TV app created on the platform, click on 'get bundle' and the bundle will be emailed to you. Another option is to reload the page and click the 'Download bundle' button.
+2. Once you have your Apple TV app created on the platform, click on __Get New Bundle__ and the bundle will be emailed to you. Another option is to reload the page and click the __Download Bundle__ button.
 
 <a href="https://drive.google.com/uc?export=view&id=0B9aYmGA7O0ZYMS1UM0s1YXQ1UDA"><img src="https://drive.google.com/uc?export=view&id=0B9aYmGA7O0ZYMS1UM0s1YXQ1UDA" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
 #### Installing and testing your new app
 
-3. Inside the source folder, open Terminal and type pod install. You need to have Cocoapods installed in order to do this step. To install them on your Mac follow [Cocoapods guide](https://guides.cocoapods.org/using/getting-started.html).
+3. Open Terminal, navigate to your project folder, and type _pod install_. You'll need to have Cocoapods installed in order to do this step. To install them on your Mac follow [Cocoapods guide](https://guides.cocoapods.org/using/getting-started.html). You can find your Terminal in Finder -> Applications or CMD + SpaceBar -> type in _terminal_ and hit enter.
 
-4. Open project in XCode by clicking on [Your_app_name].xcworkspace  
+Terminal Commands:
+  
+  ls => shows folders in current directory
+  
+  cd downloads => goes into downloads if available (see ls)
+  
+  cd downloads/myproject => goes into downloads/myproject if available (see ls)
+  
+  cd .. => goes back one directory level up
+  
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8od09JM0U1S0dkY3c"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8od09JM0U1S0dkY3c" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
-5. You can now take a look at your app by running it in tvOS Simulator.
+4. Open your new project in XCode by clicking on [Your_app_name].xcworkspace - (NOT .xcodeproj). If this is not available, something went wrong in step 3 :( Copy the error in your terminal and paste it into [Stack Overflow](http://stackoverflow.com/) to find a solution.
+
+5. You can now take a look at your app by running it in tvOS Simulator!
+
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oWFNRbkUzdkxIVm8"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oWFNRbkUzdkxIVm8" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
 6. __(Optional)__ You can update the app's theme color by setting the _theme_ inside _Zype/Info.plist_. The theme can be set to: "dark" or "light". 
+
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oZFZOTjdCRFpxZms"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oZFZOTjdCRFpxZms" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
 #### Submitting to the app store
 
