@@ -1,4 +1,15 @@
-## Zype Apple TV Recipe
+# Zype Apple TV Recipe
+
+## Requirements and Prerequisites
+
+Zype Apple TV Endpoint
+1. To have a Zype Apple TV app you need to hold a valid license for Zype Apple TV API endpoint. Lear more about it [here](http://www.zype.com/services/endpoint-api/).
+
+Mac with XCode installed
+2. In order to use build, run and package an app you need latest XCode to be installed on your Mac computer. Xcode can be downloaded from [App Store](https://developer.apple.com/xcode/). 
+
+Apple Developer Program
+3. Apple Developer program can be purcased [here](https://developer.apple.com/programs/).
 
 ## Creating New App with the SDK
 
@@ -16,10 +27,8 @@
 
 6. __(Optional)__ You can update the app's theme color by setting the _theme_ inside _Zype/Info.plist_. The theme can be set to: "dark" or "light". 
 
-## Requirements and Prerequisites
+7. Once you like the look of your app you can archive and export the app into iTunesConnect. Helpful documentation can be found [here](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html).
 
-Enhanced Playlists
-1. To set up enhanced playlists, there needs to be a root playlist set up on the platform. To set the root playlist, you can go to your Apple TV app settings under __Manage Apps__ and set the __Featured Playlist__ to your root playlist's id.
+8. Submit app to App Store by following [this guide](https://guides.cocoapods.org/using/getting-started.html).
+https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/SubmittingYourApp/SubmittingYourApp.html
 
-Monetization
-1. In order to use Native SVOD in the apps, some settings need to be updated on the Zype platform to enable Ownership validation and Consumer Entitlements. Please contact Zype support to configure settings in order for your app to function normally when using Native SVOD.
