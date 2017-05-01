@@ -35,7 +35,7 @@ Terminal Commands:
   
   cd .. => goes back one directory level up
   
-<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8od09JM0U1S0dkY3c"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8od09JM0U1S0dkY3c" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oZUFDbjZzVGx1RlE"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oZUFDbjZzVGx1RlE" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
 4. Open your new project in XCode by clicking on [Your_app_name].xcworkspace - (NOT .xcodeproj). If this is not available, something went wrong in step 3 :( Copy the error in your terminal and paste it into [Stack Overflow](http://stackoverflow.com/) to find a solution.
 
@@ -43,7 +43,7 @@ Terminal Commands:
 
 <a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oWFNRbkUzdkxIVm8"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oWFNRbkUzdkxIVm8" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
-6. __(Optional)__ You can update the app's theme color by setting the _theme_ inside _Zype/Info.plist_. The theme can be set to: "dark" or "light". 
+6. __(Optional)__ You can update the app's theme color by setting the _theme_ inside _Zype/Info.plist_. The theme can be set to: "Dark" or "Light". 
 
 <a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oZFZOTjdCRFpxZms"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oZFZOTjdCRFpxZms" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
@@ -51,6 +51,5 @@ Terminal Commands:
 
 7. Once you like the look of your app you can archive and export the app into iTunesConnect. Helpful documentation can be found in [Apple distribution documentation](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html).
 
-8. Submit app to App Store by following [Apple submission documentation](https://guides.cocoapods.org/using/getting-started.html).
-https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/SubmittingYourApp/SubmittingYourApp.html
+8. Submit app to App Store by following [Apple submission documentation](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/SubmittingYourApp/SubmittingYourApp.html).
 
