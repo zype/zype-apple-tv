@@ -30,7 +30,7 @@ The Apple Developer Program can be enrolled in via [Apple's website](https://dev
 
 #### Installing and testing your new app
 
-3. After you've received your app bundle, you'll need to install and test your new app. Start by opening the Terminal program (You can find the Terminal program in Finder -> Applications or CMD + SpaceBar -> type in _terminal_ and hit return). Within Terminal, navigate to your project folder, and type _pod install_. You'll need to have Cocoapods installed in order to perform this step. To install them on your Mac, follow the [Cocoapods guide](https://guides.cocoapods.org/using/getting-started.html).
+3. After you've received your app bundle, you'll need to install and test your new app. You'll need to have Cocoapods installed in order to perform this step. To install them on your Mac, follow the [Cocoapods guide](https://guides.cocoapods.org/using/getting-started.html). Once installed, start by opening the Terminal program (You can find the Terminal program in Finder -> Applications or CMD + SpaceBar -> type in _terminal_ and hit return). Within Terminal, navigate to your project folder, and type _pod install_. 
 
 <a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oMENJTmVIX011OUE"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oMENJTmVIX011OUE" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
