@@ -5,7 +5,7 @@ This document outlines step-by-step instructions for creating and publishing an 
 ## Requirements and Prerequisites
 
 #### Technical Contact
-IT or Development Department - some experience required
+IT or development department - some technical experience working with app bundles and IDEs strongly recommended.
 
 #### Zype Apple TV Endpoint License
 To create a Zype Apple TV app you need a paid and current Zype account that includes purchase of a valid license for the Zype Apple TV endpoint API. Learn more about [Zype's Endpoint API Service](http://www.zype.com/services/endpoint-api/).
