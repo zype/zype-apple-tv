@@ -5,7 +5,7 @@ This document outlines step-by-step instructions for creating and publishing an 
 ## Requirements and Prerequisites
 
 #### Technical Contact
-IT or developer support strongly recommended (~6-10 hours). Completing app submission and publishing requires working with app bundles and IDE.
+IT or developer support strongly recommended. Completing app submission and publishing requires working with app bundles and IDE.
 
 #### Zype Apple TV Endpoint License
 To create a Zype Apple TV app you need a paid and current Zype account that includes purchase of a valid license for the Zype Apple TV endpoint API. Learn more about [Zype's Endpoint API Service](http://www.zype.com/services/endpoint-api/).
