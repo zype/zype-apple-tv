@@ -22,7 +22,7 @@ The Apple Developer Program can be enrolled in via [Apple's website](https://dev
 
 1. In order to generate an Apple TV app bundle using this SDK, you will need to first create an Apple TV app on the Zype platform. If you have not done this yet, log in to your Zype account [here](https://admin.zype.com/users/sign_in), and click on the __Manage Apps__ link under the __Publish__ menu in the left navigation. You will see a button to create a new app. Continue following the instructions provided within the app production software.
 
-<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oSkNUZEZhRzlSYTA"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oSkNUZEZhRzlSYTA" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oLXNxN0U4N1cwTUE"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oLXNxN0U4N1cwTUE" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
 2. Once you have your Apple TV app created in the Zype platform, click on __Get New Bundle__ and the configured app bundle will be emailed to you. You may also reload the page and click the __Download Bundle__ button.
 
@@ -41,19 +41,19 @@ cd downloads/myproject  ---> goes into downloads/myproject if available (see ls)
 cd ..  ---> goes back one directory level up 
 ```
 
-<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oMENJTmVIX011OUE"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oMENJTmVIX011OUE" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oTHRxNVRTa0plb2c"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oTHRxNVRTa0plb2c" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
 4. Open your new project in XCode by clicking on [Your_app_name].xcworkspace - (NOT .xcodeproj). 
 
-<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oYmlRUDZBX05zXzA"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oYmlRUDZBX05zXzA" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oaG83Z19LM2R1OWM"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oaG83Z19LM2R1OWM" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
 5. You can now view your new app by running it in the tvOS Simulator!
 
-<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oWFNRbkUzdkxIVm8"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oWFNRbkUzdkxIVm8" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oa0tvM3hGMGVaT0k"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oa0tvM3hGMGVaT0k" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
 6. __(Optional)__ You can update the app's theme color by modifying the _theme_ inside _Zype/Info.plist_. The theme can be set to a value of either: "Dark" or "Light". 
 
-<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oZFZOTjdCRFpxZms"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oZFZOTjdCRFpxZms" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oMjRoVG9rRlpYU2s"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oMjRoVG9rRlpYU2s" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
 #### Submitting to the Apple App Store
 
