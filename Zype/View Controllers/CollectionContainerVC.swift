@@ -91,13 +91,13 @@ extension UIViewController {
   
   func playVideo(_ model: VideoModel, playlist: Array<VideoModel>? = nil) {
     if (model.onAir) {
-        
-    } else {
-        //check for video with subscription
-        if (model.subscriptionRequired && !ZypeUtilities.isDeviceLinked()) {
-            ZypeUtilities.presentLoginVC(self)
-            return
-        }
+        //custom logic for live video can be inserted here
+    }
+    
+    //check for video with subscription
+    if (model.subscriptionRequired && !ZypeUtilities.isDeviceLinked()) {
+        ZypeUtilities.presentLoginVC(self)
+        return
     }
     
     let playerVC = self.storyboard?.instantiateViewController(withIdentifier: "PlayerVC") as! PlayerVC
