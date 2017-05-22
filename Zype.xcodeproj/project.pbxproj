@@ -73,6 +73,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+        47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProtocolDelegate.swift; sourceTree = "<group>"; };
 		A161E99E1DDBBAA800D01C70 /* DVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVPlayerView.h; sourceTree = "<group>"; };
 		A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVPlayerView.m; sourceTree = "<group>"; };
 		A161E9A21DDBBAA800D01C70 /* DVIABPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVIABPlayer.h; sourceTree = "<group>"; };
