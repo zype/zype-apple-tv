@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+        47102CDC1ECBA02F0060AF02 /* AdProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */; };
 		A161E9CA1DDBBAA800D01C70 /* DVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */; };
 		A161E9CB1DDBBAA800D01C70 /* DVIABPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9A31DDBBAA800D01C70 /* DVIABPlayer.m */; };
 		A161E9CC1DDBBAA800D01C70 /* DVInlineVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9A51DDBBAA800D01C70 /* DVInlineVideoAd.m */; };
@@ -27,6 +28,7 @@
 		A161E9DB1DDBBAA800D01C70 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9C71DDBBAA800D01C70 /* DDXMLNode.m */; };
 		A1C0CF151E37CF8A007ED6C0 /* SplashScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0CF141E37CF8A007ED6C0 /* SplashScreenVC.swift */; };
 		A1C0CF171E37CFA1007ED6C0 /* ReplaceSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0CF161E37CFA1007ED6C0 /* ReplaceSegue.swift */; };
+        C892FE93EED79D7ABBBE7D1E /* Pods_AndreySandbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A486B9044ECBA209379902E /* Pods_AndreySandbox.framework */; };
 		F51158161BDE441000DB1774 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F51158181BDE441000DB1774 /* Localizable.strings */; };
 		F511581D1BDE6CFC00DB1774 /* FocusableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */; };
 		F5534D251BCFC64100BEA509 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5534D241BCFC64100BEA509 /* FavoritesVC.swift */; };
@@ -326,6 +328,7 @@
 				F55957DA1BD7D1B2004A01A9 /* SDKHelpers.swift */,
 				F55732131BDA4EBC00D323A0 /* Utils.swift */,
 				F55940381C048F2700A0ECFF /* FadeNavigationAnimationController.swift */,
+                47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				A161E9CF1DDBBAA800D01C70 /* DVVideoAdServingTemplate+Parsing.m in Sources */,
 				F55732141BDA4EBC00D323A0 /* Utils.swift in Sources */,
 				F5534D251BCFC64100BEA509 /* FavoritesVC.swift in Sources */,
+                47102CDC1ECBA02F0060AF02 /* AdProtocolDelegate.swift in Sources */,
 				F5577D931BCE4FDC00F174CE /* URLImageView.swift in Sources */,
 				A161E9CB1DDBBAA800D01C70 /* DVIABPlayer.m in Sources */,
 				A161E9DA1DDBBAA800D01C70 /* DDXMLElement.m in Sources */,
