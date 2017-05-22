@@ -89,22 +89,23 @@ class ShowCollectionItem: CollectionLabeledItem {
 
 extension UIViewController {
   
-  func playVideo(_ model: VideoModel, playlist: Array<VideoModel>? = nil) {
-    if (model.onAir) {
-        //custom logic for live video can be inserted here
+    func playVideo(_ model: VideoModel, playlist: Array<VideoModel>? = nil, isResuming: Bool = true) {
+        if (model.onAir) {
+            
+        } else {
+            //check for video with subscription
+            if (model.subscriptionRequired && !ZypeUtilities.isDeviceLinked()) {
+                ZypeUtilities.presentLoginVC(self)
+                return
+            }
+        }
+        
+        let playerVC = self.storyboard?.instantiateViewController(withIdentifier: "PlayerVC") as! PlayerVC
+        playerVC.currentVideo = model
+        playerVC.playlist = playlist
+        playerVC.isResuming = isResuming
+        self.present(playerVC, animated: true, completion: nil)
     }
-    
-    //check for video with subscription
-    if (model.subscriptionRequired && !ZypeUtilities.isDeviceLinked()) {
-        ZypeUtilities.presentLoginVC(self)
-        return
-    }
-    
-    let playerVC = self.storyboard?.instantiateViewController(withIdentifier: "PlayerVC") as! PlayerVC
-    playerVC.currentVideo = model
-    playerVC.playlist = playlist
-    self.present(playerVC, animated: true, completion: nil)
-  }
   
 }
 
