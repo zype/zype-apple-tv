@@ -76,13 +76,7 @@ class ShowCollectionItem: CollectionLabeledItem {
     init(value: PlaylistModel) {
         super.init()
         self.title = value.titleString
-        if(value.images.count > 0) {
-            self.imageURL = NSURL(string: value.images.first!.imageURL) as URL!
-        } else if (value.thumbnails.count > 0) {
-            self.imageURL = NSURL(string: value.thumbnails.first!.imageURL) as URL!
-        } else {
-            self.imageURL = NSURL(string: "http://placehold.it/320x180") as URL!
-        }
+        self.imageURL = playlistBannerURL(with: value)
         self.object = value
     }
 }
