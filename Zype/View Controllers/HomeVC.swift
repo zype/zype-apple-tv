@@ -180,17 +180,14 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         
     }
     
-    func addPager(){
-        let objects : Array<PlaylistModel> = []
+    func addPager() {
+        let objects : Array<PlaylistModel> = [self.playlistParent!]
         let items = CollectionContainerVC.categoryValuesToCollectionItems(objects)
         
-        /*for (index,zObject) in objects.enumerate() {
-         for picture in zObject.pictures {
-         if picture.titleString == "banner"{
-         items[index].imageURL = NSURL(string:picture.url)
-         }
-         }
-         }*/
+        for (index,zObject) in objects.enumerated() {
+            
+            items[index].imageURL = playlistBannerURL(with: zObject)
+        }
         
         let section = CollectionSection()
         section.isPager = true
@@ -201,21 +198,21 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         section.horizontalSpacing = 0.0
         section.cellSize = Const.kCollectionPagerCellSize
         
-        if(self.pagerVC == nil) {
+        if self.pagerVC == nil {
             self.pagerVC = self.storyboard?.instantiateViewController(withIdentifier: "BaseCollectionVC") as! BaseCollectionVC
-            self.pagerVC.view.height = 70.0
+            self.pagerVC.view.height = 700.0
             self.pagerVC.isInfinityScrolling = false
             self.collectionVC.addChildViewController(self.pagerVC)
             self.pagerVC.didMove(toParentViewController: self.collectionVC)
-            self.pagerVC.itemSelectedCallback = {[unowned self] (item: CollectionLabeledItem, section: CollectionSection) in
-                
-            }
+            //            self.pagerVC.itemSelectedCallback = {[unowned self] (item: CollectionLabeledItem, section: CollectionSection) in
+            //
+            //            }
             self.pagerVC.configWithSection(section)
         } else {
             self.pagerVC.update([section])
         }
     }
-  
+    
   func fillSections(){
     var sections = [] as Array<CollectionSection>
     if(self.pagerVC != nil) {

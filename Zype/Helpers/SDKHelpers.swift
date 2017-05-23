@@ -52,3 +52,21 @@ extension VideoModel {
   }
 
 }
+
+/// Returns specific appletv banner if available, if not, returns the thumbnail image if available, if not, returns a place holder image if network connection is available
+///
+/// - Parameter model: PlaylistModel
+/// - Returns: URL for an imageURL
+func playlistBannerURL(with model: PlaylistModel) -> URL {
+    let playlistBanner = model.images.filter { $0.name == "appletv_playlist_banner" }
+    
+    if !playlistBanner.isEmpty {
+        return URL(string: playlistBanner[0].imageURL)!
+    }
+    else if model.thumbnails.count > 0 {
+        return URL(string: model.thumbnails[0].imageURL)!
+    }
+    else {
+        return URL(string: "http://placehold.it/1740x700")!
+    }
+}
