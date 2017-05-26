@@ -185,8 +185,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         let items = CollectionContainerVC.categoryValuesToCollectionItems(objects)
         
         for (index,zObject) in objects.enumerated() {
-            
-            items[index].imageURL = playlistBannerURL(with: zObject)
+            items[index].imageURL = getThumbnailOrBannerImageURL(with: zObject, banner: true)
         }
         
         let section = CollectionSection()
