@@ -30,7 +30,11 @@ The Apple Developer Program can be enrolled in via [Apple's website](https://dev
 
 #### Installing and testing your new app
 
-3. After you've received your app bundle, you'll need to install and test your new app. You'll need to have Cocoapods installed in order to perform this step. To install them on your Mac, follow the [Cocoapods guide](https://guides.cocoapods.org/using/getting-started.html). Once installed, start by opening the Terminal program (You can find the Terminal program in Finder -> Applications or CMD + SpaceBar -> type in _terminal_ and hit return). Within Terminal, navigate to your project folder, and type _pod install_. 
+3. After you've received your app bundle, you'll need to install and test your new app. You'll need to have Cocoapods installed in order to perform this step. To install them on your Mac, follow the [Cocoapods guide](https://guides.cocoapods.org/using/getting-started.html). Navigate to your project folder. Open the Podfile, and change the `ZypeAppName` to your App name. Make sure to save your changes before/upon closing this file.
+
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oN21DckNfZTN2cEE"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oN21DckNfZTN2cEE" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+
+4. With Cocoapods installed, start by opening the Terminal program (You can find the Terminal program in Finder -> Applications or CMD + SpaceBar -> type in _terminal_ and hit return). Navigate to your project folder with your terminal and type _pod install_. 
 
 ##### Helpful command line tips for Terminal
 
@@ -43,22 +47,22 @@ cd ..  ---> goes back one directory level up
 
 <a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oTHRxNVRTa0plb2c"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oTHRxNVRTa0plb2c" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
-4. Open your new project in XCode by clicking on [Your_app_name].xcworkspace - (NOT .xcodeproj). 
+5. Open your new project in XCode by clicking on [Your_app_name].xcworkspace - (NOT .xcodeproj). 
 
 <a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oaG83Z19LM2R1OWM"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oaG83Z19LM2R1OWM" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
-5. You can now view your new app by running it in the tvOS Simulator!
+6. You can now view your new app by running it in the tvOS Simulator!
 
 <a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oa0tvM3hGMGVaT0k"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oa0tvM3hGMGVaT0k" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
-6. __(Optional)__ You can update the app's theme color by modifying the _theme_ inside _Zype/Info.plist_. The theme can be set to a value of either: "Dark" or "Light". 
+7. __(Optional)__ You can update the app's theme color by modifying the _theme_ inside _Zype/Info.plist_. The theme can be set to a value of either: "Dark" or "Light". 
 
 <a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oMjRoVG9rRlpYU2s"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oMjRoVG9rRlpYU2s" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
 #### Submitting to the Apple App Store
 
-7. Once you like the look of your app you can archive and export the app into iTunesConnect. Helpful documentation about archiving and exporting your app can be found in [Apple's distribution documentation](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html).
+8. Once you like the look of your app you can archive and export the app into iTunesConnect. Helpful documentation about archiving and exporting your app can be found in [Apple's distribution documentation](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html).
 
-8. Submit the app to Apple's App Store by following [Apple submission documentation](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/SubmittingYourApp/SubmittingYourApp.html).
+9. Submit the app to Apple's App Store by following [Apple submission documentation](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/SubmittingYourApp/SubmittingYourApp.html).
 
-9. Once submitted, Apple will review your app against their submission guidelines. If your app is approved, they will update the app status and iTunes Connect users are notified of the status change. 
+10. Once submitted, Apple will review your app against their submission guidelines. If your app is approved, they will update the app status and iTunes Connect users are notified of the status change. 
