@@ -68,6 +68,7 @@ class ShowDetailsVC: CollectionContainerVC {
         
         self.favoritesButton.label = self.favoriteLabel
         self.subscribeButton.label = self.subscribeLabel
+        self.resumeButton.label = self.resumeLabel
         
         self.posterImage.shouldAnimate = true
         self.titleLabel.text = self.selectedShow.titleString
