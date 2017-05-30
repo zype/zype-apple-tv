@@ -24,7 +24,7 @@ class ShowDetailsVC: CollectionContainerVC {
     @IBOutlet weak var resumeButton: FocusableButton!
     @IBOutlet weak var detailsView: UIView!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var resumeLabel: StyledLabel!
+    @IBOutlet weak var resumeLabel: UILabel!
     @IBOutlet weak var subscribeLabel: UILabel!
     @IBOutlet weak var favoriteLabel: UILabel!
     @IBOutlet weak var episodesCountLabel: StyledLabel!
@@ -76,6 +76,7 @@ class ShowDetailsVC: CollectionContainerVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.refreshButtons()
         if let path = self.indexPathForselectedVideo() {
             self.collectionVC.collectionView?.scrollToItem(at: path, at: .centeredHorizontally, animated: false)
         }
