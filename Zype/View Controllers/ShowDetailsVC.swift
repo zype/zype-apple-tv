@@ -43,7 +43,7 @@ class ShowDetailsVC: CollectionContainerVC {
         self.subscribeLabel.text = localized("ShowDetails.SubscribedButton")
         self.favoriteLabel.text = localized("ShowDetails.Favorite")
         self.descriptionLabel.textColor = StyledLabel.kBaseColor
-        self.descriptionView.onSelected = {
+        self.descriptionView.onSelected = {[unowned self] in
             self.onExpandDescription()
         }
         self.subscribeButton.setBackgroundImage(UIImage(named: "Subscribed"), for: UIControlState())
