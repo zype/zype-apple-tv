@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-        47102CDC1ECBA02F0060AF02 /* AdProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */; };
+		47102CDC1ECBA02F0060AF02 /* AdProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */; };
+		473C514A1EE8ACA40051FC6C /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C51491EE8ACA40051FC6C /* InAppPurchaseManager.swift */; };
+		473C51501EE9A37B0051FC6C /* PurchaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C514F1EE9A37B0051FC6C /* PurchaseVC.swift */; };
 		A161E9CA1DDBBAA800D01C70 /* DVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */; };
 		A161E9CB1DDBBAA800D01C70 /* DVIABPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9A31DDBBAA800D01C70 /* DVIABPlayer.m */; };
 		A161E9CC1DDBBAA800D01C70 /* DVInlineVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9A51DDBBAA800D01C70 /* DVInlineVideoAd.m */; };
@@ -28,7 +30,7 @@
 		A161E9DB1DDBBAA800D01C70 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9C71DDBBAA800D01C70 /* DDXMLNode.m */; };
 		A1C0CF151E37CF8A007ED6C0 /* SplashScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0CF141E37CF8A007ED6C0 /* SplashScreenVC.swift */; };
 		A1C0CF171E37CFA1007ED6C0 /* ReplaceSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0CF161E37CFA1007ED6C0 /* ReplaceSegue.swift */; };
-        C892FE93EED79D7ABBBE7D1E /* Pods_AndreySandbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A486B9044ECBA209379902E /* Pods_AndreySandbox.framework */; };
+		C892FE93EED79D7ABBBE7D1E /* Pods_AndreySandbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A486B9044ECBA209379902E /* Pods_AndreySandbox.framework */; };
 		F51158161BDE441000DB1774 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F51158181BDE441000DB1774 /* Localizable.strings */; };
 		F511581D1BDE6CFC00DB1774 /* FocusableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */; };
 		F5534D251BCFC64100BEA509 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5534D241BCFC64100BEA509 /* FavoritesVC.swift */; };
@@ -73,7 +75,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-        47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProtocolDelegate.swift; sourceTree = "<group>"; };
+		28A1B0A9766255E45D8A6F76 /* Pods-AndreySandbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AndreySandbox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AndreySandbox/Pods-AndreySandbox.debug.xcconfig"; sourceTree = "<group>"; };
+		47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProtocolDelegate.swift; sourceTree = "<group>"; };
+		473C51491EE8ACA40051FC6C /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseManager.swift; sourceTree = "<group>"; };
+		473C514F1EE9A37B0051FC6C /* PurchaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseVC.swift; sourceTree = "<group>"; };
+		8A486B9044ECBA209379902E /* Pods_AndreySandbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AndreySandbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A161E99E1DDBBAA800D01C70 /* DVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVPlayerView.h; sourceTree = "<group>"; };
 		A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVPlayerView.m; sourceTree = "<group>"; };
 		A161E9A21DDBBAA800D01C70 /* DVIABPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVIABPlayer.h; sourceTree = "<group>"; };
@@ -114,6 +120,7 @@
 		A161E9C91DDBBAA800D01C70 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
 		A1C0CF141E37CF8A007ED6C0 /* SplashScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenVC.swift; sourceTree = "<group>"; };
 		A1C0CF161E37CFA1007ED6C0 /* ReplaceSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceSegue.swift; sourceTree = "<group>"; };
+		CDD2DC9667000A15E7071773 /* Pods-AndreySandbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AndreySandbox.release.xcconfig"; path = "Pods/Target Support Files/Pods-AndreySandbox/Pods-AndreySandbox.release.xcconfig"; sourceTree = "<group>"; };
 		F51158171BDE441000DB1774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusableButton.swift; sourceTree = "<group>"; };
 		F5534D241BCFC64100BEA509 /* FavoritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
@@ -151,12 +158,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C892FE93EED79D7ABBBE7D1E /* Pods_AndreySandbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		61BA572D0B947DB1A6F6281D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				28A1B0A9766255E45D8A6F76 /* Pods-AndreySandbox.debug.xcconfig */,
+				CDD2DC9667000A15E7071773 /* Pods-AndreySandbox.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A161E99D1DDBBAA800D01C70 /* AVOD */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,12 +267,22 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
+		B5DBE7E7ED8984024722DD7D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A486B9044ECBA209379902E /* Pods_AndreySandbox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F553AD171BC660B400A093EF = {
 			isa = PBXGroup;
 			children = (
 				A161E99D1DDBBAA800D01C70 /* AVOD */,
 				F5582CAC1BC7DB8B0089E5E7 /* Zype */,
 				F553AD211BC660B400A093EF /* Products */,
+				61BA572D0B947DB1A6F6281D /* Pods */,
+				B5DBE7E7ED8984024722DD7D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -306,6 +333,7 @@
 				F5582CD11BC818CA0089E5E7 /* ShowDetailsVC.swift */,
 				F5D98CE71BE3BFBB00C986B4 /* TabBarVC.swift */,
 				A1C0CF141E37CF8A007ED6C0 /* SplashScreenVC.swift */,
+				473C514F1EE9A37B0051FC6C /* PurchaseVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -329,7 +357,8 @@
 				F55957DA1BD7D1B2004A01A9 /* SDKHelpers.swift */,
 				F55732131BDA4EBC00D323A0 /* Utils.swift */,
 				F55940381C048F2700A0ECFF /* FadeNavigationAnimationController.swift */,
-                47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */,
+				47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */,
+				473C51491EE8ACA40051FC6C /* InAppPurchaseManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -349,20 +378,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F553AD1F1BC660B400A093EF /* <PROJECT_NAME> */ = {
+		F553AD1F1BC660B400A093EF /* AndreySandbox */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F553AD2F1BC660B400A093EF /* Build configuration list for PBXNativeTarget "<PROJECT_NAME>" */;
+			buildConfigurationList = F553AD2F1BC660B400A093EF /* Build configuration list for PBXNativeTarget "AndreySandbox" */;
 			buildPhases = (
+				F866C517BAB499FFB80BC212 /* [CP] Check Pods Manifest.lock */,
 				F553AD1C1BC660B400A093EF /* Sources */,
 				F553AD1D1BC660B400A093EF /* Frameworks */,
 				F553AD1E1BC660B400A093EF /* Resources */,
 				F5D98CDD1BE3B6A300C986B4 /* Embed Frameworks */,
+				D4732E81BC9C1BF495B95239 /* [CP] Embed Pods Frameworks */,
+				25D6A9E20DD90AAD801ECE7C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = <PROJECT_NAME>;
+			name = AndreySandbox;
 			productName = UITest;
 			productReference = F553AD201BC660B400A093EF /* <DOT_APP_NAME> */;
 			productType = "com.apple.product-type.application";
@@ -379,11 +411,11 @@
 				TargetAttributes = {
 					F553AD1F1BC660B400A093EF = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 6L5JC6ZK67;
+						DevelopmentTeam = 66JU87JGLE;
 					};
 				};
 			};
-			buildConfigurationList = F553AD1B1BC660B400A093EF /* Build configuration list for PBXProject "<PROJECT_NAME>" */;
+			buildConfigurationList = F553AD1B1BC660B400A093EF /* Build configuration list for PBXProject "AndreySandbox" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -396,7 +428,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F553AD1F1BC660B400A093EF /* <PROJECT_NAME> */,
+				F553AD1F1BC660B400A093EF /* AndreySandbox */,
 			);
 		};
 /* End PBXProject section */
@@ -416,6 +448,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		25D6A9E20DD90AAD801ECE7C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AndreySandbox/Pods-AndreySandbox-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4732E81BC9C1BF495B95239 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AndreySandbox/Pods-AndreySandbox-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F866C517BAB499FFB80BC212 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F553AD1C1BC660B400A093EF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -425,6 +505,7 @@
 				A161E9D91DDBBAA800D01C70 /* DDXMLDocument.m in Sources */,
 				F5582CD01BC7FA350089E5E7 /* ControllerCell.swift in Sources */,
 				F5582CD21BC818CA0089E5E7 /* ShowDetailsVC.swift in Sources */,
+				473C51501EE9A37B0051FC6C /* PurchaseVC.swift in Sources */,
 				A1C0CF171E37CFA1007ED6C0 /* ReplaceSegue.swift in Sources */,
 				F55957DB1BD7D1B2004A01A9 /* SDKHelpers.swift in Sources */,
 				F5534D271BCFEB8200BEA509 /* CollectionContainerVC.swift in Sources */,
@@ -435,6 +516,7 @@
 				F5D98CE81BE3BFBB00C986B4 /* TabBarVC.swift in Sources */,
 				A161E9D31DDBBAA800D01C70 /* DVWrapperVideoAd.m in Sources */,
 				F55940391C048F2700A0ECFF /* FadeNavigationAnimationController.swift in Sources */,
+				473C514A1EE8ACA40051FC6C /* InAppPurchaseManager.swift in Sources */,
 				A161E9CE1DDBBAA800D01C70 /* DVVideoAd.m in Sources */,
 				F5582CB81BC7DB8B0089E5E7 /* AppDelegate.swift in Sources */,
 				F559403C1C048F4200A0ECFF /* FocusableView.swift in Sources */,
@@ -450,7 +532,7 @@
 				A161E9CF1DDBBAA800D01C70 /* DVVideoAdServingTemplate+Parsing.m in Sources */,
 				F55732141BDA4EBC00D323A0 /* Utils.swift in Sources */,
 				F5534D251BCFC64100BEA509 /* FavoritesVC.swift in Sources */,
-                47102CDC1ECBA02F0060AF02 /* AdProtocolDelegate.swift in Sources */,
+				47102CDC1ECBA02F0060AF02 /* AdProtocolDelegate.swift in Sources */,
 				F5577D931BCE4FDC00F174CE /* URLImageView.swift in Sources */,
 				A161E9CB1DDBBAA800D01C70 /* DVIABPlayer.m in Sources */,
 				A161E9DA1DDBBAA800D01C70 /* DDXMLElement.m in Sources */,
@@ -574,7 +656,7 @@
 				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = appletvos;
 				SWIFT_OBJC_BRIDGING_HEADER = "AVOD/DVVAST-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";		
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
@@ -584,11 +666,13 @@
 		};
 		F553AD301BC660B400A093EF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28A1B0A9766255E45D8A6F76 /* Pods-AndreySandbox.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 66JU87JGLE;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = Zype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -603,11 +687,13 @@
 		};
 		F553AD311BC660B400A093EF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDD2DC9667000A15E7071773 /* Pods-AndreySandbox.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 66JU87JGLE;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = Zype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -623,7 +709,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F553AD1B1BC660B400A093EF /* Build configuration list for PBXProject "<PROJECT_NAME>" */ = {
+		F553AD1B1BC660B400A093EF /* Build configuration list for PBXProject "AndreySandbox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F553AD2D1BC660B400A093EF /* Debug */,
@@ -632,7 +718,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F553AD2F1BC660B400A093EF /* Build configuration list for PBXNativeTarget "<PROJECT_NAME>" */ = {
+		F553AD2F1BC660B400A093EF /* Build configuration list for PBXNativeTarget "AndreySandbox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F553AD301BC660B400A093EF /* Debug */,
