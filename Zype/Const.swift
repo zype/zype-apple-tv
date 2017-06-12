@@ -20,9 +20,9 @@ class Const: NSObject {
                                            apiDomain:"https://api.zype.com",
                                            tokenDomain: "https://login.zype.com",
                                            userAgent: "zype tvos")
-    static let kNativeSubscriptionEnabled = true
-    //static let kStoreURL = URL(string: "https://buy.itunes.apple.com/verifyReceipt")!
-    static let kStoreURL = URL(string: "https://sandbox.itunes.apple.com/verifyReceipt")! // for testing only
+    static let kNativeSubscriptionEnabled = false
+    static let kStoreURL = URL(string: "https://buy.itunes.apple.com/verifyReceipt")!
+    //static let kStoreURL = URL(string: "https://sandbox.itunes.apple.com/verifyReceipt")! // for testing only
     static let kLimitLivestreamEnabled = false
     static let kAppStyleLight = true
     
