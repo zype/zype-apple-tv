@@ -24,7 +24,7 @@ An [iTunes Connect](https://itunesconnect.apple.com/login?targetUrl=%2FWebObject
 #### Subscription Options
 3. After you hit create, look towards the top and go to `Features`. Then click the `+` button.
 
-<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oR283RjJhMXM2WW8"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oR283RjJhMXM2WW8" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oY0pqSTQxYXBjQU0"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oY0pqSTQxYXBjQU0" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
 4. Choose Auto-Renewable Subscription, and fill in the 2 forms - preferably something simple like "AppName Monthly Subscription" & "appName_monthly_subscription". Choose a subscription group or enter a new one, again, should be simple like "App Auto-Renew Subscription".
 
