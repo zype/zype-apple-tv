@@ -13,7 +13,7 @@ An [iTunes Connect](https://itunesconnect.apple.com/login?targetUrl=%2FWebObject
 ## Setting up iTunes Connect
 
 #### Create Your App
-1. Log in to your iTunes Connect and either select your app, or create one. You can follow this simple [Apple documentation](https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/CreatingiTunesConnectRecord.html) if you'd like.
+1. Log in to your iTunes Connect and either select your app, or create one. You can follow this simple [Apple documentation](https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/CreatingiTunesConnectRecord.html) if you need to create one.
 
 2. Make sure your bundleID matches on both iTunes Connect and Xcode. You should be able to check `Automatically manage signing` now. Double check your `In-App Purchase` is turned on.
 
