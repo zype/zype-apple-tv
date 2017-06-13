@@ -11,6 +11,8 @@ import ZypeAppleTVBase
 
 class ShowDetailsVC: CollectionContainerVC {
     
+    // MARK: - Properties
+    
     static let kDescriptionTopMargin: CGFloat = 0.0
     static let kSubtitleTopMargin: CGFloat = -15.0
     
@@ -37,6 +39,7 @@ class ShowDetailsVC: CollectionContainerVC {
     var focusGuide: UIFocusGuide!
     let userDefaults = UserDefaults.standard
     
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,13 +80,18 @@ class ShowDetailsVC: CollectionContainerVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.refreshButtons()
         if let path = self.indexPathForselectedVideo() {
             self.collectionVC.collectionView?.scrollToItem(at: path, at: .centeredHorizontally, animated: false)
         }
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: InAppPurchaseManager.kPurchaseCompleted), object: nil)
+        InAppPurchaseManager.sharedInstance.refreshSubscriptionStatus()
+        self.refreshButtons()
     }
     
-    override func viewWillLayoutSubviews(){
+    // MARK: - Layout & Focus
+    
+    override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         self.layoutLabels()
     }
@@ -98,7 +106,7 @@ class ShowDetailsVC: CollectionContainerVC {
     }
     
     func indexPathForselectedVideo() -> IndexPath? {
-        if(self.selectedVideo != nil) {
+        if self.selectedVideo != nil {
             return IndexPath(row: self.videos.index(of: self.selectedVideo)!, section: 0)
         }
         return nil
@@ -106,14 +114,12 @@ class ShowDetailsVC: CollectionContainerVC {
     
     func layoutLabels(){
         for label in self.labelsView.subviews {
-            if(label.isKind(of: UILabel.self)) {
+            if label.isKind(of: UILabel.self) {
                 label.width = self.labelsView.width
-                // label.sizeToFit()
             }
         }
         self.subTitleLabel.top = self.titleLabel.bottom + ShowDetailsVC.kSubtitleTopMargin
         self.descriptionView.top = self.subTitleLabel.bottom
-        //    self.descriptionView.height = self.labelsView.height - self.descriptionView.top
     }
     
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
@@ -126,18 +132,7 @@ class ShowDetailsVC: CollectionContainerVC {
     }
     
     override func onItemSelected(_ item: CollectionLabeledItem, section: CollectionSection?) {
-        self.playVideo(item.object as! VideoModel, playlist: section?.allObjects() as? Array<VideoModel>)
-    }
-    
-    func loadVideos() {
-        self.selectedShow.getVideos(Date.distantPast, completion: {[unowned self] (videos: Array<VideoModel>?, error: NSError?) -> Void in
-            self.videos = videos
-            let videosCount = videos?.count ?? 0
-            self.episodesCountLabel.text = String(format: localized(videosCount == 1 ? "ShowDetails.Episode" : "ShowDetails.EpisodesCount"), arguments: [videosCount])
-            let section = CollectionSection()
-            section.items = CollectionContainerVC.videosToCollectionItems(videos)
-            self.collectionVC.configWithSection(section)
-        })
+        self.onSubscribe(self)
     }
     
     func onVideoFocused(_ video: VideoModel) {
@@ -149,6 +144,76 @@ class ShowDetailsVC: CollectionContainerVC {
         self.refreshButtons()
     }
     
+    // MARK: - Get Data
+    
+    func loadVideos() {
+        self.selectedShow.getVideos(Date.distantPast, completion: {[unowned self] (videos: Array<VideoModel>?, error: NSError?) -> Void in
+            self.videos = videos
+            
+            let videosCount = videos?.count ?? 0
+            let format = localized(videosCount == 1 ? "ShowDetails.Episode" : "ShowDetails.EpisodesCount")
+            self.episodesCountLabel.text = String(format: format, arguments: [videosCount])
+            
+            let section = CollectionSection()
+            section.items = CollectionContainerVC.videosToCollectionItems(videos)
+            self.collectionVC.configWithSection(section)
+        })
+    }
+    
+    // MARK: - Buttons
+    
+    func refreshButtons() {
+        guard self.selectedVideo != nil else { return }
+        
+        if self.selectedVideo.subscriptionRequired {
+            if Const.kNativeSubscriptionEnabled {
+                if InAppPurchaseManager.sharedInstance.lastSubscribeStatus {
+                    self.refreshPlayableButtons()
+                }
+                else {
+                    self.refreshUnplayableButtons()
+                }
+            }
+            else { // Native not enabled
+                if ZypeUtilities.isDeviceLinked() {
+                    self.refreshPlayableButtons()
+                }
+                else {
+                    self.refreshUnplayableButtons()
+                }
+            }
+        }
+        else { // Subscription not required
+            self.refreshPlayableButtons()
+        }
+    }
+    
+    func refreshPlayableButtons() {
+        if requiresResumeButton() {
+            self.resumeButton.isHidden = false
+            self.loadFavoritesButton(for: self.resumeLabel, and: self.resumeButton)
+            self.favoriteLabel.text = "Play"
+            self.favoritesButton.setBackgroundImage(UIImage(named: "Subscribed"), for: .normal)
+            self.subscribeLabel.text = "Resume"
+            self.subscribeButton.setBackgroundImage(UIImage(named: "Resume"), for: .normal)
+        }
+        else {
+            self.resumeButton.isHidden = true
+            self.resumeLabel.text = ""
+            self.loadFavoritesButton(for: self.favoriteLabel, and: self.favoritesButton)
+            self.subscribeLabel.text = "Play"
+            self.subscribeButton.setBackgroundImage(UIImage(named: "Subscribed"), for: .normal)
+        }
+    }
+    
+    func refreshUnplayableButtons() {
+        self.subscribeButton.setBackgroundImage(UIImage(named: "SubscribeFocused"), for: .normal)
+        self.subscribeLabel.text = localized("ShowDetails.SubscribeButton")
+        self.loadFavoritesButton(for: self.favoriteLabel, and: favoritesButton)
+        self.resumeButton.isHidden = true
+        self.resumeLabel.text = ""
+    }
+    
     func requiresResumeButton() -> Bool {
         if let _ = userDefaults.object(forKey: "\(selectedVideo.getId())") {
             if !self.selectedVideo.onAir {
@@ -158,30 +223,15 @@ class ShowDetailsVC: CollectionContainerVC {
         return false
     }
     
-    func refreshButtons() {
-        if (self.selectedVideo != nil) {
-            if requiresResumeButton() {
-                self.resumeButton.isHidden = false
-                self.resumeLabel.text = localized(self.selectedVideo.isInFavorites() ? "ShowDetails.Unfavorite" : "ShowDetails.Favorite")
-                self.resumeButton.setBackgroundImage(UIImage(named: self.selectedVideo.isInFavorites() ? "FavoritesRemoveFocused" : "FavoritesAddFocused"), for: .normal)
-                self.favoriteLabel.text = "Play"
-                self.favoritesButton.setBackgroundImage(UIImage(named: "Subscribed"), for: .normal)
-                self.subscribeLabel.text = "Resume"
-                self.subscribeButton.setBackgroundImage(UIImage(named: "Resume"), for: .normal)
-            }
-            else {
-                self.favoriteLabel.text = localized(self.selectedVideo.isInFavorites() ? "ShowDetails.Unfavorite" : "ShowDetails.Favorite")
-                self.favoritesButton.setBackgroundImage(UIImage(named: self.selectedVideo.isInFavorites() ? "FavoritesRemoveFocused" : "FavoritesAddFocused"), for: .normal)
-                self.resumeButton.isHidden = true
-                self.resumeLabel.text = ""
-                self.subscribeLabel.text = "Play"
-                self.subscribeButton.setBackgroundImage(UIImage(named: "Subscribed"), for: .normal)
-            }
-        }
+    func loadFavoritesButton(for label: UILabel, and button: FocusableButton) {
+        label.text = localized(self.selectedVideo.isInFavorites() ? "ShowDetails.Unfavorite" : "ShowDetails.Favorite")
+        button.setBackgroundImage(UIImage(named: self.selectedVideo.isInFavorites() ? "FavoritesRemoveFocused" : "FavoritesAddFocused"), for: .normal)
     }
     
+    // MARK: - Actions
+    
     func onExpandDescription() {
-        if (self.selectedVideo != nil) {
+        if self.selectedVideo != nil {
             let alertVC = self.storyboard?.instantiateViewController(withIdentifier: "ScrollableTextAlertVC") as! ScrollableTextAlertVC
             alertVC.configWithText(self.selectedVideo.descriptionString, header: self.selectedVideo.titleString, title: "")
             self.navigationController?.present(alertVC, animated: true, completion: nil)
@@ -189,7 +239,7 @@ class ShowDetailsVC: CollectionContainerVC {
     }
     
     @IBAction func onFavorites(_ sender: AnyObject) {
-        if (self.selectedVideo != nil) {
+        if self.selectedVideo != nil {
             if requiresResumeButton() {
                 self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: false)
             }
@@ -201,12 +251,31 @@ class ShowDetailsVC: CollectionContainerVC {
     }
     
     @IBAction func onSubscribe(_ sender: AnyObject) {
-        if (self.selectedVideo != nil) {
-            if requiresResumeButton() {
-                self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: true)
+        let resume = requiresResumeButton()
+        
+        if self.selectedVideo.subscriptionRequired == false {
+            self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: resume)
+        }
+        else {
+            if Const.kNativeSubscriptionEnabled == true {
+                if !InAppPurchaseManager.sharedInstance.lastSubscribeStatus {
+                    let purchaseVC = self.storyboard?.instantiateViewController(withIdentifier: "PurchaseVC") as! PurchaseVC
+                    
+                    InAppPurchaseManager.sharedInstance.requestProducts({ _ in
+                        NotificationCenter.default.addObserver(self,
+                                                               selector: #selector(ShowDetailsVC.onPurchased),
+                                                               name: NSNotification.Name(rawValue: InAppPurchaseManager.kPurchaseCompleted),
+                                                               object: nil)
+                        self.navigationController?.present(purchaseVC, animated: true, completion: nil)
+                    })
+                }
+                else {
+                    self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: resume)
+                }
             }
             else {
-                self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: false)
+                // Zype subcription here
+                self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: resume)
             }
         }
     }
@@ -223,5 +292,4 @@ class ShowDetailsVC: CollectionContainerVC {
     func onPurchased() {
         self.dismiss(animated: true, completion: nil)
     }
-    
 }
