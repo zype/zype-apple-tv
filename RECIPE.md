@@ -59,7 +59,7 @@ cd ..  ---> goes back one directory level up
 
 <a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oMjRoVG9rRlpYU2s"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oMjRoVG9rRlpYU2s" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
-8. __(Optional)__ You can also add native subscription by following this [guide](https://github.com/zype/zype-apple-tv/blob/master/NATIVE.md).
+8. __(Optional)__ In order to add Native Subscription (Native SVOD) follow this [guide](https://github.com/zype/zype-apple-tv/blob/master/NATIVE.md).
 
 #### Submitting to the Apple App Store
 
