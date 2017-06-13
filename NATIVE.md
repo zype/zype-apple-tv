@@ -7,7 +7,7 @@ This document outlines step-by-step instructions for setting up native subscript
 #### Technical Contact
 IT or developer support strongly recommended. Completing app submission and publishing requires working with iTunes Connect, app bundles and IDE.
 
-### iTunes Connect
+#### iTunes Connect
 An [iTunes Connect](https://itunesconnect.apple.com/login?targetUrl=%2FWebObjects%2FiTunesConnect.woa%2Fra%2Fng%2Fusers_roles%2Fsandbox_users&authResult=FAILED) account will be needed.
 
 ## Setting up iTunes Connect
