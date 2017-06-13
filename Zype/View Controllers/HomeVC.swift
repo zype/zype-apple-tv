@@ -38,7 +38,9 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.reloadData()
-        InAppPurchaseManager.sharedInstance.refreshSubscriptionStatus()
+        if Const.kNativeSubscriptionEnabled {
+            InAppPurchaseManager.sharedInstance.refreshSubscriptionStatus()
+        }
     }
     
     func playlistByID(_ ID: String) -> PlaylistModel? {
