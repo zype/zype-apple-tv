@@ -13,13 +13,13 @@ An [iTunes Connect](https://itunesconnect.apple.com/login?targetUrl=%2FWebObject
 ## Setting up iTunes Connect
 
 #### Create Your App
-1. After logging in, click the `+` on the top left and then `New App`
+1. Log in to your iTunes Connect and either select your app, or create one. You can follow this simple [Apple documentation](https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/CreatingiTunesConnectRecord.html) if you'd like.
 
-<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oYXBWOWZ1MDRQLUk"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oYXBWOWZ1MDRQLUk" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+2. Make sure your bundleID matches on both iTunes Connect and Xcode. You should be able to check `Automatically manage signing` now. Double check your `In-App Purchase` is turned on.
 
-2. Go ahead and fill in the forms. Check the tvOS box (NOT the iOS box). The `Bundle ID` should match the `Bundle Identifier` in your project (You can change this if you want). If you are having difficulties matching these 2, click the `Developer Portal` link right under that form and sort out your `Certificates, Bundles & Profiles` . For the SKU, enter something unique across all your apps — use your Bundle ID if you’re not sure what to use.
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8odDE4XzFON2hiUmM"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8odDE4XzFON2hiUmM" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
-<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oTWh1eVF4Y1A1TTg"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oTWh1eVF4Y1A1TTg" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8ocTdMMWFZZXprVnM"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8ocTdMMWFZZXprVnM" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
 #### Subscription Options
 3. After you hit create, look towards the top and go to `Features`. Then click the `+` button.
@@ -27,6 +27,13 @@ An [iTunes Connect](https://itunesconnect.apple.com/login?targetUrl=%2FWebObject
 <a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oY0pqSTQxYXBjQU0"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oY0pqSTQxYXBjQU0" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
 4. Choose Auto-Renewable Subscription, and fill in the 2 forms - preferably something simple like "AppName Monthly Subscription" & "appName_monthly_subscription". Choose a subscription group or enter a new one, again, should be simple like "App Auto-Renew Subscription".
+
+`
+Note: If you don’t see an option for Auto-Renewable Subscription, you probably need to complete some contracts for your account.
+Press Cancel and select My Apps from the top-left part of the screen. Then pick Agreements, Tax, and Banking from the options.
+Make sure all the contracts are complete, especially the Paid Applications contract.
+When you’re done, the status may show as “Processing”. Even so, you should be able to return to the In-App Purchases page and create a new Auto-Renewable Subscription.
+`
 
 5. Check the `Cleared for Sale` box, and fill in the rest of the forms which should be self-explanitory. The Review section is  for `Additional information about your in-app purchase that could help us with our review` when they review your app for submission. Don't forget to save!
 
