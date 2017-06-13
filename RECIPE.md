@@ -59,10 +59,12 @@ cd ..  ---> goes back one directory level up
 
 <a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oMjRoVG9rRlpYU2s"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oMjRoVG9rRlpYU2s" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
+8. __(Optional)__ You can also add native subscription by following this [guide](https://github.com/zype/zype-apple-tv/blob/master/NATIVE.md).
+
 #### Submitting to the Apple App Store
 
-8. Once you like the look of your app you can archive and export the app into iTunesConnect. Helpful documentation about archiving and exporting your app can be found in [Apple's distribution documentation](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html).
+9. Once you like the look of your app you can archive and export the app into iTunesConnect. Helpful documentation about archiving and exporting your app can be found in [Apple's distribution documentation](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html).
 
-9. Submit the app to Apple's App Store by following [Apple submission documentation](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/SubmittingYourApp/SubmittingYourApp.html).
+10. Submit the app to Apple's App Store by following [Apple submission documentation](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/SubmittingYourApp/SubmittingYourApp.html).
 
-10. Once submitted, Apple will review your app against their submission guidelines. If your app is approved, they will update the app status and iTunes Connect users are notified of the status change. 
+11. Once submitted, Apple will review your app against their submission guidelines. If your app is approved, they will update the app status and iTunes Connect users are notified of the status change. 
