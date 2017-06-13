@@ -173,9 +173,7 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
             let receiptDictionary = ["receipt-data" : receiptData.base64EncodedString(),
                                      "password" : Const.appstorePassword]
             let requestData = try! JSONSerialization.data(withJSONObject: receiptDictionary, options: [])
-            //            let storeURL = URL(string: "https://buy.itunes.apple.com/verifyReceipt")!
-            let storeURL = URL(string: "https://sandbox.itunes.apple.com/verifyReceipt")! // for testing only
-            var storeRequest = URLRequest(url: storeURL)
+            var storeRequest = URLRequest(url: Const.kStoreURL)
             storeRequest.httpMethod = "POST"
             storeRequest.httpBody = requestData
             let session = URLSession(configuration: URLSessionConfiguration.default)
@@ -231,7 +229,7 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
         }
         return nil
     }
-
+    
     // MARK: - Payments
     
     func restorePurchases(_ restoringCallback: ((Bool, NSError?)->())? = nil){
