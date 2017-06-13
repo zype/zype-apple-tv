@@ -48,8 +48,21 @@ An [iTunes Connect](https://itunesconnect.apple.com/login?targetUrl=%2FWebObject
 
 <a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oOUExSjlXUkFCdms"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oOUExSjlXUkFCdms" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
-<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8obVFvemhRZGUxdnc"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8obVFvemhRZGUxdnc" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oWm1iZHBkSVI3ZDg"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oWm1iZHBkSVI3ZDg" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
 ## Testing
+If you are testing, please do not skip Step 12!
 
+#### The Setup
+10. Follow the arrows to create a sandbox testing account. This way you can see if subscriptions work without paying. And don't worry about waiting a week between each subscription! These sandbox subscriptions should only lasts for about five minutes.
 
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oa3Vzckp6Z2lNcm8"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oa3Vzckp6Z2lNcm8" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+
+11. And finally, remember that blue arrow marked with a rainbow (See step 9)? We're going back into our lovely Const.swift file. We want the line with `"https://sandbox.itunes.apple.com/verifyReceipt"` not commented out, and the line on top of it commented out. It should look like this: 
+
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oblBPZmJyM0UwbDg"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oblBPZmJyM0UwbDg" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+
+#### Complete Testing
+12. After you are done with testing, it is crucial to change the storeURL back to the live one. Congratulations, you have completed a full implementation of native subscription on your app! Remember, it must look like this:
+
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oTDIzamFOdGEwRUE"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oTDIzamFOdGEwRUE" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
