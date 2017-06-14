@@ -156,7 +156,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
                                         self.performSegue(withIdentifier: HomeVC.kShowDetailsSegueID, sender: section)
                                     } else {//load playlist with playlists
                                         let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
-                                        let selectedPlaylist = item.object as! PlaylistModel
+                                        let selectedPlaylist = playlist
                                         homeVC.playlistParent = selectedPlaylist
                                         self.navigationController?.pushViewController(homeVC, animated: true)
                                     }
