@@ -61,7 +61,7 @@ When you’re done, the status may show as “Processing”. Even so, you should
 If you are testing, please do not skip Step 12!
 
 #### The Setup
-10. Follow the arrows to create a sandbox testing account. This way you can see if subscriptions work without paying. And don't worry about waiting a week between each subscription! These sandbox subscriptions should only lasts for about five minutes.
+10. Follow the arrows to create a sandbox testing account. This way you can see if subscriptions work without paying. And don't worry about waiting a week between each subscription! These sandbox subscriptions should only lasts for a few minuites. See this nifty [chart](https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnectInAppPurchase_Guide/Chapters/TestingInAppPurchases.html).
 
 <a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oa3Vzckp6Z2lNcm8"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oa3Vzckp6Z2lNcm8" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
