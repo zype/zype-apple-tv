@@ -76,7 +76,7 @@ class ShowCollectionItem: CollectionLabeledItem {
     init(value: PlaylistModel) {
         super.init()
         self.title = value.titleString
-        self.imageURL = getThumbnailOrBannerImageURL(with: value, banner: false)
+        self.imageURL = getThumbnailImageURL(with: value)
         self.object = value
     }
     
