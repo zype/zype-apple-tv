@@ -30,7 +30,6 @@
 		A161E9DB1DDBBAA800D01C70 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9C71DDBBAA800D01C70 /* DDXMLNode.m */; };
 		A1C0CF151E37CF8A007ED6C0 /* SplashScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0CF141E37CF8A007ED6C0 /* SplashScreenVC.swift */; };
 		A1C0CF171E37CFA1007ED6C0 /* ReplaceSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0CF161E37CFA1007ED6C0 /* ReplaceSegue.swift */; };
-		C892FE93EED79D7ABBBE7D1E /* Pods_AndreySandbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A486B9044ECBA209379902E /* Pods_AndreySandbox.framework */; };
 		F51158161BDE441000DB1774 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F51158181BDE441000DB1774 /* Localizable.strings */; };
 		F511581D1BDE6CFC00DB1774 /* FocusableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */; };
 		F5534D251BCFC64100BEA509 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5534D241BCFC64100BEA509 /* FavoritesVC.swift */; };
@@ -75,11 +74,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		28A1B0A9766255E45D8A6F76 /* Pods-AndreySandbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AndreySandbox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AndreySandbox/Pods-AndreySandbox.debug.xcconfig"; sourceTree = "<group>"; };
 		47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProtocolDelegate.swift; sourceTree = "<group>"; };
 		473C51491EE8ACA40051FC6C /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseManager.swift; sourceTree = "<group>"; };
 		473C514F1EE9A37B0051FC6C /* PurchaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseVC.swift; sourceTree = "<group>"; };
-		8A486B9044ECBA209379902E /* Pods_AndreySandbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AndreySandbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A161E99E1DDBBAA800D01C70 /* DVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVPlayerView.h; sourceTree = "<group>"; };
 		A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVPlayerView.m; sourceTree = "<group>"; };
 		A161E9A21DDBBAA800D01C70 /* DVIABPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVIABPlayer.h; sourceTree = "<group>"; };
@@ -120,7 +117,6 @@
 		A161E9C91DDBBAA800D01C70 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
 		A1C0CF141E37CF8A007ED6C0 /* SplashScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenVC.swift; sourceTree = "<group>"; };
 		A1C0CF161E37CFA1007ED6C0 /* ReplaceSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceSegue.swift; sourceTree = "<group>"; };
-		CDD2DC9667000A15E7071773 /* Pods-AndreySandbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AndreySandbox.release.xcconfig"; path = "Pods/Target Support Files/Pods-AndreySandbox/Pods-AndreySandbox.release.xcconfig"; sourceTree = "<group>"; };
 		F51158171BDE441000DB1774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusableButton.swift; sourceTree = "<group>"; };
 		F5534D241BCFC64100BEA509 /* FavoritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
@@ -158,22 +154,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C892FE93EED79D7ABBBE7D1E /* Pods_AndreySandbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		61BA572D0B947DB1A6F6281D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				28A1B0A9766255E45D8A6F76 /* Pods-AndreySandbox.debug.xcconfig */,
-				CDD2DC9667000A15E7071773 /* Pods-AndreySandbox.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		A161E99D1DDBBAA800D01C70 /* AVOD */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,22 +253,12 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
-		B5DBE7E7ED8984024722DD7D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8A486B9044ECBA209379902E /* Pods_AndreySandbox.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		F553AD171BC660B400A093EF = {
 			isa = PBXGroup;
 			children = (
 				A161E99D1DDBBAA800D01C70 /* AVOD */,
 				F5582CAC1BC7DB8B0089E5E7 /* Zype */,
 				F553AD211BC660B400A093EF /* Products */,
-				61BA572D0B947DB1A6F6281D /* Pods */,
-				B5DBE7E7ED8984024722DD7D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -378,23 +354,20 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F553AD1F1BC660B400A093EF /* AndreySandbox */ = {
+		F553AD1F1BC660B400A093EF /* <PROJECT_NAME> */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F553AD2F1BC660B400A093EF /* Build configuration list for PBXNativeTarget "AndreySandbox" */;
+			buildConfigurationList = F553AD2F1BC660B400A093EF /* Build configuration list for PBXNativeTarget "<PROJECT_NAME>" */;
 			buildPhases = (
-				F866C517BAB499FFB80BC212 /* [CP] Check Pods Manifest.lock */,
 				F553AD1C1BC660B400A093EF /* Sources */,
 				F553AD1D1BC660B400A093EF /* Frameworks */,
 				F553AD1E1BC660B400A093EF /* Resources */,
 				F5D98CDD1BE3B6A300C986B4 /* Embed Frameworks */,
-				D4732E81BC9C1BF495B95239 /* [CP] Embed Pods Frameworks */,
-				25D6A9E20DD90AAD801ECE7C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = AndreySandbox;
+			name = <PROJECT_NAME>;
 			productName = UITest;
 			productReference = F553AD201BC660B400A093EF /* <DOT_APP_NAME> */;
 			productType = "com.apple.product-type.application";
@@ -415,7 +388,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F553AD1B1BC660B400A093EF /* Build configuration list for PBXProject "AndreySandbox" */;
+			buildConfigurationList = F553AD1B1BC660B400A093EF /* Build configuration list for PBXProject "<PROJECT_NAME>" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -428,7 +401,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F553AD1F1BC660B400A093EF /* AndreySandbox */,
+				F553AD1F1BC660B400A093EF /* <PROJECT_NAME> */,
 			);
 		};
 /* End PBXProject section */
@@ -447,54 +420,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		25D6A9E20DD90AAD801ECE7C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AndreySandbox/Pods-AndreySandbox-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D4732E81BC9C1BF495B95239 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AndreySandbox/Pods-AndreySandbox-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F866C517BAB499FFB80BC212 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F553AD1C1BC660B400A093EF /* Sources */ = {
@@ -666,7 +591,6 @@
 		};
 		F553AD301BC660B400A093EF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28A1B0A9766255E45D8A6F76 /* Pods-AndreySandbox.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
@@ -687,7 +611,6 @@
 		};
 		F553AD311BC660B400A093EF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CDD2DC9667000A15E7071773 /* Pods-AndreySandbox.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
@@ -709,7 +632,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F553AD1B1BC660B400A093EF /* Build configuration list for PBXProject "AndreySandbox" */ = {
+		F553AD1B1BC660B400A093EF /* Build configuration list for PBXProject "<PROJECT_NAME>" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F553AD2D1BC660B400A093EF /* Debug */,
@@ -718,7 +641,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F553AD2F1BC660B400A093EF /* Build configuration list for PBXNativeTarget "AndreySandbox" */ = {
+		F553AD2F1BC660B400A093EF /* Build configuration list for PBXNativeTarget "<PROJECT_NAME>" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F553AD301BC660B400A093EF /* Debug */,
