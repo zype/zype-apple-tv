@@ -77,32 +77,15 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         ZypeAppleTVBase.sharedInstance.getPlaylists(queryModel, completion: {[unowned self] (playlists: Array<PlaylistModel>?, error: NSError?) in
             if(error == nil && playlists != nil) {
                 self.playlists = playlists!
-                self.getLivestreamItem({(result: CollectionLabeledItem?) in
-                    self.getFeaturedVideos(livestreamItem: result, callback: {[unowned self] in
-                        self.fillSections()
-                    })
+                
+                self.getFeaturedVideos(callback: {[unowned self] in
+                    self.fillSections()
                 })
+                
+                
             } else {
                 self.fillSections()
                 self.showErrorInfo(error?.localizedDescription)
-            }
-        })
-    }
-    
-    func getLivestreamItem(_ callback: @escaping (_ result: CollectionLabeledItem?)->()) {
-        let queryModel = QueryVideosModel()
-        queryModel.onAir = "true"
-        queryModel.sort = "published_at"
-        queryModel.ascending = false
-        ZypeAppleTVBase.sharedInstance.getVideos(queryModel, completion: {(videos: Array<VideoModel>?, error: NSError?) in
-            if let _ = videos, videos!.count > 0 {
-                let video = videos!.first!
-                let item = CollectionLabeledItem()
-                item.object = video
-                item.imageName = "on_air"
-                callback(item)
-            } else {
-                callback(nil)
             }
         })
     }
@@ -115,7 +98,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         return nil
     }
     
-    func getFeaturedVideos(livestreamItem: CollectionLabeledItem?, callback: @escaping () -> Void) {
+    func getFeaturedVideos(callback: @escaping () -> Void) {
         //configure header for child playlists
         if self.playlistParentAsId != nil {
             self.addPager()
@@ -125,13 +108,11 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         //use only for Home Screen
         let type = QueryZobjectsModel()
         type.zobjectType = "top_playlists"
+        type.anyQueryString = "&sort=priority&order=desc"
         ZypeAppleTVBase.sharedInstance.getZobjects(type, completion: {(objects: Array<ZobjectModel>?, error: NSError?) in
             if let _ = objects, objects!.count > 0 {
                 
-                var items = CollectionContainerVC.featuresToCollectionItems(objects)
-                if let _ = livestreamItem {
-                    items.insert(livestreamItem!, at: items.count / 2)
-                }
+                let items = CollectionContainerVC.featuresToCollectionItems(objects)
                 let section = CollectionSection()
                 section.isPager = true
                 section.items = items
