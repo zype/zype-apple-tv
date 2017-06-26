@@ -210,6 +210,10 @@ extension PlayerVC: AdHelperProtocol {
             return
         }
         
+        if self.adsData.count == 1 {
+            return
+        }
+        
         let adTimer = self.playerController.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main) { (time) in
             guard let offsetMSeconds = self.adsData[0].offset else { return }
             let offset = Int(offsetMSeconds) / 1000
