@@ -17,6 +17,9 @@ protocol AdHelperProtocol: class {
     func nextAdPlayer()
     func removeAdTimer()
     func removeAdPlayer()
+    func observeTimerForMidrollAds()
+    func shouldPlayMidrollAds()
+    func removePeriodicTimeObserver()
 }
 
 extension PlayerVC: AdHelperProtocol {
@@ -37,16 +40,12 @@ extension PlayerVC: AdHelperProtocol {
                 }
             }
         }
+        _ = self.adsData.sorted(by: { $0.offset! < $1.offset! })
         
         if self.adsData.count > 0 {
-            
-            for i in 0..<self.adsData.count {
-                let ad = self.adsData[i]
-                //preroll
-                if ad.offset == 0 {
-                    adsArray.add(DVVideoPlayBreak.playBreakBeforeStart(withAdTemplateURL: URL(string: ad.tag!)!))
-                }
-            }
+            let prerollAds = self.adsData.filter({ $0.offset == 0 })
+            let prerollAd = prerollAds[0]
+            adsArray.add(DVVideoPlayBreak.playBreakBeforeStart(withAdTemplateURL: URL(string: prerollAd.tag!)))
         }
         else {
             adsArray = NSMutableArray()
@@ -93,7 +92,7 @@ extension PlayerVC: AdHelperProtocol {
                                             selector: #selector(PlayerVC.adTimerDidFire),
                                             userInfo: nil, repeats: false)
     }
-
+    
     func adTimerDidFire() {
         self.isSkippable = false
         if let viewWithTag = self.view.viewWithTag(1001) {
@@ -168,7 +167,7 @@ extension PlayerVC: AdHelperProtocol {
             self.setupVideoPlayer()
         }
     }
-
+    
     func removeAdTimer() {
         self.isSkippable = false
         if let viewWithTag = self.view.viewWithTag(1001) {
@@ -182,7 +181,7 @@ extension PlayerVC: AdHelperProtocol {
             self.adTimer.invalidate()
         }
     }
-
+    
     func removeAdPlayer() {
         self.isSkippable = false
         if let viewWithTag = self.view.viewWithTag(1001) {
@@ -203,6 +202,54 @@ extension PlayerVC: AdHelperProtocol {
         self.playerView!.removeFromSuperview()
         self.playerView = nil
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func observeTimerForMidrollAds() {
+        guard self.adsData.count > 0 else { // no ads to observe
+            self.removePeriodicTimeObserver()
+            return
+        }
+        
+        let adTimer = self.playerController.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main) { (time) in
+            guard let offsetMSeconds = self.adsData[0].offset else { return }
+            let offset = Int(offsetMSeconds) / 1000
+            
+            if offset == 0 { // remove preroll
+                self.adsData.remove(at: 0)
+                return
+            }
+            
+            let currentTime = Int(CMTimeGetSeconds(time))
+            
+            if currentTime > offset + 4 { // user seeked passed this ad - 4 seconds to compensate for the + 2 below
+                self.adsData.remove(at: 0)
+            }
+            if currentTime == offset + 2 { // 2 seconds added to offset to save most relevant 10 second chunk
+                self.shouldPlayMidrollAds()
+            }
+        }
+        self.timeObserverToken = adTimer
+    }
+    
+    func shouldPlayMidrollAds() {
+        let timeStamp = self.playerController.player?.currentTime().seconds
+        self.userDefaults.setValue(timeStamp, forKey: "\(self.currentVideo.getId())")
+        
+        if self.playerController.player != nil {
+            self.playerController.player?.pause()
+        }
+        
+        self.playAds(adsArray: self.adsArray!, url: self.url!)
+        self.adsData.remove(at: 0)
+        self.isResuming = true
+        self.removePeriodicTimeObserver()
+    }
+    
+    func removePeriodicTimeObserver() {
+        if let token = timeObserverToken {
+            self.playerController.player?.removeTimeObserver(token)
+            timeObserverToken = nil
+        }
     }
     
 }
