@@ -48,12 +48,14 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     
     var playlist: Array<VideoModel>? = nil
     var currentVideo: VideoModel!
-    var adTimer: Timer!
-    
     var adsData: [adObject] = [adObject]()
+    var adTimer: Timer!
+    var currentTime: CMTime!
     
-    var currentTime : CMTime!
     var userDefaults = UserDefaults.standard
+    var timeObserverToken: Any?
+    var adsArray: NSMutableArray?
+    var url: NSURL?
     
     // MARK: - View Lifecycle
     deinit {
@@ -122,6 +124,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
             if self.playerController.player != nil {
                 self.playerController.player?.pause()
             }
+            self.removePeriodicTimeObserver()
         }
     }
     
@@ -153,6 +156,8 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
                 
                 let adsArray = self.getAdsFromResponse(playerObject)
                 self.playerURL = url as URL!
+                self.adsArray = adsArray
+                self.url = url
                 
                 if adsArray.count == 0 {
                     self.currentVideo = model
@@ -183,7 +188,9 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
         self.addChildViewController(self.playerController)
         self.view.addSubview(self.playerController.view)
         self.playerController.view.frame = self.view.frame
+        
         NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+        self.observeTimerForMidrollAds()
         
         if isResuming {
             if !currentVideo.onAir {
