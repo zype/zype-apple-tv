@@ -211,7 +211,10 @@ extension PlayerVC: AdHelperProtocol {
         }
         
         if self.adsData.count == 1 {
-            return
+            if self.adsData[0].offset == 0 { // preroll ad does not need observer
+                self.removePeriodicTimeObserver()
+                return
+            }
         }
         
         let adTimer = self.playerController.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main) { (time) in
