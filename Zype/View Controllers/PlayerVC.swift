@@ -50,6 +50,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     var currentVideo: VideoModel!
     var adsData: [adObject] = [adObject]()
     var adTimer: Timer!
+    var currentAd = 1
     var currentTime: CMTime!
     
     var userDefaults = UserDefaults.standard
@@ -190,7 +191,10 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
         self.playerController.view.frame = self.view.frame
         
         NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
-        self.observeTimerForMidrollAds()
+        
+        if self.adsData.count > 1 {
+            self.observeTimerForMidrollAds()
+        }
         
         if isResuming {
             if !currentVideo.onAir {
@@ -203,13 +207,15 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
         player.play()
     }
     
-    func removeAdsAndPlayVideo() {
+    func resumePlayingFromAds() {
         self.removeAdPlayer()
-        self.setupVideoPlayer()
+        NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.playerController.player?.currentItem)
+        self.playerController.player?.play()
     }
     
     func contentDidFinishPlaying(_ notification: Notification) {
         userDefaults.removeObject(forKey: self.currentVideo.getId())
+        self.currentAd = 1
         // Make sure we don't call contentComplete as a result of an ad completing.
         if ((notification.object as! AVPlayerItem) == self.playerController.player!.currentItem) {
             self.playerController.removeFromParentViewController()
@@ -220,7 +226,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
             if let _ = self.playlist,
                 let currentVideoIndex = self.playlist?.index(of: self.currentVideo), self.playlist?.count > 0 {
                 
-                if(currentVideoIndex + 1 < self.playlist!.count) {
+                if currentVideoIndex + 1 < self.playlist!.count {
                     let nextVideo = self.playlist![currentVideoIndex + 1]
                     self.play(nextVideo)
                 }
