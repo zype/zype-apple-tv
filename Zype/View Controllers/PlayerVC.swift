@@ -214,10 +214,11 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     }
     
     func contentDidFinishPlaying(_ notification: Notification) {
-        userDefaults.removeObject(forKey: self.currentVideo.getId())
-        self.currentAd = 1
         // Make sure we don't call contentComplete as a result of an ad completing.
         if ((notification.object as! AVPlayerItem) == self.playerController.player!.currentItem) {
+            userDefaults.removeObject(forKey: self.currentVideo.getId())
+            self.currentAd = 1
+            
             self.playerController.removeFromParentViewController()
             self.playerController.view.removeFromSuperview()
             self.playerController.player?.replaceCurrentItem(with: nil)
