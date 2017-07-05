@@ -13,7 +13,6 @@ class ShowDetailsVC: CollectionContainerVC {
     
     // MARK: - Properties
     
-    static let kDescriptionTopMargin: CGFloat = 0.0
     static let kSubtitleTopMargin: CGFloat = -15.0
     
     @IBOutlet weak var posterImage: URLImageView!
@@ -85,9 +84,7 @@ class ShowDetailsVC: CollectionContainerVC {
         }
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: InAppPurchaseManager.kPurchaseCompleted), object: nil)
-        if Const.kNativeSubscriptionEnabled {
-            InAppPurchaseManager.sharedInstance.refreshSubscriptionStatus()
-        }
+        InAppPurchaseManager.sharedInstance.refreshSubscriptionStatus()
         self.refreshButtons()
     }
     
@@ -162,74 +159,6 @@ class ShowDetailsVC: CollectionContainerVC {
         })
     }
     
-    // MARK: - Buttons
-    
-    func refreshButtons() {
-        guard self.selectedVideo != nil else { return }
-        
-        if self.selectedVideo.subscriptionRequired {
-            if Const.kNativeSubscriptionEnabled {
-                if InAppPurchaseManager.sharedInstance.lastSubscribeStatus {
-                    self.refreshPlayableButtons()
-                }
-                else {
-                    self.refreshUnplayableButtons()
-                }
-            }
-            else { // Native not enabled
-                if ZypeUtilities.isDeviceLinked() {
-                    self.refreshPlayableButtons()
-                }
-                else {
-                    self.refreshUnplayableButtons()
-                }
-            }
-        }
-        else { // Subscription not required
-            self.refreshPlayableButtons()
-        }
-    }
-    
-    func refreshPlayableButtons() {
-        if requiresResumeButton() {
-            self.resumeButton.isHidden = false
-            self.loadFavoritesButton(for: self.resumeLabel, and: self.resumeButton)
-            self.favoriteLabel.text = "Play"
-            self.favoritesButton.setBackgroundImage(UIImage(named: "Subscribed"), for: .normal)
-            self.subscribeLabel.text = "Resume"
-            self.subscribeButton.setBackgroundImage(UIImage(named: "Resume"), for: .normal)
-        }
-        else {
-            self.resumeButton.isHidden = true
-            self.resumeLabel.text = ""
-            self.loadFavoritesButton(for: self.favoriteLabel, and: self.favoritesButton)
-            self.subscribeLabel.text = "Play"
-            self.subscribeButton.setBackgroundImage(UIImage(named: "Subscribed"), for: .normal)
-        }
-    }
-    
-    func refreshUnplayableButtons() {
-        self.subscribeButton.setBackgroundImage(UIImage(named: "SubscribeFocused"), for: .normal)
-        self.subscribeLabel.text = localized("ShowDetails.SubscribeButton")
-        self.loadFavoritesButton(for: self.favoriteLabel, and: favoritesButton)
-        self.resumeButton.isHidden = true
-        self.resumeLabel.text = ""
-    }
-    
-    func requiresResumeButton() -> Bool {
-        if let _ = userDefaults.object(forKey: "\(selectedVideo.getId())") {
-            if !self.selectedVideo.onAir {
-                return true
-            }
-        }
-        return false
-    }
-    
-    func loadFavoritesButton(for label: UILabel, and button: FocusableButton) {
-        label.text = localized(self.selectedVideo.isInFavorites() ? "ShowDetails.Unfavorite" : "ShowDetails.Favorite")
-        button.setBackgroundImage(UIImage(named: self.selectedVideo.isInFavorites() ? "FavoritesRemoveFocused" : "FavoritesAddFocused"), for: .normal)
-    }
-    
     // MARK: - Actions
     
     func onExpandDescription() {
@@ -240,19 +169,7 @@ class ShowDetailsVC: CollectionContainerVC {
         }
     }
     
-    @IBAction func onFavorites(_ sender: AnyObject) {
-        if self.selectedVideo != nil {
-            if requiresResumeButton() {
-                self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: false)
-            }
-            else {
-                self.selectedVideo.toggleFavorite()
-                self.refreshButtons()
-            }
-        }
-    }
-    
-    @IBAction func onSubscribe(_ sender: AnyObject) {
+    @IBAction func onSubscribe(_ sender: AnyObject) { // Buttons: [✓] [ ] [ ]
         let resume = requiresResumeButton()
         
         if self.selectedVideo.subscriptionRequired == false {
@@ -282,13 +199,113 @@ class ShowDetailsVC: CollectionContainerVC {
         }
     }
     
-    @IBAction func onResume(_ sender: AnyObject) {
-        if (self.selectedVideo != nil) {
+    @IBAction func onFavorites(_ sender: AnyObject) { // Buttons: [ ] [✓] [ ]
+        if self.selectedVideo != nil {
             if requiresResumeButton() {
-                self.selectedVideo.toggleFavorite()
-                self.refreshButtons()
+                self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: false)
+            }
+            else {
+                self.favoritesPressed()
             }
         }
+    }
+    
+    @IBAction func onResume(_ sender: AnyObject) { // Buttons: [ ] [ ] [✓]
+        if self.selectedVideo != nil {
+            if requiresResumeButton() {
+                self.favoritesPressed()
+            }
+        }
+    }
+    
+    // MARK: - Buttons
+    
+    fileprivate func refreshButtons() {
+        guard self.selectedVideo != nil else { return }
+        
+        if self.selectedVideo.subscriptionRequired {
+            if Const.kNativeSubscriptionEnabled {
+                if InAppPurchaseManager.sharedInstance.lastSubscribeStatus {
+                    self.refreshPlayableButtons()
+                }
+                else {
+                    self.refreshUnplayableButtons()
+                }
+            }
+            else { // Native not enabled
+                if ZypeUtilities.isDeviceLinked() {
+                    self.refreshPlayableButtons()
+                }
+                else {
+                    self.refreshUnplayableButtons()
+                }
+            }
+        }
+        else { // Subscription not required
+            self.refreshPlayableButtons()
+        }
+    }
+    
+    fileprivate func refreshPlayableButtons() {
+        if requiresResumeButton() {
+            self.resumeButton.isHidden = false
+            self.loadFavoritesButton(for: self.resumeLabel, and: self.resumeButton)
+            self.favoriteLabel.text = "Play"
+            self.favoritesButton.setBackgroundImage(UIImage(named: "Subscribed"), for: .normal)
+            self.subscribeLabel.text = "Resume"
+            self.subscribeButton.setBackgroundImage(UIImage(named: "Resume"), for: .normal)
+        }
+        else {
+            self.resumeButton.isHidden = true
+            self.resumeLabel.text = ""
+            self.loadFavoritesButton(for: self.favoriteLabel, and: self.favoritesButton)
+            self.subscribeLabel.text = "Play"
+            self.subscribeButton.setBackgroundImage(UIImage(named: "Subscribed"), for: .normal)
+        }
+    }
+    
+    fileprivate func refreshUnplayableButtons() { // requires subscription to play
+        self.subscribeButton.setBackgroundImage(UIImage(named: "SubscribeFocused"), for: .normal)
+        self.subscribeLabel.text = localized("ShowDetails.SubscribeButton")
+        self.loadFavoritesButton(for: self.favoriteLabel, and: favoritesButton)
+        self.resumeButton.isHidden = true
+        self.resumeLabel.text = ""
+    }
+    
+    fileprivate func requiresResumeButton() -> Bool {
+        if let _ = userDefaults.object(forKey: "\(selectedVideo.getId())") {
+            if !self.selectedVideo.onAir {
+                return true
+            }
+        }
+        return false
+    }
+    
+    fileprivate func loadFavoritesButton(for label: UILabel, and button: FocusableButton) {
+        label.text = localized(self.selectedVideo.isInFavorites() ? "ShowDetails.Unfavorite" : "ShowDetails.Favorite")
+        button.setBackgroundImage(UIImage(named: self.selectedVideo.isInFavorites() ? "FavoritesRemoveFocused" : "FavoritesAddFocused"), for: .normal)
+    }
+    
+    fileprivate func favoritesPressed() {
+        if Const.kFavoritesViaAPI {
+            guard ZypeAppleTVBase.sharedInstance.consumer?.isLoggedIn == true else {
+                ZypeUtilities.presentLoginVC(self)
+                return
+            }
+            
+            if !self.selectedVideo.isInFavorites() {
+                ZypeAppleTVBase.sharedInstance.setFavorite(self.selectedVideo, shouldSet: true, completion: {(success: Bool, error: NSError?) -> Void in
+                    print("favorted")
+                })
+            }
+            else {
+                ZypeAppleTVBase.sharedInstance.setFavorite(self.selectedVideo, shouldSet: false, completion: {(success: Bool, error: NSError?) -> Void in
+                    print("unfavorited")
+                })
+            }
+        }
+        self.selectedVideo.toggleFavorite()
+        self.refreshButtons()
     }
     
     func onPurchased() {
