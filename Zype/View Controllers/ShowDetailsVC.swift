@@ -84,7 +84,10 @@ class ShowDetailsVC: CollectionContainerVC {
         }
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: InAppPurchaseManager.kPurchaseCompleted), object: nil)
-        InAppPurchaseManager.sharedInstance.refreshSubscriptionStatus()
+        
+        if Const.kNativeSubscriptionEnabled {
+            InAppPurchaseManager.sharedInstance.refreshSubscriptionStatus()
+        }
         self.refreshButtons()
     }
     
