@@ -27,6 +27,7 @@ class Const: NSObject {
     static let kStoreURL = URL(string: "https://buy.itunes.apple.com/verifyReceipt")!
     //static let kStoreURL = URL(string: "https://sandbox.itunes.apple.com/verifyReceipt")! // for testing only
     static let kLimitLivestreamEnabled = false
+    static var kFavoritesViaAPI = false
     static let kAppStyleLight = true
     
     static let kBaseSectionInsets: UIEdgeInsets = UIEdgeInsets(top: 50, left: 90, bottom: 50, right: 90)

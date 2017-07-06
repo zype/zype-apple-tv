@@ -34,6 +34,9 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         self.reloadButton.setTitle(localized("Home.ReloadButton"), for: UIControlState())
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name(rawValue: "ready_to_load_playlists"), object: nil)
+        
+        let defaults = UserDefaults.standard
+        defaults.setValue(Const.kFavoritesViaAPI, forKey: "favoritesViaAPI")
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -61,10 +61,14 @@ cd ..  ---> goes back one directory level up
 
 8. __(Optional)__ In order to add Native Subscription (Native SVOD) follow this [guide](https://github.com/zype/zype-apple-tv/blob/master/NATIVE.md).
 
+9. __(Optional)__ Configuring your video favorites. Your two options are either storing them on each device locally so that each of a user's devices may have different favorites, or storing them via API so that the same favorites are across all of a user's devices. Navigate to your Const.swift file (see blue arrow on left). On line 32, we have `static var kFavoritesViaAPI = false` - false is local storage, true is API storage. The default is local.
+
+<a href="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oUFNBaVkzSkpwVDA"><img src="https://drive.google.com/uc?export=view&id=0B2QpIBNNKw8oUFNBaVkzSkpwVDA" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+
 #### Submitting to the Apple App Store
 
-9. Once you like the look of your app you can archive and export the app into iTunesConnect. Helpful documentation about archiving and exporting your app can be found in [Apple's distribution documentation](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html).
+10. Once you like the look of your app you can archive and export the app into iTunesConnect. Helpful documentation about archiving and exporting your app can be found in [Apple's distribution documentation](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html).
 
-10. Submit the app to Apple's App Store by following [Apple submission documentation](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/SubmittingYourApp/SubmittingYourApp.html).
+11. Submit the app to Apple's App Store by following [Apple submission documentation](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/SubmittingYourApp/SubmittingYourApp.html).
 
-11. Once submitted, Apple will review your app against their submission guidelines. If your app is approved, they will update the app status and iTunes Connect users are notified of the status change. 
+12. Once submitted, Apple will review your app against their submission guidelines. If your app is approved, they will update the app status and iTunes Connect users are notified of the status change. 
