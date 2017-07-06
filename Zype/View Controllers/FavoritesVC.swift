@@ -54,7 +54,6 @@ class FavoritesVC: CollectionContainerVC {
                 self.getFavoritesFromAPI()
             }
             else {
-                self.getLocalFavorites()
                 self.displayInfo("Please Login to get Favorites list")
             }
         }
