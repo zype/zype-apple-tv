@@ -210,7 +210,13 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     func resumePlayingFromAds() {
         self.removeAdPlayer()
         NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.playerController.player?.currentItem)
-        self.playerController.player?.play()
+        
+        if self.currentAd > 1 {
+            self.playerController.player?.play()
+        }
+        else {
+            self.setupVideoPlayer()
+        }
     }
     
     func contentDidFinishPlaying(_ notification: Notification) {
