@@ -531,7 +531,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="BaseCollectionVC" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="6Pp-yV-woX" customClass="BaseCollectionVC" customModule="AndreySandbox" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="CX6-6d-zQs">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="450"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aF6-sY-Nvx">
                             <size key="itemSize" width="500" height="500"/>
@@ -540,7 +540,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="vP8-eg-LL0">
-                            <rect key="frame" x="0.0" y="0.0" width="1920" height="450"/>
+                            <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <cells>
@@ -585,11 +585,16 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFade" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="1Pu-Jq-LCS" userLabel="lockImage">
+                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </view>
                                 <connections>
                                     <outlet property="imageView" destination="fuT-eh-Lml" id="WOb-um-8UA"/>
                                     <outlet property="label" destination="adT-Wt-FvD" id="eXl-Vc-TwH"/>
+                                    <outlet property="lockImage" destination="1Pu-Jq-LCS" id="fU6-2o-Qdz"/>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ControllerCell" id="Adw-a8-YCY" customClass="ControllerCell" customModule="AndreySandbox" customModuleProvider="target">
@@ -655,6 +660,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="a18-Ts-CvM"/>
+        <segue reference="yeN-qd-JmN"/>
     </inferredMetricsTieBreakers>
 </document>
