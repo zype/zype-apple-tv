@@ -24,6 +24,7 @@ class ImageCell: UICollectionViewCell {
     
     var lockStyle: CollectionLockStyle = .empty {
         didSet {
+            guard Const.kLockIcons else { return }
             switch self.lockStyle {
             case .empty:
                 self.lockImage.isHidden = true
