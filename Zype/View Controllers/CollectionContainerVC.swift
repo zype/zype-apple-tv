@@ -42,6 +42,15 @@ class VideoCollectionItem: CollectionLabeledItem {
         self.title = video.titleString
         self.imageURL = video.thumbnailURL() as URL!
         self.object = video
+        self.lockStyle = .empty
+        
+        guard video.subscriptionRequired else { return }
+        if ZypeUtilities.isDeviceLinked() {
+            self.lockStyle = .unlocked
+        }
+        else {
+            self.lockStyle = .locked
+        }
     }
     
     func convertToMore() -> MoreVideoCollectionItem {

@@ -33,19 +33,29 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         self.navigationController?.delegate = self
         self.reloadButton.setTitle(localized("Home.ReloadButton"), for: UIControlState())
         
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name(rawValue: "ready_to_load_playlists"), object: nil)
-        
         let defaults = UserDefaults.standard
         defaults.setValue(Const.kFavoritesViaAPI, forKey: "favoritesViaAPI")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name(rawValue: "ready_to_load_playlists"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadCollection), name: NSNotification.Name(rawValue: kZypeReloadScreenNotification), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.reloadData()
+        self.secondPress = false
+        
         if Const.kNativeSubscriptionEnabled {
             InAppPurchaseManager.sharedInstance.refreshSubscriptionStatus()
         }
-        self.secondPress = false
+    }
+    
+    func reloadCollection() {
+        self.collectionVC.isConfigurated = false
+        
+        for section in self.collectionVC.sections {
+            section.controller = nil
+        }
     }
     
     func playlistByID(_ ID: String) -> PlaylistModel? {
@@ -361,4 +371,3 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
     }
     
 }
-
