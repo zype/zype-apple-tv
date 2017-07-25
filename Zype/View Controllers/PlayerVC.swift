@@ -155,6 +155,8 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
         model.getVideoObject(.kVimeoHls, completion: {[unowned self] (playerObject: VideoObjectModel?, error: NSError?) in
             if let _ = playerObject, let videoURL = playerObject?.videoURL, let url = NSURL(string: videoURL), error == nil {
                 
+                self.validateEntitlement(for: playerObject)
+
                 let adsArray = self.getAdsFromResponse(playerObject)
                 self.playerURL = url as URL!
                 self.adsArray = adsArray
@@ -174,6 +176,17 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
                 displayError(error)
             }
         })
+    }
+    
+    fileprivate func validateEntitlement(for playerObject: VideoObjectModel?) {
+        if let _ = playerObject?.json?["message"] {
+            let alert = UIAlertController(title: "Error", message: "You must be subscribed to access this content.", preferredStyle: .alert)
+            let confirmAction = UIAlertAction(title: "Ok", style: .cancel, handler: { (_) in
+                self.dismiss(animated: true, completion: nil)
+            })
+            alert.addAction(confirmAction)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func setupVideoPlayer() {
