@@ -39,8 +39,7 @@ class PagerCell: UICollectionViewCell {
   }
   
   func configWithURL(_ url: URL?){
-    
-    self.imageView.configWithURL(url)
+    self.imageView.configWithURL(url, UIImage(named: "slider_thumbnail"))
   }
   
   func configWithImageName(_ name: String){

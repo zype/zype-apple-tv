@@ -66,7 +66,7 @@ class ImageCell: UICollectionViewCell {
         if context == &self.observerContext {
             let item = object as! CollectionLabeledItem
             if keyPath == CollectionLabeledItem.kImageObservableKey {
-                self.imageView.configWithURL(item.imageURL)
+                self.imageView.configWithURL(item.imageURL, UIImage(named: "show_thumbnail"))
             }
             else if keyPath == CollectionLabeledItem.kTitleObservableKey {
                 self.label.text = item.title
@@ -102,7 +102,7 @@ class ImageCell: UICollectionViewCell {
             self.imageView.image = UIImage(named: item.imageName)
         }
         else {
-            self.imageView.configWithURL(item.imageURL)
+           self.imageView.configWithURL(item.imageURL, UIImage(named: "show_thumbnail"))
         }
         
         if item.lockStyle != nil {

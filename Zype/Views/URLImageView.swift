@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class URLImageView: UIImageView {
   
@@ -60,7 +61,7 @@ class URLImageView: UIImageView {
     super.layoutSubviews()
     if(self.roundedCorners != nil && self.image != nil) {
     if(self.roundedCorners != nil && self.image != nil && !self.frame.size.equalTo(self.image!.size)) {
-      self.configWithURL(self.url)
+      self.configWithURL(self.url, nil)
     }
     }
   }
@@ -121,70 +122,18 @@ class URLImageView: UIImageView {
     return image
   }
   
-  func configWithURL(_ url: URL?) {
-    self.url = url
-    
-    if(self.downloadTask != nil){
-      self.downloadTask.cancel()
-      self.downloadTask = nil
-    }
-    
-    if(url == nil){
-      return
-    }
-    
-  
-    getDataFromUrl(url: url!) { (data, response, error)  in
-            guard let data = data, error == nil else { return }
+    func configWithURL(_ url: URL?,_ thumbnail: UIImage?) {
+        self.url = url
         
-            DispatchQueue.main.async() { () -> Void in
-                self.image = UIImage(data: data)
-             //   self.downloadTask = nil //do I need this?
-            }
-    }
-    
-    
-    
-    /*
-    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background).async(execute: {()in
-      let data: Data? = URLImageView.cache.object(forKey: url! as AnyObject) as? Data
-      if let goodData = data {
-        let image = UIImage(data: goodData)
-        DispatchQueue.main.async(execute: {() in
-          self.image = image
-        })
-        return
-      } else {
-        DispatchQueue.main.async(execute: {() in
-          self.image = nil
-        })
-      }
-      
-        self.downloadTask = URLSession.shared.dataTask(with: url!, completionHandler: ({(data: Data?, response: URLResponse?, error: NSError?) -> Void in
-            if (error != nil) {
-                self.url = nil
-                return
-            }
-            
-            if(data != nil) {
-                let image = UIImage(data: data!)
-                URLImageView.cache.setObject(data! as AnyObject, forKey: url! as AnyObject)
-                DispatchQueue.main.async(execute: {() in
-                    self.image = image
-                    self.downloadTask = nil
-                })
-            }
-            } as? (Data?, URLResponse?, Error?) -> Void)!)
-      self.downloadTask.resume()
-    })*/
-    
-  }
-    
-    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
-        URLSession.shared.dataTask(with: url) {
-            (data, response, error) in
-            completion(data, response, error)
-            }.resume()
+        if(url == nil){
+            return
+        }
+        
+        if (thumbnail == nil){
+            self.kf.setImage(with: url)
+        } else {
+            self.kf.setImage(with: url, placeholder:thumbnail)
+        }
     }
   
 }

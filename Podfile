@@ -12,5 +12,6 @@ target 'ZypeAppName' do
 # Uncomment for release and update tag here as well as in ZypeAppleTVBase.podspec
 
 pod 'ZypeAppleTVBase', :git => 'https://github.com/zype/ZypeAppleTVBase.git', :tag => ‘0.4.9’
+pod 'Kingfisher', '~> 3.0'
 
 end

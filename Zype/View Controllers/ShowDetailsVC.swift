@@ -146,7 +146,7 @@ class ShowDetailsVC: CollectionContainerVC {
     
     func onVideoFocused(_ video: VideoModel) {
         self.selectedVideo = video
-        self.posterImage.configWithURL(video.posterURL() as URL?)
+        self.posterImage.configWithURL(video.posterURL() as URL?, nil)
         self.subTitleLabel.text = video.titleString
         self.descriptionLabel.text = video.descriptionString
         self.layoutLabels()

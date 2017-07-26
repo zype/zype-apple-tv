@@ -30,7 +30,7 @@ class TabBarVC: UITabBarController {
         background.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
         if let backgroundUrl = UserDefaults.standard.object(forKey: Const.kDefaultsBackgroundUrl) as? String {
-            background.configWithURL(URL(string: backgroundUrl))
+            background.configWithURL(URL(string: backgroundUrl), nil)
 
         } else {
             background.image = UIImage(named: "background_dark")
