@@ -20,36 +20,37 @@ class ShowDetailsVC: CollectionContainerVC {
     @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var labelsView: UIView!
     @IBOutlet weak var bottomBarView: UIView!
-    @IBOutlet weak var favoritesButton: FocusableButton!
-    @IBOutlet weak var subscribeButton: FocusableButton!
-    @IBOutlet weak var resumeButton: FocusableButton!
     @IBOutlet weak var detailsView: UIView!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var resumeLabel: UILabel!
-    @IBOutlet weak var subscribeLabel: UILabel!
-    @IBOutlet weak var favoriteLabel: UILabel!
     @IBOutlet weak var episodesCountLabel: StyledLabel!
     @IBOutlet weak var descriptionView: FocusableView!
     @IBOutlet weak var descriptionLabel: UILabel!
+
+    @IBOutlet weak var button0: FocusableButton!
+    @IBOutlet weak var button1: FocusableButton!
+    @IBOutlet weak var button2: FocusableButton!
+    @IBOutlet weak var button3: FocusableButton!
+    @IBOutlet weak var label0: UILabel!
+    @IBOutlet weak var label1: UILabel!
+    @IBOutlet weak var label2: UILabel!
+    @IBOutlet weak var label3: UILabel!
     
     var selectedShow: PlaylistModel!
     var selectedVideo: VideoModel!
     var videos: Array<VideoModel>!
     var focusGuide: UIFocusGuide!
     let userDefaults = UserDefaults.standard
+    var actionables = [Actionable]()
+    var currentButtonTypes = [ButtonType]()
     
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.subscribeLabel.text = localized("ShowDetails.SubscribedButton")
-        self.favoriteLabel.text = localized("ShowDetails.Favorite")
         self.descriptionLabel.textColor = StyledLabel.kBaseColor
         self.descriptionView.onSelected = {[unowned self] in
             self.onExpandDescription()
         }
-        self.subscribeButton.setBackgroundImage(UIImage(named: "Subscribed"), for: UIControlState())
-        self.favoritesButton.setBackgroundImage(UIImage(named: "FavoritesAddFocused"), for: UIControlState())
         
         let distance = (self.containerView.top - self.detailsView.bottom) / 2
         
@@ -66,11 +67,13 @@ class ShowDetailsVC: CollectionContainerVC {
         favoritesButtonGuide.bottomAnchor.constraint(equalTo: self.containerView.topAnchor).isActive = true
         favoritesButtonGuide.topAnchor.constraint(equalTo: self.detailsView.bottomAnchor, constant: distance).isActive = true
         favoritesButtonGuide.rightAnchor.constraint(equalTo: self.detailsView.rightAnchor).isActive = true
-        favoritesButtonGuide.preferredFocusedView = self.favoritesButton
+        favoritesButtonGuide.preferredFocusedView = self.button1
         
-        self.favoritesButton.label = self.favoriteLabel
-        self.subscribeButton.label = self.subscribeLabel
-        self.resumeButton.label = self.resumeLabel
+        self.createActionables()
+        self.button1.label = self.label1
+        self.button0.label = self.label0
+        self.button2.label = self.label2
+        self.button3.label = self.label3
         
         self.posterImage.shouldAnimate = true
         self.titleLabel.text = self.selectedShow.titleString
@@ -141,7 +144,7 @@ class ShowDetailsVC: CollectionContainerVC {
     }
     
     override func onItemSelected(_ item: CollectionLabeledItem, section: CollectionSection?) {
-        self.onSubscribe(self)
+        self.onButton0(self)
     }
     
     func onVideoFocused(_ video: VideoModel) {
@@ -179,124 +182,65 @@ class ShowDetailsVC: CollectionContainerVC {
         }
     }
     
-    @IBAction func onSubscribe(_ sender: AnyObject) { // Buttons: [✓] [ ] [ ]
-        let resume = requiresResumeButton()
-        
-        if self.selectedVideo.subscriptionRequired == false {
-            self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: resume)
+    @IBAction func onButton0(_ sender: AnyObject) { // Buttons: [✓] [ ] [ ] [ ]
+        self.handleButtonType(self.currentButtonTypes[0])
+    }
+    
+    @IBAction func onButton1(_ sender: AnyObject) { // Buttons: [ ] [✓] [ ] [ ]
+        self.handleButtonType(self.currentButtonTypes[1])
+    }
+    
+    @IBAction func onButton2(_ sender: AnyObject) { // Buttons: [ ] [ ] [✓] [ ]
+        self.handleButtonType(self.currentButtonTypes[2])
+    }
+    
+    @IBAction func onButton3(_ sender: AnyObject) { // Buttons: [ ] [ ] [ ] [✓]
+        self.handleButtonType(self.currentButtonTypes[3])
+    }
+    
+    fileprivate func handleButtonType(_ type: ButtonType) {
+        switch type {
+        case .resume:
+            self.handleResume()
+        case .play:
+            self.handlePlay()
+        case .subscribe:
+            self.handleSubscribe()
+        case .watchAdFree:
+            self.handleSubscribe()
+        case .favorite:
+            self.handleFavorites()
+        }
+    }
+
+    fileprivate func handleResume() {
+        self.playVideo(self.selectedVideo, playlist: self.videos)
+    }
+
+    fileprivate func handlePlay() {
+        self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: false)
+    }
+    
+    fileprivate func handleSubscribe() {
+        if Const.kNativeSubscriptionEnabled {
+            if !InAppPurchaseManager.sharedInstance.lastSubscribeStatus {
+                let purchaseVC = self.storyboard?.instantiateViewController(withIdentifier: "PurchaseVC") as! PurchaseVC
+                
+                InAppPurchaseManager.sharedInstance.requestProducts({ _ in
+                    NotificationCenter.default.addObserver(self,
+                                                           selector: #selector(ShowDetailsVC.onPurchased),
+                                                           name: NSNotification.Name(rawValue: InAppPurchaseManager.kPurchaseCompleted),
+                                                           object: nil)
+                    self.navigationController?.present(purchaseVC, animated: true, completion: nil)
+                })
+            }
         }
         else {
-            if Const.kNativeSubscriptionEnabled == true {
-                if !InAppPurchaseManager.sharedInstance.lastSubscribeStatus {
-                    let purchaseVC = self.storyboard?.instantiateViewController(withIdentifier: "PurchaseVC") as! PurchaseVC
-                    
-                    InAppPurchaseManager.sharedInstance.requestProducts({ _ in
-                        NotificationCenter.default.addObserver(self,
-                                                               selector: #selector(ShowDetailsVC.onPurchased),
-                                                               name: NSNotification.Name(rawValue: InAppPurchaseManager.kPurchaseCompleted),
-                                                               object: nil)
-                        self.navigationController?.present(purchaseVC, animated: true, completion: nil)
-                    })
-                }
-                else {
-                    self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: resume)
-                }
-            }
-            else {
-                // Zype subcription here
-                self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: resume)
-            }
+            ZypeUtilities.presentLoginVC(self)
         }
     }
     
-    @IBAction func onFavorites(_ sender: AnyObject) { // Buttons: [ ] [✓] [ ]
-        if self.selectedVideo != nil {
-            if requiresResumeButton() {
-                self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: false)
-            }
-            else {
-                self.favoritesPressed()
-            }
-        }
-    }
-    
-    @IBAction func onResume(_ sender: AnyObject) { // Buttons: [ ] [ ] [✓]
-        if self.selectedVideo != nil {
-            if requiresResumeButton() {
-                self.favoritesPressed()
-            }
-        }
-    }
-    
-    // MARK: - Buttons
-    
-    fileprivate func refreshButtons() {
-        guard self.selectedVideo != nil else { return }
-        
-        if self.selectedVideo.subscriptionRequired {
-            if Const.kNativeSubscriptionEnabled {
-                if InAppPurchaseManager.sharedInstance.lastSubscribeStatus {
-                    self.refreshPlayableButtons()
-                }
-                else {
-                    self.refreshUnplayableButtons()
-                }
-            }
-            else { // Native not enabled
-                if ZypeUtilities.isDeviceLinked() {
-                    self.refreshPlayableButtons()
-                }
-                else {
-                    self.refreshUnplayableButtons()
-                }
-            }
-        }
-        else { // Subscription not required
-            self.refreshPlayableButtons()
-        }
-    }
-    
-    fileprivate func refreshPlayableButtons() {
-        if requiresResumeButton() {
-            self.resumeButton.isHidden = false
-            self.loadFavoritesButton(for: self.resumeLabel, and: self.resumeButton)
-            self.favoriteLabel.text = "Play"
-            self.favoritesButton.setBackgroundImage(UIImage(named: "Subscribed"), for: .normal)
-            self.subscribeLabel.text = "Resume"
-            self.subscribeButton.setBackgroundImage(UIImage(named: "Resume"), for: .normal)
-        }
-        else {
-            self.resumeButton.isHidden = true
-            self.resumeLabel.text = ""
-            self.loadFavoritesButton(for: self.favoriteLabel, and: self.favoritesButton)
-            self.subscribeLabel.text = "Play"
-            self.subscribeButton.setBackgroundImage(UIImage(named: "Subscribed"), for: .normal)
-        }
-    }
-    
-    fileprivate func refreshUnplayableButtons() { // requires subscription to play
-        self.subscribeButton.setBackgroundImage(UIImage(named: "SubscribeFocused"), for: .normal)
-        self.subscribeLabel.text = localized("ShowDetails.SubscribeButton")
-        self.loadFavoritesButton(for: self.favoriteLabel, and: favoritesButton)
-        self.resumeButton.isHidden = true
-        self.resumeLabel.text = ""
-    }
-    
-    fileprivate func requiresResumeButton() -> Bool {
-        if let _ = userDefaults.object(forKey: "\(selectedVideo.getId())") {
-            if !self.selectedVideo.onAir {
-                return true
-            }
-        }
-        return false
-    }
-    
-    fileprivate func loadFavoritesButton(for label: UILabel, and button: FocusableButton) {
-        label.text = localized(self.selectedVideo.isInFavorites() ? "ShowDetails.Unfavorite" : "ShowDetails.Favorite")
-        button.setBackgroundImage(UIImage(named: self.selectedVideo.isInFavorites() ? "FavoritesRemoveFocused" : "FavoritesAddFocused"), for: .normal)
-    }
-    
-    fileprivate func favoritesPressed() {
+    fileprivate func handleFavorites() {
         if Const.kFavoritesViaAPI {
             guard ZypeAppleTVBase.sharedInstance.consumer?.isLoggedIn == true else {
                 ZypeUtilities.presentLoginVC(self)
@@ -318,7 +262,125 @@ class ShowDetailsVC: CollectionContainerVC {
         self.refreshButtons()
     }
     
+    // MARK: - Buttons
+    
+    fileprivate func refreshButtons() {
+        self.getCurrentActionables()
+        for each in self.actionables {
+            each.button.isHidden = true
+            each.label.isHidden = true
+        }
+        
+        for i in 0..<self.currentButtonTypes.count {
+            let action = self.currentButtonTypes[i]
+            let actionable = self.actionables[i]
+            
+            actionable.button.isHidden = false
+            actionable.label.isHidden = false
+            
+            switch action {
+            case .resume:
+                actionable.button.setBackgroundImage(UIImage(named: "Resume"), for: .normal)
+                actionable.label.text = localized("ShowDetails.Resume")
+            case .play:
+                actionable.button.setBackgroundImage(UIImage(named: "Subscribed"), for: .normal)
+                actionable.label.text = localized("ShowDetails.SubscribedButton")
+            case .subscribe:
+                actionable.button.setBackgroundImage(UIImage(named: "SubscribeFocused"), for: .normal)
+                actionable.label.text = localized("ShowDetails.SubscribeButton")
+            case .watchAdFree:
+                actionable.button.setBackgroundImage(UIImage(named: "SubscribeFocused"), for: .normal)
+                actionable.label.text = localized("ShowDetails.SubscribeToWatchAdFree")
+            case .favorite:
+                actionable.button.setBackgroundImage(UIImage(named: self.selectedVideo.isInFavorites() ? "FavoritesRemoveFocused" : "FavoritesAddFocused"), for: .normal)
+                actionable.label.text = localized(self.selectedVideo.isInFavorites() ? "ShowDetails.Unfavorite" : "ShowDetails.Favorite")
+            }
+        }
+        
+    }
+    
+    fileprivate func requiresResumeButton() -> Bool {
+        if let _ = userDefaults.object(forKey: "\(selectedVideo.getId())") {
+            if !self.selectedVideo.onAir {
+                return true
+            }
+        }
+        return false
+    }
+    
     func onPurchased() {
         self.dismiss(animated: true, completion: nil)
     }
+    
+}
+
+
+extension ShowDetailsVC {
+    struct Actionable {
+        var button: FocusableButton
+        var label: UILabel
+    }
+    
+    fileprivate func createActionables() {
+        let actionable0 = Actionable(button: button0, label: label0)
+        let actionable1 = Actionable(button: button1, label: label1)
+        let actionable2 = Actionable(button: button2, label: label2)
+        let actionable3 = Actionable(button: button3, label: label3)
+        
+        actionables = [actionable0, actionable1, actionable2, actionable3]
+    }
+    
+    enum ButtonType {
+        case resume
+        case play
+        case subscribe
+        case watchAdFree
+        case favorite
+    }
+    
+    func getCurrentActionables() {
+        var buttons = [ButtonType]()
+        
+        if requiresResumeButton() {
+            buttons.append(.resume)
+        }
+        
+        let playButton = getPlaySubscribeButton()
+        if playButton == .subscribe {
+            buttons = []
+        }
+        buttons.append(playButton)
+        
+        if requiresSwafButton() {
+            buttons.append(.watchAdFree)
+        }
+        
+        buttons.append(.favorite)
+        
+        self.currentButtonTypes = buttons
+    }
+    
+    func getPlaySubscribeButton() -> ButtonType {
+        if selectedVideo.subscriptionRequired {
+            if Const.kNativeSubscriptionEnabled {
+                if InAppPurchaseManager.sharedInstance.lastSubscribeStatus {
+                    return .subscribe
+                }
+            }
+            else {
+                if !ZypeUtilities.isDeviceLinked() {
+                    return .subscribe
+                }
+            }
+        }
+        return .play
+    }
+    
+    func requiresSwafButton() -> Bool {
+        guard !Const.kNativeSubscriptionEnabled else { return false }
+        guard Const.kSubscribeToWatchAdFree else { return false }
+        guard !ZypeUtilities.isDeviceLinked() else { return false }
+        return true
+    }
+
 }

@@ -354,7 +354,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" backgroundImage="Subscribe"/>
                                                 <connections>
-                                                    <action selector="onSubscribe:" destination="QVW-Vl-rtx" eventType="primaryActionTriggered" id="i30-9K-87D"/>
+                                                    <action selector="onButton0:" destination="QVW-Vl-rtx" eventType="primaryActionTriggered" id="EGx-O9-TDD"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="kB2-gZ-9oS" customClass="FocusableButton" customModule="AndreySandbox" customModuleProvider="target">
@@ -363,11 +363,11 @@
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" backgroundImage="FavoritesAdd"/>
                                                 <connections>
-                                                    <action selector="onFavorites:" destination="QVW-Vl-rtx" eventType="primaryActionTriggered" id="G7L-Ga-Lct"/>
+                                                    <action selector="onButton1:" destination="QVW-Vl-rtx" eventType="primaryActionTriggered" id="e9v-Lv-Xs6"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bTn-j7-y56" customClass="StyledLabel" customModule="AndreySandbox" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="100" width="150" height="29"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Subscribe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bTn-j7-y56" customClass="StyledLabel" customModule="AndreySandbox" customModuleProvider="target">
+                                                <rect key="frame" x="-5" y="100" width="160" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <nil key="textColor"/>
@@ -380,7 +380,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Favorite" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dSI-Rh-6hd" customClass="StyledLabel" customModule="AndreySandbox" customModuleProvider="target">
-                                                <rect key="frame" x="170" y="100" width="150" height="29"/>
+                                                <rect key="frame" x="165" y="100" width="160" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <nil key="textColor"/>
@@ -397,11 +397,32 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
-                                                    <action selector="onResume:" destination="QVW-Vl-rtx" eventType="primaryActionTriggered" id="R6Z-l8-W9d"/>
+                                                    <action selector="onButton2:" destination="QVW-Vl-rtx" eventType="primaryActionTriggered" id="8rO-Pd-4kT"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HMU-Nx-YEH" customClass="StyledLabel" customModule="AndreySandbox" customModuleProvider="target">
-                                                <rect key="frame" x="340" y="100" width="150" height="29"/>
+                                                <rect key="frame" x="335" y="100" width="160" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <size key="shadowOffset" width="1" height="1"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                                        <integer key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="WWg-Ed-Y7N" customClass="FocusableButton" customModule="AndreySandbox" customModuleProvider="target">
+                                                <rect key="frame" x="510" y="10" width="150" height="84"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                                <connections>
+                                                    <action selector="onButton3:" destination="QVW-Vl-rtx" eventType="primaryActionTriggered" id="xnk-VA-hdZ"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r4K-wm-x4x" customClass="StyledLabel" customModule="AndreySandbox" customModuleProvider="target">
+                                                <rect key="frame" x="505" y="100" width="160" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <nil key="textColor"/>
@@ -446,20 +467,22 @@
                     </view>
                     <connections>
                         <outlet property="bottomBarView" destination="3yy-ku-ozB" id="AES-ik-5Pr"/>
+                        <outlet property="button0" destination="Gr6-o5-BOz" id="xUP-Ix-YBV"/>
+                        <outlet property="button1" destination="kB2-gZ-9oS" id="a1X-s8-RLJ"/>
+                        <outlet property="button2" destination="Z0r-qp-3g1" id="iGh-6e-YbD"/>
+                        <outlet property="button3" destination="WWg-Ed-Y7N" id="Yhq-Gp-u4t"/>
                         <outlet property="containerView" destination="q49-b9-37Z" id="IF3-3u-rvV"/>
                         <outlet property="descriptionLabel" destination="Cxd-tF-0RV" id="ZiN-Zd-V2d"/>
                         <outlet property="descriptionView" destination="4To-KK-0YS" id="pK6-VK-4aZ"/>
                         <outlet property="detailsView" destination="GmF-HL-8Sq" id="yR4-rb-Xvz"/>
                         <outlet property="episodesCountLabel" destination="6lY-nt-SuW" id="5EK-zD-12f"/>
-                        <outlet property="favoriteLabel" destination="dSI-Rh-6hd" id="9N8-cL-PBj"/>
-                        <outlet property="favoritesButton" destination="kB2-gZ-9oS" id="BMH-E8-5bw"/>
+                        <outlet property="label0" destination="bTn-j7-y56" id="an2-p8-Wd9"/>
+                        <outlet property="label1" destination="dSI-Rh-6hd" id="e6r-74-MuN"/>
+                        <outlet property="label2" destination="HMU-Nx-YEH" id="3yV-bt-5qM"/>
+                        <outlet property="label3" destination="r4K-wm-x4x" id="8K4-mm-ZNi"/>
                         <outlet property="labelsView" destination="hhs-yQ-xcJ" id="nPl-A3-hEL"/>
                         <outlet property="posterImage" destination="cDg-pl-fwV" id="0Zj-Ys-93W"/>
-                        <outlet property="resumeButton" destination="Z0r-qp-3g1" id="SVa-6e-Dhm"/>
-                        <outlet property="resumeLabel" destination="HMU-Nx-YEH" id="pGH-Qb-ufI"/>
                         <outlet property="subTitleLabel" destination="wkv-cB-oiB" id="cnv-pl-gEp"/>
-                        <outlet property="subscribeButton" destination="Gr6-o5-BOz" id="gOl-Ak-jEJ"/>
-                        <outlet property="subscribeLabel" destination="bTn-j7-y56" id="XiO-pL-TnS"/>
                         <outlet property="titleLabel" destination="e12-YQ-hF7" id="ALd-vU-SdG"/>
                     </connections>
                 </viewController>
@@ -531,7 +554,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="BaseCollectionVC" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="6Pp-yV-woX" customClass="BaseCollectionVC" customModule="AndreySandbox" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="CX6-6d-zQs">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="450"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aF6-sY-Nvx">
                             <size key="itemSize" width="500" height="500"/>
@@ -540,7 +563,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="vP8-eg-LL0">
-                            <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                            <rect key="frame" x="0.0" y="-315" width="1920" height="1080"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <cells>
@@ -660,6 +683,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="yeN-qd-JmN"/>
+        <segue reference="a18-Ts-CvM"/>
     </inferredMetricsTieBreakers>
 </document>

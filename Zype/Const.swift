@@ -29,6 +29,7 @@ class Const: NSObject {
     static let kLimitLivestreamEnabled = false
     static let kFavoritesViaAPI = false
     static let kLockIcons = false
+    static let kSubscribeToWatchAdFree = false
     static let kAppStyleLight = true
     
     static let kBaseSectionInsets: UIEdgeInsets = UIEdgeInsets(top: 50, left: 90, bottom: 50, right: 90)
