@@ -5,11 +5,13 @@
 "ShowDetails.Favorite" = "Favorite";
 "ShowDetails.Unfavorite" = "Unfavorite";
 "ShowDetails.FavoriteLoginNeeded" = "Please login before making video favorite";
+"ShowDetails.Resume" = "Resume";
 "ShowDetails.SubscribeButton" = "Subscribe";
 "ShowDetails.SubscribedButton" = "Play";
 "ShowDetails.EpisodesCount" = "%d Episodes";
 "ShowDetails.Episode" = "%d Episode";
 "ShowDetails.SubscribeLoginNeeded" = "Please login before subscribing";
+"ShowDetails.SubscribeToWatchAdFree" = "Watch Ad Free";
 
 "Favorites.TabTitle" = "Favorites";
 "Favorites.Title" = "Favorites";
