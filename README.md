@@ -11,16 +11,16 @@ This SDK allows you to set up an eye-catching, easy to use Apple TV video stream
 - Live Streaming videos
 - Video Favorites 
 - Dynamic theme colors
+- Resume watch functionality
 
 ## Unsupported Features
 
-- Midroll ads
-- Closed Caption Support
-- Resume watch functionality
+- Closed Caption Support 
 
 ## Monetizations Supported
 
 - Pre-roll Ads (VAST)
+- Midroll ads (VAST)
 - Native SVOD via In App Purchases
 - Universal SVOD via login
 
@@ -67,7 +67,7 @@ For the versions available, see the [tags on this repository](https://github.com
 * **Andrey Kasatkin** - *Initial work* - [Svetliy](https://github.com/svetdev)
 * **Khurshid Fayzullaev** - *Native In-App subscription* - [khfayzullaev](https://github.com/khfayzullaev)
 * **Jeremy Kay** - *Zype platform integration* - [jeremykay](https://github.com/jeremykay)
-
+* **Eric Chang** - *Native to Universal subscription, midroll ads* - [Promulgate](https://github.com/Promulgate)
 See also the list of [contributors](https://github.com/zype/zype-ios/graphs/contributors) who participated in this project.
 
 ## License
