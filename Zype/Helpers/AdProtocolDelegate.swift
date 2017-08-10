@@ -44,16 +44,14 @@ extension PlayerVC: AdHelperProtocol {
                 }
             }
         }
-        _ = self.adsData.sorted(by: { $0.offset! < $1.offset! })
+        _ = self.adsData.sorted(by: { $0.offset! < $1.offset! }) // sort for midroll
         
-        if self.adsData.count > 0 {
-            let prerollAds = self.adsData.filter({ $0.offset == 0 })
-            let prerollAd = prerollAds[0]
-            adsArray.add(DVVideoPlayBreak.playBreakBeforeStart(withAdTemplateURL: URL(string: prerollAd.tag!)))
+        guard adsData.count > 0 else { return adsArray }
+        
+        if adsData[0].offset == 0 {
+            adsArray.add(DVVideoPlayBreak.playBreakBeforeStart(withAdTemplateURL: URL(string: adsData[0].tag!)))
         }
-        else {
-            adsArray = NSMutableArray()
-        }
+        
         return adsArray
     }
     
