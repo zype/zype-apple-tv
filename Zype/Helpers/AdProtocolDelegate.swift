@@ -26,7 +26,7 @@ protocol AdHelperProtocol: class {
 extension PlayerVC: AdHelperProtocol {
     
     func getAdsFromResponse(_ playerObject: VideoObjectModel?) -> NSMutableArray {
-        var adsArray = NSMutableArray()
+        let adsArray = NSMutableArray()
         if let body = playerObject?.json?["response"]?["body"] as? NSDictionary {
             if let advertising = body["advertising"] as? NSDictionary{
                 let schedule = advertising["schedule"] as? NSArray
@@ -48,9 +48,7 @@ extension PlayerVC: AdHelperProtocol {
         
         guard adsData.count > 0 else { return adsArray }
         
-        if adsData[0].offset == 0 {
-            adsArray.add(DVVideoPlayBreak.playBreakBeforeStart(withAdTemplateURL: URL(string: adsData[0].tag!)))
-        }
+        adsArray.add(DVVideoPlayBreak.playBreakBeforeStart(withAdTemplateURL: URL(string: adsData[0].tag!)))
         
         return adsArray
     }
@@ -254,16 +252,16 @@ extension PlayerVC: AdHelperProtocol {
             let offset = Int(offsetMSeconds) / 1000
             let currentTime = Int(CMTimeGetSeconds(time))
             
-            if currentTime > offset + 4 { // user seeked passed this ad - 4 seconds to compensate for the + 2 below
+            if currentTime > offset + 2 { // user seeked passed this ad - 4 seconds to compensate for the + 2 below
                 self.currentAd += 1
             }
-            if currentTime == offset + 2 { // 2 seconds added to offset to save most relevant 10 second chunk
+            if currentTime == offset + 1 { // 2 seconds added to offset to save most relevant 10 second chunk
                 self.playMidrollAds()
             }
         }
         self.timeObserverToken = adTimer
     }
-    
+
     func playMidrollAds() {
         self.playerController.player?.pause()
         self.playAds(adsArray: self.adsArray!, url: self.url!)
