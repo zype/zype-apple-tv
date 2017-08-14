@@ -44,7 +44,7 @@ extension PlayerVC: AdHelperProtocol {
                 }
             }
         }
-        _ = self.adsData.sorted(by: { $0.offset! < $1.offset! }) // sort for midroll
+        self.adsData = self.adsData.sorted(by: { $0.offset! > $1.offset! }) // sort for midroll
         
         guard adsData.count > 0 else { return adsArray }
         
@@ -243,17 +243,17 @@ extension PlayerVC: AdHelperProtocol {
     
     func observeTimerForMidrollAds() {
         let adTimer = self.playerController.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main) { (time) in
-            guard self.currentAd < self.adsData.count else {
+            guard self.adsData.count > 0 else {
                 self.removePeriodicTimeObserver()
                 return
             }
             
-            guard let offsetMSeconds = self.adsData[self.currentAd].offset else { return }
+            guard let offsetMSeconds = self.adsData.last!.offset else { return }
             let offset = Int(offsetMSeconds) / 1000
             let currentTime = Int(CMTimeGetSeconds(time))
             
             if currentTime > offset + 2 { // user seeked passed this ad - 4 seconds to compensate for the + 2 below
-                self.currentAd += 1
+                _ = self.adsData.popLast()
             }
             if currentTime == offset + 1 { // 2 seconds added to offset to save most relevant 10 second chunk
                 self.playMidrollAds()
@@ -265,7 +265,7 @@ extension PlayerVC: AdHelperProtocol {
     func playMidrollAds() {
         self.playerController.player?.pause()
         self.playAds(adsArray: self.adsArray!, url: self.url!)
-        self.currentAd += 1
+        _ = self.adsData.popLast()
     }
     
     func removePeriodicTimeObserver() {
