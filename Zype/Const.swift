@@ -25,12 +25,17 @@ class Const: NSObject {
     
     static let kStoreURL = URL(string: "https://buy.itunes.apple.com/verifyReceipt")!
     //static let kStoreURL = URL(string: "https://sandbox.itunes.apple.com/verifyReceipt")! // for testing only
+    
+    // MARK: - Feature Flags
+    
     static let kNativeSubscriptionEnabled = false
     static let kLimitLivestreamEnabled = false
     static let kFavoritesViaAPI = false
     static let kLockIcons = false
     static let kSubscribeToWatchAdFree = false
-    static let kAppStyleLight = true
+    static let kNativeToUniversal = false
+    
+    // MARK: - UI Constants
     
     static let kBaseSectionInsets: UIEdgeInsets = UIEdgeInsets(top: 50, left: 90, bottom: 50, right: 90)
     static let kCollectionCellSize: CGSize = CGSize(width: 308, height: 220)
@@ -44,12 +49,16 @@ class Const: NSObject {
     static let kCollectionSectionHeaderBottomMargin: CGFloat = 25.0
     static let kCollectionPagerHorizontalSpacing: CGFloat = 20.0
     static let kScrollableTextVCMaskInsets: UIEdgeInsets = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0)
-    static let kFavoritesKey = "Favorites"
     
+    // MARK: - String Constants
+    
+    static let kFavoritesKey = "Favorites"
     static let kDefaultsRootPlaylistId = "root_playlist_id"
     static let kDefaultsBackgroundUrl = "background_url"
+    static let kAppVersion = "1.1.5"
     
-    //Segues
+    // MARK: - Segues
+    
     static let kShowTabBarSegueId = "ShowTabBar"
     
 }
