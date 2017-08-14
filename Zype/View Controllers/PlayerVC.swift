@@ -159,16 +159,15 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
                 self.playerURL = url as URL!
                 self.adsArray = adsArray
                 self.url = url
+                self.currentVideo = model
 
-//                if adsArray.count > 0 && self.adsData[0].offset == 0 { // check for preroll
-//                    self.playAds(adsArray: adsArray, url: url)
-//                }
-//                else {
-                    self.currentVideo = model
+                if adsArray.count > 0 && self.adsData.last?.offset == 0 { // check for preroll
+                    self.playAds(adsArray: adsArray, url: url)
+                    _ = self.adsData.popLast()
+                }
+                else {
                     self.setupVideoPlayer()
-//                }
-                
-                // self.currentVideo = model
+                }
             }
             else {
                 self.navigationController?.popViewController(animated: true)
@@ -222,7 +221,13 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     func resumePlayingFromAds() {
         self.removeAdPlayer()
         NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.playerController.player?.currentItem)
-        self.playerController.player?.play()
+        
+        if let player = self.playerController.player {
+            player.play()
+        }
+        else {
+            setupVideoPlayer()
+        }
     }
     
     func contentDidFinishPlaying(_ notification: Notification) {
