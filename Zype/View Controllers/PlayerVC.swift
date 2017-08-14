@@ -50,7 +50,6 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     var currentVideo: VideoModel!
     var adsData: [adObject] = [adObject]()
     var adTimer: Timer!
-    var currentAd = 0
     var currentTime: CMTime!
     
     var userDefaults = UserDefaults.standard
@@ -230,7 +229,6 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
         // Make sure we don't call contentComplete as a result of an ad completing.
         if ((notification.object as! AVPlayerItem) == self.playerController.player!.currentItem) {
             userDefaults.removeObject(forKey: self.currentVideo.getId())
-            self.currentAd = 1
             
             self.playerController.removeFromParentViewController()
             self.playerController.view.removeFromSuperview()
