@@ -50,7 +50,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     var currentVideo: VideoModel!
     var adsData: [adObject] = [adObject]()
     var adTimer: Timer!
-    var currentAd = 1
+    var currentAd = 0
     var currentTime: CMTime!
     
     var userDefaults = UserDefaults.standard
@@ -156,20 +156,20 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
             if let _ = playerObject, let videoURL = playerObject?.videoURL, let url = NSURL(string: videoURL), error == nil {
                 
                 self.validateEntitlement(for: playerObject)
-
                 let adsArray = self.getAdsFromResponse(playerObject)
                 self.playerURL = url as URL!
                 self.adsArray = adsArray
                 self.url = url
-                
-                if adsArray.count == 0 {
+
+//                if adsArray.count > 0 && self.adsData[0].offset == 0 { // check for preroll
+//                    self.playAds(adsArray: adsArray, url: url)
+//                }
+//                else {
                     self.currentVideo = model
                     self.setupVideoPlayer()
-                }
-                else {
-                    self.playAds(adsArray: adsArray, url: url)
-                }
-                self.currentVideo = model
+//                }
+                
+                // self.currentVideo = model
             }
             else {
                 self.navigationController?.popViewController(animated: true)
@@ -205,7 +205,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
         
-        if self.adsData.count > 1 {
+        if self.adsData.count > 0 {
             self.observeTimerForMidrollAds()
         }
         
@@ -223,13 +223,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     func resumePlayingFromAds() {
         self.removeAdPlayer()
         NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.playerController.player?.currentItem)
-        
-        if self.currentAd > 1 {
-            self.playerController.player?.play()
-        }
-        else {
-            self.setupVideoPlayer()
-        }
+        self.playerController.player?.play()
     }
     
     func contentDidFinishPlaying(_ notification: Notification) {
@@ -265,5 +259,5 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     func player(_ player: DVIABPlayer!, didFail playBreak:DVVideoPlayBreak!, withError:Error ) {
         print("did fail playback")
     }
-    
+
 }
