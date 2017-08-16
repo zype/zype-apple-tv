@@ -22,7 +22,7 @@ class TabBarVC: UITabBarController {
         setupBackgroundImage()
         
         NotificationCenter.default.addObserver(self, selector: #selector(modifyTabs), name: NSNotification.Name(rawValue: kZypeReloadScreenNotification), object: nil)
-        
+        modifyTabs()
     }
     
     func setupBackgroundImage() {
@@ -47,15 +47,16 @@ class TabBarVC: UITabBarController {
     }
     
     func modifyTabs() {
-        if (ZypeAppleTVBase.sharedInstance.consumer?.isLoggedIn == true){
+        if ZypeAppleTVBase.sharedInstance.consumer?.isLoggedIn == true {
             self.addLogoutScreen()
-        } else {
+        }
+        else {
             self.removeLogoutScreen()
         }
     }
     
     func addLogoutScreen() {
-        if (ZypeAppleTVBase.sharedInstance.consumer?.isLoggedIn == true){
+        if ZypeAppleTVBase.sharedInstance.consumer?.isLoggedIn == true {
             let logoutVC = ZypeUtilities.getLogoutVC()
             if (logoutVC != nil) {
                 self.viewControllers?.append(logoutVC!)
@@ -73,7 +74,7 @@ class TabBarVC: UITabBarController {
             }
         }
         
-        if (needToBeRemoved) {
+        if needToBeRemoved {
             // self.tabBar.selectedItem = self.tabBar.items![0]
             self.selectedIndex = 0
             self.viewControllers?.removeLast()
