@@ -15,13 +15,15 @@ class SplashScreenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         loadAppInfo()
+        ZypeUtilities.loginUser() { (result: String) in
+            loadAppInfo()
+        }
     }
     
     
     func loadAppInfo() {
         ZypeAppleTVBase.sharedInstance.getAppInfo(QueryBaseModel(), completion: {(backgroundUrl, featuredPlaylistId, error) in
-            if (featuredPlaylistId != nil) {
+            if featuredPlaylistId != nil {
                 UserDefaults.standard.set(featuredPlaylistId, forKey: Const.kDefaultsRootPlaylistId)
                 UserDefaults.standard.synchronize()
             }
@@ -30,7 +32,7 @@ class SplashScreenVC: UIViewController {
                 UserDefaults.standard.set(backgroundUrl, forKey: Const.kDefaultsBackgroundUrl)
                 UserDefaults.standard.synchronize()
             }
-          
+            
             self.loadAppSettings() // load app settings will be exectuded on the background
             self.transitionToTabBar()
         })
@@ -51,14 +53,12 @@ class SplashScreenVC: UIViewController {
             }
         })
         
-        ZypeUtilities.loginUser() {
-            (result: String) in
-            NotificationCenter.default.post(name: Notification.Name(rawValue: kZypeReloadScreenNotification), object: nil)
-        }
-
         if Const.kLimitLivestreamEnabled {
             ZypeUtilities.loadLimitLivestreamZObject()
         }
+        
+        let defaults = UserDefaults.standard
+        defaults.setValue(Const.kFavoritesViaAPI, forKey: "favoritesViaAPI")
     }
     
     func parseResponse(tvOSSettings: ZobjectModel) {

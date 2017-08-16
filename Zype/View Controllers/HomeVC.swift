@@ -33,9 +33,6 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         self.navigationController?.delegate = self
         self.reloadButton.setTitle(localized("Home.ReloadButton"), for: UIControlState())
         
-        let defaults = UserDefaults.standard
-        defaults.setValue(Const.kFavoritesViaAPI, forKey: "favoritesViaAPI")
-        
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name(rawValue: "ready_to_load_playlists"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCollection), name: NSNotification.Name(rawValue: kZypeReloadScreenNotification), object: nil)
     }
@@ -90,15 +87,14 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         }
         
         ZypeAppleTVBase.sharedInstance.getPlaylists(queryModel, completion: {[unowned self] (playlists: Array<PlaylistModel>?, error: NSError?) in
-            if(error == nil && playlists != nil) {
+            if error == nil && playlists != nil {
                 self.playlists = playlists!
                 
                 self.getFeaturedVideos(callback: {[unowned self] in
                     self.fillSections()
-                })
-                
-                
-            } else {
+                })    
+            }
+            else {
                 self.fillSections()
                 self.showErrorInfo(error?.localizedDescription)
             }
