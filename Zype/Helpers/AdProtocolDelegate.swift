@@ -113,8 +113,6 @@ extension PlayerVC: AdHelperProtocol {
         
         //this is called when there are ad tags, but they don't return any ads
         NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.resumePlayingFromAds), name: NSNotification.Name(rawValue: "noAdsToPlay"), object: nil)
-        
-        //NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.adPlayer!.contentPlayerItem)
     }
     
     func setupAdTimer() {
