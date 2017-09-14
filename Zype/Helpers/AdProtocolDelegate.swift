@@ -48,7 +48,7 @@ extension PlayerVC: AdHelperProtocol {
         
         guard adsData.count > 0 else { return adsArray }
         
-        adsArray.add(DVVideoPlayBreak.playBreakBeforeStart(withAdTemplateURL: URL(string: adsData[0].tag!)))
+        adsArray.add(DVVideoPlayBreak.playBreakBeforeStart(withAdTemplateURL: URL(string: adsData.last!.tag!)))
         
         return adsArray
     }
@@ -262,6 +262,11 @@ extension PlayerVC: AdHelperProtocol {
 
     func playMidrollAds() {
         self.playerController.player?.pause()
+        
+        //reset ad that should play
+        self.adsArray?.removeAllObjects()
+        self.adsArray?.add(DVVideoPlayBreak.playBreakBeforeStart(withAdTemplateURL: URL(string: self.adsData.last!.tag!)))
+        
         self.playAds(adsArray: self.adsArray!, url: self.url!)
         _ = self.adsData.popLast()
     }
