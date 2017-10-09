@@ -43,6 +43,7 @@ class Const: NSObject {
     static let kCollectionHorizontalSpacing: CGFloat = 50.0
     static let kCollectionVerticalSpacing: CGFloat = 50.0
     static let kCollectionSectionHeaderHeight: CGFloat = 45.0
+    static let kSubscribeButtonHorizontalSpacing: CGFloat = 70.0
     static let kCollectionPagerCellSize: CGSize = CGSize(width: 1920, height: 700) //1450 x 630 or 1740 x 490
     
     static let kCollectionPagerVCBottomMargin: CGFloat = 70.0
