@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="AppleTV" propertyAccessControl="none" colorMatched="YES" initialViewController="y8r-a1-i1C">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="13196" targetRuntime="AppleTV" propertyAccessControl="none" colorMatched="YES" initialViewController="y8r-a1-i1C">
     <device id="appleTV" orientation="landscape">
         <adaptation id="light"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="tvOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +15,6 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="xzF-oj-98R" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Hooplakidz Home" id="pJZ-Vw-Pfb"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KMU-Ue-Ka9">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -33,7 +33,6 @@
                     <tabBarItem key="tabBarItem" title="Search" id="DOW-9B-O11"/>
                     <simulatedTabBarMetrics key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="21F-ve-TDn">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -75,7 +74,6 @@
                 <navigationController storyboardIdentifier="FavoritesNavigationVC" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" navigationBarHidden="YES" id="w5d-bj-FQ9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Favorites" id="FDB-Us-1eB"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ayg-AG-lrB">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -243,26 +241,11 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rDA-bl-jZa">
-                                        <rect key="frame" x="83" y="249" width="582" height="305"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" id="n4J-qG-EsO">
+                                        <rect key="frame" x="-160" y="342" width="1715" height="237"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.80000001190000003" green="0.40000000600000002" blue="1" alpha="0.47578660102739728" colorSpace="calibratedRGB"/>
-                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                        <state key="normal" title="1 Month - $0.99"/>
-                                        <connections>
-                                            <action selector="onPlanSelected:" destination="Mez-m6-YQ6" eventType="primaryActionTriggered" id="OC8-J3-hRA"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="89L-rZ-SoH">
-                                        <rect key="frame" x="747" y="249" width="564" height="305"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.80000001190000003" green="0.40000000600000002" blue="1" alpha="0.4783550941780822" colorSpace="calibratedRGB"/>
-                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                        <state key="normal" title="1 Year - $5.99"/>
-                                        <connections>
-                                            <action selector="onPlanSelected:" destination="Mez-m6-YQ6" eventType="primaryActionTriggered" id="qfx-8D-TkT"/>
-                                        </connections>
-                                    </button>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -297,10 +280,9 @@
                     </view>
                     <connections>
                         <outlet property="accountLabel" destination="sNZ-bI-uix" id="uDh-jl-diT"/>
+                        <outlet property="containerView" destination="n4J-qG-EsO" id="63u-Nx-1j4"/>
                         <outlet property="loginButton" destination="mpw-3x-8Th" id="bGC-sm-bea"/>
                         <outlet property="logoImageView" destination="mtX-1i-Maj" id="6kd-K3-414"/>
-                        <outletCollection property="subscriptionButtons" destination="rDA-bl-jZa" collectionClass="NSMutableArray" id="1c3-qJ-COA"/>
-                        <outletCollection property="subscriptionButtons" destination="89L-rZ-SoH" collectionClass="NSMutableArray" id="bKL-EY-zE9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mpk-zV-3Zs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -728,11 +710,6 @@
         <image name="Logo" width="134" height="133"/>
         <image name="Subscribe" width="180" height="100"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <nil key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
-        <simulatedScreenMetrics key="destination"/>
-    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="a18-Ts-CvM"/>
     </inferredMetricsTieBreakers>
