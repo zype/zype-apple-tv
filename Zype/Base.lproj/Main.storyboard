@@ -279,10 +279,8 @@
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="accountLabel" destination="sNZ-bI-uix" id="uDh-jl-diT"/>
                         <outlet property="containerView" destination="n4J-qG-EsO" id="63u-Nx-1j4"/>
-                        <outlet property="loginButton" destination="mpw-3x-8Th" id="bGC-sm-bea"/>
-                        <outlet property="logoImageView" destination="mtX-1i-Maj" id="6kd-K3-414"/>
+                        <outlet property="signInView" destination="Uo2-M0-D6r" id="VAs-yu-N9P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mpk-zV-3Zs" userLabel="First Responder" sceneMemberID="firstResponder"/>
