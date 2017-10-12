@@ -56,7 +56,7 @@ class Const: NSObject {
     static let kFavoritesKey = "Favorites"
     static let kDefaultsRootPlaylistId = "root_playlist_id"
     static let kDefaultsBackgroundUrl = "background_url"
-    static let kAppVersion = "1.1.8"
+    static let kAppVersion = "1.1.9"
     
     // MARK: - Segues
     
