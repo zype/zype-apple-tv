@@ -34,7 +34,7 @@ class Const: NSObject {
     static let kLockIcons = false
     static let kSubscribeToWatchAdFree = false
     static let kNativeToUniversal = false
-    static let kUniversalTvod = true
+    static let kUniversalTvod = false
     
     // MARK: - UI Constants
     
@@ -57,7 +57,7 @@ class Const: NSObject {
     static let kFavoritesKey = "Favorites"
     static let kDefaultsRootPlaylistId = "root_playlist_id"
     static let kDefaultsBackgroundUrl = "background_url"
-    static let kAppVersion = "1.1.9"
+    static let kAppVersion = "1.2.0"
     
     // MARK: - Segues
     
