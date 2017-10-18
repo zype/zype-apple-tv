@@ -22,7 +22,7 @@ class TabBarVC: UITabBarController {
         setupBackgroundImage()
         
         NotificationCenter.default.addObserver(self, selector: #selector(modifyTabs), name: NSNotification.Name(rawValue: kZypeReloadScreenNotification), object: nil)
-        modifyTabs()
+        self.loadDynamicData()
     }
     
     func setupBackgroundImage() {
@@ -44,6 +44,13 @@ class TabBarVC: UITabBarController {
         self.viewControllers?.append(aboutViewController)
         self.tabBar.items![3].title = "About"
         
+    }
+    
+    func loadDynamicData() {
+        if Const.kUniversalTvod == true {
+            self.addMyLibraryScreen()
+        }
+        self.modifyTabs()
     }
     
     func modifyTabs() {
@@ -78,6 +85,17 @@ class TabBarVC: UITabBarController {
             // self.tabBar.selectedItem = self.tabBar.items![0]
             self.selectedIndex = 0
             self.viewControllers?.removeLast()
+        }
+    }
+    
+    func addMyLibraryScreen() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let myLibraryVC = storyboard.instantiateViewController(withIdentifier: "MyLibraryVC") as? MyLibraryVC {
+            if let position = self.tabBar.items?.count {
+                //let navigationController = UINavigationController.init(rootViewController: myLibraryVC)
+                self.viewControllers?.append(myLibraryVC)
+                self.tabBar.items![position].title = "MyLibrary"
+            }
         }
     }
 }

@@ -23,6 +23,11 @@
 "Search.NothingFound" = "Nothing found";
 "Search.Placeholder" = "Enter keywords";
 
+"MyLibrary.TabTitle" = "MyLibrary";
+"MyLibrary.Title" = "MyLibrary";
+"MyLibrary.EmptyLibrary" = "You don't currently have any videos";
+"MyLibrary.LoginNeededMsg" = "Please LogIn to get My Library list";
+
 "Login.TabTitle" = "Account";
 "Login.LoginTitle" = "Login";
 "Login.LogoutTitle" = "Logout";
