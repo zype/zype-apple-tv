@@ -328,6 +328,7 @@
                     </view>
                     <connections>
                         <outlet property="containerView" destination="n4J-qG-EsO" id="63u-Nx-1j4"/>
+                        <outlet property="signInView" destination="Uo2-M0-D6r" id="VAs-yu-N9P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mpk-zV-3Zs" userLabel="First Responder" sceneMemberID="firstResponder"/>
