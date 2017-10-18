@@ -40,7 +40,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-6555" y="1329"/>
+            <point key="canvasLocation" x="-6888" y="1521"/>
         </scene>
         <!--SearchVC-->
         <scene sceneID="nBv-Zg-8D2">
@@ -66,7 +66,55 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Clz-nT-YZp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4436" y="1321"/>
+            <point key="canvasLocation" x="-4459" y="1521"/>
+        </scene>
+        <!--My LibraryVC-->
+        <scene sceneID="L66-Yi-Fp1">
+            <objects>
+                <viewController storyboardIdentifier="MyLibraryVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LHo-nA-DMa" customClass="MyLibraryVC" customModule="AndreySandbox" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uIk-MD-Nc8">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Please LogIn to get My Library list" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zu3-lu-13x" customClass="StyledLabel" customModule="AndreySandbox" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" id="0dz-93-rwK">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <segue destination="6Pp-yV-woX" kind="embed" id="rZ7-K6-AxG"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4KT-Me-5J0">
+                                <rect key="frame" x="845" y="600" width="230" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Sign In"/>
+                                <connections>
+                                    <action selector="onSignInTapped:" destination="LHo-nA-DMa" eventType="primaryActionTriggered" id="tnD-rE-sRF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="dataView" destination="0dz-93-rwK" id="WRA-Bl-kkF"/>
+                        <outlet property="infoLabel" destination="Zu3-lu-13x" id="dof-Jt-GWM"/>
+                        <outlet property="signInButton" destination="4KT-Me-5J0" id="T9T-eB-x1F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iVb-Tc-6KM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1675" y="-3020"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="7K9-mn-0kU">
@@ -82,7 +130,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hqh-eI-hXx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4519" y="-1531"/>
+            <point key="canvasLocation" x="-4459" y="-1577"/>
         </scene>
         <!--FavoritesVC-->
         <scene sceneID="5Mc-sa-hcA">
@@ -121,7 +169,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SuJ-FU-uvj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1241" y="-1510"/>
+            <point key="canvasLocation" x="-1675" y="-1577"/>
         </scene>
         <!--Splash ScreenVC-->
         <scene sceneID="Xue-Qu-gtp">
@@ -145,7 +193,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K44-mC-n4j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6563" y="-1531"/>
+            <point key="canvasLocation" x="-6888" y="-1577"/>
         </scene>
         <!--Tab BarVC-->
         <scene sceneID="tUh-MA-OMl">
@@ -165,7 +213,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WTb-SO-vhN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6563" y="-75"/>
+            <point key="canvasLocation" x="-6888" y="-75"/>
         </scene>
         <!--Modal ProgressVC-->
         <scene sceneID="Ol8-xW-Fcc">
@@ -242,8 +290,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" misplaced="YES" id="n4J-qG-EsO">
-                                        <rect key="frame" x="-160" y="342" width="1715" height="237"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <rect key="frame" x="-160" y="300" width="1715" height="237"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -266,7 +314,7 @@
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                         <state key="normal" title="Sign in"/>
                                         <connections>
-                                            <action selector="onSignIn:" destination="Mez-m6-YQ6" eventType="primaryActionTriggered" id="XCb-Ke-VwV"/>
+                                            <action selector="onSignIn:" destination="Mez-m6-YQ6" eventType="primaryActionTriggered" id="5dB-rh-z6l"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -279,10 +327,7 @@
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="accountLabel" destination="sNZ-bI-uix" id="uDh-jl-diT"/>
                         <outlet property="containerView" destination="n4J-qG-EsO" id="63u-Nx-1j4"/>
-                        <outlet property="loginButton" destination="mpw-3x-8Th" id="bGC-sm-bea"/>
-                        <outlet property="logoImageView" destination="mtX-1i-Maj" id="6kd-K3-414"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mpk-zV-3Zs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -586,7 +631,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="BaseCollectionVC" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="6Pp-yV-woX" customClass="BaseCollectionVC" customModule="AndreySandbox" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="CX6-6d-zQs">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="450"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aF6-sY-Nvx">
                             <size key="itemSize" width="500" height="500"/>
@@ -595,7 +640,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="vP8-eg-LL0">
-                            <rect key="frame" x="0.0" y="0.0" width="1920" height="450"/>
+                            <rect key="frame" x="0.0" y="-60" width="1920" height="1080"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <cells>
@@ -694,7 +739,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qz0-e2-Bf0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1039" y="-1577"/>
+            <point key="canvasLocation" x="945" y="-2281"/>
         </scene>
         <!--AV Player View Controller-->
         <scene sceneID="z39-of-MwK">
@@ -711,6 +756,6 @@
         <image name="Subscribe" width="180" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="a18-Ts-CvM"/>
+        <segue reference="rZ7-K6-AxG"/>
     </inferredMetricsTieBreakers>
 </document>
