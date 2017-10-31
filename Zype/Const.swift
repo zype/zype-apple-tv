@@ -35,6 +35,7 @@ class Const: NSObject {
     static let kSubscribeToWatchAdFree = false
     static let kNativeToUniversal = false
     static let kUniversalTvod = true
+    static let kParentalGuidanceProtection = true
     
     // MARK: - UI Constants
     
