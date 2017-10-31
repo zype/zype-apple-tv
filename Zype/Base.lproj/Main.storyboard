@@ -298,7 +298,7 @@
                                         <rect key="frame" x="-160" y="300" width="1715" height="237"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="How much will 2+2?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u9C-iF-ehI">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="What is 2+2?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u9C-iF-ehI">
                                                 <rect key="frame" x="560" y="0.0" width="595" height="46"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
@@ -325,7 +325,7 @@
                                                 <rect key="frame" x="560" y="151" width="270" height="86"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                                <state key="normal" title="Confirm"/>
+                                                <state key="normal" title=“Submit”/>
                                                 <connections>
                                                     <action selector="onAttemptCompleteSelected:" destination="Mez-m6-YQ6" eventType="primaryActionTriggered" id="6Oc-5z-Sup"/>
                                                 </connections>
