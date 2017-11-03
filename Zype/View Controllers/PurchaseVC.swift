@@ -110,7 +110,7 @@ class PurchaseVC: UIViewController {
         let firstNumber = Int(arc4random_uniform(9)) + 1
         let secondNumber = Int(arc4random_uniform(9)) + 1
         self.result = firstNumber + secondNumber
-        return "How much will \(firstNumber) + \(secondNumber)?"
+        return "How much is \(firstNumber) + \(secondNumber)?"
     }
     
     func showAttemptView(identifier: String) {
