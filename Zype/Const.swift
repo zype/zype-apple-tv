@@ -14,7 +14,7 @@ class Const: NSObject {
     
     static var productIdentifiers = ["monthly_subscription", "yearly_subscription"]
     
-    static var appstorePassword = ""
+    static var appstorePassword = "ead5fc19c42045cfa783e24d6e5a2325"
     
     static let sdkSettings = SettingsModel(clientID: "<CLIENT_ID>",
                                            secret: "<CLIENT_SECRET>",
@@ -33,7 +33,7 @@ class Const: NSObject {
     static let kFavoritesViaAPI = false
     static let kLockIcons = false
     static let kSubscribeToWatchAdFree = false
-    static let kNativeToUniversal = false
+    static let kNativeToUniversal = true
     static let kUniversalTvod = true
     static let kParentalGuidanceProtection = true
     
