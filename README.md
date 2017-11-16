@@ -32,7 +32,7 @@ This SDK allows you to set up an eye-catching, easy to use Apple TV video stream
 
 3. Inside the source folder, type pod install. You need to have Cocoapods installed in order to do this step. To install them on your Mac follow [this guide](https://guides.cocoapods.org/using/getting-started.html). 
 
-4. The SDK comes with default assets. Some assets will need be swapped out for your app: icon focus (fhd, hd, sd), icon side (hd, sd), splash screen (fhd, hd, sd) and the overhang logo. The dimensions of the overhang logo are up to you, but the other assets have specific sizes that [you can see here](https://sdkdocs.roku.com/display/sdkdoc/Manifest+File).
+4. The SDK comes with default assets. Some assets will need be swapped out for your app: icon focus (fhd, hd, sd), icon side (hd, sd), splash screen (fhd, hd, sd) and the overhang logo. The dimensions of the overhang logo are up to you, but the other assets have specific sizes that [you can see here](https://support.zype.com/hc/en-us/articles/221132148-Branding-your-Apple-TV-App-Images-and-Specs).
 
 5. You can now take a look at your app by running it in tvOS Simulator.
 
