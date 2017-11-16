@@ -27,8 +27,14 @@ class PurchaseVC: UIViewController {
     var scrollView: UIScrollView!
     var stackView: UIStackView!
     
+    @IBOutlet weak var signInView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if (Const.kNativeSubscriptionEnabled) {
+            signInView.isHidden = true
+        }
         
         self.configureButtons()
     }
