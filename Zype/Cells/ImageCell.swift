@@ -95,14 +95,26 @@ class ImageCell: UICollectionViewCell {
         }
     }
     
-    func configWithItem(_ item: CollectionLabeledItem){
+    func configWithItem(_ item: CollectionLabeledItem, orientation: LayoutOrientation){
         self.removeItemObservers()
         self.label.text = item.title
-        if item.imageURL == nil && item.imageName != nil {
-            self.imageView.image = UIImage(named: item.imageName)
-        }
-        else {
-           self.imageView.configWithURL(item.imageURL, UIImage(named: "show_thumbnail"))
+        if orientation == .poster {
+            if item.posterURL == nil && item.imageName != nil {
+                self.imageView.image = UIImage(named: item.imageName)
+            } else {
+                if item.posterURL != nil {
+                    self.imageView.configWithURL(item.posterURL, UIImage(named: "show_thumbnail"))
+                } else {
+                    self.imageView.configWithURL(item.imageURL, UIImage(named: "show_thumbnail"))
+                }
+            }
+        } else {
+            if item.imageURL == nil && item.imageName != nil {
+                self.imageView.image = UIImage(named: item.imageName)
+            }
+            else {
+                self.imageView.configWithURL(item.imageURL, UIImage(named: "show_thumbnail"))
+            }
         }
         
         if item.lockStyle != nil {
