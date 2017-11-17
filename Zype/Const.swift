@@ -16,7 +16,7 @@ class Const: NSObject {
     static var MonthlyThirdPartyId = "";
     static var YearlyThirdPartyId = "";
     
-    static var appstorePassword = "ead5fc19c42045cfa783e24d6e5a2325"
+    static var appstorePassword = ""
     
     static let sdkSettings = SettingsModel(clientID: "<CLIENT_ID>",
                                            secret: "<CLIENT_SECRET>",
