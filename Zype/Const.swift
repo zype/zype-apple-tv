@@ -41,6 +41,8 @@ class Const: NSObject {
     
     static let kBaseSectionInsets: UIEdgeInsets = UIEdgeInsets(top: 50, left: 90, bottom: 50, right: 90)
     static let kCollectionCellSize: CGSize = CGSize(width: 308, height: 220)
+    static let kCollectionCellPosterSize: CGSize = CGSize(width: 286, height: 446)
+    static let kCollectionCellMiniPosterSize: CGSize = CGSize(width: 185, height: 300)
     static let kShowCellHeight: CGFloat = 310
     static let kCollectionHorizontalSpacing: CGFloat = 50.0
     static let kCollectionVerticalSpacing: CGFloat = 50.0

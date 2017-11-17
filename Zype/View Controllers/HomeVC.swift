@@ -270,6 +270,10 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
                 videosSection.object = value
                 videosSection.insets.top = 0
                 videosSection.insets.bottom = 0
+                videosSection.thumbnailLayout = value.thumbnailLayout
+                if value.thumbnailLayout == .poster {
+                    videosSection.cellSize = Const.kCollectionCellPosterSize
+                }
                 if(!controller.isConfigurated) {
                     controller.configWithSection(videosSection)
                 } else {
@@ -287,6 +291,10 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
                     videosSection.object = value
                     videosSection.insets.top = 0
                     videosSection.insets.bottom = 0
+                    videosSection.thumbnailLayout = value.thumbnailLayout
+                    if value.thumbnailLayout == .poster {
+                        videosSection.cellSize = Const.kCollectionCellPosterSize
+                    }
                     if !controller.isConfigurated {
                         controller.configWithSection(videosSection)
                     } else {
@@ -295,7 +303,12 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
                 }
             })
         }
-        controller.view.height = Const.kCollectionCellSize.height
+        
+        if value.thumbnailLayout == .poster {
+            controller.view.height = Const.kCollectionCellPosterSize.height
+        } else {
+            controller.view.height = Const.kCollectionCellSize.height
+        }
         
         if value.playlistItemCount > 0 {//load screen with videos
             controller.itemSelectedCallback = {[unowned self] (item: CollectionLabeledItem, section: CollectionSection) in

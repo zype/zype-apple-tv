@@ -41,6 +41,9 @@ class VideoCollectionItem: CollectionLabeledItem {
         super.init()
         self.title = video.titleString
         self.imageURL = video.thumbnailURL() as URL!
+        if let posterURL = video.posterOrientationURL() {
+            self.posterURL = posterURL as URL!
+        }
         self.object = video
         self.lockStyle = .empty
         
