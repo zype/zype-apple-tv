@@ -40,6 +40,13 @@ class MyLibraryVC: CollectionContainerVC {
         self.signInButton.isHidden = true
         self.dataView.isHidden = false
     }
+    
+    func showWithEmptyInfo() {
+        self.infoLabel.text = localized("MyLibrary.EmptyLibrary")
+        self.infoLabel.isHidden = false
+        self.signInButton.isHidden = true
+        self.dataView.isHidden = true
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -56,7 +63,7 @@ class MyLibraryVC: CollectionContainerVC {
                 section.title = localized("MyLibrary.Title")
                 if (videos != nil) {
                     if (videos!.count == 0) {
-                        self.displayInfo(info: localized("MyLibrary.EmptyLibrary"))
+                        self.showWithEmptyInfo()
                     } else {
                         let uniqueVideos = videos?.unique{ $0.objectID }
                         for model in uniqueVideos! {

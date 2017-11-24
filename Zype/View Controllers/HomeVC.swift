@@ -42,7 +42,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         self.reloadData()
         self.secondPress = false
         
-        if Const.kNativeSubscriptionEnabled {
+        if Const.kNativeSubscriptionEnabled || Const.kNativeToUniversal {
             InAppPurchaseManager.sharedInstance.refreshSubscriptionStatus()
         }
     }
