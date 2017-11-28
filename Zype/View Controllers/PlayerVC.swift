@@ -177,8 +177,8 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     }
     
     fileprivate func validateEntitlement(for playerObject: VideoObjectModel?) {
-        if let _ = playerObject?.json?["message"] {
-            let alert = UIAlertController(title: "Error", message: "You must be subscribed to access this content.", preferredStyle: .alert)
+        if let responseMessage = playerObject?.json?["message"] {
+            let alert = UIAlertController(title: "Error", message: responseMessage as? String, preferredStyle: .alert)
             let confirmAction = UIAlertAction(title: "Ok", style: .cancel, handler: { (_) in
                 self.dismiss(animated: true, completion: nil)
             })
