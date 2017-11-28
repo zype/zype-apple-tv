@@ -98,14 +98,22 @@ extension UIViewController {
     
     func playVideo(_ model: VideoModel, playlist: Array<VideoModel>? = nil, isResuming: Bool = true) {
         if (model.onAir) {
-            
+            //custom logic for a livestream can be placed here
         }
-        else {
-            if Const.kNativeSubscriptionEnabled == false {
-                if (model.subscriptionRequired && !ZypeUtilities.isDeviceLinked()) {
-                    ZypeUtilities.presentLoginVC(self)
-                    return
-                }
+        
+        //logic for subscription that can be native or universal
+        //for native subscription the check will be performed on video play level
+        if Const.kNativeSubscriptionEnabled == false {
+            if (model.subscriptionRequired && !ZypeUtilities.isDeviceLinked()) {
+                ZypeUtilities.presentLoginVC(self)
+                return
+            }
+        }
+        
+        if (model.purchaseRequired || model.rentalRequired || model.passPlanRequired) {
+            if (!ZypeUtilities.isDeviceLinked()) {
+                ZypeUtilities.presentLoginVC(self)
+                return
             }
         }
         
