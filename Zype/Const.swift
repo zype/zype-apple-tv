@@ -12,8 +12,10 @@ import ZypeAppleTVBase
 
 class Const: NSObject {
     
-    static var productIdentifiers: [String: String] = [   monthlySubscription: monthlyThirdPartyId,
-                                                          yearlySubscription: yearlyThirdPartyId];
+    //left side is product identifiers from InApp purchase items 
+    //right side is third party id of the subscription in Zype platform
+    static var productIdentifiers: [String: String] = [   monthly_subscription: monthlyThirdPartyId,
+                                                          yearly_subscription: yearlyThirdPartyId];
     
     static var appstorePassword = ""
     
