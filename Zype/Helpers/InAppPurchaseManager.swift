@@ -340,10 +340,11 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
     }
     
     fileprivate func verifyBiFrost(productID: String, _ callback: @escaping (_ success: Bool) -> ()) { // completion
-        let biFrost: URL = URL(string: "https://bifrost.stg.zype.com/api/v1/subscribe")!
-        let biFrostProd: URL = URL(string: "https://bifrost.stg.zype.com/api/v1/subscribe")!
+        //let biFrost: URL = URL(string: "https://bifrost.stg.zype.com/api/v1/subscribe")!
+        let biFrostProd: URL = URL(string: "https://bifrost.zype.com/api/v1/subscribe")!
         let consumerId = UserDefaults.standard.object(forKey: "kConsumerId")
         let thirdPartyId = Const.productIdentifiers[productID]
+
         let deviceType = "appletv"
         guard let receipt = receiptURL()?.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0)) else { return }
         let sharedKey = Const.appstorePassword

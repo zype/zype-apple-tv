@@ -15,12 +15,6 @@ class Const: NSObject {
     static var productIdentifiers: [String: String] = [   monthlySubscription: monthlyThirdPartyId,
                                                           yearlySubscription: yearlyThirdPartyId];
     
-    static let monthlySubscription = "monthly_subscription"
-    static let yearlySubscription = "yearly_subscription"
-    
-    static let monthlyThirdPartyId = "app123"
-    static let yearlyThirdPartyId = "appletvyearly"
-    
     static var appstorePassword = "ead5fc19c42045cfa783e24d6e5a2325"
     
     static let sdkSettings = SettingsModel(clientID: "<CLIENT_ID>",
@@ -67,7 +61,7 @@ class Const: NSObject {
     static let kFavoritesKey = "Favorites"
     static let kDefaultsRootPlaylistId = "root_playlist_id"
     static let kDefaultsBackgroundUrl = "background_url"
-    static let kAppVersion = "1.2.0"
+    static let kAppVersion = "1.2.1"
     
     // MARK: - Segues
     
