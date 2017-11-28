@@ -66,7 +66,7 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
     static let kPurchaseCompleted = "kPurchaseCompleted"
     
     var lastSubscribeStatus: Bool = false
-    fileprivate(set) var products: Dictionary<String, SKProduct>?
+    fileprivate(set) var products: [SKProduct]?
     fileprivate var productID: NSSet?
     fileprivate var productsRequestDelegate: ProductsRequestDelegate?
     fileprivate var productsRequest: SKProductsRequest?
@@ -89,7 +89,7 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
             callback(nil)
             return
         }
-        let productIdentifiers: NSSet = NSSet(array: Const.productIdentifiers)
+        let productIdentifiers: NSSet = NSSet(array: Array(Const.productIdentifiers.keys))
         let productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers as! Set<String>)
         self.productsRequestDelegate = ProductsRequestDelegate(callback: {(data: AnyObject?, error: NSError?) in
             if(error != nil || data == nil) {
@@ -97,9 +97,9 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
                 return
             }
             if let products = data as? Array<SKProduct> {
-                self.products = [String : SKProduct]()
+                self.products = [SKProduct]()
                 for product in products {
-                    self.products![product.productIdentifier] = product
+                    self.products!.append(product)
                 }
                 callback(nil)
             } else {
@@ -264,9 +264,14 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
     func purchase(_ productID: String) {
         if SKPaymentQueue.canMakePayments() {
             self.requestProducts({(error: NSError?) in
-                if let product: SKProduct = self.products![productID] {
-                    let payment = SKPayment(product: product)
-                    SKPaymentQueue.default().add(payment);
+                if let products = self.products {
+                    for product in products {
+                        if product.productIdentifier == productID {
+                            let payment = SKPayment(product: product)
+                            SKPaymentQueue.default().add(payment);
+                            return
+                        }
+                    }
                 }
             })
         }
@@ -335,20 +340,11 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
     }
     
     fileprivate func verifyBiFrost(productID: String, _ callback: @escaping (_ success: Bool) -> ()) { // completion
-        let biFrost: URL = URL(string: "https://bifrost.stg.zype.com/api/v1/subscribe")!
-        let biFrostProd: URL = URL(string: "https://bifrost.stg.zype.com/api/v1/subscribe")!
+        //let biFrost: URL = URL(string: "https://bifrost.stg.zype.com/api/v1/subscribe")!
+        let biFrostProd: URL = URL(string: "https://bifrost.zype.com/api/v1/subscribe")!
         let consumerId = UserDefaults.standard.object(forKey: "kConsumerId")
-        var thirdPartyId = ""
-        switch productID {
-        case "monthly_subscription":
-            thirdPartyId = Const.MonthlyThirdPartyId
-            break
-        case "yearly_subscription":
-            thirdPartyId = Const.YearlyThirdPartyId
-            break
-        default:
-            break
-        }
+        let thirdPartyId = Const.productIdentifiers[productID]
+
         let deviceType = "appletv"
         guard let receipt = receiptURL()?.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0)) else { return }
         let sharedKey = Const.appstorePassword

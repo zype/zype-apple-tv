@@ -20,6 +20,7 @@ class SettingsVC: UIViewController {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = self.tabBarController?.view.backgroundColor
         //self.configureView()
         self.setupText()
     }
