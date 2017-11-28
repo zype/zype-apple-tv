@@ -168,6 +168,16 @@ class ShowDetailsVC: CollectionContainerVC {
             
             let section = CollectionSection()
             section.items = CollectionContainerVC.videosToCollectionItems(videos)
+            section.thumbnailLayout = self.selectedShow.thumbnailLayout
+            
+            if self.selectedShow.thumbnailLayout == .poster {
+                let topSectionInset: CGFloat = 120.0
+                let episodesCountLabelPaddingX: CGFloat = 300.0
+                let episodesCountLabelPaddingY: CGFloat = 20.0
+                section.insets.top = topSectionInset
+                section.cellSize = Const.kCollectionCellMiniPosterSize
+                self.episodesCountLabel.center = CGPoint.init(x: self.episodesCountLabel.origin.x + episodesCountLabelPaddingX, y: self.episodesCountLabel.origin.y + episodesCountLabelPaddingY)
+            }
             self.collectionVC.configWithSection(section)
         })
     }

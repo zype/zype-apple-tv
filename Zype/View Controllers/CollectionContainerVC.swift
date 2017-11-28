@@ -41,6 +41,9 @@ class VideoCollectionItem: CollectionLabeledItem {
         super.init()
         self.title = video.titleString
         self.imageURL = video.thumbnailURL() as URL!
+        if let posterURL = video.posterOrientationURL() {
+            self.posterURL = posterURL as URL!
+        }
         self.object = video
         self.lockStyle = .empty
         
@@ -95,14 +98,22 @@ extension UIViewController {
     
     func playVideo(_ model: VideoModel, playlist: Array<VideoModel>? = nil, isResuming: Bool = true) {
         if (model.onAir) {
-            
+            //custom logic for a livestream can be placed here
         }
-        else {
-            if Const.kNativeSubscriptionEnabled == false {
-                if (model.subscriptionRequired && !ZypeUtilities.isDeviceLinked()) {
-                    ZypeUtilities.presentLoginVC(self)
-                    return
-                }
+        
+        //logic for subscription that can be native or universal
+        //for native subscription the check will be performed on video play level
+        if Const.kNativeSubscriptionEnabled == false {
+            if (model.subscriptionRequired && !ZypeUtilities.isDeviceLinked()) {
+                ZypeUtilities.presentLoginVC(self)
+                return
+            }
+        }
+        
+        if (model.purchaseRequired || model.rentalRequired || model.passPlanRequired) {
+            if (!ZypeUtilities.isDeviceLinked()) {
+                ZypeUtilities.presentLoginVC(self)
+                return
             }
         }
         

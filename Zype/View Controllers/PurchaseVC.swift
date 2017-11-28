@@ -156,8 +156,8 @@ class PurchaseVC: UIViewController {
             for product in products {
                 let subscribeButton = UIButton.init(type: .system)
                 subscribeButton.heightAnchor.constraint(equalToConstant: self.containerView.height).isActive = true
-                subscribeButton.setTitle(String(format: localized("Subscription.ButtonFormat"), arguments: [product.value.localizedTitle, product.value.localizedPrice(), self.getDuration(product.value.productIdentifier)]), for: .normal)
-                subscribeButton.accessibilityIdentifier = product.key
+                subscribeButton.setTitle(String(format: localized("Subscription.ButtonFormat"), arguments: [product.localizedTitle, product.localizedPrice(), self.getDuration(product.productIdentifier)]), for: .normal)
+                subscribeButton.accessibilityIdentifier = product.productIdentifier
                 subscribeButton.addTarget(self, action: #selector(self.onPlanSelected(sender:)), for: .primaryActionTriggered)
                 stackView.addArrangedSubview(subscribeButton)
             }

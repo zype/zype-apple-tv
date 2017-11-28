@@ -12,9 +12,10 @@ import ZypeAppleTVBase
 
 class Const: NSObject {
     
-    static var productIdentifiers = ["monthly_subscription", "yearly_subscription"]
-    static var MonthlyThirdPartyId = "";
-    static var YearlyThirdPartyId = "";
+    //left side is product identifiers from InApp purchase items 
+    //right side is third party id of the subscription in Zype platform
+    static var productIdentifiers: [String: String] = [   monthly_subscription: monthlyThirdPartyId,
+                                                          yearly_subscription: yearlyThirdPartyId];
     
     static var appstorePassword = ""
     
@@ -43,6 +44,8 @@ class Const: NSObject {
     
     static let kBaseSectionInsets: UIEdgeInsets = UIEdgeInsets(top: 50, left: 90, bottom: 50, right: 90)
     static let kCollectionCellSize: CGSize = CGSize(width: 308, height: 220)
+    static let kCollectionCellPosterSize: CGSize = CGSize(width: 286, height: 446)
+    static let kCollectionCellMiniPosterSize: CGSize = CGSize(width: 185, height: 300)
     static let kShowCellHeight: CGFloat = 310
     static let kCollectionHorizontalSpacing: CGFloat = 50.0
     static let kCollectionVerticalSpacing: CGFloat = 50.0
@@ -60,7 +63,7 @@ class Const: NSObject {
     static let kFavoritesKey = "Favorites"
     static let kDefaultsRootPlaylistId = "root_playlist_id"
     static let kDefaultsBackgroundUrl = "background_url"
-    static let kAppVersion = "1.2.1"
+    static let kAppVersion = "1.2.2"
     
     // MARK: - Segues
     

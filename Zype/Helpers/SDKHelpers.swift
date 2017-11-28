@@ -31,6 +31,16 @@ extension VideoModel {
         return nil
     }
     
+    func posterOrientationURL() -> NSURL? {
+        for image in self.images {
+            if image.layout == .poster {
+                return NSURL(string: image.imageURL)
+            }
+        }
+        
+        return nil
+    }
+    
     func isInFavorites() -> Bool{
         let defaults = UserDefaults.standard
         if let favorites = defaults.array(forKey: Const.kFavoritesKey) as? Array<String> {

@@ -52,6 +52,7 @@ class CollectionLabeledItem: NSObject {
     
     dynamic var title: String! = ""
     dynamic var imageURL: URL!
+    dynamic var posterURL: URL!
     var imageName: String!
     var object: BaseModel!
     var lockStyle: CollectionLockStyle?
@@ -79,6 +80,7 @@ class CollectionSection: NSObject {
     var isPager: Bool = false
     var headerStyle: CollectionSectionHeaderStyle = .regular
     var lockStyle: CollectionLockStyle = .empty
+    var thumbnailLayout: LayoutOrientation! = .landscape
     
     override init() {
         super.init()
@@ -301,7 +303,7 @@ extension BaseCollectionVC {
         var result: UICollectionViewCell
         if !section.isPager {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
-            cell.configWithItem(data)
+            cell.configWithItem(data, orientation: section.thumbnailLayout)
             result = cell
         }
         else {

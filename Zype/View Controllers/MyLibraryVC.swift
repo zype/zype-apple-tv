@@ -64,6 +64,7 @@ class MyLibraryVC: CollectionContainerVC {
                 if (videos != nil) {
                     if (videos!.count == 0) {
                         self.showWithEmptyInfo()
+                        self.signInButton.isHidden = true
                     } else {
                         let uniqueVideos = videos?.unique{ $0.objectID }
                         for model in uniqueVideos! {
