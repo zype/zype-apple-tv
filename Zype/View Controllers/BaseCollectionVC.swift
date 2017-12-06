@@ -134,6 +134,7 @@ class BaseCollectionVC: UICollectionViewController {
     var lastFocusedItemIndexPath: IndexPath!
     var lastSelectedItemIndexPath: IndexPath!
     var timer: Timer!
+    var manualFocusIndexPath: IndexPath?
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -146,6 +147,10 @@ class BaseCollectionVC: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
+        if #available(tvOS 11, *) {
+            self.collectionView?.contentInsetAdjustmentBehavior = .never
+        }
+        self.collectionView?.remembersLastFocusedIndexPath = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -336,6 +341,23 @@ extension BaseCollectionVC {
     
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return self.sections[indexPath.section].controller == nil
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, shouldUpdateFocusIn context: UICollectionViewFocusUpdateContext) -> Bool {
+        
+        if let nextView = context.nextFocusedView, let prevView = context.previouslyFocusedView {
+            if prevView.isKind(of: PagerCell.self),  !nextView.isKind(of: PagerCell.self), let nextIndexPath = context.nextFocusedIndexPath {
+                manualFocusIndexPath = IndexPath(item: 0, section: nextIndexPath.section)
+                self.setNeedsFocusUpdate()
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    override func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
+        return manualFocusIndexPath
     }
     
     override func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {

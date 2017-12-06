@@ -164,6 +164,10 @@ class PurchaseVC: UIViewController {
         }
     }
     
+    @IBAction func onSignIn(_ sender: Any) {
+        ZypeUtilities.presentLoginVC(self)
+    }
+    
     func onPurchased() {
         self.dismiss(animated: true, completion: nil)
     }
