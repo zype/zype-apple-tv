@@ -417,6 +417,7 @@
                         <outlet property="activityIndicator" destination="ReF-K8-BDh" id="eUZ-tX-XfS"/>
                         <outlet property="containerView" destination="n4J-qG-EsO" id="63u-Nx-1j4"/>
                         <outlet property="loginButton" destination="mpw-3x-8Th" id="lhW-Ng-HyQ"/>
+			<outlet property="signInView" destination="Uo2-M0-D6r" id="0Rp-2v-Osb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mpk-zV-3Zs" userLabel="First Responder" sceneMemberID="firstResponder"/>
