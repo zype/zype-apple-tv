@@ -32,6 +32,8 @@
 		A1C0CF171E37CFA1007ED6C0 /* ReplaceSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0CF161E37CFA1007ED6C0 /* ReplaceSegue.swift */; };
 		E1C681CF2018D82800028BB4 /* AKAMMediaExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C681CE2018D82800028BB4 /* AKAMMediaExtensions.framework */; };
 		E1C681D02018D82800028BB4 /* AKAMMediaExtensions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E1C681CE2018D82800028BB4 /* AKAMMediaExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E1C681D42018EC6100028BB4 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C681D32018EC6100028BB4 /* AnalyticsManager.swift */; };
+		E1C681D6201945D400028BB4 /* AnalyticsProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C681D5201945D400028BB4 /* AnalyticsProtocolDelegate.swift */; };
 		F51158161BDE441000DB1774 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F51158181BDE441000DB1774 /* Localizable.strings */; };
 		F511581D1BDE6CFC00DB1774 /* FocusableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */; };
 		F5534D251BCFC64100BEA509 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5534D241BCFC64100BEA509 /* FavoritesVC.swift */; };
@@ -124,6 +126,8 @@
 		A1C0CF141E37CF8A007ED6C0 /* SplashScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenVC.swift; sourceTree = "<group>"; };
 		A1C0CF161E37CFA1007ED6C0 /* ReplaceSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceSegue.swift; sourceTree = "<group>"; };
 		E1C681CE2018D82800028BB4 /* AKAMMediaExtensions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AKAMMediaExtensions.framework; path = Frameworks/AKAMMediaExtensions.framework; sourceTree = "<group>"; };
+		E1C681D32018EC6100028BB4 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		E1C681D5201945D400028BB4 /* AnalyticsProtocolDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsProtocolDelegate.swift; sourceTree = "<group>"; };
 		F51158171BDE441000DB1774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusableButton.swift; sourceTree = "<group>"; };
 		F5534D241BCFC64100BEA509 /* FavoritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
@@ -264,6 +268,14 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
+		E1C681D22018EC3F00028BB4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				E1C681D32018EC6100028BB4 /* AnalyticsManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		F553AD171BC660B400A093EF = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +297,7 @@
 		F5582CAC1BC7DB8B0089E5E7 /* Zype */ = {
 			isa = PBXGroup;
 			children = (
+				E1C681D22018EC3F00028BB4 /* Managers */,
 				F5586B051BCBB76D001DEB5B /* Helpers */,
 				F5582CC21BC7E2870089E5E7 /* Support files */,
 				F5582CCC1BC7F9DC0089E5E7 /* Cells */,
@@ -350,6 +363,7 @@
 				47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */,
 				473C51491EE8ACA40051FC6C /* InAppPurchaseManager.swift */,
 				FA01D4CF1F902A7900A8D131 /* Array+Unique.swift */,
+				E1C681D5201945D400028BB4 /* AnalyticsProtocolDelegate.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -462,6 +476,7 @@
 				A161E9CE1DDBBAA800D01C70 /* DVVideoAd.m in Sources */,
 				F5582CB81BC7DB8B0089E5E7 /* AppDelegate.swift in Sources */,
 				F559403C1C048F4200A0ECFF /* FocusableView.swift in Sources */,
+				E1C681D6201945D400028BB4 /* AnalyticsProtocolDelegate.swift in Sources */,
 				A161E9D21DDBBAA800D01C70 /* DVVideoPlayBreak.m in Sources */,
 				A1C0CF151E37CF8A007ED6C0 /* SplashScreenVC.swift in Sources */,
 				F5582CCB1BC7E2E10089E5E7 /* HomeVC.swift in Sources */,
@@ -483,6 +498,7 @@
 				F558AC851BD508E600D8E677 /* ScrollableTextAlertVC.swift in Sources */,
 				F511581D1BDE6CFC00DB1774 /* FocusableButton.swift in Sources */,
 				F5D98CE31BE3B8F200C986B4 /* ModalProgressVC.swift in Sources */,
+				E1C681D42018EC6100028BB4 /* AnalyticsManager.swift in Sources */,
 				A161E9CA1DDBBAA800D01C70 /* DVPlayerView.m in Sources */,
 				A161E9CD1DDBBAA800D01C70 /* DVTimeIntervalFormatter.m in Sources */,
 				F5582CD41BC819110089E5E7 /* Const.swift in Sources */,

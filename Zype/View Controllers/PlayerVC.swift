@@ -46,6 +46,8 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     var isSkippable = false
     var isResuming = true
     
+    var analyticsInfo = [String: String]()
+
     var playlist: Array<VideoModel>? = nil
     var currentVideo: VideoModel!
     var adsData: [adObject] = [adObject]()
@@ -68,6 +70,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
         }
         if self.playerController.player != nil {
             self.playerController.player?.pause()
+            AnalyticsManager.sharedInstance.reset()
         }
         
         if let viewWithTag = self.view.viewWithTag(1001) {
@@ -88,6 +91,11 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
         self.play(self.currentVideo)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        AnalyticsManager.sharedInstance.reset()
+    }
+
     // MARK: - User Interaction
     override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
         
@@ -123,6 +131,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
             }
             if self.playerController.player != nil {
                 self.playerController.player?.pause()
+                AnalyticsManager.sharedInstance.trackStop()
             }
             self.removePeriodicTimeObserver()
         }
@@ -160,6 +169,8 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
                 self.adsArray = adsArray
                 self.url = url
                 self.currentVideo = model
+
+                self.analyticsInfo = self.getAnalyticsFromResponse(playerObject)
 
                 if adsArray.count > 0 && self.adsData.last?.offset == 0 { // check for preroll
                     self.playAds(adsArray: adsArray, url: url)
@@ -215,6 +226,21 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
                 }
             }
         }
+
+        let analyticsEmpty = self.analyticsInfo.isEmpty
+
+        if !analyticsEmpty {
+            var analyticsData = self.analyticsInfo
+            analyticsData["beacon"] = nil
+
+            if let beacon = self.analyticsInfo["beacon"] {
+                if let url = URL(string: beacon) {
+                    AnalyticsManager.sharedInstance.reset()
+                    AnalyticsManager.sharedInstance.trackPlay(withConfigUrl: url, withPlayer: player, withCustomData: analyticsData)
+                }
+            }
+        }
+
         player.play()
     }
     
