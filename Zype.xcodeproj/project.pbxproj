@@ -30,6 +30,8 @@
 		A161E9DB1DDBBAA800D01C70 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9C71DDBBAA800D01C70 /* DDXMLNode.m */; };
 		A1C0CF151E37CF8A007ED6C0 /* SplashScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0CF141E37CF8A007ED6C0 /* SplashScreenVC.swift */; };
 		A1C0CF171E37CFA1007ED6C0 /* ReplaceSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0CF161E37CFA1007ED6C0 /* ReplaceSegue.swift */; };
+		E1C681CF2018D82800028BB4 /* AKAMMediaExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C681CE2018D82800028BB4 /* AKAMMediaExtensions.framework */; };
+		E1C681D02018D82800028BB4 /* AKAMMediaExtensions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E1C681CE2018D82800028BB4 /* AKAMMediaExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F51158161BDE441000DB1774 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F51158181BDE441000DB1774 /* Localizable.strings */; };
 		F511581D1BDE6CFC00DB1774 /* FocusableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */; };
 		F5534D251BCFC64100BEA509 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5534D241BCFC64100BEA509 /* FavoritesVC.swift */; };
@@ -70,6 +72,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E1C681D02018D82800028BB4 /* AKAMMediaExtensions.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,6 +123,7 @@
 		A161E9C91DDBBAA800D01C70 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
 		A1C0CF141E37CF8A007ED6C0 /* SplashScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenVC.swift; sourceTree = "<group>"; };
 		A1C0CF161E37CFA1007ED6C0 /* ReplaceSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceSegue.swift; sourceTree = "<group>"; };
+		E1C681CE2018D82800028BB4 /* AKAMMediaExtensions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AKAMMediaExtensions.framework; path = Frameworks/AKAMMediaExtensions.framework; sourceTree = "<group>"; };
 		F51158171BDE441000DB1774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusableButton.swift; sourceTree = "<group>"; };
 		F5534D241BCFC64100BEA509 /* FavoritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1C681CF2018D82800028BB4 /* AKAMMediaExtensions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +267,7 @@
 		F553AD171BC660B400A093EF = {
 			isa = PBXGroup;
 			children = (
+				E1C681CE2018D82800028BB4 /* AKAMMediaExtensions.framework */,
 				A161E99D1DDBBAA800D01C70 /* AVOD */,
 				F5582CAC1BC7DB8B0089E5E7 /* Zype */,
 				F553AD211BC660B400A093EF /* Products */,
@@ -610,6 +616,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 66JU87JGLE;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Zype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
@@ -630,6 +640,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 66JU87JGLE;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Zype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
