@@ -9,21 +9,24 @@
 import ZypeAppleTVBase
 
 protocol AnalyticsHelperProtocol: class {
-    func getAnalyticsFromResponse(_ playerObject: VideoObjectModel?) -> Dictionary<String, String>
+    func getAnalyticsFromResponse(_ playerObject: VideoObjectModel?) -> (beacon: String, customDimensions: [String: String])
 }
 
 extension PlayerVC: AnalyticsHelperProtocol {
-    func getAnalyticsFromResponse(_ playerObject: VideoObjectModel?) -> Dictionary<String, String> {
+    func getAnalyticsFromResponse(_ playerObject: VideoObjectModel?) -> (beacon: String, customDimensions: [String: String]) {
         
-        var analyticsInfo = [String:String]()
+        var configUrl = ""
+        var customDimensions = [String: String]()
         
-        if let consumer = ZypeAppleTVBase.sharedInstance.consumer {
-            analyticsInfo["consumerId"] = consumer.ID
+        if let consumerId = ZypeAppleTVBase.sharedInstance.consumer?.ID {
+            if !consumerId.isEmpty {
+                customDimensions["consumerId"] = consumerId
+            }
         }
         
         if let video = playerObject?.json?["response"]?["video"] as? NSDictionary {
             if let title = video["title"] as? String {
-                analyticsInfo["title"] = title
+                customDimensions["title"] = title
             }
         }
         
@@ -32,29 +35,29 @@ extension PlayerVC: AnalyticsHelperProtocol {
             if let analytics = body["analytics"] as? NSDictionary {
                 
                 if let beacon = analytics["beacon"] as? String {
-                    analyticsInfo["beacon"] = beacon
+                    configUrl = beacon
                 }
                 
                 if let dimensions = analytics["dimensions"] as? NSDictionary {
                     if let videoId = dimensions["video_id"] as? String {
-                        analyticsInfo["videoId"] = videoId
+                        customDimensions["videoId"] = videoId
                     }
                     
                     if let siteId = dimensions["site_id"] as? String {
-                        analyticsInfo["siteId"] = siteId
+                        customDimensions["siteId"] = siteId
                     }
                     
                     if let playerId = dimensions["player_id"] as? String {
-                        analyticsInfo["playerId"] = playerId
+                        customDimensions["playerId"] = playerId
                     }
                     
                     if let device = dimensions["device"] as? String {
-                        analyticsInfo["deviceType"] = device
+                        customDimensions["deviceType"] = device
                     }
                 }
             }
         }
         
-        return analyticsInfo
+        return (beacon: configUrl, customDimensions: customDimensions)
     }
 }

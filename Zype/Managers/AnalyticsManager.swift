@@ -18,7 +18,7 @@ class AnalyticsManager: NSObject {
     }
     
     // MARK: - track video playback
-    open func trackPlay(withConfigUrl url: URL, withPlayer player: AVPlayer, withCustomData data: Dictionary<String, String>){
+    open func trackPlayer(withConfigUrl url: URL, withPlayer player: AVPlayer, withCustomData data: Dictionary<String, String>){
         AKAMMediaAnalytics_Av.initWithConfigURL(url)
         AKAMMediaAnalytics_Av.process(withAVPlayer: player)
         

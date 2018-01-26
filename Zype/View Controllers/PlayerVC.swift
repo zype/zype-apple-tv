@@ -46,7 +46,8 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     var isSkippable = false
     var isResuming = true
     
-    var analyticsInfo = [String: String]()
+    var beacon = ""
+    var customDimensions = [String: String]()
 
     var playlist: Array<VideoModel>? = nil
     var currentVideo: VideoModel!
@@ -70,7 +71,6 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
         }
         if self.playerController.player != nil {
             self.playerController.player?.pause()
-            AnalyticsManager.sharedInstance.reset()
         }
         
         if let viewWithTag = self.view.viewWithTag(1001) {
@@ -170,7 +170,9 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
                 self.url = url
                 self.currentVideo = model
 
-                self.analyticsInfo = self.getAnalyticsFromResponse(playerObject)
+                let analyticsInfo = self.getAnalyticsFromResponse(playerObject)
+                self.beacon = analyticsInfo.beacon
+                self.customDimensions = analyticsInfo.customDimensions
 
                 if adsArray.count > 0 && self.adsData.last?.offset == 0 { // check for preroll
                     self.playAds(adsArray: adsArray, url: url)
@@ -227,17 +229,9 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
             }
         }
 
-        let analyticsEmpty = self.analyticsInfo.isEmpty
-
-        if !analyticsEmpty {
-            var analyticsData = self.analyticsInfo
-            analyticsData["beacon"] = nil
-
-            if let beacon = self.analyticsInfo["beacon"] {
-                if let url = URL(string: beacon) {
-                    AnalyticsManager.sharedInstance.reset()
-                    AnalyticsManager.sharedInstance.trackPlay(withConfigUrl: url, withPlayer: player, withCustomData: analyticsData)
-                }
+        if !self.beacon.isEmpty && !self.customDimensions.isEmpty {
+            if let url = URL(string: self.beacon) {
+                AnalyticsManager.sharedInstance.trackPlayer(withConfigUrl: url, withPlayer: player, withCustomData: self.customDimensions)
             }
         }
 
@@ -265,7 +259,9 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
             self.playerController.view.removeFromSuperview()
             self.playerController.player?.replaceCurrentItem(with: nil)
             self.playerController = AVPlayerViewController()
-            
+
+            AnalyticsManager.sharedInstance.trackStop()
+
             if let _ = self.playlist,
                 let currentVideoIndex = self.playlist?.index(of: self.currentVideo), self.playlist?.count > 0 {
                 
