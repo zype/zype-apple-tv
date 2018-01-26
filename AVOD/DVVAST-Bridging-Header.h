@@ -9,3 +9,5 @@
 #import "DVPlayerView.h"
 
 #import "DDXML.h"
+
+#import <AKAMMediaExtensions/AKAMMediaAnalytics_Av.h>
