@@ -60,7 +60,7 @@ If you need more information on how Zype API works, you can read the [documentat
 
 ## Versioning
 
-For the versions available, see the [tags on this repository](https://github.com/zype/zype-ios/tags). 
+For the versions available, see the [tags on this repository](https://github.com/zype/zype-apple-tv/tags). 
 
 ## Authors
 
