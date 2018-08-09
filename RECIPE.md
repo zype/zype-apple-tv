@@ -11,7 +11,7 @@ IT or developer support strongly recommended. Completing app submission and publ
 To create a Zype Apple TV app you need a paid and current Zype account that includes purchase of a valid license for the Zype Apple TV endpoint API. Learn more about [Zype's Endpoint API Service](http://www.zype.com/services/endpoint-api/).
 
 #### Mac with XCode installed
-In order to compile, run, and package an app you need the latest version of XCode to be installed on your Mac computer. XCode can be downloaded from the [App Store](https://developer.apple.com/xcode/). 
+In order to compile, run, and package an app you need the latest version of XCode to be installed on your Mac computer. XCode can be downloaded from the [App Store](https://itunes.apple.com/us/app/xcode/id497799835). 
 
 #### Enrollment in the Apple Developer Program
 The Apple Developer Program can be enrolled in via [Apple's website](https://developer.apple.com/programs/).
