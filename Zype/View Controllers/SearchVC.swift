@@ -52,13 +52,15 @@ class SearchVC: UISearchContainerViewController, UISearchControllerDelegate, UIS
     
     func updateSearchResults(for searchController: UISearchController) {
         let searchString = searchController.searchBar.text ?? ""
+        let playlistId = UserDefaults.standard.object(forKey: Const.kDefaultsRootPlaylistId) as? String ?? ""
+
         if self.lastSearchString != searchString {
             self.lastSearchString = searchString
             if searchString.isEmpty {
                 self.collectionVC.configWithSections([CollectionSection()])
                 return
             }
-            ZypeAppleTVBase.sharedInstance.getVideos(QueryVideosModel(searchString: searchController.searchBar.text!, perPage: 100), completion: { (videos, error) -> Void in
+            ZypeAppleTVBase.sharedInstance.getVideos(QueryVideosModel(playlistId: playlistId, searchString: searchController.searchBar.text!, perPage: 100), completion: { (videos, error) -> Void in
                 if searchString == searchController.searchBar.text {
                     let section = CollectionSection()
                     section.title = String(format: localized("Search.Results"), arguments: [videos == nil ? 0 : videos!.count])
