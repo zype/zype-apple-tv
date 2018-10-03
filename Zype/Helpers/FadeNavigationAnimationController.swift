@@ -1,6 +1,5 @@
 //
 //  FadeNavigationAnimationController.swift
-//  HooplaKidz
 //
 //  Created by Eugene Lizhnyk on 11/20/15.
 //  Copyright © 2015 Eugene Lizhnyk. All rights reserved.
