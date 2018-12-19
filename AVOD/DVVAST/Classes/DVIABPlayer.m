@@ -35,6 +35,7 @@ NSString *const DVIABPlayerErrorDomain = @"DVIABPlayerErrorDomain";
 @property (nonatomic, strong) NSMutableData *adRequestData;
 @property (nonatomic) BOOL contentPlayerItemDidReachEnd, didFinishPlayBreakRecently, firstQuartile, midpoint, thirdQuartile;
 @property (nonatomic, strong) DVWrapperVideoAd *wrapper;
+@property (nonatomic) Boolean *middleOfAd;
 
 - (void)startPlayBreaksFromQueue;
 - (void)finishCurrentPlayBreak;
@@ -320,8 +321,10 @@ NSString *const DVIABPlayerErrorDomain = @"DVIABPlayerErrorDomain";
         }
     }
     else {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"noAdsToPlay" object:nil];
-        [self finishCurrentPlayBreak];
+        if (!self.middleOfAd) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"noAdsToPlay" object:nil];
+            [self finishCurrentPlayBreak];
+        }
     }
 }
 
@@ -404,6 +407,7 @@ NSString *const DVIABPlayerErrorDomain = @"DVIABPlayerErrorDomain";
         }
     }
     
+    self.middleOfAd = true;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"adPlaying" object:nil];
 }
 
@@ -444,6 +448,7 @@ NSString *const DVIABPlayerErrorDomain = @"DVIABPlayerErrorDomain";
                            context:DVIABPlayerInlineAdPlayerItemStatusObservationContext];
     }
     
+    self.middleOfAd = false;
     [self startAdsFromQueue];
 }
 
