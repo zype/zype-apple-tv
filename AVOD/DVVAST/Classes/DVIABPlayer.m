@@ -144,8 +144,9 @@ NSString *const DVIABPlayerErrorDomain = @"DVIABPlayerErrorDomain";
             switch (status) {
                 case AVPlayerItemStatusReadyToPlay:
                     self.playerLayer.player = self.adPlayer;
-                    [self.currentInlineAd trackEvent:@"start"];
-                    [self.currentInlineAd trackImpressions];
+                    if (self.currentInlineAd.playMediaFile) {
+                        [self.currentInlineAd trackEvent:@"start"];
+                    }
                     self.playerLayer.videoGravity = AVLayerVideoGravityResize;
                     [self.adPlayer play];
                     break;
@@ -171,6 +172,8 @@ NSString *const DVIABPlayerErrorDomain = @"DVIABPlayerErrorDomain";
                 if (CMTimeCompare(CMTimeAbsoluteValue(self.currentItem.currentTime),
                                   CMTimeMake(1, 1)) == -1) {
                     self.playBreaksQueue = [[self.adPlaylist preRollPlayBreaks] mutableCopy];
+                    [self removeObserver:self forKeyPath:@"rate"
+                                 context:DVIABContentPlayerRateObservationContext];
                     [self startPlayBreaksFromQueue];
                 }
             }
@@ -309,6 +312,7 @@ NSString *const DVIABPlayerErrorDomain = @"DVIABPlayerErrorDomain";
         _currentAd = [self.adsQueue objectAtIndex:0];
         [self.adsQueue removeObjectAtIndex:0];
         
+        [self.currentInlineAd trackImpressions];
         if (_currentAd.playMediaFile) {
             if (self.currentInlineAd) {
                 [self playInlineAd:self.currentInlineAd];
@@ -435,7 +439,9 @@ NSString *const DVIABPlayerErrorDomain = @"DVIABPlayerErrorDomain";
 {
     VLogV(playerItem);
 
-    [self.currentInlineAd trackEvent:@"complete"];
+    if (self.currentInlineAd.playMediaFile) {
+        [self.currentInlineAd trackEvent:@"complete"];
+    }
 
     if (playerItem != nil) {
         [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -569,7 +575,7 @@ NSString *const DVIABPlayerErrorDomain = @"DVIABPlayerErrorDomain";
             for (DDXMLElement *adElement in adElements) {
                 DDXMLElement *adContents = (DDXMLElement *)[adElement childAtIndex:0];
                 NSString *adContentsName = [adContents name];
-                if ([adContentsName isEqualToString:@"InLine"]) {
+                if ([adContentsName isEqualToString:@"InLine"] || [adContentsName isEqualToString:@"Wrapper"]) {
                     NSError *error = nil;
                     [adTemplate populateInlineVideoAd:_wrapper withXMLElement:adContents error:&error];
                     if (error) {
