@@ -339,7 +339,7 @@ class ShowDetailsVC: CollectionContainerVC {
         let purchaseVC = self.storyboard?.instantiateViewController(withIdentifier: "PurchaseVC") as! PurchaseVC
         
         // TODO: add logic for fetching video marketplace id / skus
-        let productId: String = "one_dollar_video"
+        let productId: String = "product1"
 
         InAppPurchaseManager.sharedInstance.requestProducts([productId], withCallback: { _ in            NotificationCenter.default.addObserver(self,
                                                    selector: #selector(ShowDetailsVC.onPurchased),
