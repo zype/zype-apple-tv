@@ -16,12 +16,13 @@ class Const: NSObject {
     static let monthlySubscription = "monthly_subscription"
     static let yearlySubscription = "yearly_subscription"
     
-    //right side is third party id of the subscription in Zype platform
-    static let monthlyThirdPartyId = "app123"
-    static let yearlyThirdPartyId = "appletvyearly"
+    // consumable IAPs - for tvod
+    static let videoProduct1 = "product1"
 
-    static var productIdentifiers: [String: String] = [   monthlySubscription: monthlyThirdPartyId,
-                                                          yearlySubscription: yearlyThirdPartyId];
+    static let subscriptionIdentifiers: [String: String] = [   monthlySubscription: monthlySubscription,
+                                                               yearlySubscription: yearlySubscription];
+    static let consumableIdentifiers: [String: String] = [:];
+    static var productIdentifiers: [String: String] = subscriptionIdentifiers.merging(consumableIdentifiers) { (current, _) in current }
     
     static var appstorePassword = ""
     
@@ -45,6 +46,8 @@ class Const: NSObject {
     static let kNativeToUniversal = false
     static let kParentalGuidanceProtection = false
     static let kUniversalTvod = false
+    static let kNativeTvod = true
+    static let kTosValidation = true // enable for Terms of Service checkbox on signup
     
     // MARK: - UI Constants
     
@@ -69,7 +72,10 @@ class Const: NSObject {
     static let kFavoritesKey = "Favorites"
     static let kDefaultsRootPlaylistId = "root_playlist_id"
     static let kDefaultsBackgroundUrl = "background_url"
+    static let kAppId = "app_id"
+    static let kSiteId = "site_id"
     static let kAppVersion = "1.2.5"
+    static let kValidateTos = "validate_tos" // key for feature flag
     
     // MARK: - Segues
     

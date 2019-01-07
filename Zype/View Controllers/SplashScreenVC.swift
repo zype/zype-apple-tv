@@ -22,7 +22,10 @@ class SplashScreenVC: UIViewController {
     
     
     func loadAppInfo() {
-        ZypeAppleTVBase.sharedInstance.getAppInfo(QueryBaseModel(), completion: {(backgroundUrl, featuredPlaylistId, error) in
+        // Feature flag - Confirm terms of service on sign up
+        UserDefaults.standard.set(Const.kTosValidation, forKey: Const.kValidateTos)
+
+        ZypeAppleTVBase.sharedInstance.getAppInfo(QueryBaseModel(), completion: {(backgroundUrl, featuredPlaylistId, appId, siteId, error) in
             if featuredPlaylistId != nil {
                 UserDefaults.standard.set(featuredPlaylistId, forKey: Const.kDefaultsRootPlaylistId)
                 UserDefaults.standard.synchronize()
@@ -33,6 +36,16 @@ class SplashScreenVC: UIViewController {
                 UserDefaults.standard.synchronize()
             }
             
+            if (appId != nil) {
+                UserDefaults.standard.set(appId, forKey: Const.kAppId)
+                UserDefaults.standard.synchronize()
+            }
+
+            if (siteId != nil) {
+                UserDefaults.standard.set(siteId, forKey: Const.kSiteId)
+                UserDefaults.standard.synchronize()
+            }
+
             self.loadAppSettings() // load app settings will be exectuded on the background
             self.transitionToTabBar()
         })

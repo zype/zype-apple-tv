@@ -84,12 +84,12 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
     
     // MARK: - Get Subscription Options
     
-    func requestProducts(_ callback: @escaping (NSError?)->()) {
+    func requestProducts(_ productIds: [String], withCallback callback: @escaping (NSError?)->()) {
         if(self.products != nil) {
             callback(nil)
             return
         }
-        let productIdentifiers: NSSet = NSSet(array: Array(Const.productIdentifiers.keys))
+        let productIdentifiers: NSSet = NSSet(array: Array(Const.productIdentifiers.keys + productIds))
         let productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers as! Set<String>)
         self.productsRequestDelegate = ProductsRequestDelegate(callback: {(data: AnyObject?, error: NSError?) in
             if(error != nil || data == nil) {
@@ -263,7 +263,7 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
     
     func purchase(_ productID: String) {
         if SKPaymentQueue.canMakePayments() {
-            self.requestProducts({(error: NSError?) in
+            self.requestProducts([productID], withCallback: {(error: NSError?) in
                 if let products = self.products {
                     for product in products {
                         if product.productIdentifier == productID {
@@ -283,14 +283,35 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
                 switch trans.transactionState {
                 case .purchased:
                     SKPaymentQueue.default().finishTransaction(trans)
-                    if Const.kNativeToUniversal {
-                        self.verifyUniversalSubscriptions(productID: trans.payment.productIdentifier)
-                        break
+                    let sku = trans.payment.productIdentifier
+
+                    let productIsSubscription = Const.subscriptionIdentifiers.keys.contains(sku)
+                    var productIsConsumable = false
+
+                    // kPurchaseVideoId set when user tries purchasing video
+                    if Const.consumableIdentifiers.keys.contains(sku) || UserDefaults.standard.object(forKey: "kPurchaseVideoId") != nil {
+                        productIsConsumable = true
+                    }
+
+                    if productIsSubscription {
+                        if Const.kNativeToUniversal {
+                            self.verifyUniversalSubscriptions(productID: trans.payment.productIdentifier)
+                            break
+                        }
+
+                        if Const.kNativeSubscriptionEnabled {
+                            self.verifyNativeSubscriptions()
+                            break
+                        }
                     }
                     
-                    if Const.kNativeSubscriptionEnabled {
-                        self.verifyNativeSubscriptions()
-                        break
+                    if productIsConsumable {
+                        if Const.kNativeTvod {
+                            if let transactionId = trans.transactionIdentifier  {
+                                self.verifyNativePurchase(productID: trans.payment.productIdentifier, transactionID: transactionId)
+                            }
+                            break
+                        }
                     }
                     
                     break
@@ -339,6 +360,77 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
         })
     }
     
+        func verifyNativePurchase(productID: String, transactionID: String) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "kSpinForPurchase"), object: nil)
+
+        self.verifyMarketplaceConnectPurchase(productID: productID, transactionID: transactionID) { (success) in
+            if success {
+                ZypeAppleTVBase.sharedInstance.login({ (complete, error) in
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "kUnspinForPurchase"), object: nil)
+                    alert("Successful purchase", title: "Success", action: {})
+                })
+
+                NotificationCenter.default.post(name: Notification.Name(rawValue: InAppPurchaseManager.kPurchaseCompleted), object: nil)
+            } else {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "kUnspinForPurchase"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: InAppPurchaseManager.kPurchaseCompleted), object: nil)
+                alert("Could not verify your purchase with iTunes marketplace. Please try again later.", title: "Error", action: {})
+            }
+        }
+
+        UserDefaults.standard.removeObject(forKey: "kPurchaseVideoId")
+    }
+
+    fileprivate func verifyMarketplaceConnectPurchase(productID: String, transactionID: String, _ callback: @escaping (_ success: Bool) -> Void) {
+        guard let receipt = receiptURL()?.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0)) else { return }
+
+        var price: String = "0.00"
+        for product in self.products! {
+            if product.productIdentifier == productID {
+                price = String(describing: product.price)
+            }
+        }
+
+        let consumerId = UserDefaults.standard.object(forKey: "kConsumerId")
+        let videoId = UserDefaults.standard.object(forKey: "kPurchaseVideoId")
+        let appId = UserDefaults.standard.object(forKey: Const.kAppId)
+        let siteId = UserDefaults.standard.object(forKey: Const.kSiteId)
+
+        let marketplaceEndpoint = URL(string: "https://mkt.zype.com/v1/itunes/transactions")!
+        var paramsDict: [String: String] = ["receipt": receipt,
+                                            "consumer_id": consumerId as! String,
+                                            "video_id": videoId as! String,
+                                            "app_id": appId as! String,
+                                            "site_id": siteId as! String,
+                                            "transaction_type": "purchase",
+                                            "amount": price]
+
+        // TODO: make request and add validation when available
+        let requestData = try! JSONSerialization.data(withJSONObject: paramsDict, options: [])
+        var request = URLRequest(url: marketplaceEndpoint)
+        request.httpMethod = "POST"
+        request.httpBody = requestData
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        let session = URLSession(configuration: .default)
+
+        let task = session.dataTask(with: request) { (data, resp, err) in
+            if err != nil {
+                print(err?.localizedDescription ?? "verifyMarketplaceConnect(): ERROR verifying native purchase")
+            }
+
+            if resp != nil {
+                let statusCode = (resp as! HTTPURLResponse).statusCode
+
+                if statusCode == 200 {
+                    callback(true)
+                } else {
+                    callback(false)
+                }
+            }
+        }.resume()
+    }
+
     fileprivate func verifyBiFrost(productID: String, _ callback: @escaping (_ success: Bool) -> ()) { // completion
         //let biFrost: URL = URL(string: "https://bifrost.stg.zype.com/api/v1/subscribe")!
         let biFrostProd: URL = URL(string: "https://bifrost.zype.com/api/v1/subscribe")!

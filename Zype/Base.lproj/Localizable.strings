@@ -7,6 +7,7 @@
 "ShowDetails.FavoriteLoginNeeded" = "Please login before making video favorite";
 "ShowDetails.Resume" = "Resume";
 "ShowDetails.SubscribeButton" = "Subscribe";
+"ShowDetails.PurchaseButton" = "Purchase";
 "ShowDetails.SubscribedButton" = "Play";
 "ShowDetails.EpisodesCount" = "%d Episodes";
 "ShowDetails.Episode" = "%d Episode";
@@ -55,9 +56,9 @@
 "Messages.OK" = "OK";
 "Messages.ErrorTitle" = "Error";
 
+"Iap.ButtonFormat" = "%@ - %@";
 "Subscription.Success" = "You are successfully subscripted!";
 "Subscription.NotPurchased" = "Please subscribe before watching this video!";
-"Subscription.ButtonFormat" = "%@ %@";
 "Subscription.ExpirationStatus" = "Your subscription expires on %@";
 "Subscription.NotSubscribed" = "You are not subscibed";
 "Subscription.ExpirationInfoError" = "Cannot get info about you subscription status";

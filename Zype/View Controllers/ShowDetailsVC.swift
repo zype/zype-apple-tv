@@ -30,10 +30,12 @@ class ShowDetailsVC: CollectionContainerVC {
     @IBOutlet weak var button1: FocusableButton!
     @IBOutlet weak var button2: FocusableButton!
     @IBOutlet weak var button3: FocusableButton!
+    @IBOutlet weak var button4: FocusableButton!
     @IBOutlet weak var label0: UILabel!
     @IBOutlet weak var label1: UILabel!
     @IBOutlet weak var label2: UILabel!
     @IBOutlet weak var label3: UILabel!
+    @IBOutlet weak var label4: UILabel!
     
     var selectedShow: PlaylistModel!
     var selectedVideo: VideoModel!
@@ -42,7 +44,8 @@ class ShowDetailsVC: CollectionContainerVC {
     let userDefaults = UserDefaults.standard
     var actionables = [Actionable]()
     var currentButtonTypes = [ButtonType]()
-    
+    var entitledVideos = [FavoriteModel]()
+
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -74,7 +77,8 @@ class ShowDetailsVC: CollectionContainerVC {
         self.button0.label = self.label0
         self.button2.label = self.label2
         self.button3.label = self.label3
-        
+        self.button4.label = self.label4
+
         self.posterImage.shouldAnimate = true
         self.titleLabel.text = self.selectedShow.titleString
         self.loadVideos()
@@ -92,8 +96,15 @@ class ShowDetailsVC: CollectionContainerVC {
         if let path = self.indexPathForselectedVideo() {
             self.collectionVC.collectionView?.scrollToItem(at: path, at: .centeredHorizontally, animated: false)
         }
-        self.refreshButtons()
-        
+
+        if Const.kNativeTvod {
+            self.fetchVideoEntitlements {
+                self.refreshButtons()
+            }
+        } else {
+            self.refreshButtons()
+        }
+
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: InAppPurchaseManager.kPurchaseCompleted), object: nil)
         
         if Const.kNativeSubscriptionEnabled || Const.kNativeToUniversal {
@@ -153,7 +164,14 @@ class ShowDetailsVC: CollectionContainerVC {
         self.subTitleLabel.text = video.titleString
         self.descriptionLabel.text = video.descriptionString
         self.layoutLabels()
-        self.refreshButtons()
+
+        if Const.kNativeTvod {
+            self.fetchVideoEntitlements {
+                self.refreshButtons()
+            }
+        } else {
+            self.refreshButtons()
+        }
     }
     
     // MARK: - Get Data
@@ -182,6 +200,23 @@ class ShowDetailsVC: CollectionContainerVC {
         })
     }
     
+    // Preload all user entitlements for Native TVOD. Called when view appears/reappears
+    func fetchVideoEntitlements(completion: @escaping () -> Void) {
+        self.entitledVideos = []
+        ZypeAppleTVBase.sharedInstance.getMyLibrary { (videoLib, err) in
+
+            // Note: getMyLibrary() repurposes the FavoriteModel
+            //  - FavoriteModel.objectID == video id
+            guard let vids = videoLib as Array<FavoriteModel>? else {
+                completion()
+                return
+            }
+
+            self.entitledVideos = vids
+            completion()
+        }
+    }
+
     // MARK: - Buttons
     
     fileprivate func refreshButtons() {
@@ -211,6 +246,9 @@ class ShowDetailsVC: CollectionContainerVC {
             case .watchAdFree:
                 actionable.button.setBackgroundImage(UIImage(named: "SubscribeFocused"), for: .normal)
                 actionable.label.text = localized("ShowDetails.SubscribeToWatchAdFree")
+            case .purchase:
+                actionable.button.setBackgroundImage(UIImage(named: "SubscribeFocused"), for: .normal)
+                actionable.label.text = localized("ShowDetails.PurchaseButton")
             case .favorite:
                 actionable.button.setBackgroundImage(UIImage(named: self.selectedVideo.isInFavorites() ? "FavoritesRemoveFocused" : "FavoritesAddFocused"), for: .normal)
                 actionable.label.text = localized(self.selectedVideo.isInFavorites() ? "ShowDetails.Unfavorite" : "ShowDetails.Favorite")
@@ -235,6 +273,10 @@ class ShowDetailsVC: CollectionContainerVC {
     
     @IBAction func onButton3(_ sender: AnyObject) { // Buttons: [ ] [ ] [ ] [✓]
         self.handleButtonType(self.currentButtonTypes[3])
+    }
+
+    @IBAction func onButton4(_ sender: AnyObject) { // Buttons: [ ] [ ] [ ] [ ] [✓]
+        self.handleButtonType(self.currentButtonTypes[4])
     }
     
     func onExpandDescription() {
@@ -261,6 +303,8 @@ class ShowDetailsVC: CollectionContainerVC {
             self.handleSubscribe()
         case .watchAdFree:
             self.handleSubscribe()
+        case .purchase:
+            self.handlePurchase()
         case .favorite:
             self.handleFavorites()
         }
@@ -294,15 +338,24 @@ class ShowDetailsVC: CollectionContainerVC {
     fileprivate func presentPurchaseVC() {
         let purchaseVC = self.storyboard?.instantiateViewController(withIdentifier: "PurchaseVC") as! PurchaseVC
         
-        InAppPurchaseManager.sharedInstance.requestProducts({ _ in
-            NotificationCenter.default.addObserver(self,
+        // TODO: add logic for fetching video marketplace id / skus
+        let productId: String = "one_dollar_video"
+
+        InAppPurchaseManager.sharedInstance.requestProducts([productId], withCallback: { _ in            NotificationCenter.default.addObserver(self,
                                                    selector: #selector(ShowDetailsVC.onPurchased),
                                                    name: NSNotification.Name(rawValue: InAppPurchaseManager.kPurchaseCompleted),
                                                    object: nil)
+            purchaseVC.setupAssociatedVideo(video: self.selectedVideo)
             self.navigationController?.present(purchaseVC, animated: true, completion: nil)
         })
     }
     
+    fileprivate func handlePurchase() {
+        if Const.kNativeTvod {
+            self.presentPurchaseVC()
+        }
+    }
+
     fileprivate func handleFavorites() {
         if Const.kFavoritesViaAPI {
             guard ZypeAppleTVBase.sharedInstance.consumer?.isLoggedIn == true else {
@@ -338,8 +391,9 @@ extension ShowDetailsVC {
         let actionable1 = Actionable(button: button1, label: label1)
         let actionable2 = Actionable(button: button2, label: label2)
         let actionable3 = Actionable(button: button3, label: label3)
+        let actionable4 = Actionable(button: button4, label: label4)
         
-        actionables = [actionable0, actionable1, actionable2, actionable3]
+        actionables = [actionable0, actionable1, actionable2, actionable3, actionable4]
     }
     
     enum ButtonType {
@@ -347,6 +401,7 @@ extension ShowDetailsVC {
         case play
         case subscribe
         case watchAdFree
+        case purchase
         case favorite
     }
     
@@ -357,8 +412,8 @@ extension ShowDetailsVC {
             buttons.append(.resume)
         }
         
-        let playButton = getPlaySubscribeButton()
-        if playButton == .subscribe {
+        let playButton = getPlayMonetizationButton()
+        if playButton == .subscribe || playButton == .purchase {
             buttons = []
         }
         buttons.append(playButton)
@@ -367,14 +422,23 @@ extension ShowDetailsVC {
             buttons.append(.watchAdFree)
         }
         
+        if let firstButton = buttons.first {
+            if requiresPurchaseButton() && firstButton != .purchase {
+                buttons.append(.purchase)
+            }
+        }
+        
         buttons.append(.favorite)
         
         self.currentButtonTypes = buttons
     }
     
-    fileprivate func getPlaySubscribeButton() -> ButtonType {
+    fileprivate func getPlayMonetizationButton() -> ButtonType {
         if selectedVideo.subscriptionRequired {
-            if Const.kNativeSubscriptionEnabled || Const.kNativeToUniversal {
+            if Const.kNativeTvod && selectedVideo.purchaseRequired && userHasEntitlement() {
+                return .play
+            }
+            else if Const.kNativeSubscriptionEnabled || Const.kNativeToUniversal {                
                 if !InAppPurchaseManager.sharedInstance.lastSubscribeStatus {
                     return .subscribe
                 }
@@ -383,6 +447,10 @@ extension ShowDetailsVC {
                 if !ZypeUtilities.isDeviceLinked() {
                     return .subscribe
                 }
+            }
+        } else if selectedVideo.purchaseRequired {
+            if Const.kNativeTvod && selectedVideo.purchaseRequired && !userHasEntitlement() {
+                return .purchase
             }
         }
         return .play
@@ -409,4 +477,26 @@ extension ShowDetailsVC {
         return Const.kSubscribeToWatchAdFree
     }
 
+    fileprivate func requiresPurchaseButton() -> Bool {
+        if (Const.kNativeTvod && selectedVideo.purchaseRequired) {
+            var requiresPurchase: Bool = true
+
+            if userHasEntitlement() {
+                requiresPurchase = false
+            }
+
+            return requiresPurchase
+        } else {
+            return false
+        }
+    }
+
+    fileprivate func userHasEntitlement() -> Bool {
+        for vid in entitledVideos {
+            if vid.objectID == selectedVideo.getId() {
+                return true
+            }
+        }
+        return false
+    }
 }
