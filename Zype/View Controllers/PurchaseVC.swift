@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 import ZypeAppleTVBase
 
 class PurchaseVC: UIViewController {
@@ -18,6 +19,7 @@ class PurchaseVC: UIViewController {
     
     var result: Int = 0
     var productIDSelected: String!
+    var associatedVideo: VideoModel! // video clicked to show PurchaseVC
     
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
@@ -98,6 +100,11 @@ class PurchaseVC: UIViewController {
         loginButton.isHidden = false
     }
     
+    // set video that required entitlement
+    func setupAssociatedVideo(video: VideoModel) {
+        associatedVideo = video
+    }
+
     func onPlanSelected(sender: UIButton) {
         if !ZypeUtilities.isDeviceLinked() {
             NotificationCenter.default.addObserver(self,
@@ -108,6 +115,10 @@ class PurchaseVC: UIViewController {
         }
         else {
             if let identifier = sender.accessibilityIdentifier {
+                if let videoId = associatedVideo.ID as? String {
+                    UserDefaults.standard.set(videoId, forKey: "kPurchaseVideoId")
+                }
+
                 self.purchase(identifier)
             }
         }
@@ -136,7 +147,7 @@ class PurchaseVC: UIViewController {
         
         stackView = UIStackView()
         stackView.axis = UILayoutConstraintAxis.horizontal
-        stackView.distribution = UIStackViewDistribution.fill
+        stackView.distribution = UIStackViewDistribution.fillEqually
         stackView.alignment = UIStackViewAlignment.center
         stackView.spacing = Const.kSubscribeButtonHorizontalSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -153,17 +164,57 @@ class PurchaseVC: UIViewController {
         scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": stackView]))
         
         if let products = InAppPurchaseManager.sharedInstance.products {
+            var subscriptionProducts: Array<SKProduct> = []
+            var consumableProducts: Array<SKProduct> = []
+
             for product in products {
-                let subscribeButton = UIButton.init(type: .system)
-                subscribeButton.heightAnchor.constraint(equalToConstant: self.containerView.height).isActive = true
-                subscribeButton.setTitle(String(format: localized("Subscription.ButtonFormat"), arguments: [product.localizedTitle, product.localizedPrice(), self.getDuration(product.productIdentifier)]), for: .normal)
-                subscribeButton.accessibilityIdentifier = product.productIdentifier
-                subscribeButton.addTarget(self, action: #selector(self.onPlanSelected(sender:)), for: .primaryActionTriggered)
-                stackView.addArrangedSubview(subscribeButton)
+                let sku = product.productIdentifier
+                let productIsSubscription = Const.subscriptionIdentifiers.keys.contains(sku)
+
+                if productIsSubscription {
+                    // swaf or subscription required
+                    if Const.kSubscribeToWatchAdFree ||
+                        (associatedVideo.subscriptionRequired && (Const.kNativeSubscriptionEnabled || Const.kNativeToUniversal)) {
+                        subscriptionProducts.append(product)
+                    }
+                } else {
+                    // TODO: add extra check for proper consumable sku when platform supports it
+                    if associatedVideo.purchaseRequired && Const.kNativeTvod {
+                        consumableProducts.append(product)
+                    }
+                }
+            }
+
+            let productCount: Int = subscriptionProducts.count + consumableProducts.count
+            if productCount <= 2 { // if 2 or less, move buttons closer to middle (better UX)
+                let leadingConst = (containerView.width * 0.60) - (containerView.width * 0.225 * CGFloat(productCount))
+                stackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: leadingConst).isActive = true
+            }
+
+            for product in subscriptionProducts {
+                addProductButton(product)
+            }
+            for product in consumableProducts {
+                addProductButton(product)
             }
         }
     }
     
+    func addProductButton(_ product: SKProduct) {
+        let productButton = UIButton.init(type: .system)
+        productButton.heightAnchor.constraint(equalToConstant: self.containerView.height).isActive = true
+
+        if Const.subscriptionIdentifiers.keys.contains(product.productIdentifier) { // subscription
+            productButton.setTitle(String(format: localized("Iap.ButtonFormat"), arguments: [product.localizedTitle, product.localizedPrice()]), for: .normal)
+        } else { // regular purchase
+            productButton.setTitle(String(format: localized("Iap.ButtonFormat"), arguments: ["Purchase Video", product.localizedPrice()]), for: .normal)
+        }
+
+        productButton.accessibilityIdentifier = product.productIdentifier
+        productButton.addTarget(self, action: #selector(self.onPlanSelected(sender:)), for: .primaryActionTriggered)
+        stackView.addArrangedSubview(productButton)
+    }
+
     @IBAction func onSignIn(_ sender: Any) {
         ZypeUtilities.presentLoginVC(self)
     }

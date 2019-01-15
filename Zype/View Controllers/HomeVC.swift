@@ -351,6 +351,16 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
             let detailsVC = segue.destination as! ShowDetailsVC
             detailsVC.selectedShow = self.selectedShow
             detailsVC.selectedVideo = self.selectedVideo
+
+            if Const.kNativeTvod {
+                detailsVC.fetchVideoEntitlements {
+                    super.prepare(for: segue, sender: sender)
+                }
+            } else {
+                super.prepare(for: segue, sender: sender)
+            }
+        } else {
+            super.prepare(for: segue, sender: sender)
         }
         super.prepare(for: segue, sender: sender)
     }
