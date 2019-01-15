@@ -44,7 +44,7 @@ class Const: NSObject {
     static let kLockIcons = false
     static let kSubscribeToWatchAdFree = false
 
-    // NOTE: This is a depreciated feature. DO NOT ENABLE
+    // NOTE: This is a deprecated feature. DO NOT ENABLE
     static let kNativeToUniversal = false
 
     static let kParentalGuidanceProtection = false
