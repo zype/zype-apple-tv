@@ -79,7 +79,7 @@ class Const: NSObject {
     static let kDefaultsBackgroundUrl = "background_url"
     static let kAppId = "app_id"
     static let kSiteId = "site_id"
-    static let kAppVersion = "1.2.5"
+    static let kAppVersion = "1.5.7"
     static let kValidateTos = "validate_tos" // key for feature flag
     
     // MARK: - Segues
