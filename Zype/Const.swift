@@ -43,9 +43,14 @@ class Const: NSObject {
     static let kFavoritesViaAPI = false
     static let kLockIcons = false
     static let kSubscribeToWatchAdFree = false
+
+    // NOTE: This is a depreciated feature. DO NOT ENABLE
     static let kNativeToUniversal = false
+
     static let kParentalGuidanceProtection = false
     static let kUniversalTvod = false
+
+    // NOTE: This is a gated feature that REQUIRES Zype to configure. Please reach out to Zype Support for help on setting up this feature.
     static let kNativeTvod = true
     static let kTosValidation = true // enable for Terms of Service checkbox on signup
     
