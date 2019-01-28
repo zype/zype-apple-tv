@@ -395,6 +395,7 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
         let videoId = UserDefaults.standard.object(forKey: "kPurchaseVideoId")
         let appId = UserDefaults.standard.object(forKey: Const.kAppId)
         let siteId = UserDefaults.standard.object(forKey: Const.kSiteId)
+        let bundleID = Bundle.main.bundleIdentifier ?? ""
 
         let marketplaceEndpoint = URL(string: "https://mkt.zype.com/v1/itunes/transactions")!
         var paramsDict: [String: String] = ["receipt": receipt,
@@ -402,6 +403,7 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
                                             "video_id": videoId as! String,
                                             "app_id": appId as! String,
                                             "site_id": siteId as! String,
+                                            "apple_id": bundleID,
                                             "transaction_type": "purchase",
                                             "amount": price]
 
