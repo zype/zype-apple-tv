@@ -51,8 +51,8 @@ class Const: NSObject {
     static let kUniversalTvod = false
 
     // NOTE: This is a gated feature that REQUIRES Zype to configure. Please reach out to Zype Support for help on setting up this feature.
-    static let kNativeTvod = true
-    static let kTosValidation = true // enable for Terms of Service checkbox on signup
+    static let kNativeTvod = false
+    static let kTosValidation = false // enable for Terms of Service checkbox on signup
     
     // MARK: - UI Constants
     
