@@ -225,6 +225,8 @@ extension PlayerVC: AdHelperProtocol {
             viewWithTag.removeFromSuperview()
         }
         
+        self.adsArray = [];
+        self.adsData = [];
         self.playerItem.removeObserver(self, forKeyPath: "status", context: nil)
         self.adPlayer!.pause()
         self.playerLayer.removeFromSuperlayer()
