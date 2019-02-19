@@ -148,7 +148,7 @@ NSString *const DVIABPlayerErrorDomain = @"DVIABPlayerErrorDomain";
                         [self.currentInlineAd trackEvent:@"start"];
                     }
                     self.playerLayer.videoGravity = AVLayerVideoGravityResize;
-                    [self.adPlayer play];
+                    if (self.currentItem) [self.adPlayer play];
                     break;
                     
                 case AVPlayerItemStatusFailed:
@@ -166,7 +166,7 @@ NSString *const DVIABPlayerErrorDomain = @"DVIABPlayerErrorDomain";
         VLog(@"DVIABPlayerRateObservationContext %@ %f", self.currentItem, rate);
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (rate > 0) {
+            if (self.currentItem && rate > 0) {
                 self.contentPlayerItemDidReachEnd = NO;
                 
                 if (CMTimeCompare(CMTimeAbsoluteValue(self.currentItem.currentTime),
@@ -187,7 +187,7 @@ NSString *const DVIABPlayerErrorDomain = @"DVIABPlayerErrorDomain";
         VLog(@"DVIABPlayerRateObservationContext %@ %f", self.currentItem, rate);
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (rate == 0 && !paused) {
+            if (self.currentItem && rate == 0 && !paused) {
                 VLogV(self.playerLayer);
                 self.playerLayer.player = self.adPlayer;
                 [self.adPlayer play];
