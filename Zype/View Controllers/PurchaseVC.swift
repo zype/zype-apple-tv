@@ -36,6 +36,8 @@ class PurchaseVC: UIViewController {
         
         if (Const.kNativeSubscriptionEnabled) {
             signInView.isHidden = true
+        } else if (Const.kMarketplaceConnect == false) {
+            signInView.isHidden = true
         }
         
         self.configureButtons()
@@ -106,7 +108,7 @@ class PurchaseVC: UIViewController {
     }
 
     func onPlanSelected(sender: UIButton) {
-        if !ZypeUtilities.isDeviceLinked() {
+        if !ZypeUtilities.isDeviceLinked() && Const.kMarketplaceConnect {
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(onPurchased),
                                                    name: NSNotification.Name(rawValue: InAppPurchaseManager.kPurchaseCompleted),

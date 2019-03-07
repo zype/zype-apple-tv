@@ -212,6 +212,7 @@ class ShowDetailsVC: CollectionContainerVC {
                 return
             }
 
+            // TODO: add logic to add local entitlements if kMarketplaceConnect is false
             self.entitledVideos = vids
             completion()
         }
@@ -492,6 +493,7 @@ extension ShowDetailsVC {
     }
 
     fileprivate func userHasEntitlement() -> Bool {
+        // TODO: add logic to compare with local storage to check entitlements if kMarketplaceConnect is false
         for vid in entitledVideos {
             if vid.objectID == selectedVideo.getId() {
                 return true

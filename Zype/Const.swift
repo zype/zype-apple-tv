@@ -53,6 +53,8 @@ class Const: NSObject {
     // NOTE: This is a gated feature that REQUIRES Zype to configure. Please reach out to Zype Support for help on setting up this feature.
     static let kNativeTvod = false
     static let kTosValidation = false // enable for Terms of Service checkbox on signup
+
+    static let kMarketplaceConnect = false
     
     // MARK: - UI Constants
     

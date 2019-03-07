@@ -306,11 +306,16 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
                     }
                     
                     if productIsConsumable {
-                        if Const.kNativeTvod {
+                        // TODO: add call to singleton class for managing local entitlements
+                        // Should add video id to local entitlements
+
+                        if Const.kNativeTvod && Const.kMarketplaceConnect {
                             if let transactionId = trans.transactionIdentifier  {
                                 self.verifyNativePurchase(productID: trans.payment.productIdentifier, transactionID: transactionId)
                             }
                             break
+                        } else {
+                            // TODO: add logic to return to ShowDetailsVC.swift
                         }
                     }
                     
