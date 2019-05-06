@@ -272,6 +272,8 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
                 else {
                     self.play(self.playlist!.first!)
                 }
+            } else {
+                dismiss(animated: true, completion: nil)
             }
         }
     }

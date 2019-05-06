@@ -13,6 +13,7 @@
 "ShowDetails.Episode" = "%d Episode";
 "ShowDetails.SubscribeLoginNeeded" = "Please login before subscribing";
 "ShowDetails.SubscribeToWatchAdFree" = "Watch Ad Free";
+"ShowDetails.WatchTrailer" = "Watch Trailer";
 
 "Favorites.TabTitle" = "Favorites";
 "Favorites.Title" = "Favorites";

@@ -4,6 +4,10 @@
       "idiom" : "tv",
       "filename" : "App-Icon-1280x768-layer-2.png",
       "scale" : "1x"
+    },
+    {
+      "idiom" : "tv",
+      "scale" : "2x"
     }
   ],
   "info" : {

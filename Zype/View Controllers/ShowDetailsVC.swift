@@ -31,11 +31,13 @@ class ShowDetailsVC: CollectionContainerVC {
     @IBOutlet weak var button2: FocusableButton!
     @IBOutlet weak var button3: FocusableButton!
     @IBOutlet weak var button4: FocusableButton!
+    @IBOutlet weak var button5: FocusableButton!
     @IBOutlet weak var label0: UILabel!
     @IBOutlet weak var label1: UILabel!
     @IBOutlet weak var label2: UILabel!
     @IBOutlet weak var label3: UILabel!
     @IBOutlet weak var label4: UILabel!
+    @IBOutlet weak var label5: UILabel!
     
     var selectedShow: PlaylistModel!
     var selectedVideo: VideoModel!
@@ -252,6 +254,9 @@ class ShowDetailsVC: CollectionContainerVC {
             case .favorite:
                 actionable.button.setBackgroundImage(UIImage(named: self.selectedVideo.isInFavorites() ? "FavoritesRemoveFocused" : "FavoritesAddFocused"), for: .normal)
                 actionable.label.text = localized(self.selectedVideo.isInFavorites() ? "ShowDetails.Unfavorite" : "ShowDetails.Favorite")
+            case .watchTrailer:
+                actionable.button.setBackgroundImage(UIImage(named: "WatchTrailer"), for: .normal)
+                actionable.label.text = localized("ShowDetails.WatchTrailer")
             }
         }
         
@@ -275,8 +280,12 @@ class ShowDetailsVC: CollectionContainerVC {
         self.handleButtonType(self.currentButtonTypes[3])
     }
 
-    @IBAction func onButton4(_ sender: AnyObject) { // Buttons: [ ] [ ] [ ] [ ] [✓]
+    @IBAction func onButton4(_ sender: AnyObject) { // Buttons: [ ] [ ] [ ] [ ] [✓][ ]
         self.handleButtonType(self.currentButtonTypes[4])
+    }
+    
+    @IBAction func onButton5(_ sender: AnyObject) { // Buttons: [ ] [ ] [ ] [ ][ ] [✓]
+        self.handleButtonType(self.currentButtonTypes[5])
     }
     
     func onExpandDescription() {
@@ -307,6 +316,8 @@ class ShowDetailsVC: CollectionContainerVC {
             self.handlePurchase()
         case .favorite:
             self.handleFavorites()
+        case .watchTrailer:
+            self.handleTrailer()
         }
     }
     
@@ -377,6 +388,22 @@ class ShowDetailsVC: CollectionContainerVC {
         self.selectedVideo.toggleFavorite()
         self.refreshButtons()
     }
+    
+    fileprivate func handleTrailer() {
+        if let previewIDs = selectedVideo.fullJson["preview_ids"] as? Array<String>, previewIDs.count > 0 {
+            
+            let queryModel = QueryVideosModel(categoryValue: nil, exceptCategoryValue: nil, playlistId: "", searchString: "", page: 0, perPage: 1)
+            queryModel.videoID = previewIDs[0]
+            ZypeAppleTVBase.sharedInstance.getVideos(queryModel) { (videos, error) in
+                if error == nil && videos != nil && (videos?.count)! > 0 {
+                    self.playVideo(videos![0])
+                } else {
+                    print(error?.localizedDescription ?? "Error: Watch Trailer")
+                }
+            }
+            
+        }
+    }
 }
 
 
@@ -392,8 +419,9 @@ extension ShowDetailsVC {
         let actionable2 = Actionable(button: button2, label: label2)
         let actionable3 = Actionable(button: button3, label: label3)
         let actionable4 = Actionable(button: button4, label: label4)
+        let actionable5 = Actionable(button: button5, label: label5)
         
-        actionables = [actionable0, actionable1, actionable2, actionable3, actionable4]
+        actionables = [actionable0, actionable1, actionable2, actionable3, actionable4, actionable5]
     }
     
     enum ButtonType {
@@ -403,6 +431,7 @@ extension ShowDetailsVC {
         case watchAdFree
         case purchase
         case favorite
+        case watchTrailer
     }
     
     func getCurrentActionables() {
@@ -429,6 +458,10 @@ extension ShowDetailsVC {
         }
         
         buttons.append(.favorite)
+        
+        if requiresTrailerButton() {
+            buttons.append(.watchTrailer)
+        }
         
         self.currentButtonTypes = buttons
     }
@@ -489,6 +522,14 @@ extension ShowDetailsVC {
         } else {
             return false
         }
+    }
+    
+    fileprivate func requiresTrailerButton() -> Bool {
+        if let previewIDs = selectedVideo.fullJson["preview_ids"] as? Array<String>,
+            previewIDs.count > 0 {
+            return true
+        }
+        return false
     }
 
     fileprivate func userHasEntitlement() -> Bool {
