@@ -101,6 +101,13 @@ extension UIViewController {
             //custom logic for a livestream can be placed here
         }
         
+        if model.registrationRequired {
+            if !ZypeUtilities.isDeviceLinked() {
+                ZypeUtilities.presentRegisterVC(self)
+                return
+            }
+        }
+        
         //logic for subscription that can be native or universal
         //for native subscription the check will be performed on video play level
         if Const.kNativeSubscriptionEnabled == false {

@@ -257,6 +257,9 @@ class ShowDetailsVC: CollectionContainerVC {
             case .watchTrailer:
                 actionable.button.setBackgroundImage(UIImage(named: "WatchTrailer"), for: .normal)
                 actionable.label.text = localized("ShowDetails.WatchTrailer")
+            case .signup:
+                actionable.button.setBackgroundImage(UIImage(named: "Subscribed"), for: .normal)
+                actionable.label.text = localized("ShowDetails.SignupButton")
             }
         }
         
@@ -318,6 +321,8 @@ class ShowDetailsVC: CollectionContainerVC {
             self.handleFavorites()
         case .watchTrailer:
             self.handleTrailer()
+        case .signup:
+            self.handleRegisteration()
         }
     }
     
@@ -404,6 +409,10 @@ class ShowDetailsVC: CollectionContainerVC {
             
         }
     }
+    
+    fileprivate func handleRegisteration() {
+        ZypeUtilities.presentRegisterVC(self)
+    }
 }
 
 
@@ -432,6 +441,7 @@ extension ShowDetailsVC {
         case purchase
         case favorite
         case watchTrailer
+        case signup
     }
     
     func getCurrentActionables() {
@@ -467,7 +477,12 @@ extension ShowDetailsVC {
     }
     
     fileprivate func getPlayMonetizationButton() -> ButtonType {
-        if selectedVideo.subscriptionRequired {
+        if selectedVideo.registrationRequired {
+            if !ZypeUtilities.isDeviceLinked() {
+                return .signup
+            }
+        }
+        else if selectedVideo.subscriptionRequired {
             if Const.kNativeTvod && selectedVideo.purchaseRequired && userHasEntitlement() {
                 return .play
             }

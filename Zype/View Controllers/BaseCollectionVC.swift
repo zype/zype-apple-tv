@@ -299,6 +299,10 @@ extension BaseCollectionVC {
             }
             return cell
         }
+        //check for index out of bounds when data is being fetched after signout
+        if section.items?.count == 0 {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: (section.isPager ? "PagerCell" :"ImageCell"), for: indexPath)
+        }
         
         let data = section.items[self.isInfinityScrolling ? (indexPath.row % self.sections[indexPath.section].items.count) : indexPath.row]
         
