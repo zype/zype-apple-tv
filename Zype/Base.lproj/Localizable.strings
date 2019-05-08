@@ -14,6 +14,7 @@
 "ShowDetails.SubscribeLoginNeeded" = "Please login before subscribing";
 "ShowDetails.SubscribeToWatchAdFree" = "Watch Ad Free";
 "ShowDetails.WatchTrailer" = "Watch Trailer";
+"ShowDetails.SignupButton" = "Sign Up";
 
 "Favorites.TabTitle" = "Favorites";
 "Favorites.Title" = "Favorites";
