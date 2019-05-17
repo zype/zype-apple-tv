@@ -87,7 +87,7 @@ class GuideVC: UIViewController {
         
         date = calendar.date(bySetting: .nanosecond, value: 0, of: date)!
         date = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: date)!
-        
+
         for section in 0..<self.guides.count {
             if self.guides[section].programs.count > 0 {
                 if date.compare(self.guides[section].programs[0].localStartTime!) == .orderedAscending {
@@ -95,7 +95,7 @@ class GuideVC: UIViewController {
                 }
             }
         }
-        
+
         return date
     }
     
@@ -143,10 +143,10 @@ class GuideVC: UIViewController {
         self.guides = self.guides.filter({ (guide) -> Bool in
             return guide.programs.count > 0
         })
-        
+
         self.startDate = self.getStartTime()
         self.activityIndicator.stopAnimating()
-        
+
         self.focusCurrentTime()
     }
     
