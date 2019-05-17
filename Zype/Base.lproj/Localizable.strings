@@ -16,6 +16,8 @@
 "ShowDetails.WatchTrailer" = "Watch Trailer";
 "ShowDetails.SignupButton" = "Sign Up";
 
+"Guide.TabTitle" = "Guide";
+
 "Favorites.TabTitle" = "Favorites";
 "Favorites.Title" = "Favorites";
 "Favorites.LoginNeededMsg" = "Please Login to get Favorites list";

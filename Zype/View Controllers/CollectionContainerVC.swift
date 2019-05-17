@@ -96,7 +96,8 @@ class ShowCollectionItem: CollectionLabeledItem {
 
 extension UIViewController {
     
-    func playVideo(_ model: VideoModel, playlist: Array<VideoModel>? = nil, isResuming: Bool = true) {
+    func playVideo(_ model: VideoModel, playlist: Array<VideoModel>? = nil, isResuming: Bool = true,
+                   startTime: String? = nil, endTime: String? = nil) {
         if (model.onAir) {
             //custom logic for a livestream can be placed here
         }
@@ -128,6 +129,8 @@ extension UIViewController {
         playerVC.currentVideo = model
         playerVC.playlist = playlist
         playerVC.isResuming = isResuming
+        playerVC.startTime = startTime
+        playerVC.endTime = endTime
         self.present(playerVC, animated: true, completion: nil)
     }
     

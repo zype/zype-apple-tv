@@ -60,6 +60,10 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     var adsArray: NSMutableArray?
     var url: NSURL?
     
+    // added for past programs
+    var startTime: String? = nil
+    var endTime: String? = nil
+    
     // MARK: - View Lifecycle
     deinit {
         print("Destroying")
@@ -161,11 +165,19 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     
     func play(_ model: VideoModel) {
         model.getVideoObject(.kVimeoHls, completion: {[unowned self] (playerObject: VideoObjectModel?, error: NSError?) in
-            if let _ = playerObject, let videoURL = playerObject?.videoURL, let url = NSURL(string: videoURL), error == nil {
+            if let _ = playerObject, let videoURL = playerObject?.videoURL, var url = NSURL(string: videoURL), error == nil {
+                
+                if let startTime = self.startTime, let endTime = self.endTime {
+                    guard let newUrl = NSURL(string: "\(videoURL)&start=\(startTime)&end=\(endTime)") else {
+                        self.navigationController?.popViewController(animated: true)
+                        return
+                    }
+                    url = newUrl
+                }
                 
                 self.validateEntitlement(for: playerObject)
                 let adsArray = self.getAdsFromResponse(playerObject)
-                self.playerURL = url as URL!
+                self.playerURL = url as URL
                 self.adsArray = adsArray
                 self.url = url
                 self.currentVideo = model

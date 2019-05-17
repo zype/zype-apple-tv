@@ -26,7 +26,7 @@ class Const: NSObject {
     
     static var appstorePassword = ""
     
-    static let sdkSettings = SettingsModel(clientID: "<CLIENT_ID>",
+        static let sdkSettings = SettingsModel(clientID: "<CLIENT_ID>",
                                            secret: "<CLIENT_SECRET>",
                                            appKey: "<APP_KEY>",
                                            apiDomain:"https://api.zype.com",
@@ -43,6 +43,7 @@ class Const: NSObject {
     static let kFavoritesViaAPI = false
     static let kLockIcons = false
     static let kSubscribeToWatchAdFree = false
+    static let kEPGEnabled = false
 
     // NOTE: This is a deprecated feature. DO NOT ENABLE
     static let kNativeToUniversal = false
@@ -71,6 +72,9 @@ class Const: NSObject {
     static let kCollectionSectionHeaderBottomMargin: CGFloat = 25.0
     static let kCollectionPagerHorizontalSpacing: CGFloat = 20.0
     static let kScrollableTextVCMaskInsets: UIEdgeInsets = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0)
+    
+    static let kEPGHighlightColor: UIColor = UIColor(red: 238/255.0, green: 150/255.0, blue: 45/255.0, alpha: 1.0)
+    static let kEPGAiringColor: UIColor = UIColor(red: 12/255.0, green: 60/255.0, blue: 78/255.0, alpha: 1.0)
     
     // MARK: - String Constants
     
