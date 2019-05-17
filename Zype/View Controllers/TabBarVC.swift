@@ -12,6 +12,7 @@ import ZypeAppleTVBase
 
 class TabBarVC: UITabBarController {
 
+    var prevTabItem: UITabBarItem? = nil
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,14 @@ class TabBarVC: UITabBarController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(modifyTabs), name: NSNotification.Name(rawValue: kZypeReloadScreenNotification), object: nil)
         self.loadDynamicData()
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if prevTabItem != item, item.title?.lowercased() == "guide" {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "zype_reload_guide_notification"), object: nil)
+        }
+        
+        prevTabItem = item
     }
     
     func setupBackgroundImage() {
@@ -79,6 +88,12 @@ class TabBarVC: UITabBarController {
                 self.removeSettingsScreen()
             }
         }
+        
+        if Const.kEPGEnabled == true {
+            self.addGuideScreen()
+        } else {
+            self.removeGuideScreen()
+        }
     }
     
     func addSettingsScreen() {
@@ -108,6 +123,29 @@ class TabBarVC: UITabBarController {
             // self.tabBar.selectedItem = self.tabBar.items![0]
             self.selectedIndex = 0
             self.viewControllers?.removeLast()
+        }
+    }
+    
+    func addGuideScreen() {
+        let guideVC = self.storyboard?.instantiateViewController(withIdentifier: "GuideVC") as? GuideVC
+        if (guideVC != nil) {
+            let navController = UINavigationController.init(rootViewController: guideVC!)
+            self.viewControllers?.insert(navController, at: 1)
+            self.tabBar.items![1].title = localized("Guide.TabTitle")
+        }
+    }
+    
+    func removeGuideScreen() {
+        var needToBeRemoved = false
+        for vc in self.viewControllers! {
+            if (vc is GuideVC){
+                needToBeRemoved = true
+            }
+        }
+        
+        if needToBeRemoved {
+            self.selectedIndex = 0
+            self.viewControllers?.remove(at: 1)
         }
     }
     
