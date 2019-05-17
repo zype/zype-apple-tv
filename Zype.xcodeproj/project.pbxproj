@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B608C282270DAFB00E67E69 /* GuideDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B608C272270DAFB00E67E69 /* GuideDetailCell.swift */; };
+		2BB89B10226605CD003B3C5E /* GuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB89B0F226605CD003B3C5E /* GuideVC.swift */; };
+		2BB89B12226631F8003B3C5E /* GuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB89B11226631F8003B3C5E /* GuideCell.swift */; };
+		2BB89B1522665D78003B3C5E /* GuideCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB89B1422665D78003B3C5E /* GuideCollectionViewLayout.swift */; };
+		2BB89B1922665F83003B3C5E /* GuideTimeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB89B1622665F83003B3C5E /* GuideTimeHeader.swift */; };
+		2BB89B1A22665F83003B3C5E /* GuideChannelHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB89B1722665F83003B3C5E /* GuideChannelHeader.swift */; };
+		2BB89B1D22678BD8003B3C5E /* GuideDateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB89B1C22678BD8003B3C5E /* GuideDateHeader.swift */; };
 		47102CDC1ECBA02F0060AF02 /* AdProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */; };
 		473C514A1EE8ACA40051FC6C /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C51491EE8ACA40051FC6C /* InAppPurchaseManager.swift */; };
 		473C51501EE9A37B0051FC6C /* PurchaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C514F1EE9A37B0051FC6C /* PurchaseVC.swift */; };
@@ -82,6 +89,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2B608C272270DAFB00E67E69 /* GuideDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailCell.swift; sourceTree = "<group>"; };
+		2BB89B0F226605CD003B3C5E /* GuideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideVC.swift; sourceTree = "<group>"; };
+		2BB89B11226631F8003B3C5E /* GuideCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCell.swift; sourceTree = "<group>"; };
+		2BB89B1422665D78003B3C5E /* GuideCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCollectionViewLayout.swift; sourceTree = "<group>"; };
+		2BB89B1622665F83003B3C5E /* GuideTimeHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideTimeHeader.swift; sourceTree = "<group>"; };
+		2BB89B1722665F83003B3C5E /* GuideChannelHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideChannelHeader.swift; sourceTree = "<group>"; };
+		2BB89B1C22678BD8003B3C5E /* GuideDateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDateHeader.swift; sourceTree = "<group>"; };
 		47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProtocolDelegate.swift; sourceTree = "<group>"; };
 		473C51491EE8ACA40051FC6C /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseManager.swift; sourceTree = "<group>"; };
 		473C514F1EE9A37B0051FC6C /* PurchaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseVC.swift; sourceTree = "<group>"; };
@@ -175,6 +189,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BB89B1322665D57003B3C5E /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				2BB89B1722665F83003B3C5E /* GuideChannelHeader.swift */,
+				2BB89B1622665F83003B3C5E /* GuideTimeHeader.swift */,
+				2BB89B0F226605CD003B3C5E /* GuideVC.swift */,
+				2BB89B1422665D78003B3C5E /* GuideCollectionViewLayout.swift */,
+				2BB89B1C22678BD8003B3C5E /* GuideDateHeader.swift */,
+			);
+			path = Guide;
+			sourceTree = "<group>";
+		};
 		A161E99D1DDBBAA800D01C70 /* AVOD */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +349,7 @@
 		F5582CC31BC7E2E10089E5E7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2BB89B1322665D57003B3C5E /* Guide */,
 				F5D98CE21BE3B8F200C986B4 /* ModalProgressVC.swift */,
 				FA01D4CD1F8EBB0200A8D131 /* MyLibraryVC.swift */,
 				F5582CC61BC7E2E10089E5E7 /* PlayerVC.swift */,
@@ -348,6 +375,8 @@
 				F5582CCF1BC7FA350089E5E7 /* ControllerCell.swift */,
 				F55957D81BD77D3E004A01A9 /* PagerCell.swift */,
 				F5D98CCE1BE3B09500C986B4 /* HeaderCell.swift */,
+				2BB89B11226631F8003B3C5E /* GuideCell.swift */,
+				2B608C272270DAFB00E67E69 /* GuideDetailCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -452,19 +481,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-E1591D8E206995ED00BDE177 /* ShellScript */ = {
-	isa = PBXShellScriptBuildPhase;
-	buildActionMask = 8;
-	files = (
-	);
-	inputPaths = (
-	);
-	outputPaths = (
-	);
-	runOnlyForDeploymentPostprocessing = 1;
-	shellPath = /bin/sh;
-	shellScript = "echo \"Target architectures: $ARCHS\"\n\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\nFRAMEWORK_TMP_PATH=\"$FRAMEWORK_EXECUTABLE_PATH-tmp\"\n\n# remove simulator's archs if location is not simulator's directory\ncase \"${TARGET_BUILD_DIR}\" in\n*\"iphonesimulator\")\necho \"No need to remove archs\"\n;;\n*)\nif $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"i386\") ; then\nlipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"i386\" \"$FRAMEWORK_EXECUTABLE_PATH\"\necho \"i386 architecture removed\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\nfi\nif $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"x86_64\") ; then\nlipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"x86_64\" \"$FRAMEWORK_EXECUTABLE_PATH\"\necho \"x86_64 architecture removed\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\nfi\n;;\nesac\n\necho \"Completed for executable $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\ndone";
-};
+		E1591D8E206995ED00BDE177 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Target architectures: $ARCHS\"\n\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\nFRAMEWORK_TMP_PATH=\"$FRAMEWORK_EXECUTABLE_PATH-tmp\"\n\n# remove simulator's archs if location is not simulator's directory\ncase \"${TARGET_BUILD_DIR}\" in\n*\"iphonesimulator\")\necho \"No need to remove archs\"\n;;\n*)\nif $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"i386\") ; then\nlipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"i386\" \"$FRAMEWORK_EXECUTABLE_PATH\"\necho \"i386 architecture removed\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\nfi\nif $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"x86_64\") ; then\nlipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"x86_64\" \"$FRAMEWORK_EXECUTABLE_PATH\"\necho \"x86_64 architecture removed\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\nfi\n;;\nesac\n\necho \"Completed for executable $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\ndone";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -472,6 +501,7 @@ E1591D8E206995ED00BDE177 /* ShellScript */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BB89B1A22665F83003B3C5E /* GuideChannelHeader.swift in Sources */,
 				F5E6DA3F1BCEB03A00BE842B /* SearchVC.swift in Sources */,
 				A161E9D91DDBBAA800D01C70 /* DDXMLDocument.m in Sources */,
 				F5582CD01BC7FA350089E5E7 /* ControllerCell.swift in Sources */,
@@ -484,10 +514,12 @@ E1591D8E206995ED00BDE177 /* ShellScript */ = {
 				F5534D271BCFEB8200BEA509 /* CollectionContainerVC.swift in Sources */,
 				A161E9D01DDBBAA800D01C70 /* DVVideoAdServingTemplate.m in Sources */,
 				A161E9CC1DDBBAA800D01C70 /* DVInlineVideoAd.m in Sources */,
+				2BB89B1922665F83003B3C5E /* GuideTimeHeader.swift in Sources */,
 				A161E9D11DDBBAA800D01C70 /* DVVideoMultipleAdPlaylist.m in Sources */,
 				A161E9D61DDBBAA800D01C70 /* DDXMLElementAdditions.m in Sources */,
 				F5D98CE81BE3BFBB00C986B4 /* TabBarVC.swift in Sources */,
 				A161E9D31DDBBAA800D01C70 /* DVWrapperVideoAd.m in Sources */,
+				2BB89B1522665D78003B3C5E /* GuideCollectionViewLayout.swift in Sources */,
 				F55940391C048F2700A0ECFF /* FadeNavigationAnimationController.swift in Sources */,
 				473C514A1EE8ACA40051FC6C /* InAppPurchaseManager.swift in Sources */,
 				A161E9CE1DDBBAA800D01C70 /* DVVideoAd.m in Sources */,
@@ -495,6 +527,7 @@ E1591D8E206995ED00BDE177 /* ShellScript */ = {
 				F559403C1C048F4200A0ECFF /* FocusableView.swift in Sources */,
 				E1C681D6201945D400028BB4 /* AnalyticsProtocolDelegate.swift in Sources */,
 				A161E9D21DDBBAA800D01C70 /* DVVideoPlayBreak.m in Sources */,
+				2BB89B12226631F8003B3C5E /* GuideCell.swift in Sources */,
 				A1C0CF151E37CF8A007ED6C0 /* SplashScreenVC.swift in Sources */,
 				F5582CCB1BC7E2E10089E5E7 /* HomeVC.swift in Sources */,
 				F5577D971BCE5AE000F174CE /* UIView+Positioning.swift in Sources */,
@@ -511,13 +544,16 @@ E1591D8E206995ED00BDE177 /* ShellScript */ = {
 				F5577D931BCE4FDC00F174CE /* URLImageView.swift in Sources */,
 				A161E9CB1DDBBAA800D01C70 /* DVIABPlayer.m in Sources */,
 				A161E9DA1DDBBAA800D01C70 /* DDXMLElement.m in Sources */,
+				2BB89B10226605CD003B3C5E /* GuideVC.swift in Sources */,
 				F5582CCA1BC7E2E10089E5E7 /* PlayerVC.swift in Sources */,
+				2BB89B1D22678BD8003B3C5E /* GuideDateHeader.swift in Sources */,
 				F558AC851BD508E600D8E677 /* ScrollableTextAlertVC.swift in Sources */,
 				F511581D1BDE6CFC00DB1774 /* FocusableButton.swift in Sources */,
 				F5D98CE31BE3B8F200C986B4 /* ModalProgressVC.swift in Sources */,
 				E1C681D42018EC6100028BB4 /* AnalyticsManager.swift in Sources */,
 				A161E9CA1DDBBAA800D01C70 /* DVPlayerView.m in Sources */,
 				A161E9CD1DDBBAA800D01C70 /* DVTimeIntervalFormatter.m in Sources */,
+				2B608C282270DAFB00E67E69 /* GuideDetailCell.swift in Sources */,
 				F5582CD41BC819110089E5E7 /* Const.swift in Sources */,
 				A161E9D71DDBBAA800D01C70 /* NSString+DDXML.m in Sources */,
 				F55669321BE8DADC006A3138 /* StyledLabel.swift in Sources */,
