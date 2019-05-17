@@ -43,7 +43,7 @@ class Const: NSObject {
     static let kFavoritesViaAPI = false
     static let kLockIcons = false
     static let kSubscribeToWatchAdFree = false
-    static let kEPGEnabled = true
+    static let kEPGEnabled = false
 
     // NOTE: This is a deprecated feature. DO NOT ENABLE
     static let kNativeToUniversal = false
