@@ -1,8 +1,7 @@
 //
 //  GuideTimeHeader.swift
-//  DeveloperChallengeAppleTVApp
 //
-//  Created by Advantiss on 4/16/19.
+//  Created by Advantiss
 //
 
 import UIKit
