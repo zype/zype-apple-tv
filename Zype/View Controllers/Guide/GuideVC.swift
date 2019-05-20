@@ -95,8 +95,15 @@ class GuideVC: UIViewController {
                 }
             }
         }
-
-        return date
+        
+        let hour = calendar.component(.hour, from: date)
+        var minutes = calendar.component(.minute, from: date)
+        if minutes >= 30 {
+            minutes = 30
+        } else {
+            minutes = 0
+        }
+        return calendar.date(bySettingHour: hour, minute: minutes, second: 0, of: date)!
     }
     
     func loadGuides() {
