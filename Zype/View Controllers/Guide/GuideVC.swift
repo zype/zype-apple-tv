@@ -1,8 +1,7 @@
 //
 //  GuideVC.swift
-//  DeveloperChallengeAppleTVApp
 //
-//  Created by Advantiss on 4/16/19.
+//  Created by Advantiss
 //
 
 import UIKit
@@ -62,6 +61,7 @@ class GuideVC: UIViewController {
                 self.focusCurrentTime()
             }
         }
+        self.view.removeGestureRecognizer(self.menuPressRecognizer)
     }
     
     func timerFire() {
@@ -151,26 +151,48 @@ class GuideVC: UIViewController {
     }
     
     func focusCurrentTime() {
-        var isFindFocus = false
-        for section in 0...(self.guides.count-1) {
+        var isFindCurrentTime = false
+        for section in 0..<self.guides.count {
             if self.guides[section].programs.count > 0 {
-                for item in 0...(self.guides[section].programs.count-1) {
+                for item in 0..<self.guides[section].programs.count {
                     if self.guides[section].programs[item].containsDate(Date()) {
                         self.focusedIndexPath = IndexPath(item: item, section: section)
-                        isFindFocus = true
+                        isFindCurrentTime = true
                         break
                     }
                 }
             }
-            if isFindFocus {
+            if isFindCurrentTime {
                 break
             }
         }
         self.collectionView.reloadData()
-        if isFindFocus {
+        if isFindCurrentTime {
             self.collectionView.scrollToItem(at: self.focusedIndexPath!, at: .left, animated: true)
-            self.view.removeGestureRecognizer(self.menuPressRecognizer)
+        } else {
+            let nowTimeInterval = Date().timeIntervalSince1970
+            var minsFromNow = 0.0
+            var closestIndexPath: IndexPath = IndexPath(item: 0, section: 0)
+            
+            for section in 0..<self.guides.count {
+                if self.guides[section].programs.count > 0 {
+                    for item in 0..<self.guides[section].programs.count {
+                        let tmpMinsFromNow = self.guides[section].programs[item].localStartTime!.timeIntervalSince1970 - nowTimeInterval
+                        
+                        if section == 0 && item == 0 {
+                            minsFromNow = abs(tmpMinsFromNow)
+                            closestIndexPath = IndexPath(item: item, section: section)
+                        } else if minsFromNow > abs(tmpMinsFromNow) {
+                            minsFromNow = abs(tmpMinsFromNow)
+                            closestIndexPath = IndexPath(item: item, section: section)
+                        }
+                    }
+                }
+            }
+            self.focusedIndexPath = closestIndexPath
+            self.collectionView.scrollToItem(at: self.focusedIndexPath!, at: .left, animated: true)
         }
+        self.view.removeGestureRecognizer(self.menuPressRecognizer)
     }
 }
 
