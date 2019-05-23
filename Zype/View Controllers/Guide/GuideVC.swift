@@ -150,10 +150,7 @@ class GuideVC: UIViewController {
         self.guides = self.guides.filter({ (guide) -> Bool in
             return guide.programs.count > 0
         })
-
-        self.startDate = self.getStartTime()
         self.activityIndicator.stopAnimating()
-
         self.focusCurrentTime()
     }
     

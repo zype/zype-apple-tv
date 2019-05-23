@@ -54,8 +54,8 @@ open class GuideCollectionViewLayout : UICollectionViewLayout {
                 
                 var cellWidth = width - self.padding
                 if currentX < prevLastX {
-                    currentX = prevLastX
                     let diff = prevLastX - currentX
+                    currentX = prevLastX
                     cellWidth = cellWidth - diff
                     sectionFrames.append(CGRect(x: currentX + self.padding * 0.5, y: currentY, width: max(0, cellWidth), height: self.rowHeight))
                 } else {
