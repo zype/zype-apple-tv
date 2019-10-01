@@ -155,7 +155,10 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
                             queryModel.videoID = zObject.getStringValue("videoid")
                             ZypeAppleTVBase.sharedInstance.getVideos(queryModel) { (videos, error) in
                                 if error == nil && videos != nil && (videos?.count)! > 0 {
-                                    self.playVideo(videos![0])
+//                                    self.playVideo(videos![0])
+                                    self.selectedVideo = videos!.first!
+                                    self.selectedShow = nil
+                                    self.performSegue(withIdentifier: HomeVC.kShowDetailsSegueID, sender: self)
                                 } else {
                                     print(error?.localizedDescription ?? "Error: Pager Video Can't Play")
                                 }
