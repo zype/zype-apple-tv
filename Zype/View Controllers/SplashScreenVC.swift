@@ -66,6 +66,26 @@ class SplashScreenVC: UIViewController {
             }
         })
         
+        ZypeAppleTVBase.sharedInstance.getSubscriptionPlan(Const.subscriptionIdentifiers) { (data, error) in
+            if error == nil, let data = data, let response = data["response"] as? [Any] {
+                
+                var subscriptions = [String: Any]()
+                for plan in response {
+                    if let plan = plan as? [String: Any],
+                        let planId = plan["_id"] as? String,
+                        let marketplace = plan["marketplace_ids"] as? [String: Any],
+                        let itunes = marketplace["apple_tv"] as? String {
+                        
+                        if (Const.subscriptionIdentifiers.keys.contains(planId)) {
+                            subscriptions[itunes] = planId
+                        }
+                    }
+                }
+                UserDefaults.standard.set(subscriptions, forKey: Const.kSubscriptionSettings)
+                UserDefaults.standard.synchronize()
+            }
+        }
+        
         if Const.kLimitLivestreamEnabled {
             ZypeUtilities.loadLimitLivestreamZObject()
         }

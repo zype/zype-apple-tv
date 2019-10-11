@@ -300,7 +300,9 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
                         }
 
                         if Const.kNativeSubscriptionEnabled {
-                            self.verifyNativeSubscriptions()
+                            let subscriptions = UserDefaults.standard.object(forKey: Const.kSubscriptionSettings) as! [String: String]
+                            let planID = subscriptions[sku]!
+                            self.verifyNativeSubscriptions(planID)
                             break
                         }
                     }
@@ -324,7 +326,7 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
                     break
                 case .failed:
                     SKPaymentQueue.default().finishTransaction(trans)
-                    print(trans.error?.localizedDescription)
+                    print(trans.error?.localizedDescription ?? "")
                     break
                 default:
                     break
@@ -333,10 +335,31 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
         }
     }
     
-    func verifyNativeSubscriptions() {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: InAppPurchaseManager.kPurchaseCompleted), object: nil)
-        InAppPurchaseManager.sharedInstance.lastSubscribeStatus = true
-        self.refreshSubscriptionStatus()
+    func verifyNativeSubscriptions(_ planID: String = "") {
+        if Const.kMarketplaceConnectSVODEnabled == false {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: InAppPurchaseManager.kPurchaseCompleted), object: nil)
+            InAppPurchaseManager.sharedInstance.lastSubscribeStatus = true
+            self.refreshSubscriptionStatus()
+        } else {       
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "kSpinForPurchase"), object: nil)
+            self.verifyMarketplaceConnectSubscription(planID, { (success) in
+                if success {
+                    ZypeAppleTVBase.sharedInstance.login({ (complete, error) in
+                        if complete {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "kUnspinForPurchase"), object: nil)
+                            self.refreshSubscriptionStatus()
+                        }
+                    })
+                    InAppPurchaseManager.sharedInstance.lastSubscribeStatus = true
+                    
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: InAppPurchaseManager.kPurchaseCompleted), object: nil)
+                }
+                else {
+                    //TODO: - handle error
+                    print("-❄️ MarketplaceConnect Subscription ❄️-\n-Something went wrong-\n-❄️ MarketplaceConnect Subscription ❄️-")
+                }
+            })
+        }
     }
     
     func verifyUniversalSubscriptions(productID: String) {
@@ -360,7 +383,51 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
         })
     }
     
-        func verifyNativePurchase(productID: String, transactionID: String) {
+    fileprivate func verifyMarketplaceConnectSubscription(_ planID: String, _ callback: @escaping (_ success: Bool) -> Void) {
+        guard let receipt = receiptURL()?.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0)) else { return }
+        
+        let consumerId = UserDefaults.standard.object(forKey: "kConsumerId")
+        let appId = UserDefaults.standard.object(forKey: Const.kAppId)
+        let siteId = UserDefaults.standard.object(forKey: Const.kSiteId)
+        let bundleID = Bundle.main.bundleIdentifier ?? ""
+        
+        let marketplaceEndpoint = URL(string: "https://mkt.zype.com/v1/itunes/transactions")!
+        let paramsDict: [String: String] = ["receipt": receipt,
+                                            "consumer_id": consumerId as! String,
+                                            "plan_id": planID,
+                                            "app_id": appId as! String,
+                                            "site_id": siteId as! String,
+                                            "apple_id": bundleID,
+                                            "transaction_type": "subscription",
+                                            "amount": ""]
+        
+        // TODO: make request and add validation when available
+        let requestData = try! JSONSerialization.data(withJSONObject: paramsDict, options: [])
+        var request = URLRequest(url: marketplaceEndpoint)
+        request.httpMethod = "POST"
+        request.httpBody = requestData
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        let session = URLSession(configuration: .default)
+        
+        let task = session.dataTask(with: request) { (data, resp, err) in
+            if err != nil {
+                print(err?.localizedDescription ?? "verifyMarketplaceConnect(): ERROR verifying native subscription")
+            }
+            
+            if resp != nil {
+                let statusCode = (resp as! HTTPURLResponse).statusCode
+                
+                if statusCode == 200 {
+                    callback(true)
+                } else {
+                    callback(false)
+                }
+            }
+            }.resume()
+    }
+    
+    func verifyNativePurchase(productID: String, transactionID: String) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "kSpinForPurchase"), object: nil)
 
         self.verifyMarketplaceConnectPurchase(productID: productID, transactionID: transactionID) { (success) in
@@ -398,7 +465,7 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
         let bundleID = Bundle.main.bundleIdentifier ?? ""
 
         let marketplaceEndpoint = URL(string: "https://mkt.zype.com/v1/itunes/transactions")!
-        var paramsDict: [String: String] = ["receipt": receipt,
+        let paramsDict: [String: String] = ["receipt": receipt,
                                             "consumer_id": consumerId as! String,
                                             "video_id": videoId as! String,
                                             "app_id": appId as! String,

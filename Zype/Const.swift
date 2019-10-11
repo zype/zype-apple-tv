@@ -38,7 +38,8 @@ class Const: NSObject {
     
     // MARK: - Feature Flags
     
-    static let kNativeSubscriptionEnabled = false
+    static let kNativeSubscriptionEnabled = true
+    static let kMarketplaceConnectSVODEnabled = true
     static let kLimitLivestreamEnabled = false
     static let kFavoritesViaAPI = false
     static let kLockIcons = false
@@ -78,6 +79,7 @@ class Const: NSObject {
     
     // MARK: - String Constants
     
+    static let kSubscriptionSettings = "SubscriptionPlans"
     static let kFavoritesKey = "Favorites"
     static let kDefaultsRootPlaylistId = "root_playlist_id"
     static let kDefaultsBackgroundUrl = "background_url"
