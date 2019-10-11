@@ -82,15 +82,22 @@ class ShowDetailsVC: CollectionContainerVC {
         self.button4.label = self.label4
 
         self.posterImage.shouldAnimate = true
-        self.titleLabel.text = self.selectedShow.titleString
-        self.loadVideos()
+        if self.selectedShow != nil {
+            self.titleLabel.text = self.selectedShow.titleString
+            self.loadVideos()
+        } else {
+            self.collectionVC.activityIndicator.stopAnimating()
+            self.onVideoFocused(self.selectedVideo)
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCollection), name: NSNotification.Name(rawValue: kZypeReloadScreenNotification), object: nil)
     }
     
     func reloadCollection() {
         self.collectionVC.isConfigurated = false
         self.collectionVC.collectionView?.reloadData()
-        self.loadVideos()
+        if self.selectedShow != nil {
+            self.loadVideos()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,12 +133,15 @@ class ShowDetailsVC: CollectionContainerVC {
             if let path = self.indexPathForselectedVideo() {
                 return self.collectionVC.collectionView?.cellForItem(at: path)
             }
+            if self.selectedShow == nil {
+                return self.button0
+            }
             return super.preferredFocusedView
         }
     }
     
     func indexPathForselectedVideo() -> IndexPath? {
-        if self.selectedVideo != nil {
+        if self.selectedVideo != nil && self.selectedShow != nil {
             return IndexPath(row: self.videos.index(of: self.selectedVideo)!, section: 0)
         }
         return nil

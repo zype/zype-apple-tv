@@ -141,10 +141,28 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
                     self.pagerVC.itemSelectedCallback = { [unowned self] (item: CollectionLabeledItem, section: CollectionSection) in
                         guard self.secondPress != true else { return }
                         let zObject = (item as! PagerCollectionItem).object as! ZobjectModel
-                        guard zObject.getStringValue("playlistid") != "" else { return } // points to nothing
+                        if zObject.getStringValue("playlistid") == "" && zObject.getStringValue("videoid") == "" {
+                            return
+                        }
                         
                         if item.object is VideoModel {
                             self.playVideo(item.object as! VideoModel)
+                            return
+                        }
+                        
+                        if zObject.getStringValue("videoid") != "" {
+                            let queryModel = QueryVideosModel(categoryValue: nil, exceptCategoryValue: nil, playlistId: "", searchString: "", page: 0, perPage: 1)
+                            queryModel.videoID = zObject.getStringValue("videoid")
+                            ZypeAppleTVBase.sharedInstance.getVideos(queryModel) { (videos, error) in
+                                if error == nil && videos != nil && (videos?.count)! > 0 {
+//                                    self.playVideo(videos![0])
+                                    self.selectedVideo = videos!.first!
+                                    self.selectedShow = nil
+                                    self.performSegue(withIdentifier: HomeVC.kShowDetailsSegueID, sender: self)
+                                } else {
+                                    print(error?.localizedDescription ?? "Error: Pager Video Can't Play")
+                                }
+                            }
                             return
                         }
                         
