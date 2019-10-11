@@ -38,8 +38,8 @@ class Const: NSObject {
     
     // MARK: - Feature Flags
     
-    static let kNativeSubscriptionEnabled = true
-    static let kMarketplaceConnectSVODEnabled = true
+    static let kNativeSubscriptionEnabled = false
+    static let kMarketplaceConnectSVODEnabled = false
     static let kLimitLivestreamEnabled = false
     static let kFavoritesViaAPI = false
     static let kLockIcons = false
