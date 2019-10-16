@@ -64,6 +64,9 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     var startTime: String? = nil
     var endTime: String? = nil
     
+    var entitledVideos = [FavoriteModel]()
+    var completionDelegate: ChangeVideoDelegate? = nil
+    
     // MARK: - View Lifecycle
     deinit {
         print("Destroying")
@@ -93,11 +96,25 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.play(self.currentVideo)
+        
+        if Const.kNativeTvod {
+            self.entitledVideos = []
+            ZypeAppleTVBase.sharedInstance.getMyLibrary { (videoLib, err) in
+                guard let vids = videoLib as Array<FavoriteModel>? else {
+                    return
+                }
+                self.entitledVideos = vids
+            }
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         AnalyticsManager.sharedInstance.reset()
+        
+        if self.completionDelegate != nil && self.currentVideo != nil {
+            self.completionDelegate?.changeFocusVideo(self.currentVideo)
+        }
     }
 
     // MARK: - User Interaction
@@ -279,15 +296,67 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
                 
                 if currentVideoIndex + 1 < self.playlist!.count {
                     let nextVideo = self.playlist![currentVideoIndex + 1]
-                    self.play(nextVideo)
+                    if canPlayVideo(nextVideo) {
+                        self.play(nextVideo)
+                    } else {
+                        self.currentVideo = nextVideo
+                        dismiss(animated: true, completion: nil)
+                    }
                 }
                 else {
-                    self.play(self.playlist!.first!)
+                    if canPlayVideo(self.playlist!.first!) {
+                        self.play(self.playlist!.first!)
+                    } else {
+                        self.currentVideo = self.playlist!.first!
+                        dismiss(animated: true, completion: nil)
+                    }
                 }
             } else {
                 dismiss(animated: true, completion: nil)
             }
         }
+    }
+    
+    // MARK: - checking video state
+    func canPlayVideo(_ video: VideoModel) -> Bool {
+        let hasEntitlement = userHasEntitlement(video)
+        if video.registrationRequired {
+            if !ZypeUtilities.isDeviceLinked() {
+                return false
+            }
+        }
+        else if video.subscriptionRequired {
+            if Const.kNativeTvod && video.purchaseRequired && hasEntitlement {
+                return true
+            }
+            else if Const.kNativeSubscriptionEnabled || Const.kNativeToUniversal {
+                if !ZypeUtilities.isDeviceLinked() {
+                    return false
+                } else {
+                    if (ZypeAppleTVBase.sharedInstance.consumer?.subscriptionCount)! == 0 {
+                        return false
+                    }
+                }
+            }
+            else {
+                if !ZypeUtilities.isDeviceLinked() {
+                    return false
+                }
+            }
+        } else if video.purchaseRequired {
+            if Const.kNativeTvod && video.purchaseRequired && !hasEntitlement {
+                return false
+            }
+        }
+        return true
+    }
+    fileprivate func userHasEntitlement(_ video: VideoModel) -> Bool {
+        for vid in entitledVideos {
+            if vid.objectID == video.getId() {
+                return true
+            }
+        }
+        return false
     }
     
     // MARK: - DVIABPlayerDelegate

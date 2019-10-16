@@ -9,6 +9,10 @@
 import UIKit
 import ZypeAppleTVBase
 
+protocol ChangeVideoDelegate {
+    func changeFocusVideo(_ video: VideoModel)
+}
+
 class ShowDetailsVC: CollectionContainerVC {
     
     // MARK: - Properties
@@ -337,11 +341,11 @@ class ShowDetailsVC: CollectionContainerVC {
     }
     
     fileprivate func handleResume() {
-        self.playVideo(self.selectedVideo, playlist: self.videos)
+        self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: true, startTime: nil, endTime: nil, completionDelegate: self)
     }
     
     fileprivate func handlePlay() {
-        self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: false)
+        self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: false, startTime: nil, endTime: nil, completionDelegate: self)
     }
     
     fileprivate func handleSubscribe() {
@@ -570,5 +574,21 @@ extension ShowDetailsVC {
             }
         }
         return false
+    }
+}
+
+extension ShowDetailsVC: ChangeVideoDelegate {
+    func changeFocusVideo(_ video: VideoModel) {
+        DispatchQueue.global().async {
+            Thread.sleep(forTimeInterval: 0.1)
+            DispatchQueue.main.async {
+                self.selectedVideo = video
+                if let path = self.indexPathForselectedVideo() {
+                    self.collectionVC.collectionView?.scrollToItem(at: path, at: .centeredHorizontally, animated: false)
+                }
+                self.setNeedsFocusUpdate()
+                self.updateFocusIfNeeded()
+            }
+        }
     }
 }
