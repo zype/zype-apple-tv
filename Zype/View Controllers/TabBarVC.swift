@@ -13,6 +13,7 @@ import ZypeAppleTVBase
 class TabBarVC: UITabBarController {
 
     var prevTabItem: UITabBarItem? = nil
+    public static var openingApp: Bool = false
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,15 @@ class TabBarVC: UITabBarController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(modifyTabs), name: NSNotification.Name(rawValue: kZypeReloadScreenNotification), object: nil)
         self.loadDynamicData()
+    }
+    
+    override var preferredFocusedView: UIView? {
+        get {
+            if !TabBarVC.openingApp {
+                return self.selectedViewController?.preferredFocusedView
+            }
+            return super.preferredFocusedView
+        }
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

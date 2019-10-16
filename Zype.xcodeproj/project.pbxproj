@@ -14,6 +14,7 @@
 		2BB89B1922665F83003B3C5E /* GuideTimeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB89B1622665F83003B3C5E /* GuideTimeHeader.swift */; };
 		2BB89B1A22665F83003B3C5E /* GuideChannelHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB89B1722665F83003B3C5E /* GuideChannelHeader.swift */; };
 		2BB89B1D22678BD8003B3C5E /* GuideDateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB89B1C22678BD8003B3C5E /* GuideDateHeader.swift */; };
+		4290D0E323577286000076BB /* TransparentFocusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4290D0E223577286000076BB /* TransparentFocusableView.swift */; };
 		47102CDC1ECBA02F0060AF02 /* AdProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */; };
 		473C514A1EE8ACA40051FC6C /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C51491EE8ACA40051FC6C /* InAppPurchaseManager.swift */; };
 		473C51501EE9A37B0051FC6C /* PurchaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C514F1EE9A37B0051FC6C /* PurchaseVC.swift */; };
@@ -96,6 +97,7 @@
 		2BB89B1622665F83003B3C5E /* GuideTimeHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideTimeHeader.swift; sourceTree = "<group>"; };
 		2BB89B1722665F83003B3C5E /* GuideChannelHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideChannelHeader.swift; sourceTree = "<group>"; };
 		2BB89B1C22678BD8003B3C5E /* GuideDateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDateHeader.swift; sourceTree = "<group>"; };
+		4290D0E223577286000076BB /* TransparentFocusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentFocusableView.swift; sourceTree = "<group>"; };
 		47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProtocolDelegate.swift; sourceTree = "<group>"; };
 		473C51491EE8ACA40051FC6C /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseManager.swift; sourceTree = "<group>"; };
 		473C514F1EE9A37B0051FC6C /* PurchaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseVC.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 				F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */,
 				F55669311BE8DADC006A3138 /* StyledLabel.swift */,
 				F559403B1C048F4200A0ECFF /* FocusableView.swift */,
+				4290D0E223577286000076BB /* TransparentFocusableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				A161E9D71DDBBAA800D01C70 /* NSString+DDXML.m in Sources */,
 				F55669321BE8DADC006A3138 /* StyledLabel.swift in Sources */,
 				F5586B091BCBD1D6001DEB5B /* BaseCollectionVC.swift in Sources */,
+				4290D0E323577286000076BB /* TransparentFocusableView.swift in Sources */,
 				F5D98CC01BE3855D00C986B4 /* GradientMaskView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
