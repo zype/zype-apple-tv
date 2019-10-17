@@ -45,6 +45,7 @@ class Const: NSObject {
     static let kLockIcons = false
     static let kSubscribeToWatchAdFree = false
     static let kEPGEnabled = false
+    static let kInlineTitleTextDisplay = false
 
     // NOTE: This is a deprecated feature. DO NOT ENABLE
     static let kNativeToUniversal = false
