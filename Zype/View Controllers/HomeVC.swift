@@ -17,6 +17,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var infoLabel: StyledLabel!
     @IBOutlet weak var reloadButton: UIButton!
+    @IBOutlet weak var initFocusView: TransparentFocusableView!
     
     static let kMaxVideosInSection = 20
     
@@ -54,6 +55,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
                     let controllerSection = sections[0]
                     if let first = controllerSection.controller as? BaseCollectionVC,
                         let cell = first.collectionView?.cellForItem(at: IndexPath(item: 0, section: 0)) {
+                        initFocusView.isHidden = true
                         return cell
                     }
                 }

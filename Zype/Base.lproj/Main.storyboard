@@ -865,6 +865,7 @@
                         <outlet property="collectionWrapperView" destination="pqb-dn-qlw" id="IR7-hZ-gjw"/>
                         <outlet property="infoLabel" destination="NUA-WI-o1T" id="hsj-yE-vve"/>
                         <outlet property="infoView" destination="UUm-NE-Zhb" id="vw7-2T-7jJ"/>
+                        <outlet property="initFocusView" destination="nhx-RL-ANk" id="LI4-V7-gPC"/>
                         <outlet property="reloadButton" destination="8M0-12-Jp5" id="1yN-FS-mYi"/>
                         <segue destination="QVW-Vl-rtx" kind="show" identifier="ShowDetails" id="2qJ-Hs-qPp"/>
                     </connections>
