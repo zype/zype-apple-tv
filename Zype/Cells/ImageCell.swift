@@ -98,6 +98,29 @@ class ImageCell: UICollectionViewCell {
     func configWithItem(_ item: CollectionLabeledItem, orientation: LayoutOrientation){
         self.removeItemObservers()
         self.label.text = item.title
+        
+        if (Const.kInlineTitleTextDisplay) {
+            self.label.lineBreakMode = .byTruncatingTail
+            
+            let constraintRect = CGSize(width: Const.kCollectionCellSize.width, height: .greatestFiniteMagnitude)
+            let boundingBox = item.title.boundingRect(with: constraintRect,
+                                                      options: .usesLineFragmentOrigin,
+                                                      attributes: [NSFontAttributeName: self.label.font],
+                                                      context: nil)
+            let labelHeight = ceil(boundingBox.height)
+            var labelFrame = self.label.frame
+            if (labelHeight > 46) {
+                labelFrame.size.height = 92
+            } else {
+                labelFrame.size.height = 46
+            }
+            self.label.frame = labelFrame
+        } else {
+            var labelFrame = self.label.frame
+            labelFrame.size.height = 0
+            self.label.frame = labelFrame
+        }
+        
         if orientation == .poster {
             if item.posterURL == nil && item.imageName != nil {
                 self.imageView.image = UIImage(named: item.imageName)
