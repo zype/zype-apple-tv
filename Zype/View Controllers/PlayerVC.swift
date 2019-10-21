@@ -64,6 +64,8 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     var startTime: String? = nil
     var endTime: String? = nil
     
+    var completionDelegate: ChangeVideoDelegate? = nil
+    
     // MARK: - View Lifecycle
     deinit {
         print("Destroying")
@@ -98,6 +100,10 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         AnalyticsManager.sharedInstance.reset()
+        
+        if self.completionDelegate != nil && self.currentVideo != nil {
+            self.completionDelegate?.changeFocusVideo(self.currentVideo)
+        }
     }
 
     // MARK: - User Interaction
@@ -175,23 +181,26 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
                     url = newUrl
                 }
                 
-                self.validateEntitlement(for: playerObject)
-                let adsArray = self.getAdsFromResponse(playerObject)
-                self.playerURL = url as URL
-                self.adsArray = adsArray
-                self.url = url
                 self.currentVideo = model
+                if self.validateEntitlement(for: playerObject) {
+                    let adsArray = self.getAdsFromResponse(playerObject)
+                    self.playerURL = url as URL
+                    self.adsArray = adsArray
+                    self.url = url
 
-                let analyticsInfo = self.getAnalyticsFromResponse(playerObject)
-                self.beacon = analyticsInfo.beacon
-                self.customDimensions = analyticsInfo.customDimensions
+                    let analyticsInfo = self.getAnalyticsFromResponse(playerObject)
+                    self.beacon = analyticsInfo.beacon
+                    self.customDimensions = analyticsInfo.customDimensions
 
-                if adsArray.count > 0 && self.adsData.last?.offset == 0 { // check for preroll
-                    self.playAds(adsArray: adsArray, url: url)
-                    _ = self.adsData.popLast()
-                }
-                else {
-                    self.setupVideoPlayer()
+                    if adsArray.count > 0 && self.adsData.last?.offset == 0 { // check for preroll
+                        self.playAds(adsArray: adsArray, url: url)
+                        _ = self.adsData.popLast()
+                    }
+                    else {
+                        self.setupVideoPlayer()
+                    }
+                } else {
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
             else {
@@ -201,15 +210,17 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
         })
     }
     
-    fileprivate func validateEntitlement(for playerObject: VideoObjectModel?) {
-        if let responseMessage = playerObject?.json?["message"] {
-            let alert = UIAlertController(title: "Error", message: responseMessage as? String, preferredStyle: .alert)
-            let confirmAction = UIAlertAction(title: "Ok", style: .cancel, handler: { (_) in
-                self.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(confirmAction)
-            self.present(alert, animated: true, completion: nil)
+    fileprivate func validateEntitlement(for playerObject: VideoObjectModel?) -> Bool {
+        if (playerObject?.json?["message"]) != nil {
+//            let alert = UIAlertController(title: "Error", message: responseMessage as? String, preferredStyle: .alert)
+//            let confirmAction = UIAlertAction(title: "Ok", style: .cancel, handler: { (_) in
+//                self.dismiss(animated: true, completion: nil)
+//            })
+//            alert.addAction(confirmAction)
+//            self.present(alert, animated: true, completion: nil)
+            return false
         }
+        return true
     }
     
     func setupVideoPlayer() {
