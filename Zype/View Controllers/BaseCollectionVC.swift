@@ -431,6 +431,9 @@ extension BaseCollectionVC : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let section = self.sections[indexPath.section]
         if(section.controller != nil) {
+            if(Const.kInlineTitleTextDisplay && self.sections.count == (indexPath.section + 1)) {
+                return CGSize(width: self.view.width, height: section.controller.view.height + 50)
+            }
             return CGSize(width: self.view.width, height: section.controller.view.height)
         }
         return section.cellSize
