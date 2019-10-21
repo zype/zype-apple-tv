@@ -13,6 +13,12 @@ import ZypeAppleTVBase
 class TabBarVC: UITabBarController {
 
     var prevTabItem: UITabBarItem? = nil
+    public static var openingApp: Bool = false
+    
+    // MARK: - View Lifecycle
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +29,20 @@ class TabBarVC: UITabBarController {
         setupBackgroundImage()
         
         NotificationCenter.default.addObserver(self, selector: #selector(modifyTabs), name: NSNotification.Name(rawValue: kZypeReloadScreenNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideTabBar), name: NSNotification.Name(rawValue: "zype_app_reopened"), object: nil)
         self.loadDynamicData()
+        
+        self.tabBar.alpha = 0
+    }
+    
+    override var preferredFocusedView: UIView? {
+        get {
+            if !TabBarVC.openingApp {
+                return self.selectedViewController?.preferredFocusedView
+            }
+            self.tabBar.alpha = 1
+            return super.preferredFocusedView
+        }
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -32,6 +51,22 @@ class TabBarVC: UITabBarController {
         }
         
         prevTabItem = item
+    }
+    
+    func hideTabBar() {
+        self.tabBar.alpha = 0
+        TabBarVC.openingApp = false
+        
+        self.selectedIndex = 0
+        self.setNeedsFocusUpdate()
+        self.updateFocusIfNeeded()
+        
+        DispatchQueue.global().async {
+            Thread.sleep(forTimeInterval: 0.5)
+            DispatchQueue.main.async {
+                TabBarVC.openingApp = true
+            }
+        }
     }
     
     func setupBackgroundImage() {

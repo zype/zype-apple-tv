@@ -17,6 +17,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var infoLabel: StyledLabel!
     @IBOutlet weak var reloadButton: UIButton!
+    @IBOutlet weak var initFocusView: TransparentFocusableView!
     
     static let kMaxVideosInSection = 20
     
@@ -44,6 +45,22 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         
         if Const.kNativeSubscriptionEnabled || Const.kNativeToUniversal {
             InAppPurchaseManager.sharedInstance.refreshSubscriptionStatus()
+        }
+    }
+    
+    override weak var preferredFocusedView: UIView? {
+        get {
+            if self.playlistParentAsId == nil && self.selectedVideo == nil {
+                if let sections = self.collectionVC.sections, sections.count > 0 {
+                    let controllerSection = sections[0]
+                    if let first = controllerSection.controller as? BaseCollectionVC,
+                        let cell = first.collectionView?.cellForItem(at: IndexPath(item: 0, section: 0)) {
+                        initFocusView.isHidden = true
+                        return cell
+                    }
+                }
+            }
+            return super.preferredFocusedView
         }
     }
     
@@ -180,6 +197,14 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
                         }
                     }
                     self.pagerVC.configWithSection(section)
+                    DispatchQueue.global().async {
+                        Thread.sleep(forTimeInterval: 0.5)
+                        DispatchQueue.main.async {
+                            TabBarVC.openingApp = true
+                            self.setNeedsFocusUpdate()
+                            self.updateFocusIfNeeded()
+                        }
+                    }
                 }
                 else {
                     self.pagerVC.update([section])

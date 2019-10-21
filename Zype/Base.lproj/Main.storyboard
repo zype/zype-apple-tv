@@ -851,6 +851,11 @@
                                     <segue destination="6Pp-yV-woX" kind="embed" id="FCR-gJ-gcb"/>
                                 </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" id="nhx-RL-ANk" customClass="TransparentFocusableView" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="100" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                     </view>
                     <navigationItem key="navigationItem" id="bZB-t8-NLQ">
@@ -860,6 +865,7 @@
                         <outlet property="collectionWrapperView" destination="pqb-dn-qlw" id="IR7-hZ-gjw"/>
                         <outlet property="infoLabel" destination="NUA-WI-o1T" id="hsj-yE-vve"/>
                         <outlet property="infoView" destination="UUm-NE-Zhb" id="vw7-2T-7jJ"/>
+                        <outlet property="initFocusView" destination="nhx-RL-ANk" id="LI4-V7-gPC"/>
                         <outlet property="reloadButton" destination="8M0-12-Jp5" id="1yN-FS-mYi"/>
                         <segue destination="QVW-Vl-rtx" kind="show" identifier="ShowDetails" id="2qJ-Hs-qPp"/>
                     </connections>
@@ -873,7 +879,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="BaseCollectionVC" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="6Pp-yV-woX" customClass="BaseCollectionVC" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="CX6-6d-zQs">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="450"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aF6-sY-Nvx">
                             <size key="itemSize" width="500" height="500"/>
@@ -1000,6 +1006,6 @@
         <image name="background" width="1920" height="1080"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="a18-Ts-CvM"/>
+        <segue reference="FCR-gJ-gcb"/>
     </inferredMetricsTieBreakers>
 </document>
