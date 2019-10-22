@@ -52,8 +52,16 @@ class ImageCell: UICollectionViewCell {
         super.didUpdateFocus(in: context, with: coordinator)
         coordinator.addCoordinatedAnimations({ [unowned self] in
             if(self.isFocused) {
-                self.label.transform = CGAffineTransform(scaleX: 1.2, y: 1.2).concatenating(CGAffineTransform(translationX: 0, y: 20)) ;
-                self.label.textColor = UIColor.black
+                self.label.transform = CGAffineTransform(scaleX: 1.2, y: 1.2).concatenating(CGAffineTransform(translationX: 0, y: 20))
+                if #available(tvOS 10.0, *) {
+                    if self.traitCollection.userInterfaceStyle == .dark {
+                        self.label.textColor = UIColor.white
+                    } else {
+                        self.label.textColor = UIColor.black
+                    }
+                } else {
+                    self.label.textColor = StyledLabel.kFocusedColor
+                }
             }
             else {
                 self.label.transform = CGAffineTransform.identity
