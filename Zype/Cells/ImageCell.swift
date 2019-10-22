@@ -53,7 +53,7 @@ class ImageCell: UICollectionViewCell {
         coordinator.addCoordinatedAnimations({ [unowned self] in
             if(self.isFocused) {
                 self.label.transform = CGAffineTransform(scaleX: 1.2, y: 1.2).concatenating(CGAffineTransform(translationX: 0, y: 20)) ;
-                self.label.textColor = StyledLabel.kFocusedColor
+                self.label.textColor = UIColor.black
             }
             else {
                 self.label.transform = CGAffineTransform.identity
