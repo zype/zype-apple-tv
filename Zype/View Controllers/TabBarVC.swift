@@ -14,6 +14,8 @@ class TabBarVC: UITabBarController {
 
     var prevTabItem: UITabBarItem? = nil
     public static var openingApp: Bool = false
+    var previousIndex: Int = 0
+    var menuPressRecognizer: UITapGestureRecognizer!
     
     // MARK: - View Lifecycle
     deinit {
@@ -33,6 +35,10 @@ class TabBarVC: UITabBarController {
         self.loadDynamicData()
         
         self.tabBar.alpha = 0
+        
+        menuPressRecognizer = UITapGestureRecognizer()
+        menuPressRecognizer.addTarget(self, action: #selector(menuButtonAction(recognizer:)))
+        menuPressRecognizer.allowedPressTypes = [NSNumber(value: UIPress.PressType.menu.rawValue)]
     }
     
     override var preferredFocusedView: UIView? {
@@ -41,7 +47,7 @@ class TabBarVC: UITabBarController {
                 return self.selectedViewController?.preferredFocusedView
             }
             self.tabBar.alpha = 1
-            return super.preferredFocusedView
+            return nil
         }
     }
     
@@ -50,7 +56,22 @@ class TabBarVC: UITabBarController {
             NotificationCenter.default.post(name: Notification.Name(rawValue: "zype_reload_guide_notification"), object: nil)
         }
         
+        if item.title?.lowercased() == "live" {
+            if let prevItem = self.prevTabItem, prevItem.title?.lowercased() != "live" {
+                self.view.removeGestureRecognizer(menuPressRecognizer)
+                self.view.addGestureRecognizer(menuPressRecognizer)
+                previousIndex = (tabBar.items?.index(of: prevTabItem!))!
+            }
+        } else {
+            self.view.removeGestureRecognizer(menuPressRecognizer)
+        }
+        
         prevTabItem = item
+    }
+    
+    func menuButtonAction(recognizer: UITapGestureRecognizer) {
+        self.view.removeGestureRecognizer(menuPressRecognizer)
+        self.selectedIndex = previousIndex
     }
     
     func hideTabBar() {
@@ -106,6 +127,12 @@ class TabBarVC: UITabBarController {
         if Const.kUniversalTvod == true {
             self.addMyLibraryScreen()
         }
+        if Const.kLiveItemEnabled == true {
+            self.addLiveVideoScreen()
+        }
+        if Const.kEPGEnabled == true {
+            self.addGuideScreen()
+        }
         self.modifyTabs()
     }
     
@@ -122,12 +149,6 @@ class TabBarVC: UITabBarController {
             if self.isSettingItemEnabled() == true {
                 self.removeSettingsScreen()
             }
-        }
-        
-        if Const.kEPGEnabled == true {
-            self.addGuideScreen()
-        } else {
-            self.removeGuideScreen()
         }
     }
     
@@ -161,26 +182,26 @@ class TabBarVC: UITabBarController {
         }
     }
     
+    func addLiveVideoScreen() {
+        let videoVC = self.storyboard?.instantiateViewController(withIdentifier: "ShowDetailsVC") as? ShowDetailsVC
+        videoVC?.isLive = true
+        if (videoVC != nil) {
+            let navController = UINavigationController.init(rootViewController: videoVC!)
+            self.viewControllers?.insert(navController, at: 1)
+            self.tabBar.items![1].title = localized("Live.TabTitle")
+        }
+    }
+    
     func addGuideScreen() {
         let guideVC = self.storyboard?.instantiateViewController(withIdentifier: "GuideVC") as? GuideVC
         if (guideVC != nil) {
             let navController = UINavigationController.init(rootViewController: guideVC!)
-            self.viewControllers?.insert(navController, at: 1)
-            self.tabBar.items![1].title = localized("Guide.TabTitle")
-        }
-    }
-    
-    func removeGuideScreen() {
-        var needToBeRemoved = false
-        for vc in self.viewControllers! {
-            if (vc is GuideVC){
-                needToBeRemoved = true
+            var insertPosition = 1
+            if Const.kLiveItemEnabled == true {
+                insertPosition = 2
             }
-        }
-        
-        if needToBeRemoved {
-            self.selectedIndex = 0
-            self.viewControllers?.remove(at: 1)
+            self.viewControllers?.insert(navController, at: insertPosition)
+            self.tabBar.items![insertPosition].title = localized("Guide.TabTitle")
         }
     }
     
