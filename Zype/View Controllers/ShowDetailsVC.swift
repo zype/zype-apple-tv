@@ -29,7 +29,9 @@ class ShowDetailsVC: CollectionContainerVC {
     @IBOutlet weak var episodesCountLabel: StyledLabel!
     @IBOutlet weak var descriptionView: FocusableView!
     @IBOutlet weak var descriptionLabel: UILabel!
-
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var emptyLiveLabel: StyledLabel!
+    
     @IBOutlet weak var button0: FocusableButton!
     @IBOutlet weak var button1: FocusableButton!
     @IBOutlet weak var button2: FocusableButton!
@@ -51,6 +53,7 @@ class ShowDetailsVC: CollectionContainerVC {
     var actionables = [Actionable]()
     var currentButtonTypes = [ButtonType]()
     var entitledVideos = [FavoriteModel]()
+    var isLive: Bool = false
 
     // MARK: - View Lifecycle
     
@@ -91,7 +94,9 @@ class ShowDetailsVC: CollectionContainerVC {
             self.loadVideos()
         } else {
             self.collectionVC.activityIndicator.stopAnimating()
-            self.onVideoFocused(self.selectedVideo)
+            if !self.isLive {
+                self.onVideoFocused(self.selectedVideo)
+            }
         }
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCollection), name: NSNotification.Name(rawValue: kZypeReloadScreenNotification), object: nil)
     }
@@ -122,6 +127,10 @@ class ShowDetailsVC: CollectionContainerVC {
         
         if Const.kNativeSubscriptionEnabled || Const.kNativeToUniversal {
             InAppPurchaseManager.sharedInstance.refreshSubscriptionStatus()
+        }
+        
+        if self.isLive {
+            self.loadLiveVideo()
         }
     }
     
@@ -192,6 +201,31 @@ class ShowDetailsVC: CollectionContainerVC {
     
     // MARK: - Get Data
     
+    func loadLiveVideo() {
+        self.detailsView.isHidden = true
+        self.containerView.isHidden = true
+        self.emptyLiveLabel.isHidden = true
+        self.activityIndicator.startAnimating()
+        
+        let queryModel = QueryVideosModel(categoryValue: nil, exceptCategoryValue: nil, playlistId: "", searchString: "", page: 0, perPage: 1)
+        queryModel.videoID = Const.kLiveVideoID
+        ZypeAppleTVBase.sharedInstance.getVideos(queryModel) { (videos, error) in
+            self.activityIndicator.stopAnimating()
+            
+            if error == nil && videos != nil && (videos?.count)! > 0 {
+                self.detailsView.isHidden = false
+                self.containerView.isHidden = false
+                
+                self.selectedVideo = videos!.first!
+                self.onVideoFocused(self.selectedVideo)
+                self.refreshButtons()
+            } else {
+                self.emptyLiveLabel.isHidden = false
+                print(error?.localizedDescription ?? "Error: Pager Video Can't Play")
+            }
+        }
+    }
+    
     func loadVideos() {
         self.selectedShow.getVideos(Date.distantPast, completion: {[unowned self] (videos: Array<VideoModel>?, error: NSError?) -> Void in
             self.videos = videos
@@ -236,6 +270,9 @@ class ShowDetailsVC: CollectionContainerVC {
     // MARK: - Buttons
     
     fileprivate func refreshButtons() {
+        if self.selectedVideo == nil {
+            return
+        }
         self.getCurrentActionables()
         for each in self.actionables {
             each.button.isHidden = true
@@ -497,6 +534,9 @@ extension ShowDetailsVC {
     }
     
     fileprivate func getPlayMonetizationButton() -> ButtonType {
+        if selectedVideo == nil {
+            return .play
+        }
         if selectedVideo.registrationRequired {
             if !ZypeUtilities.isDeviceLinked() {
                 return .signup
@@ -525,7 +565,7 @@ extension ShowDetailsVC {
     }
     
     fileprivate func requiresResumeButton() -> Bool {
-        if let _ = userDefaults.object(forKey: "\(selectedVideo.getId())") {
+        if self.selectedVideo != nil, let _ = userDefaults.object(forKey: "\(selectedVideo.getId())") {
             if !self.selectedVideo.onAir {
                 return true
             }
@@ -560,7 +600,7 @@ extension ShowDetailsVC {
     }
     
     fileprivate func requiresTrailerButton() -> Bool {
-        if let previewIDs = selectedVideo.fullJson["preview_ids"] as? Array<String>,
+        if selectedVideo != nil, let previewIDs = selectedVideo.fullJson["preview_ids"] as? Array<String>,
             previewIDs.count > 0 {
             return true
         }
