@@ -43,6 +43,7 @@ class Const: NSObject {
     static let kLimitLivestreamEnabled = false
     static let kFavoritesViaAPI = false
     static let kLockIcons = false
+    static let kUnlockTransparentEnabled = false
     static let kSubscribeToWatchAdFree = false
     static let kEPGEnabled = false
     static let kInlineTitleTextDisplay = false
@@ -79,6 +80,9 @@ class Const: NSObject {
     
     static let kEPGHighlightColor: UIColor = UIColor(red: 238/255.0, green: 150/255.0, blue: 45/255.0, alpha: 1.0)
     static let kEPGAiringColor: UIColor = UIColor(red: 12/255.0, green: 60/255.0, blue: 78/255.0, alpha: 1.0)
+    
+    static let kLockColor = "#FF0000"
+    static let kUnlockColor = "#0000FF"
     
     // MARK: - String Constants
     

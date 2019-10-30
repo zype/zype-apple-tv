@@ -29,9 +29,15 @@ class ImageCell: UICollectionViewCell {
             case .empty:
                 self.lockImage.isHidden = true
             case .locked:
-                self.lockImage.image = ZypeUtilities.imageFromResourceBundle("iconLocked.png")
+                self.lockImage.image = UIImage(named: "icon-lock")?.withRenderingMode(.alwaysTemplate)
+                self.lockImage.tintColor = UIColor(hex: Const.kLockColor)
             case .unlocked:
-                self.lockImage.image = ZypeUtilities.imageFromResourceBundle("iconUnlocked.png")
+                self.lockImage.image = UIImage(named: "icon-unlock")?.withRenderingMode(.alwaysTemplate)
+                if Const.kUnlockTransparentEnabled == true {
+                    self.lockImage.tintColor = UIColor.clear
+                } else {
+                    self.lockImage.tintColor = UIColor(hex: Const.kUnlockColor)
+                }
             }
         }
     }
