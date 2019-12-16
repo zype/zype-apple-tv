@@ -590,8 +590,8 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wkv-cB-oiB" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="63" width="810" height="82"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wkv-cB-oiB" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
+                                                <rect key="frame" x="10" y="63" width="810" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                                 <nil key="textColor"/>
@@ -602,12 +602,24 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cOU-i3-39M" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
+                                                <rect key="frame" x="10" y="121" width="810" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
                                             <view contentMode="scaleToFill" id="4To-KK-0YS" customClass="FocusableView" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="169" width="820" height="146"/>
+                                                <rect key="frame" x="0.0" y="184" width="820" height="131"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cxd-tF-0RV">
-                                                        <rect key="frame" x="10" y="8" width="800" height="130"/>
+                                                        <rect key="frame" x="10" y="8" width="800" height="105"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                         <nil key="textColor"/>
@@ -810,6 +822,7 @@
                         <outlet property="descriptionView" destination="4To-KK-0YS" id="pK6-VK-4aZ"/>
                         <outlet property="detailsView" destination="GmF-HL-8Sq" id="yR4-rb-Xvz"/>
                         <outlet property="emptyLiveLabel" destination="Gg0-wW-IDa" id="hRW-sM-GCw"/>
+                        <outlet property="episodeLabel" destination="cOU-i3-39M" id="luP-Ct-DjN"/>
                         <outlet property="episodesCountLabel" destination="6lY-nt-SuW" id="5EK-zD-12f"/>
                         <outlet property="label0" destination="bTn-j7-y56" id="an2-p8-Wd9"/>
                         <outlet property="label1" destination="dSI-Rh-6hd" id="e6r-74-MuN"/>
@@ -897,7 +910,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="BaseCollectionVC" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="6Pp-yV-woX" customClass="BaseCollectionVC" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="CX6-6d-zQs">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="450"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aF6-sY-Nvx">
                             <size key="itemSize" width="500" height="500"/>
@@ -906,7 +919,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" id="vP8-eg-LL0">
-                            <rect key="frame" x="0.0" y="-60" width="1920" height="1080"/>
+                            <rect key="frame" x="0.0" y="-60" width="1920" height="450"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <cells>
@@ -1024,6 +1037,6 @@
         <image name="background" width="1920" height="1080"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yeN-qd-JmN"/>
+        <segue reference="a18-Ts-CvM"/>
     </inferredMetricsTieBreakers>
 </document>

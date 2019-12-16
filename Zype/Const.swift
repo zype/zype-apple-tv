@@ -49,6 +49,7 @@ class Const: NSObject {
     static let kInlineTitleTextDisplay = false
     static let kLiveItemEnabled = false
     static let kLiveVideoID = "5c8faa021d1f4314dd006203"
+    static let kEpisodeNumberDisplay = false
 
     // NOTE: This is a deprecated feature. DO NOT ENABLE
     static let kNativeToUniversal = false

@@ -22,6 +22,7 @@ class ShowDetailsVC: CollectionContainerVC {
     @IBOutlet weak var posterImage: URLImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
+    @IBOutlet weak var episodeLabel: UILabel!
     @IBOutlet weak var labelsView: UIView!
     @IBOutlet weak var bottomBarView: UIView!
     @IBOutlet weak var detailsView: UIView!
@@ -167,7 +168,27 @@ class ShowDetailsVC: CollectionContainerVC {
             }
         }
         self.subTitleLabel.top = self.titleLabel.bottom + ShowDetailsVC.kSubtitleTopMargin
-        self.descriptionView.top = self.subTitleLabel.bottom
+        
+        let constraintRect = CGSize(width: self.subTitleLabel.width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.selectedVideo.titleString.boundingRect(with: constraintRect,
+                                                                      options: .usesLineFragmentOrigin,
+                                                                      attributes: [NSFontAttributeName: self.subTitleLabel.font],
+                                                                      context: nil)
+        self.subTitleLabel.height = ceil(boundingBox.height) > 120 ? 120 : ceil(boundingBox.height)
+        
+        self.episodeLabel.top = self.subTitleLabel.bottom
+        if Const.kEpisodeNumberDisplay {
+            if self.selectedVideo.episode == 0 {
+                self.episodeLabel.height = 0
+            } else {
+                self.episodeLabel.height = 30
+            }
+        } else {
+            self.episodeLabel.height = 0
+        }
+        
+        self.descriptionView.top = self.episodeLabel.bottom
+        self.descriptionView.height = self.labelsView.height - self.episodeLabel.bottom - 15
     }
     
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
@@ -187,6 +208,7 @@ class ShowDetailsVC: CollectionContainerVC {
         self.selectedVideo = video
         self.posterImage.configWithURL(video.posterURL() as URL?, nil)
         self.subTitleLabel.text = video.titleString
+        self.episodeLabel.text = String(format: "Episode %d", video.episode)
         self.descriptionLabel.text = video.descriptionString
         self.layoutLabels()
 
