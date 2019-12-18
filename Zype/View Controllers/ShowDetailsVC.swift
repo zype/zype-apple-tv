@@ -400,11 +400,11 @@ class ShowDetailsVC: CollectionContainerVC {
     }
     
     fileprivate func handleResume() {
-        self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: true, startTime: nil, endTime: nil, completionDelegate: self)
+        self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: true, startTime: nil, endTime: nil, isAutoPlay: false, completionDelegate: self)
     }
     
     fileprivate func handlePlay() {
-        self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: false, startTime: nil, endTime: nil, completionDelegate: self)
+        self.playVideo(self.selectedVideo, playlist: self.videos, isResuming: false, startTime: nil, endTime: nil, isAutoPlay: false, completionDelegate: self)
     }
     
     fileprivate func handleSubscribe() {

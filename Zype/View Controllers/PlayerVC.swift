@@ -45,6 +45,11 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     var playerView: DVPlayerView?
     var isSkippable = false
     var isResuming = true
+    var isAutoPlay = false
+    var timer: Timer?
+    var showingInstructionTime = 5
+    var instructionLabel: UILabel?
+    var playerItemContext = 1
     
     var beacon = ""
     var customDimensions = [String: String]()
@@ -76,6 +81,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
             self.adPlayer = nil
         }
         if self.playerController.player != nil {
+            self.playerController.player?.removeObserver(self, forKeyPath:"rate")
             self.playerController.player?.pause()
         }
         
@@ -149,6 +155,14 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     
     // MARK: - Video Methods
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "rate", context == &playerItemContext {
+            if let player = self.playerController.player, player.rate == 0 {
+                if self.isAutoPlay {
+                    self.showInstructionView()
+                }
+            }
+            return
+        }
         if self.adPlayer!.status == .readyToPlay {
             if self.adPlayer?.contentPlayerItem.currentTime().seconds < 0.5 && self.adPlayer?.contentPlayerItem.currentTime().seconds > 0.0 {
                 self.removeAdPlayer()
@@ -223,6 +237,39 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
         return true
     }
     
+    func showInstructionView() {
+        if instructionLabel == nil {
+            instructionLabel = UILabel()
+            instructionLabel?.x = 90
+            instructionLabel?.width = self.playerController.view.frame.width - 180
+            instructionLabel?.height = 50
+            instructionLabel?.y = self.playerController.view.frame.height - 150
+            
+            instructionLabel?.textAlignment = .center
+            instructionLabel?.textColor = UIColor.white
+            
+            instructionLabel?.text = String(format: "Press the Menu button to exit and return to the Home screen.")
+        }
+        instructionLabel?.removeFromSuperview()
+        
+        self.view.addSubview(instructionLabel!)
+        if self.timer != nil, self.timer!.isValid {
+            self.timer?.invalidate()
+            self.timer = nil
+        }
+        self.showingInstructionTime = 5
+        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateInstructionView), userInfo: nil, repeats: true)
+    }
+    
+    func updateInstructionView() {
+        self.showingInstructionTime -= 1
+        if self.showingInstructionTime == 0 {
+            self.timer?.invalidate()
+            self.timer = nil
+            self.instructionLabel?.removeFromSuperview()
+        }
+    }
+    
     func setupVideoPlayer() {
         if let viewWithTag = self.view.viewWithTag(1001) {
             viewWithTag.removeFromSuperview()
@@ -238,6 +285,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
         self.playerController.view.frame = self.view.frame
         
         NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+        player.addObserver(self, forKeyPath: "rate", options: [], context: &playerItemContext)
         
         if self.adsData.count > 0 {
             self.observeTimerForMidrollAds()
@@ -259,6 +307,10 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
         }
 
         player.play()
+        
+        if self.isAutoPlay {
+            self.showInstructionView()
+        }
     }
     
     func resumePlayingFromAds() {
