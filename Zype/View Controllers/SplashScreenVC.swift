@@ -13,10 +13,19 @@ class SplashScreenVC: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    var autoPlayed: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ZypeUtilities.loginUser() { (result: String) in
             self.loadAppInfo()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.autoPlayed {
+            self.transitionToTabBar()
         }
     }
     
@@ -47,12 +56,39 @@ class SplashScreenVC: UIViewController {
             }
 
             self.loadAppSettings() // load app settings will be exectuded on the background
+            self.checkAutoPlayVideo()
+        })
+    }
+    
+    func checkAutoPlayVideo() {
+        let type = QueryZobjectsModel()
+        type.zobjectType = "autoplay_hero"
+        type.anyQueryString = "&sort=priority&order=desc"
+        ZypeAppleTVBase.sharedInstance.getZobjects(type, completion: {(objects: Array<ZobjectModel>?, error: NSError?) in
+            if let objects = objects, objects.count > 0 {
+                for object in objects {
+                    if object.getBoolValue("active") == true {
+                        let queryModel = QueryVideosModel(categoryValue: nil, exceptCategoryValue: nil, playlistId: "", searchString: "", page: 0, perPage: 1)
+                        queryModel.videoID = object.getStringValue("videoid")
+                        ZypeAppleTVBase.sharedInstance.getVideos(queryModel) { (videos, error) in
+                            if error == nil, let videos = videos, videos.count > 0 {
+                                self.autoPlayed = true
+                                self.playVideo(videos.first!, playlist: nil, isResuming: false, startTime: nil, endTime: nil, isAutoPlay: true)
+                            } else {
+                                self.transitionToTabBar()
+                            }
+                        }
+                        return
+                    }
+                }
+            }
             self.transitionToTabBar()
         })
     }
     
     func transitionToTabBar() {
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
             self.performSegue(withIdentifier: Const.kShowTabBarSegueId, sender: nil)
         }
     }
