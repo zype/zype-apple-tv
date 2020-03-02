@@ -63,6 +63,16 @@ extension VideoModel {
     
 }
 
+extension PlaylistModel {
+    func posterUrl() -> NSURL? {
+        if let posterImage = self.images.first(where: {$0.layout! == .poster && $0.imageURL != ""}) {
+            return NSURL(string: posterImage.imageURL)
+        } else {
+            return nil
+        }
+    }
+}
+
 func getPlaylistBannerImageURL(with model: PlaylistModel) -> URL {
     let playlistBanner = model.images.filter { $0.name == "appletv_playlist_banner" }
     
@@ -73,12 +83,17 @@ func getPlaylistBannerImageURL(with model: PlaylistModel) -> URL {
         return thumbnail
     }
     else {
+        if model.thumbnailLayout == .poster, let posterUrl = model.posterUrl() {
+            return posterUrl as URL
+        }
         return URL(string: "http://placehold.it/1740x700")!
     }
 }
 
 func getThumbnailImageURL(with model: PlaylistModel) -> URL {
-    if let thumbnail = findLargestThumbnail(with: model) {
+    if model.thumbnailLayout == .poster, let posterUrl = model.posterUrl() {
+        return posterUrl as URL
+    } else if let thumbnail = findLargestThumbnail(with: model) {
         return thumbnail
     }
     else {
