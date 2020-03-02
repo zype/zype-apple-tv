@@ -7,7 +7,7 @@
 #import "DVTimeIntervalFormatter.h"
 #import "DVVideoMultipleAdPlaylist.h"
 #import "DVPlayerView.h"
-
-#import "DDXML.h"
-
 #import <AKAMMediaExtensions/AKAMMediaAnalytics_Av.h>
+#import <Analytics/SEGAnalytics.h>
+#import <Analytics/SEGAnalyticsConfiguration.h>
+#import "DDXML.h"

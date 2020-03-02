@@ -193,8 +193,8 @@ extension PlayerVC: AdHelperProtocol {
         }
         else {
             self.removeAdPlayer()
-            if let player = self.playerController.player {
-                player.play()
+            if let player = self.playerController.player as? ZypeAVPlayer {
+                player.resumePlay()
             }
             else {
                 self.setupVideoPlayer()

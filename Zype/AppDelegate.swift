@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Analytics
 import ZypeAppleTVBase
 
 @UIApplicationMain
@@ -19,6 +20,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     UIButton.appearance().setTitleColor(StyledLabel.kBaseColor, for: UIControlState())
     UIButton.appearance().setBackgroundImage(UIImage(named: "white"), for: UIControlState())
+    
+    // setup analytics
+    if Const.kSegmentAnalytics && Const.kSegmentAccountID.count > 0 {
+        let configuration = SEGAnalyticsConfiguration.init(writeKey: Const.kSegmentAnalyticsWriteKey)
+        configuration.trackApplicationLifecycleEvents = true // Enable this to record certain application events automatically!
+        configuration.recordScreenViews = true // Enable this to record screen views automatically!
+        SEGAnalytics.setup(with: configuration)
+        
+        // setup identity
+        SEGAnalytics.shared()?.identify(Const.kSegmentAccountID)
+    }
     
     return true
   }

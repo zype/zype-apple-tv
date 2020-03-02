@@ -34,7 +34,13 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
-class PlayerVC: UIViewController, DVIABPlayerDelegate {
+protocol ZypePlayerDelegate: class {
+    func segmentAnalyticsPaylod() -> [String: Any]
+    func isLivesStream() -> Bool
+    func isResumingPlayback() -> Bool
+}
+
+class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
     
     // MARK: - Properties
     var adPlayer: DVIABPlayer?
@@ -53,6 +59,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     
     var beacon = ""
     var customDimensions = [String: String]()
+    var segmentPayload  = [String: Any]()
 
     var playlist: Array<VideoModel>? = nil
     var currentVideo: VideoModel!
@@ -106,6 +113,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         AnalyticsManager.sharedInstance.reset()
+        SegmentAnalyticsManager.sharedInstance.reset()
         
         if self.completionDelegate != nil && self.currentVideo != nil {
             self.completionDelegate?.changeFocusVideo(self.currentVideo)
@@ -205,6 +213,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
                     let analyticsInfo = self.getAnalyticsFromResponse(playerObject)
                     self.beacon = analyticsInfo.beacon
                     self.customDimensions = analyticsInfo.customDimensions
+                    self.segmentPayload =  self.getSegmentAnalyticsFromResponse(playerObject)
 
                     if adsArray.count > 0 && self.adsData.last?.offset == 0 { // check for preroll
                         self.playAds(adsArray: adsArray, url: url)
@@ -278,7 +287,8 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
             viewWithTag.removeFromSuperview()
         }
         
-        let player = AVPlayer(url: self.playerURL)
+        let player = ZypeAVPlayer(url: self.playerURL)
+        player.delegate = self
         self.playerController.player = player
         self.addChildViewController(self.playerController)
         self.view.addSubview(self.playerController.view)
@@ -307,7 +317,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
         }
 
         player.play()
-        
+
         if self.isAutoPlay {
             self.showInstructionView()
         }
@@ -336,6 +346,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
             self.playerController = AVPlayerViewController()
 
             AnalyticsManager.sharedInstance.trackStop()
+            SegmentAnalyticsManager.sharedInstance.trackComplete()
 
             if let _ = self.playlist,
                 let currentVideoIndex = self.playlist?.index(of: self.currentVideo), self.playlist?.count > 0 {
@@ -361,5 +372,38 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate {
     func player(_ player: DVIABPlayer!, didFail playBreak:DVVideoPlayBreak!, withError:Error ) {
         print("did fail playback")
     }
+    
+    func segmentAnalyticsPaylod() -> [String: Any] {
+        return segmentPayload
+    }
 
+    func isLivesStream() -> Bool {
+        return self.currentVideo.onAir
+    }
+    
+    func isResumingPlayback() -> Bool {
+        return isResuming
+    }
+}
+
+class ZypeAVPlayer: AVPlayer {
+    weak var delegate: ZypePlayerDelegate?
+
+    func resumePlay() {
+        super.play()
+        SegmentAnalyticsManager.sharedInstance.trackStart(resumedByAd: true)
+    }
+    
+    override func play() {
+        super.play()
+        if let delegate = delegate {
+            SegmentAnalyticsManager.sharedInstance.setConfigurations(self, delegate.segmentAnalyticsPaylod(), delegate.isLivesStream(), delegate.isResumingPlayback())
+        }
+        SegmentAnalyticsManager.sharedInstance.trackStart(resumedByAd: false)
+    }
+    
+    override func pause() {
+        super.pause()
+        SegmentAnalyticsManager.sharedInstance.trackPause()
+    }
 }
