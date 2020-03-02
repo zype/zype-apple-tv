@@ -50,9 +50,9 @@ class Const: NSObject {
     static let kLiveItemEnabled = false
     static let kLiveVideoID = "5c8faa021d1f4314dd006203"
     static let kEpisodeNumberDisplay = false
-    static let kSegmentAnalytics = true // if enabled,make sure kSegmentAccountID is having correct value
+    static let kSegmentAnalytics = false // if enabled,make sure kSegmentAccountID is having correct value
     static let kSegmentAnalyticsWriteKey = "N1ybwfgbQz2nSTPhVfKPAS8Py4jV6Agd"
-    static let kSegmentAccountID = "xyz" // must have some value if kSegmentAnalytics is enabled
+    static let kSegmentAccountID = "" // must have some value if kSegmentAnalytics is enabled
 
     // NOTE: This is a deprecated feature. DO NOT ENABLE
     static let kNativeToUniversal = false
