@@ -1,6 +1,5 @@
 //
 //  SegmentAnalyticsManager.swift
-//  PeopleTV
 //
 //  Created by Anish Agarwal on 08/02/20.
 //  Copyright © 2020 Eugene Lizhnyk. All rights reserved.
