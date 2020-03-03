@@ -10,7 +10,7 @@ import Foundation
 
 class AnalyticsManager: NSObject {
     // MARK: - Properties
-    open static let sharedInstance = AnalyticsManager()
+    public static let sharedInstance = AnalyticsManager()
 
     // MARK: - reset
     open func reset() {
