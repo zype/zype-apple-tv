@@ -43,6 +43,7 @@
 		E1C681D02018D82800028BB4 /* AKAMMediaExtensions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E1C681CE2018D82800028BB4 /* AKAMMediaExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E1C681D42018EC6100028BB4 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C681D32018EC6100028BB4 /* AnalyticsManager.swift */; };
 		E1C681D6201945D400028BB4 /* AnalyticsProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C681D5201945D400028BB4 /* AnalyticsProtocolDelegate.swift */; };
+		EFE7E9C352BA5439D7238579 /* Pods_Zype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4DAC78EBB8174B8B28525C9 /* Pods_Zype.framework */; };
 		F51158161BDE441000DB1774 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F51158181BDE441000DB1774 /* Localizable.strings */; };
 		F511581D1BDE6CFC00DB1774 /* FocusableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */; };
 		F5534D251BCFC64100BEA509 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5534D241BCFC64100BEA509 /* FavoritesVC.swift */; };
@@ -102,6 +103,7 @@
 		47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProtocolDelegate.swift; sourceTree = "<group>"; };
 		473C51491EE8ACA40051FC6C /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseManager.swift; sourceTree = "<group>"; };
 		473C514F1EE9A37B0051FC6C /* PurchaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseVC.swift; sourceTree = "<group>"; };
+		77D9F1BC5909F23A2309B926 /* Pods-Zype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zype.release.xcconfig"; path = "Target Support Files/Pods-Zype/Pods-Zype.release.xcconfig"; sourceTree = "<group>"; };
 		A161E99E1DDBBAA800D01C70 /* DVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVPlayerView.h; sourceTree = "<group>"; };
 		A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVPlayerView.m; sourceTree = "<group>"; };
 		A161E9A21DDBBAA800D01C70 /* DVIABPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVIABPlayer.h; sourceTree = "<group>"; };
@@ -142,15 +144,17 @@
 		A161E9C91DDBBAA800D01C70 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
 		A1C0CF141E37CF8A007ED6C0 /* SplashScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenVC.swift; sourceTree = "<group>"; };
 		A1C0CF161E37CFA1007ED6C0 /* ReplaceSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceSegue.swift; sourceTree = "<group>"; };
+		B2817EFC5D38BDE21EA4BAC2 /* Pods-Zype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zype.debug.xcconfig"; path = "Target Support Files/Pods-Zype/Pods-Zype.debug.xcconfig"; sourceTree = "<group>"; };
+		D7EBC48023EE41FC000FED34 /* SegmentAnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentAnalyticsManager.swift; sourceTree = "<group>"; };
 		E1C681CE2018D82800028BB4 /* AKAMMediaExtensions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AKAMMediaExtensions.framework; path = Frameworks/AKAMMediaExtensions.framework; sourceTree = "<group>"; };
 		E1C681D32018EC6100028BB4 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		E1C681D5201945D400028BB4 /* AnalyticsProtocolDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsProtocolDelegate.swift; sourceTree = "<group>"; };
+		F4DAC78EBB8174B8B28525C9 /* Pods_Zype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F51158171BDE441000DB1774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusableButton.swift; sourceTree = "<group>"; };
 		F5534D241BCFC64100BEA509 /* FavoritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
 		F5534D261BCFEB8200BEA509 /* CollectionContainerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionContainerVC.swift; sourceTree = "<group>"; };
 		F553AD201BC660B400A093EF /* <DOT_APP_NAME> */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = <DOT_APP_NAME>; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7EBC48023EE41FC000FED34 /* SegmentAnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentAnalyticsManager.swift; sourceTree = "<group>"; };
 		F55669311BE8DADC006A3138 /* StyledLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledLabel.swift; sourceTree = "<group>"; };
 		F55732131BDA4EBC00D323A0 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		F5577D921BCE4FDC00F174CE /* URLImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLImageView.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1C681CF2018D82800028BB4 /* AKAMMediaExtensions.framework in Frameworks */,
+				EFE7E9C352BA5439D7238579 /* Pods_Zype.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +208,23 @@
 				2BB89B1C22678BD8003B3C5E /* GuideDateHeader.swift */,
 			);
 			path = Guide;
+			sourceTree = "<group>";
+		};
+		3F404C46A4D412058C7BC035 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4DAC78EBB8174B8B28525C9 /* Pods_Zype.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6E2EB53D7C07858AF8306081 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B2817EFC5D38BDE21EA4BAC2 /* Pods-Zype.debug.xcconfig */,
+				77D9F1BC5909F23A2309B926 /* Pods-Zype.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		A161E99D1DDBBAA800D01C70 /* AVOD */ = {
@@ -314,6 +336,8 @@
 				A161E99D1DDBBAA800D01C70 /* AVOD */,
 				F5582CAC1BC7DB8B0089E5E7 /* Zype */,
 				F553AD211BC660B400A093EF /* Products */,
+				6E2EB53D7C07858AF8306081 /* Pods */,
+				3F404C46A4D412058C7BC035 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -422,11 +446,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F553AD2F1BC660B400A093EF /* Build configuration list for PBXNativeTarget "<PROJECT_NAME>" */;
 			buildPhases = (
+				C33A209D767B2A4E8CA6A673 /* [CP] Check Pods Manifest.lock */,
 				F553AD1C1BC660B400A093EF /* Sources */,
 				F553AD1D1BC660B400A093EF /* Frameworks */,
 				F553AD1E1BC660B400A093EF /* Resources */,
 				F5D98CDD1BE3B6A300C986B4 /* Embed Frameworks */,
 				E1591D8E206995ED00BDE177 /* ShellScript */,
+				72469D1231A53D13885EEE5B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -453,11 +479,12 @@
 					};
 				};
 			};
-			buildConfigurationList = F553AD1B1BC660B400A093EF /* Build configuration list for PBXProject "<PROJECT_NAME>" */;
+			buildConfigurationList = F553AD1B1BC660B400A093EF /* Build configuration list for PBXProject "Zype" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -487,6 +514,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		72469D1231A53D13885EEE5B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Zype/Pods-Zype-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Analytics/Analytics.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/ZypeAppleTVBase/ZypeAppleTVBase.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Analytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZypeAppleTVBase.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zype/Pods-Zype-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C33A209D767B2A4E8CA6A673 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Zype-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E1591D8E206995ED00BDE177 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
@@ -634,9 +705,9 @@
 				SDKROOT = appletvos;
 				SWIFT_OBJC_BRIDGING_HEADER = "AVOD/DVVAST-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -677,15 +748,16 @@
 				SDKROOT = appletvos;
 				SWIFT_OBJC_BRIDGING_HEADER = "AVOD/DVVAST-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		F553AD301BC660B400A093EF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2817EFC5D38BDE21EA4BAC2 /* Pods-Zype.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
@@ -704,12 +776,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = <PRODUCT_BUNDLE_IDENTIFIER>;
 				PRODUCT_NAME = <PROJECT_NAME>;
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
 		F553AD311BC660B400A093EF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77D9F1BC5909F23A2309B926 /* Pods-Zype.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
@@ -728,7 +802,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = <PRODUCT_BUNDLE_IDENTIFIER>;
 				PRODUCT_NAME = <PROJECT_NAME>;
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};

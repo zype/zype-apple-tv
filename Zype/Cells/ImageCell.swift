@@ -119,7 +119,7 @@ class ImageCell: UICollectionViewCell {
             let constraintRect = CGSize(width: Const.kCollectionCellSize.width, height: .greatestFiniteMagnitude)
             let boundingBox = item.title.boundingRect(with: constraintRect,
                                                       options: .usesLineFragmentOrigin,
-                                                      attributes: [NSFontAttributeName: self.label.font],
+                                                      attributes: [NSAttributedString.Key.font: self.label.font],
                                                       context: nil)
             let labelHeight = ceil(boundingBox.height)
             var labelFrame = self.label.frame
