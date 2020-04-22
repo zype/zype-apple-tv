@@ -479,7 +479,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F553AD1B1BC660B400A093EF /* Build configuration list for PBXProject "Zype" */;
+			buildConfigurationList = F553AD1B1BC660B400A093EF /* Build configuration list for PBXProject "<PROJECT_NAME>" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
