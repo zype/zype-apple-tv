@@ -22,7 +22,7 @@ open class GuideTimeHeader : UICollectionReusableView {
     
     fileprivate func commonInit() {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFont(ofSize: 32, weight: UIFont.Weight.medium)
+        titleLabel.font = UIFont.systemFont(ofSize: 32, weight: UIFontWeightMedium)
         titleLabel.textColor = UIColor.white
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(titleLabel)

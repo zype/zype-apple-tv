@@ -69,12 +69,12 @@ class TabBarVC: UITabBarController {
         prevTabItem = item
     }
     
-    @objc func menuButtonAction(recognizer: UITapGestureRecognizer) {
+    func menuButtonAction(recognizer: UITapGestureRecognizer) {
         self.view.removeGestureRecognizer(menuPressRecognizer)
         self.selectedIndex = previousIndex
     }
     
-    @objc func hideTabBar() {
+    func hideTabBar() {
         self.tabBar.alpha = 0
         TabBarVC.openingApp = false
         
@@ -136,7 +136,7 @@ class TabBarVC: UITabBarController {
         self.modifyTabs()
     }
     
-    @objc func modifyTabs() {
+    func modifyTabs() {
         if ZypeAppleTVBase.sharedInstance.consumer?.isLoggedIn == true ||
             Const.kNativeSubscriptionEnabled == true ||
             Const.kNativeToUniversal == true ||

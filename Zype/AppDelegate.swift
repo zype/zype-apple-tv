@@ -15,11 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     ZypeAppleTVBase.sharedInstance.initialize(Const.sdkSettings, loadCategories: false, loadPlaylists: false, completion: {_ in})
     
-        UIButton.appearance().setTitleColor(StyledLabel.kBaseColor, for: UIControl.State())
-        UIButton.appearance().setBackgroundImage(UIImage(named: "white"), for: UIControl.State())
+    UIButton.appearance().setTitleColor(StyledLabel.kBaseColor, for: UIControlState())
+    UIButton.appearance().setBackgroundImage(UIImage(named: "white"), for: UIControlState())
     
     // setup analytics
     if Const.kSegmentAnalytics && Const.kSegmentAccountID.count > 0 {

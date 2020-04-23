@@ -32,7 +32,7 @@ class GuideDateHeader: UICollectionReusableView {
         label.numberOfLines = 0
         label.textColor = UIColor.white
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 32, weight: UIFont.Weight.medium)
+        label.font = UIFont.systemFont(ofSize: 32, weight: UIFontWeightMedium)
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
         self.label = label

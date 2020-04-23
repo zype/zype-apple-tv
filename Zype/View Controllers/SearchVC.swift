@@ -35,7 +35,7 @@ class SearchVC: UISearchContainerViewController, UISearchControllerDelegate, UIS
     override internal var searchController: UISearchController {
         get {
             if self.cachedVC == nil {
-                self.collectionVC = self.storyboard?.instantiateViewController(withIdentifier: "BaseCollectionVC") as? BaseCollectionVC
+                self.collectionVC = self.storyboard?.instantiateViewController(withIdentifier: "BaseCollectionVC") as! BaseCollectionVC
                 self.collectionVC.configWithSections([CollectionSection()])
                 self.collectionVC.itemSelectedCallback = { (item: CollectionLabeledItem, section: CollectionSection) in
                     self.playVideo(item.object as! VideoModel)
@@ -78,7 +78,7 @@ class SearchVC: UISearchContainerViewController, UISearchControllerDelegate, UIS
     
     fileprivate func setupVersionLabel() {
         versionLabel.text = Const.kAppVersion
-        versionLabel.bringSubviewToFront(self.view)
+        versionLabel.bringSubview(toFront: self.view)
         versionLabel.textColor = .gray
     }
     

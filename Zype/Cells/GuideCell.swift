@@ -64,7 +64,7 @@ class GuideCell: UICollectionViewCell {
         return pan
     }()
     
-    @objc func panGesture(_ pan: UIPanGestureRecognizer) {        
+    func panGesture(_ pan: UIPanGestureRecognizer) {        
         switch pan.state {
         case .began:
             initialPanPosition = pan.location(in: contentView)

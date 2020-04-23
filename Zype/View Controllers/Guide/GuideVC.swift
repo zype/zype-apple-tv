@@ -64,7 +64,7 @@ class GuideVC: UIViewController {
         self.view.removeGestureRecognizer(self.menuPressRecognizer)
     }
     
-    @objc func timerFire() {
+    func timerFire() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm aa"
         lblCurrentTime.text = dateFormatter.string(from: Date())
@@ -106,7 +106,7 @@ class GuideVC: UIViewController {
         return calendar.date(bySettingHour: hour, minute: minutes, second: 0, of: date)!
     }
     
-    @objc func loadGuides() {
+    func loadGuides() {
         var loadingCount = 0
         self.startDate = self.getStartTime()
         self.guides.removeAll()
