@@ -87,7 +87,7 @@ class PurchaseVC: UIViewController {
         
         let loggedInString = NSMutableAttributedString(string: "Logged in as: \(String(describing: email))", attributes: nil)
         let buttonRange = (loggedInString.string as NSString).range(of: "\(String(describing: email))")
-        loggedInString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: 38.0), range: buttonRange)
+        loggedInString.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFont(ofSize: 38.0), range: buttonRange)
         
         accountLabel.attributedText = loggedInString
         accountLabel.textAlignment = .center
@@ -105,7 +105,7 @@ class PurchaseVC: UIViewController {
         associatedVideo = video
     }
 
-    func onPlanSelected(sender: UIButton) {
+    @objc func onPlanSelected(sender: UIButton) {
         if !ZypeUtilities.isDeviceLinked() {
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(onPurchased),
@@ -146,9 +146,9 @@ class PurchaseVC: UIViewController {
     func configureButtons() {
         
         stackView = UIStackView()
-        stackView.axis = UILayoutConstraintAxis.horizontal
-        stackView.distribution = UIStackViewDistribution.fillEqually
-        stackView.alignment = UIStackViewAlignment.center
+        stackView.axis = NSLayoutConstraint.Axis.horizontal
+        stackView.distribution = UIStackView.Distribution.fillEqually
+        stackView.alignment = UIStackView.Alignment.center
         stackView.spacing = Const.kSubscribeButtonHorizontalSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -160,8 +160,8 @@ class PurchaseVC: UIViewController {
         
         containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView]|", options: .alignAllCenterX, metrics: nil, views: ["scrollView": scrollView]))
         containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[scrollView]|", options: .alignAllCenterX, metrics: nil, views: ["scrollView": scrollView]))
-        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": stackView]))
-        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": stackView]))
+        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: NSLayoutConstraint.FormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": stackView]))
+        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: NSLayoutConstraint.FormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": stackView]))
         
         if let products = InAppPurchaseManager.sharedInstance.products {
             var subscriptionProducts: Array<SKProduct> = []
@@ -219,7 +219,7 @@ class PurchaseVC: UIViewController {
         ZypeUtilities.presentLoginVC(self)
     }
     
-    func onPurchased() {
+    @objc func onPurchased() {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -273,7 +273,7 @@ class PurchaseVC: UIViewController {
         }
     }
     
-    func spinForPurchase() {
+    @objc func spinForPurchase() {
         DispatchQueue.main.async {
             self.activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
             self.activityIndicator.isHidden = false
@@ -285,7 +285,7 @@ class PurchaseVC: UIViewController {
         }
     }
     
-    func unspinForPurchase() {
+    @objc func unspinForPurchase() {
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
             for view in self.view.subviews {

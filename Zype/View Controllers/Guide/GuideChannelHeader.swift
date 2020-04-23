@@ -32,7 +32,7 @@ open class GuideChannelHeader : UICollectionReusableView {
         label.numberOfLines = 0
         label.textColor = UIColor.white
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 28, weight: UIFontWeightMedium)
+        label.font = UIFont.systemFont(ofSize: 28, weight: UIFont.Weight.medium)
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
         self.lblTitle = label
