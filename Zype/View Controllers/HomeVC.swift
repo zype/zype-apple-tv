@@ -32,7 +32,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.delegate = self
-        self.reloadButton.setTitle(localized("Home.ReloadButton"), for: UIControl.State())
+        self.reloadButton.setTitle(localized("Home.ReloadButton"), for: UIControlState())
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name(rawValue: "ready_to_load_playlists"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCollection), name: NSNotification.Name(rawValue: kZypeReloadScreenNotification), object: nil)
@@ -64,7 +64,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         }
     }
     
-    @objc func reloadCollection() {
+    func reloadCollection() {
         self.collectionVC.isConfigurated = false
         
         for section in self.collectionVC.sections {
@@ -81,7 +81,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         return nil
     }
     
-    @objc func reloadData() {
+    func reloadData() {
         self.hideErrorInfo()
         let queryModel = QueryPlaylistsModel()
         
@@ -153,8 +153,8 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
                     self.pagerVC = self.storyboard?.instantiateViewController(withIdentifier: "BaseCollectionVC") as! BaseCollectionVC
                     self.pagerVC.view.height = 700
                     self.pagerVC.isInfinityScrolling = true
-                    self.collectionVC.addChild(self.pagerVC)
-                    self.pagerVC.didMove(toParent: self.collectionVC)
+                    self.collectionVC.addChildViewController(self.pagerVC)
+                    self.pagerVC.didMove(toParentViewController: self.collectionVC)
                     self.pagerVC.itemSelectedCallback = { [unowned self] (item: CollectionLabeledItem, section: CollectionSection) in
                         guard self.secondPress != true else { return }
                         let zObject = (item as! PagerCollectionItem).object as! ZobjectModel
@@ -256,8 +256,8 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
             self.pagerVC = self.storyboard?.instantiateViewController(withIdentifier: "BaseCollectionVC") as! BaseCollectionVC
             self.pagerVC.view.height = 700.0
             self.pagerVC.isInfinityScrolling = false
-            self.collectionVC.addChild(self.pagerVC)
-            self.pagerVC.didMove(toParent: self.collectionVC)
+            self.collectionVC.addChildViewController(self.pagerVC)
+            self.pagerVC.didMove(toParentViewController: self.collectionVC)
             self.pagerVC.configWithSection(section)
         }
         else {
@@ -270,7 +270,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         if self.pagerVC != nil {
             let headerSection = CollectionSection()
             headerSection.controller = self.pagerVC
-            headerSection.insets = UIEdgeInsets(top: 0, left: 0, bottom: Const.kCollectionPagerVCBottomMargin, right: 0)
+            headerSection.insets = UIEdgeInsetsMake(0, 0, Const.kCollectionPagerVCBottomMargin, 0)
             sections.append(headerSection)
         }
         sections.append(contentsOf: self.getSectionsForShows())
@@ -358,8 +358,8 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         
         if value.playlistItemCount > 0 {//load screen with videos
             controller.itemSelectedCallback = {[unowned self] (item: CollectionLabeledItem, section: CollectionSection) in
-                self.selectedVideo = item.object as? VideoModel
-                self.selectedShow = section.object as? PlaylistModel
+                self.selectedVideo = item.object as! VideoModel
+                self.selectedShow = section.object as! PlaylistModel
                 self.performSegue(withIdentifier: HomeVC.kShowDetailsSegueID, sender: section)
             }
         } else {
@@ -411,7 +411,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         super.prepare(for: segue, sender: sender)
     }
     
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         let animationController = FadeNavigationAnimationController()
         animationController.reverse = operation == .pop
         return animationController

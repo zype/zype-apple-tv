@@ -42,8 +42,8 @@ class URLImageView: UIImageView {
       if(self.shouldAnimate && self.image != nil) {
         let transition = CATransition()
         transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut);
-        transition.type = CATransitionType.fade;
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut);
+        transition.type = kCATransitionFade;
         self.layer.add(transition, forKey:URLImageView.kAnimationKey)
       }
     }

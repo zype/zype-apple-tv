@@ -102,7 +102,7 @@ class ShowDetailsVC: CollectionContainerVC {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCollection), name: NSNotification.Name(rawValue: kZypeReloadScreenNotification), object: nil)
     }
     
-    @objc func reloadCollection() {
+    func reloadCollection() {
         self.collectionVC.isConfigurated = false
         self.collectionVC.collectionView?.reloadData()
         if self.selectedShow != nil {
@@ -172,7 +172,7 @@ class ShowDetailsVC: CollectionContainerVC {
         let constraintRect = CGSize(width: self.subTitleLabel.width, height: .greatestFiniteMagnitude)
         let boundingBox = self.selectedVideo.titleString.boundingRect(with: constraintRect,
                                                                       options: .usesLineFragmentOrigin,
-                                                                      attributes: [NSAttributedString.Key.font: self.subTitleLabel.font],
+                                                                      attributes: [NSFontAttributeName: self.subTitleLabel.font],
                                                                       context: nil)
         self.subTitleLabel.height = ceil(boundingBox.height) > 120 ? 120 : ceil(boundingBox.height)
         
@@ -372,7 +372,7 @@ class ShowDetailsVC: CollectionContainerVC {
         }
     }
     
-    @objc func onPurchased() {
+    func onPurchased() {
         self.dismiss(animated: true, completion: nil)
     }
     

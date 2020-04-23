@@ -70,7 +70,7 @@ class GradientMaskView: UIView {
       gradient.startPoint = CGPoint(x: 1, y: 0)
       gradient.endPoint = CGPoint(x: 0, y: 0)
     }
-    self.visible.frame = self.bounds.inset(by: self.maskInsets)
+    self.visible.frame = UIEdgeInsetsInsetRect(self.bounds, self.maskInsets)
   }
   
 }
