@@ -85,7 +85,7 @@ class SettingsVC: UIViewController {
         if let isLoggedIn = ZypeAppleTVBase.sharedInstance.consumer?.isLoggedIn {
             self.loginButton.isHidden = isLoggedIn
             self.logoutButton.isHidden = !isLoggedIn
-            self.logoutTitle.text = isLoggedIn ? "Unlink your device" : "Link your device"
+            self.logoutTitle.text = isLoggedIn ? "Signed in as: \(UserDefaults.standard.object(forKey: kUserEmail) as? String ?? "")" : "You are not currently signed in"
         }
     }
     

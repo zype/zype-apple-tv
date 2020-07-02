@@ -114,7 +114,7 @@ class TabBarVC: UITabBarController {
     func isSettingItemEnabled() -> Bool {
         if let items = self.tabBar.items {
             for item in items {
-                if item.title == "Settings" {
+                if item.title == localized("Settings.TabTitle") {
                     return true
                 }
             }
@@ -162,7 +162,7 @@ class TabBarVC: UITabBarController {
                 let navController = UINavigationController.init(rootViewController: settingsVC!)
                 self.viewControllers?.append(navController)
                 let position = (self.tabBar.items?.count)! - 1
-                self.tabBar.items![position].title = "Settings"
+                self.tabBar.items![position].title = localized("Settings.TabTitle")
             }
         }
     }
@@ -211,7 +211,7 @@ class TabBarVC: UITabBarController {
             if let position = self.tabBar.items?.count {
                 //let navigationController = UINavigationController.init(rootViewController: myLibraryVC)
                 self.viewControllers?.append(myLibraryVC)
-                self.tabBar.items![position].title = "MyLibrary"
+                self.tabBar.items![position].title = localized("MyLibrary.TabTitle")
             }
         }
     }
