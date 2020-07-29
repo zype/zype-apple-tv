@@ -125,3 +125,12 @@ extension UIColor {
     }
 }
 
+extension String {
+    
+    func encodeUrlQueryParam() -> String {
+        return self.addingPercentEncoding(
+            withAllowedCharacters: CharacterSet(
+                charactersIn: "!*'();:@&=+$,/?%#[]{} ").inverted)
+            ?? self
+    }
+}
