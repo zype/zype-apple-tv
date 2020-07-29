@@ -78,6 +78,8 @@ extension PlayerVC: AdHelperProtocol {
         if let ifa = deviceIfa {
             string = (string as NSString).replacingOccurrences(of: "[device_ifa]", with: "\(ifa)")
         }
+        string = (string as NSString).replacingOccurrences(of: "[device_ua]", with: "\(ZypeUserAgentBuilder.buildtUserAgent().userAgent().addingPercentEncoding(withAllowedCharacters: CharacterSet(charactersIn: "!*'();:@&=+$,/?%#[]{} ").inverted) ?? "")")
+
         string = (string as NSString).replacingOccurrences(of: "[vpi]", with: "\(vpi)")
         string = (string as NSString).replacingOccurrences(of: "[app_id]", with: "\(appId)")
         
