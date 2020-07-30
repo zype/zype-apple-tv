@@ -66,20 +66,22 @@ extension PlayerVC: AdHelperProtocol {
         let vpi = "mp4"
         let appId = ZypeAppSettings.sharedInstance.deviceId()
         
-        string = (string as NSString).replacingOccurrences(of: "[uuid]", with: "\(uuid)")
-        string = (string as NSString).replacingOccurrences(of: "[app_name]", with: "\(appName)")
+        string = (string as NSString).replacingOccurrences(of: "[uuid]", with: "\(uuid.encodeUrlQueryParam())")
+        string = (string as NSString).replacingOccurrences(of: "[app_name]", with: "\(appName.encodeUrlQueryParam())")
         if let bundle = appBundle {
-            string = (string as NSString).replacingOccurrences(of: "[app_bundle]", with: "\(bundle)")
-            string = (string as NSString).replacingOccurrences(of: "[app_domain]", with: "\(bundle)")
+            string = (string as NSString).replacingOccurrences(of: "[app_bundle]", with: "\(bundle)".encodeUrlQueryParam())
+            string = (string as NSString).replacingOccurrences(of: "[app_domain]", with: "\(bundle)".encodeUrlQueryParam())
         }
-        string = (string as NSString).replacingOccurrences(of: "[device_type]", with: "\(deviceType)")
-        string = (string as NSString).replacingOccurrences(of: "[device_make]", with: "\(deviceMake)")
-        string = (string as NSString).replacingOccurrences(of: "[device_model]", with: "\(deviceModel)")
+        string = (string as NSString).replacingOccurrences(of: "[device_type]", with: "\(deviceType)".encodeUrlQueryParam())
+        string = (string as NSString).replacingOccurrences(of: "[device_make]", with: "\(deviceMake)".encodeUrlQueryParam())
+        string = (string as NSString).replacingOccurrences(of: "[device_model]", with: "\(deviceModel)".encodeUrlQueryParam())
         if let ifa = deviceIfa {
-            string = (string as NSString).replacingOccurrences(of: "[device_ifa]", with: "\(ifa)")
+            string = (string as NSString).replacingOccurrences(of: "[device_ifa]", with: "\(ifa)".encodeUrlQueryParam())
         }
-        string = (string as NSString).replacingOccurrences(of: "[vpi]", with: "\(vpi)")
-        string = (string as NSString).replacingOccurrences(of: "[app_id]", with: "\(appId)")
+        string = (string as NSString).replacingOccurrences(of: "[device_ua]", with: "\(ZypeUserAgentBuilder.buildtUserAgent().userAgent().encodeUrlQueryParam())")
+
+        string = (string as NSString).replacingOccurrences(of: "[vpi]", with: "\(vpi)".encodeUrlQueryParam())
+        string = (string as NSString).replacingOccurrences(of: "[app_id]", with: "\(appId)".encodeUrlQueryParam())
         
         return string
     }
