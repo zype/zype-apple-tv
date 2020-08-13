@@ -369,29 +369,26 @@ NSString *const DVIABPlayerErrorDomain = @"DVIABPlayerErrorDomain";
                     context:DVIABPlayerInlineAdPlayerItemStatusObservationContext];
     
     self.currentInlineAdPlayerItem = playerItem;
-    
     self.adPlayer = [[AVPlayer alloc] initWithPlayerItem:playerItem];
-    Float64 duration = CMTimeGetSeconds(playerItem.duration);
-//    VLogF(duration);
-   //  NSLog(@"duration %f", CMTimeGetSeconds(playerItem.duration));
+
     typeof(self) SELF = self;
     self.firstQuartile = self.midpoint = self.thirdQuartile = NO;
     self.periodicAdTimeObserver = [self.adPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1, 1) queue:NULL usingBlock:^(CMTime time) {
-        Float64 current = CMTimeGetSeconds(time)/duration;
-        if (current >= .25 && !SELF.firstQuartile) {
+        Float64 duration = CMTimeGetSeconds(SELF.adPlayer.currentItem.duration);
+        Float64 current = CMTimeGetSeconds(time);
+        Float64 percentage = current/duration * 100;
+        if (percentage >= 25 && !SELF.firstQuartile) {
             SELF.firstQuartile = YES;
             [SELF.currentInlineAd trackEvent:@"firstQuartile"];
         }
-        if (current >= .5 && !SELF.midpoint) {
+        if (percentage >= 50 && !SELF.midpoint) {
             SELF.midpoint = YES;
             [SELF.currentInlineAd trackEvent:@"midpoint"];
         }
-        if (current >= .75 && !SELF.thirdQuartile) {
+        if (percentage >= 75 && !SELF.thirdQuartile) {
             SELF.thirdQuartile = YES;
             [SELF.currentInlineAd trackEvent:@"thirdQuartile"];
         }
-//        VLogF(current);
-     //   NSLog(@"current %f", current);
     }];
     
     // Other TrackingEvents (Not Implemented)
