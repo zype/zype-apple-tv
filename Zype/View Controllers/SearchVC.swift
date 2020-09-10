@@ -35,7 +35,8 @@ class SearchVC: UISearchContainerViewController, UISearchControllerDelegate, UIS
     override internal var searchController: UISearchController {
         get {
             if self.cachedVC == nil {
-                self.collectionVC = self.storyboard?.instantiateViewController(withIdentifier: "BaseCollectionVC") as! BaseCollectionVC
+                let storyboard = self.storyboard ?? UIStoryboard(name: "Main", bundle: nil)
+                self.collectionVC = storyboard.instantiateViewController(withIdentifier: "BaseCollectionVC") as? BaseCollectionVC
                 self.collectionVC.configWithSections([CollectionSection()])
                 self.collectionVC.itemSelectedCallback = { (item: CollectionLabeledItem, section: CollectionSection) in
                     self.playVideo(item.object as! VideoModel)
