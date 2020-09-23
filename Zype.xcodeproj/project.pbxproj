@@ -154,7 +154,8 @@
 		F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusableButton.swift; sourceTree = "<group>"; };
 		F5534D241BCFC64100BEA509 /* FavoritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
 		F5534D261BCFEB8200BEA509 /* CollectionContainerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionContainerVC.swift; sourceTree = "<group>"; };
-		F553AD201BC660B400A093EF /* Zype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zype.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F553AD201BC660B400A093EF /* <DOT_APP_NAME> */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = <DOT_APP_NAME>; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7EBC48023EE41FC000FED34 /* SegmentAnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentAnalyticsManager.swift; sourceTree = "<group>"; };
 		F55669311BE8DADC006A3138 /* StyledLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledLabel.swift; sourceTree = "<group>"; };
 		F55732131BDA4EBC00D323A0 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		F5577D921BCE4FDC00F174CE /* URLImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLImageView.swift; sourceTree = "<group>"; };
@@ -345,7 +346,7 @@
 		F553AD211BC660B400A093EF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F553AD201BC660B400A093EF /* Zype.app */,
+				F553AD201BC660B400A093EF /* <DOT_APP_NAME> */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -443,9 +444,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F553AD1F1BC660B400A093EF /* Zype */ = {
+		F553AD1F1BC660B400A093EF /* <PROJECT_NAME> */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F553AD2F1BC660B400A093EF /* Build configuration list for PBXNativeTarget "Zype" */;
+			buildConfigurationList = F553AD2F1BC660B400A093EF /* Build configuration list for PBXNativeTarget "<PROJECT_NAME>" */;
 			buildPhases = (
 				B81B986960D4661460829016 /* [CP] Check Pods Manifest.lock */,
 				F553AD1C1BC660B400A093EF /* Sources */,
@@ -459,9 +460,9 @@
 			);
 			dependencies = (
 			);
-			name = Zype;
+			name = <PROJECT_NAME>;
 			productName = UITest;
-			productReference = F553AD201BC660B400A093EF /* Zype.app */;
+			productReference = F553AD201BC660B400A093EF /* <DOT_APP_NAME> */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -480,7 +481,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F553AD1B1BC660B400A093EF /* Build configuration list for PBXProject "Zype" */;
+			buildConfigurationList = F553AD1B1BC660B400A093EF /* Build configuration list for PBXProject "<PROJECT_NAME>" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -493,7 +494,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F553AD1F1BC660B400A093EF /* Zype */,
+				F553AD1F1BC660B400A093EF /* <PROJECT_NAME> */,
 			);
 		};
 /* End PBXProject section */
@@ -773,8 +774,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.zype.apple-tv";
-				PRODUCT_NAME = Zype;
+				PRODUCT_BUNDLE_IDENTIFIER = <PRODUCT_BUNDLE_IDENTIFIER>;
+				PRODUCT_NAME = <PROJECT_NAME>;
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
 			};
@@ -798,8 +799,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.zype.apple-tv";
-				PRODUCT_NAME = Zype;
+				PRODUCT_BUNDLE_IDENTIFIER = <PRODUCT_BUNDLE_IDENTIFIER>;
+				PRODUCT_NAME = <PROJECT_NAME>;
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
 			};
@@ -808,7 +809,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F553AD1B1BC660B400A093EF /* Build configuration list for PBXProject "Zype" */ = {
+		F553AD1B1BC660B400A093EF /* Build configuration list for PBXProject "<PROJECT_NAME>" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F553AD2D1BC660B400A093EF /* Debug */,
@@ -817,7 +818,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F553AD2F1BC660B400A093EF /* Build configuration list for PBXNativeTarget "Zype" */ = {
+		F553AD2F1BC660B400A093EF /* Build configuration list for PBXNativeTarget "<PROJECT_NAME>" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F553AD301BC660B400A093EF /* Debug */,
