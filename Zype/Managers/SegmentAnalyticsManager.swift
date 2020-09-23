@@ -12,6 +12,17 @@ enum SegmentAnalyticsEventType: String {
     case PlayerStartEvent    = "Video Content Started"
     case PlayerPlayingEvent  = "Video Content Playing"
     case PlayerCompleteEvent = "Video Content Completed"
+    case PlayerContentCompleted25Percent = "Video Content Completed 25 percent"
+    case PlayerContentCompleted50Percent = "Video Content Completed 50 percent"
+    case PlayerContentCompleted75Percent = "Video Content Completed 75 percent"
+    case InitialHomePageStream = "Exiting Initial Stream to Homepage"
+    case PlayerPlaybackStarted = "Video Playback Started"
+    case PlayerPlaybackCompleted = "Video Playback Completed"
+    case PlayerPlaybackPaused = "Video Playback Paused"
+    case PlayerPlaybackResumed = "Video Playback Resumed"
+    case PlayerPlaybackError = "Video Player Error"
+    case PlayerSeekStarted = "Video Playback Seek Started"
+    case PlayerSeekCompleted = "Video Playback Seek Completed"
 }
 
 enum SegmentAnalyticsAttributes: String {
@@ -87,13 +98,20 @@ class SegmentAnalyticsManager: NSObject {
         segmentPayload?[SegmentAnalyticsAttributes.session_id.rawValue] = sessionId
     }
     
+    
     // MARK: - track video playback
-    open func trackStart(resumedByAd: Bool) {
+    open func trackStart(resumedByAd: Bool, isForUserAction: Bool = false) {
         if !isSegmentAnalyticsEnabled() {
             return
         }
         
-        if !isResumingPlayback {
+        if isForUserAction {
+            guard let event = eventData(.PlayerPlaybackStarted) else{
+                print ("SegmentAnalyticsManager.trackStart forUserAction event data is nil")
+                return
+            }
+            SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerPlaybackStarted.rawValue, properties: event)
+        }else if !isResumingPlayback {
             guard let event = eventData(.PlayerStartEvent) else {
                 print("SegmentAnalyticsManager.trackStart event data is nil")
                 return
@@ -105,25 +123,93 @@ class SegmentAnalyticsManager: NSObject {
         trackVideoProgress()
     }
     
+    open func trackAutoPlay() {
+        if !isSegmentAnalyticsEnabled() {
+            return
+        }
+        
+        guard let event = eventData(.InitialHomePageStream) else{
+            print("SegmentAnalyticsManager.trackAutoPlay event data is nil")
+            return
+        }
+        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.InitialHomePageStream.rawValue, properties: event)
+    }
+    
     open func trackPause() {
         if !isSegmentAnalyticsEnabled() {
             return
         }
+        
+        guard let event = eventData(.PlayerPlaybackPaused) else{
+            print("SegmentAnalyticsManager.trackPause event data is nil")
+            return
+        }
+        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerPlaybackPaused.rawValue, properties: event)
+        
         removeTrackingVideoProgress()
+    }
+    
+    open func trackResume() {
+        if !isSegmentAnalyticsEnabled() {
+            return
+        }
+        
+        guard let event = eventData(.PlayerPlaybackResumed) else{
+            print("SegmentAnalyticsManager.trackResume event data is nil")
+            return
+        }
+        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerPlaybackResumed.rawValue, properties: event)
+    }
+    
+    open func trackIntermediatePoints(point: SegmentAnalyticsEventType){
+        if !isSegmentAnalyticsEnabled(){
+            return
+        }
+        
+        guard let event = eventData(point) else {
+            print("SegmentAnalyticsManager.trackIntermediatePoints event data is nil - " + point.rawValue)
+            return
+        }
+        SEGAnalytics.shared()?.track(point.rawValue, properties: event)
+    }
+    
+    open func trackSeek() {
+        if !isSegmentAnalyticsEnabled(){
+            return
+        }
+        
+        guard let event = eventData(.PlayerSeekCompleted) else {
+            print("SegmentAnalyticsManager.trackSeek event data is nil")
+            return
+        }
+        
+        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerSeekCompleted.rawValue, properties: event)
     }
     
     open func trackComplete() {
         if !isSegmentAnalyticsEnabled() {
             return
         }
-        guard let event = eventData(.PlayerCompleteEvent) else {
+        guard let event = eventData(.PlayerPlaybackCompleted) else {
             print("SegmentAnalyticsManager.trackComplete event data is nil")
             return
         }
-        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerCompleteEvent.rawValue, properties: event)
+        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerPlaybackCompleted.rawValue, properties: event)
         
         // reset all parameters and remove observer after video playing finished
         reset()
+    }
+    
+    open func trackError() {
+        if !isSegmentAnalyticsEnabled() {
+            return
+        }
+        
+        guard let event = eventData(.PlayerPlaybackError) else {
+            print("SegmentAnalyticsManager.trackError event data is nil")
+            return
+        }
+        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerPlaybackError.rawValue, properties: event)
     }
 
     private func trackPlaying() {
@@ -137,7 +223,7 @@ class SegmentAnalyticsManager: NSObject {
     private func eventData(_ event: SegmentAnalyticsEventType) -> [String:Any]? {
         guard var segmentPayload = segmentPayload else { return nil }
         
-        if event == .PlayerCompleteEvent {
+        if event == .PlayerPlaybackCompleted {
             segmentPayload[SegmentAnalyticsAttributes.videoContentPosition.rawValue] = Int(self.totalLength)
             segmentPayload["videoContentPercentComplete"] = Int(100)
         } else {
