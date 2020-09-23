@@ -1,0 +1,32 @@
+PODS:
+  - Analytics (4.0.5)
+  - Kingfisher (3.13.1)
+  - ZypeAppleTVBase (0.5.5.2)
+
+DEPENDENCIES:
+  - Analytics (~> 4.0.5)
+  - Kingfisher (~> 3.0)
+  - ZypeAppleTVBase (from `https://github.com/zype/ZypeAppleTVBase.git`)
+
+SPEC REPOS:
+  trunk:
+    - Analytics
+    - Kingfisher
+
+EXTERNAL SOURCES:
+  ZypeAppleTVBase:
+    :git: https://github.com/zype/ZypeAppleTVBase.git
+
+CHECKOUT OPTIONS:
+  ZypeAppleTVBase:
+    :commit: 49be56eeb5db70b824578b95496470030142f791
+    :git: https://github.com/zype/ZypeAppleTVBase.git
+
+SPEC CHECKSUMS:
+  Analytics: 4bcf052c91e1f3339219e83d6a036fb2bd7c218d
+  Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
+  ZypeAppleTVBase: 674345ca8d135453d25af18c0fecc7bd8d52a90b
+
+PODFILE CHECKSUM: 68638fae524e97ffa93f17f17fe958929f3a4897
+
+COCOAPODS: 1.9.3

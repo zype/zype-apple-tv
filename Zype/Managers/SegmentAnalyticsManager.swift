@@ -98,7 +98,7 @@ class SegmentAnalyticsManager: NSObject {
                 print("SegmentAnalyticsManager.trackStart event data is nil")
                 return
             }
-            SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerStartEvent.rawValue, properties: event)
+            Analytics.shared().track(SegmentAnalyticsEventType.PlayerStartEvent.rawValue, properties: event)
         }
         
         // start tracking video progress
@@ -120,7 +120,7 @@ class SegmentAnalyticsManager: NSObject {
             print("SegmentAnalyticsManager.trackComplete event data is nil")
             return
         }
-        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerCompleteEvent.rawValue, properties: event)
+        Analytics.shared().track(SegmentAnalyticsEventType.PlayerCompleteEvent.rawValue, properties: event)
         
         // reset all parameters and remove observer after video playing finished
         reset()
@@ -131,7 +131,7 @@ class SegmentAnalyticsManager: NSObject {
             print("SegmentAnalyticsManager.trackPlaying event data is nil")
             return
         }
-        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerPlayingEvent.rawValue, properties: event)
+        Analytics.shared().track(SegmentAnalyticsEventType.PlayerPlayingEvent.rawValue, properties: event)
     }
 
     private func eventData(_ event: SegmentAnalyticsEventType) -> [String:Any]? {
@@ -184,7 +184,7 @@ class SegmentAnalyticsManager: NSObject {
                             print("SegmentAnalyticsManager.trackVideoProgress event data is nil")
                             return
                         }
-                        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerStartEvent.rawValue, properties: event)
+                        Analytics.shared().track(SegmentAnalyticsEventType.PlayerStartEvent.rawValue, properties: event)
                         self.isResumingPlayback = false
                     } else {
                         self.trackPlaying()

@@ -13,6 +13,6 @@ target 'Zype' do
 
 pod 'ZypeAppleTVBase', :git => 'https://github.com/zype/ZypeAppleTVBase.git'
 pod 'Kingfisher', '~> 3.0'
-pod 'Analytics',  '~> 3.8.0-beta.1'
+pod 'Analytics',  '~> 4.0.5'
 
 end
