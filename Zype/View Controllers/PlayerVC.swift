@@ -52,6 +52,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
     var isSkippable = false
     var isResuming = true
     var isAutoPlay = false
+    var isStopped = false
     var timer: Timer?
     var showingInstructionTime = 5
     var instructionLabel: UILabel?
@@ -89,6 +90,9 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
         }
         if self.playerController.player != nil {
             self.playerController.player?.removeObserver(self, forKeyPath:"rate")
+            self.playerController.player?.removeObserver(self, forKeyPath:"timeControlStatus")
+            self.playerController.player?.removeObserver(self, forKeyPath:"status")
+            self.removeBoundaryTimeObserver()
             self.playerController.player?.pause()
         }
         
@@ -108,6 +112,9 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.play(self.currentVideo)
+        if (!self.isAutoPlay){
+            SegmentAnalyticsManager.sharedInstance.trackStart(resumedByAd: false, isForUserAction: true)
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -127,6 +134,11 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
         if let type = presses.first?.type, type == .playPause {
             if self.adPlayer != nil {
                 
+            }
+            if #available(tvOS 10.0, *) {
+                if let player = self.playerController.player, player.timeControlStatus == .paused{
+                    SegmentAnalyticsManager.sharedInstance.trackResume()
+                }
             }
         }
             
@@ -154,6 +166,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
                 self.adPlayer?.pause()
             }
             if self.playerController.player != nil {
+                self.isStopped = true
                 self.playerController.player?.pause()
                 AnalyticsManager.sharedInstance.trackStop()
             }
@@ -168,6 +181,18 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
                 if self.isAutoPlay {
                     self.showInstructionView()
                 }
+            }
+            return
+        }else if keyPath == "timeControlStatus", context == &playerItemContext {
+            if #available(tvOS 10.0, *) {
+                if let player = self.playerController.player, player.timeControlStatus == .paused, self.isStopped != true{
+                    SegmentAnalyticsManager.sharedInstance.trackPause()
+                }
+            }
+            return
+        }else if keyPath == "status", context == &playerItemContext {
+            if let player = self.playerController.player, player.status == .failed{
+                SegmentAnalyticsManager.sharedInstance.trackError()
             }
             return
         }
@@ -188,6 +213,43 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
         }
         else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+        }
+    }
+    func addBoundaryTimeObserver(duration: CMTime) {
+        
+        // Divide the asset's duration into quarters.
+        let interval = CMTimeMultiplyByFloat64(duration, 0.25)
+        var currentTime = kCMTimeZero
+        var timesInCMTime = [CMTime]()
+        var times = [NSValue]()
+        
+        // Calculate boundary times
+        while currentTime < duration {
+            currentTime = currentTime + interval
+            timesInCMTime.append(currentTime)
+            times.append(NSValue(time:currentTime))
+        }
+        
+        timeObserverToken = self.playerController.player?.addBoundaryTimeObserver(forTimes: times, queue: .main) {
+            [weak self] in
+            
+            if let playerTime = self?.playerController.player?.currentTime(){
+                let currentSeconds = playerTime.seconds
+                if Int(timesInCMTime[0].seconds) == Int(currentSeconds){
+                    SegmentAnalyticsManager.sharedInstance.trackIntermediatePoints(point: .PlayerContentCompleted25Percent)
+                }else if Int(timesInCMTime[1].seconds) == Int(currentSeconds){
+                    SegmentAnalyticsManager.sharedInstance.trackIntermediatePoints(point: .PlayerContentCompleted50Percent)
+                }else if Int(timesInCMTime[2].seconds) == Int(currentSeconds){
+                    SegmentAnalyticsManager.sharedInstance.trackIntermediatePoints(point: .PlayerContentCompleted75Percent)
+                }
+            }
+        }
+    }
+    
+    func removeBoundaryTimeObserver() {
+        if let timeObserverToken = timeObserverToken {
+            self.playerController.player?.removeTimeObserver(timeObserverToken)
+            self.timeObserverToken = nil
         }
     }
     
@@ -296,6 +358,10 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
         player.addObserver(self, forKeyPath: "rate", options: [], context: &playerItemContext)
+        player.addObserver(self, forKeyPath: "timeControlStatus", options: [], context: &playerItemContext)
+        player.addObserver(self, forKeyPath: "status", options: [], context: &playerItemContext)
+        
+        
         
         if self.adsData.count > 0 {
             self.observeTimerForMidrollAds()
@@ -317,9 +383,15 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
         }
 
         player.play()
-
+        
+        if !self.isLivesStream(){
+            let duration = CMTime(seconds: Double(self.currentVideo?.durationValue ?? 0), preferredTimescale: 1)
+            self.addBoundaryTimeObserver(duration: duration)
+        }
+        
         if self.isAutoPlay {
             self.showInstructionView()
+            SegmentAnalyticsManager.sharedInstance.trackAutoPlay()
         }
     }
     
@@ -344,7 +416,8 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
             self.playerController.view.removeFromSuperview()
             self.playerController.player?.replaceCurrentItem(with: nil)
             self.playerController = AVPlayerViewController()
-
+            
+            self.isStopped = true
             AnalyticsManager.sharedInstance.trackStop()
             SegmentAnalyticsManager.sharedInstance.trackComplete()
 
@@ -404,6 +477,35 @@ class ZypeAVPlayer: AVPlayer {
     
     override func pause() {
         super.pause()
-        SegmentAnalyticsManager.sharedInstance.trackPause()
+    }
+    
+    override func seek(to time: CMTime) {
+        super.seek(to: time)
+        SegmentAnalyticsManager.sharedInstance.trackSeek()
+    }
+    
+    override func seek(to time: CMTime, toleranceBefore: CMTime, toleranceAfter: CMTime) {
+        super.seek(to: time, toleranceBefore: toleranceBefore, toleranceAfter: toleranceAfter)
+        SegmentAnalyticsManager.sharedInstance.trackSeek()
+    }
+    
+    override func seek(to date: Date) {
+        super.seek(to: date)
+        SegmentAnalyticsManager.sharedInstance.trackSeek()
+    }
+    
+    override func seek(to time: CMTime, completionHandler: @escaping (Bool) -> Void) {
+        super.seek(to: time, completionHandler: completionHandler)
+        SegmentAnalyticsManager.sharedInstance.trackSeek()
+    }
+    
+    override func seek(to date: Date, completionHandler: @escaping (Bool) -> Void) {
+        super.seek(to: date, completionHandler: completionHandler)
+        SegmentAnalyticsManager.sharedInstance.trackSeek()
+    }
+    
+    override func seek(to time: CMTime, toleranceBefore: CMTime, toleranceAfter: CMTime, completionHandler: @escaping (Bool) -> Void) {
+        super.seek(to: time, toleranceBefore: toleranceBefore, toleranceAfter: toleranceAfter, completionHandler: completionHandler)
+        SegmentAnalyticsManager.sharedInstance.trackSeek()
     }
 }

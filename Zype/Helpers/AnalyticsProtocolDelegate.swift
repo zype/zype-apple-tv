@@ -83,6 +83,13 @@ extension PlayerVC: AnalyticsHelperProtocol {
             if let duration = video["duration"] {
                 customDimensions[SegmentAnalyticsAttributes.videoContentDuration.rawValue] = duration
             }
+            
+            if let seriesId = video["series_id"] as? String {
+                if seriesId != ""{
+                    customDimensions[SegmentAnalyticsAttributes.videoFranchise.rawValue] = seriesId
+                }
+            }
+            
             if let keywords = video["keywords"] as? [String], !keywords.isEmpty {
                 var output = ""
                 keywords.forEach {
