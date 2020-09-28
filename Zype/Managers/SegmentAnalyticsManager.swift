@@ -110,13 +110,13 @@ class SegmentAnalyticsManager: NSObject {
                 print ("SegmentAnalyticsManager.trackStart forUserAction event data is nil")
                 return
             }
-            SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerPlaybackStarted.rawValue, properties: event)
+            Analytics.shared().track(SegmentAnalyticsEventType.PlayerPlaybackStarted.rawValue, properties: event)
         }else if !isResumingPlayback {
             guard let event = eventData(.PlayerStartEvent) else {
                 print("SegmentAnalyticsManager.trackStart event data is nil")
                 return
             }
-            SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerStartEvent.rawValue, properties: event)
+            Analytics.shared().track(SegmentAnalyticsEventType.PlayerStartEvent.rawValue, properties: event)
         }
         
         // start tracking video progress
@@ -132,7 +132,7 @@ class SegmentAnalyticsManager: NSObject {
             print("SegmentAnalyticsManager.trackAutoPlay event data is nil")
             return
         }
-        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.InitialHomePageStream.rawValue, properties: event)
+        Analytics.shared().track(SegmentAnalyticsEventType.InitialHomePageStream.rawValue, properties: event)
     }
     
     open func trackPause() {
@@ -144,7 +144,7 @@ class SegmentAnalyticsManager: NSObject {
             print("SegmentAnalyticsManager.trackPause event data is nil")
             return
         }
-        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerPlaybackPaused.rawValue, properties: event)
+        Analytics.shared().track(SegmentAnalyticsEventType.PlayerPlaybackPaused.rawValue, properties: event)
         
         removeTrackingVideoProgress()
     }
@@ -158,7 +158,7 @@ class SegmentAnalyticsManager: NSObject {
             print("SegmentAnalyticsManager.trackResume event data is nil")
             return
         }
-        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerPlaybackResumed.rawValue, properties: event)
+        Analytics.shared().track(SegmentAnalyticsEventType.PlayerPlaybackResumed.rawValue, properties: event)
     }
     
     open func trackIntermediatePoints(point: SegmentAnalyticsEventType){
@@ -170,7 +170,7 @@ class SegmentAnalyticsManager: NSObject {
             print("SegmentAnalyticsManager.trackIntermediatePoints event data is nil - " + point.rawValue)
             return
         }
-        SEGAnalytics.shared()?.track(point.rawValue, properties: event)
+        Analytics.shared().track(point.rawValue, properties: event)
     }
     
     open func trackSeek() {
@@ -183,7 +183,7 @@ class SegmentAnalyticsManager: NSObject {
             return
         }
         
-        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerSeekCompleted.rawValue, properties: event)
+        Analytics.shared().track(SegmentAnalyticsEventType.PlayerSeekCompleted.rawValue, properties: event)
     }
     
     open func trackComplete() {
@@ -194,8 +194,8 @@ class SegmentAnalyticsManager: NSObject {
             print("SegmentAnalyticsManager.trackComplete event data is nil")
             return
         }
-        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerPlaybackCompleted.rawValue, properties: event)
-        
+
+        Analytics.shared().track(SegmentAnalyticsEventType.PlayerCompleteEvent.rawValue, properties: event)
         // reset all parameters and remove observer after video playing finished
         reset()
     }
@@ -209,7 +209,7 @@ class SegmentAnalyticsManager: NSObject {
             print("SegmentAnalyticsManager.trackError event data is nil")
             return
         }
-        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerPlaybackError.rawValue, properties: event)
+        Analytics.shared().track(SegmentAnalyticsEventType.PlayerPlaybackError.rawValue, properties: event)
     }
 
     private func trackPlaying() {
@@ -217,7 +217,7 @@ class SegmentAnalyticsManager: NSObject {
             print("SegmentAnalyticsManager.trackPlaying event data is nil")
             return
         }
-        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerPlayingEvent.rawValue, properties: event)
+        Analytics.shared().track(SegmentAnalyticsEventType.PlayerPlayingEvent.rawValue, properties: event)
     }
 
     private func eventData(_ event: SegmentAnalyticsEventType) -> [String:Any]? {
@@ -270,7 +270,7 @@ class SegmentAnalyticsManager: NSObject {
                             print("SegmentAnalyticsManager.trackVideoProgress event data is nil")
                             return
                         }
-                        SEGAnalytics.shared()?.track(SegmentAnalyticsEventType.PlayerStartEvent.rawValue, properties: event)
+                        Analytics.shared().track(SegmentAnalyticsEventType.PlayerStartEvent.rawValue, properties: event)
                         self.isResumingPlayback = false
                     } else {
                         self.trackPlaying()

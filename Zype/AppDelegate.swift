@@ -23,13 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // setup analytics
     if Const.kSegmentAnalytics && Const.kSegmentAccountID.count > 0 {
-        let configuration = SEGAnalyticsConfiguration.init(writeKey: Const.kSegmentAnalyticsWriteKey)
+        let configuration = AnalyticsConfiguration.init(writeKey: Const.kSegmentAnalyticsWriteKey)
         configuration.trackApplicationLifecycleEvents = true // Enable this to record certain application events automatically!
         configuration.recordScreenViews = true // Enable this to record screen views automatically!
-        SEGAnalytics.setup(with: configuration)
+        Analytics.setup(with: configuration)
         
         // setup identity
-        SEGAnalytics.shared()?.identify(Const.kSegmentAccountID)
+        Analytics.shared().identify(Const.kSegmentAccountID)
     }
     
     return true
