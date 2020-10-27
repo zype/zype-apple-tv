@@ -33,12 +33,47 @@ class TabBarVC: UITabBarController {
         NotificationCenter.default.addObserver(self, selector: #selector(modifyTabs), name: NSNotification.Name(rawValue: kZypeReloadScreenNotification), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(hideTabBar), name: NSNotification.Name(rawValue: "zype_app_reopened"), object: nil)
         self.loadDynamicData()
-        
-        self.tabBar.alpha = 0
-        
+                
         menuPressRecognizer = UITapGestureRecognizer()
         menuPressRecognizer.addTarget(self, action: #selector(menuButtonAction(recognizer:)))
         menuPressRecognizer.allowedPressTypes = [NSNumber(value: UIPress.PressType.menu.rawValue)]
+    }
+    
+    func setTabBarVisible(visible: Bool, animated: Bool) {
+
+        //* This cannot be called before viewDidLayoutSubviews(), because the frame is not set before this time
+
+        // bail if the current state matches the desired state
+        if (tabBarIsVisible() == visible) { return }
+
+        // get a frame calculation ready
+        let frame = self.tabBar.frame
+        var safeAreaHeight: CGFloat = 60
+        
+        if #available(tvOS 11.0, *) {
+            safeAreaHeight = self.view.safeAreaInsets.top
+        }
+        
+        let height = frame.size.height + safeAreaHeight
+        let offsetY = (visible ? height : -height)
+
+        // zero duration means no animation
+        let duration: TimeInterval = (animated ? 0.3 : 0.0)
+
+        //  animate the tabBar
+        UIView.animate(withDuration: duration) {
+            var newFrame = frame.offsetBy(dx: 0, dy: offsetY)
+            if newFrame.origin.y > 0.0 {
+                newFrame.origin.y = 0.0
+            }
+            self.tabBar.frame = newFrame
+            print("tabBar.frame \(self.tabBar.frame)")
+            return
+        }
+    }
+
+    func tabBarIsVisible() -> Bool {
+        return self.tabBar.frame.origin.y >= self.view.frame.minY
     }
     
     override var preferredFocusedView: UIView? {
@@ -46,9 +81,29 @@ class TabBarVC: UITabBarController {
             if !TabBarVC.openingApp {
                 return self.selectedViewController?.preferredFocusedView
             }
-            self.tabBar.alpha = 1
+            //self.tabBar.alpha = 1
             return nil
         }
+    }
+    
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+       if let nextFocusItem = context.nextFocusedItem {
+           // We supports tvOS 11.0 as minimum OS target versions
+           if #available(tvOS 11.0, *) {
+               if tabBar.contains(nextFocusItem) {
+                   setTabBarVisible(visible: true, animated: true)
+               }
+               else if self.selectedIndex == 0 {
+                   //check if it's home screen or not, show tabbar on child screens of HomeVC
+                   if let navigataionController = selectedViewController as? UINavigationController {
+                       setTabBarVisible(visible: !(navigataionController.topViewController is HomeVC), animated: true)
+                       return
+                   }
+                   
+                   setTabBarVisible(visible: false, animated: true)
+               }
+           }
+       }
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -75,8 +130,9 @@ class TabBarVC: UITabBarController {
     }
     
     @objc func hideTabBar() {
-        self.tabBar.alpha = 0
         TabBarVC.openingApp = false
+        
+        setTabBarVisible(visible: false, animated: true)
         
         self.selectedIndex = 0
         self.setNeedsFocusUpdate()
