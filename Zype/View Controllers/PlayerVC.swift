@@ -10,6 +10,7 @@ import UIKit
 import AVKit
 import AVFoundation
 import ZypeAppleTVBase
+import MMSmartStreaming
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -382,6 +383,10 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
             }
         }
 
+		if Const.Advanced_Analytics_Enabled == true{
+            self.integrateMediaMelonSDKWithAssetURL(urlString: self.playerURL.absoluteString)
+        }
+
         player.play()
         
         if !self.isLivesStream(){
@@ -393,6 +398,18 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
             self.showInstructionView()
             SegmentAnalyticsManager.sharedInstance.trackAutoPlay()
         }
+    }
+    
+    private func integrateMediaMelonSDKWithAssetURL(urlString: String) {
+        //Integration Step 1
+//        print("Integrating with \(String(describing: AVPlayerIntegrationWrapper.getVersion()))")
+        AVPlayerIntegrationWrapper.shared.enableLogTrace(logStTrace: true)
+        let assetInfo = MMAssetInformation(assetURL: urlString, assetID:
+            "", assetName: "", videoId: self.currentVideo.videoId)
+        assetInfo.addCustomKVP("siteid", Const.kSiteId)
+        let registrationInfo = MMRegistrationInformation(customerID: Const.Advanced_Analytics_CustomerID, playerName: "tvos_player")
+        AVPlayerIntegrationWrapper.initializeAssetForPlayer(assetInfo: assetInfo, registrationInformation: registrationInfo, player: self.playerController.player)
+        //End of integration Step 1
     }
     
     func resumePlayingFromAds() {
@@ -420,6 +437,8 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
             self.isStopped = true
             AnalyticsManager.sharedInstance.trackStop()
             SegmentAnalyticsManager.sharedInstance.trackComplete()
+            
+            AVPlayerIntegrationWrapper.cleanUp()
 
             if let _ = self.playlist,
                 let currentVideoIndex = self.playlist?.index(of: self.currentVideo), self.playlist?.count > 0 {
