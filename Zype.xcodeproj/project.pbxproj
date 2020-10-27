@@ -18,7 +18,7 @@
 		47102CDC1ECBA02F0060AF02 /* AdProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */; };
 		473C514A1EE8ACA40051FC6C /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C51491EE8ACA40051FC6C /* InAppPurchaseManager.swift */; };
 		473C51501EE9A37B0051FC6C /* PurchaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C514F1EE9A37B0051FC6C /* PurchaseVC.swift */; };
-		A043100E25EEB737A8A50C00 /* Pods_Zype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD297F9B48CA0678CC8A6107 /* Pods_Zype.framework */; };
+		8F103F56E34DE586D9703D30 /* Pods_Zype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8E3F25EC03F59FC6E1A093 /* Pods_Zype.framework */; };
 		A161E9CA1DDBBAA800D01C70 /* DVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */; };
 		A161E9CB1DDBBAA800D01C70 /* DVIABPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9A31DDBBAA800D01C70 /* DVIABPlayer.m */; };
 		A161E9CC1DDBBAA800D01C70 /* DVInlineVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9A51DDBBAA800D01C70 /* DVInlineVideoAd.m */; };
@@ -103,7 +103,6 @@
 		47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProtocolDelegate.swift; sourceTree = "<group>"; };
 		473C51491EE8ACA40051FC6C /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseManager.swift; sourceTree = "<group>"; };
 		473C514F1EE9A37B0051FC6C /* PurchaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseVC.swift; sourceTree = "<group>"; };
-		616762A099FB99E395235EA7 /* Pods-Zype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zype.release.xcconfig"; path = "Target Support Files/Pods-Zype/Pods-Zype.release.xcconfig"; sourceTree = "<group>"; };
 		A161E99E1DDBBAA800D01C70 /* DVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVPlayerView.h; sourceTree = "<group>"; };
 		A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVPlayerView.m; sourceTree = "<group>"; };
 		A161E9A21DDBBAA800D01C70 /* DVIABPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVIABPlayer.h; sourceTree = "<group>"; };
@@ -144,12 +143,13 @@
 		A161E9C91DDBBAA800D01C70 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
 		A1C0CF141E37CF8A007ED6C0 /* SplashScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenVC.swift; sourceTree = "<group>"; };
 		A1C0CF161E37CFA1007ED6C0 /* ReplaceSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceSegue.swift; sourceTree = "<group>"; };
-		A997F922C60E08DA76F3ACF0 /* Pods-Zype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zype.debug.xcconfig"; path = "Target Support Files/Pods-Zype/Pods-Zype.debug.xcconfig"; sourceTree = "<group>"; };
-		CD297F9B48CA0678CC8A6107 /* Pods_Zype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7EBC48023EE41FC000FED34 /* SegmentAnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentAnalyticsManager.swift; sourceTree = "<group>"; };
+		DCFA87783C027C490CEDE8E6 /* Pods-Zype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zype.release.xcconfig"; path = "Target Support Files/Pods-Zype/Pods-Zype.release.xcconfig"; sourceTree = "<group>"; };
 		E1C681CE2018D82800028BB4 /* AKAMMediaExtensions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AKAMMediaExtensions.framework; path = Frameworks/AKAMMediaExtensions.framework; sourceTree = "<group>"; };
 		E1C681D32018EC6100028BB4 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		E1C681D5201945D400028BB4 /* AnalyticsProtocolDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsProtocolDelegate.swift; sourceTree = "<group>"; };
+		EC8E3F25EC03F59FC6E1A093 /* Pods_Zype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1DA0C547D3070399835DE32 /* Pods-Zype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zype.debug.xcconfig"; path = "Target Support Files/Pods-Zype/Pods-Zype.debug.xcconfig"; sourceTree = "<group>"; };
 		F51158171BDE441000DB1774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F511581C1BDE6CFC00DB1774 /* FocusableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusableButton.swift; sourceTree = "<group>"; };
 		F5534D241BCFC64100BEA509 /* FavoritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
@@ -191,21 +191,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1C681CF2018D82800028BB4 /* AKAMMediaExtensions.framework in Frameworks */,
-				A043100E25EEB737A8A50C00 /* Pods_Zype.framework in Frameworks */,
+				8F103F56E34DE586D9703D30 /* Pods_Zype.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		01EEF25276B6DE7FF308E911 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				CD297F9B48CA0678CC8A6107 /* Pods_Zype.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		2BB89B1322665D57003B3C5E /* Guide */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,13 +210,12 @@
 			path = Guide;
 			sourceTree = "<group>";
 		};
-		2E38C919A56639FF57108730 /* Pods */ = {
+		951CCB8D4E79E54CEB8D5FA3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A997F922C60E08DA76F3ACF0 /* Pods-Zype.debug.xcconfig */,
-				616762A099FB99E395235EA7 /* Pods-Zype.release.xcconfig */,
+				F1DA0C547D3070399835DE32 /* Pods-Zype.debug.xcconfig */,
+				DCFA87783C027C490CEDE8E6 /* Pods-Zype.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -330,6 +321,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		E1DC38B661351FB5E01209DE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EC8E3F25EC03F59FC6E1A093 /* Pods_Zype.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F553AD171BC660B400A093EF = {
 			isa = PBXGroup;
 			children = (
@@ -337,8 +336,8 @@
 				A161E99D1DDBBAA800D01C70 /* AVOD */,
 				F5582CAC1BC7DB8B0089E5E7 /* Zype */,
 				F553AD211BC660B400A093EF /* Products */,
-				2E38C919A56639FF57108730 /* Pods */,
-				01EEF25276B6DE7FF308E911 /* Frameworks */,
+				951CCB8D4E79E54CEB8D5FA3 /* Pods */,
+				E1DC38B661351FB5E01209DE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -447,13 +446,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F553AD2F1BC660B400A093EF /* Build configuration list for PBXNativeTarget "Zype" */;
 			buildPhases = (
-				B81B986960D4661460829016 /* [CP] Check Pods Manifest.lock */,
+				ECAF460ACE37F8C7DA6BE553 /* [CP] Check Pods Manifest.lock */,
 				F553AD1C1BC660B400A093EF /* Sources */,
 				F553AD1D1BC660B400A093EF /* Frameworks */,
 				F553AD1E1BC660B400A093EF /* Resources */,
 				F5D98CDD1BE3B6A300C986B4 /* Embed Frameworks */,
 				E1591D8E206995ED00BDE177 /* ShellScript */,
-				8DE588739C5C44536920EB14 /* [CP] Embed Pods Frameworks */,
+				F5B180532E71E9588D2DDBB3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -485,6 +484,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -514,29 +514,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8DE588739C5C44536920EB14 /* [CP] Embed Pods Frameworks */ = {
+		E1591D8E206995ED00BDE177 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Zype/Pods-Zype-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Analytics/Analytics.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/ZypeAppleTVBase/ZypeAppleTVBase.framework",
 			);
-			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Analytics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZypeAppleTVBase.framework",
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zype/Pods-Zype-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "echo \"Target architectures: $ARCHS\"\n\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\nFRAMEWORK_TMP_PATH=\"$FRAMEWORK_EXECUTABLE_PATH-tmp\"\n\n# remove simulator's archs if location is not simulator's directory\ncase \"${TARGET_BUILD_DIR}\" in\n*\"iphonesimulator\")\necho \"No need to remove archs\"\n;;\n*)\nif $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"i386\") ; then\nlipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"i386\" \"$FRAMEWORK_EXECUTABLE_PATH\"\necho \"i386 architecture removed\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\nfi\nif $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"x86_64\") ; then\nlipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"x86_64\" \"$FRAMEWORK_EXECUTABLE_PATH\"\necho \"x86_64 architecture removed\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\nfi\n;;\nesac\n\necho \"Completed for executable $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\ndone";
 		};
-		B81B986960D4661460829016 /* [CP] Check Pods Manifest.lock */ = {
+		ECAF460ACE37F8C7DA6BE553 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -558,18 +549,27 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E1591D8E206995ED00BDE177 /* ShellScript */ = {
+		F5B180532E71E9588D2DDBB3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Zype/Pods-Zype-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Analytics/Analytics.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/ZypeAppleTVBase/ZypeAppleTVBase.framework",
 			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Analytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZypeAppleTVBase.framework",
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"Target architectures: $ARCHS\"\n\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\nFRAMEWORK_TMP_PATH=\"$FRAMEWORK_EXECUTABLE_PATH-tmp\"\n\n# remove simulator's archs if location is not simulator's directory\ncase \"${TARGET_BUILD_DIR}\" in\n*\"iphonesimulator\")\necho \"No need to remove archs\"\n;;\n*)\nif $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"i386\") ; then\nlipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"i386\" \"$FRAMEWORK_EXECUTABLE_PATH\"\necho \"i386 architecture removed\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\nfi\nif $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"x86_64\") ; then\nlipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"x86_64\" \"$FRAMEWORK_EXECUTABLE_PATH\"\necho \"x86_64 architecture removed\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\nfi\n;;\nesac\n\necho \"Completed for executable $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\ndone";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zype/Pods-Zype-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -757,7 +757,7 @@
 		};
 		F553AD301BC660B400A093EF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A997F922C60E08DA76F3ACF0 /* Pods-Zype.debug.xcconfig */;
+			baseConfigurationReference = F1DA0C547D3070399835DE32 /* Pods-Zype.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
@@ -776,13 +776,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zype.apple-tv";
 				PRODUCT_NAME = Zype;
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Debug;
 		};
 		F553AD311BC660B400A093EF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 616762A099FB99E395235EA7 /* Pods-Zype.release.xcconfig */;
+			baseConfigurationReference = DCFA87783C027C490CEDE8E6 /* Pods-Zype.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
@@ -801,7 +802,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zype.apple-tv";
 				PRODUCT_NAME = Zype;
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Release;
 		};

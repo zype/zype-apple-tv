@@ -23,7 +23,7 @@ enum LabelStyle: Int {
 @IBDesignable
 class StyledLabel: UILabel {
   
-  static let kBaseColor = UIColor(colorLiteralRed: 98/255, green: 93/255, blue: 104/255, alpha: 1)
+  static let kBaseColor = UIColor(red: 98/255, green: 93/255, blue: 104/255, alpha: 1)
   static let kFocusedColor = UIColor.white
   
   @IBInspectable var style: Int = LabelStyle.default.rawValue {
@@ -39,7 +39,7 @@ class StyledLabel: UILabel {
     didSet {
       if(self.shouldFade) {
         self.lineBreakMode = .byClipping
-        self.mask = GradientMaskView(frame: self.bounds, insets: UIEdgeInsetsMake(0, 0, 0, 15.0))
+        self.mask = GradientMaskView(frame: self.bounds, insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15.0))
       } else {
         self.mask = nil
       }

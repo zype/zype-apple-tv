@@ -1,11 +1,13 @@
 PODS:
   - Analytics (4.0.5)
-  - Kingfisher (3.13.1)
+  - Kingfisher (5.15.3):
+    - Kingfisher/Core (= 5.15.3)
+  - Kingfisher/Core (5.15.3)
   - ZypeAppleTVBase (0.5.5.2)
 
 DEPENDENCIES:
   - Analytics (~> 4.0.5)
-  - Kingfisher (~> 3.0)
+  - Kingfisher (~> 5.0)
   - ZypeAppleTVBase (from `https://github.com/zype/ZypeAppleTVBase.git`)
 
 SPEC REPOS:
@@ -24,9 +26,9 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Analytics: 4bcf052c91e1f3339219e83d6a036fb2bd7c218d
-  Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
+  Kingfisher: 2fef2f4d9e809285aff7f6195b5290520904f3fa
   ZypeAppleTVBase: 674345ca8d135453d25af18c0fecc7bd8d52a90b
 
-PODFILE CHECKSUM: 68638fae524e97ffa93f17f17fe958929f3a4897
+PODFILE CHECKSUM: 38ea5db0859c7c2d003983844f4de0439fc9defb
 
 COCOAPODS: 1.9.3

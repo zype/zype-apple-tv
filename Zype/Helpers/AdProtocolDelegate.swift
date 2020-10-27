@@ -75,9 +75,8 @@ extension PlayerVC: AdHelperProtocol {
         string = (string as NSString).replacingOccurrences(of: "[device_type]", with: "\(deviceType)".encodeUrlQueryParam())
         string = (string as NSString).replacingOccurrences(of: "[device_make]", with: "\(deviceMake)".encodeUrlQueryParam())
         string = (string as NSString).replacingOccurrences(of: "[device_model]", with: "\(deviceModel)".encodeUrlQueryParam())
-        if let ifa = deviceIfa {
-            string = (string as NSString).replacingOccurrences(of: "[device_ifa]", with: "\(ifa)".encodeUrlQueryParam())
-        }
+        string = (string as NSString).replacingOccurrences(of: "[device_ifa]", with: "\(deviceIfa)".encodeUrlQueryParam())
+
         string = (string as NSString).replacingOccurrences(of: "[device_ua]", with: "\(ZypeUserAgentBuilder.buildtUserAgent().userAgent().encodeUrlQueryParam())")
 
         string = (string as NSString).replacingOccurrences(of: "[vpi]", with: "\(vpi)".encodeUrlQueryParam())
@@ -117,14 +116,14 @@ extension PlayerVC: AdHelperProtocol {
         NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.resumePlayingFromAds), name: NSNotification.Name(rawValue: "noAdsToPlay"), object: nil)
     }
     
-    func setupAdTimer() {
+    @objc func setupAdTimer() {
         self.adTimer = Timer.scheduledTimer(timeInterval: self.adPlayer!.currentInlineAd.skippableDuration,
                                             target: self,
                                             selector: #selector(PlayerVC.adTimerDidFire),
                                             userInfo: nil, repeats: false)
     }
     
-    func adTimerDidFire() {
+    @objc func adTimerDidFire() {
         self.isSkippable = false
         if let viewWithTag = self.view.viewWithTag(1001) {
             viewWithTag.removeFromSuperview()
@@ -148,9 +147,9 @@ extension PlayerVC: AdHelperProtocol {
         skipLabel.textAlignment = .center
         skipView.addSubview(skipLabel)
         self.view.addSubview(skipView)
-        self.view.bringSubview(toFront: skipView)
+        self.view.bringSubviewToFront(skipView)
         
-        UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(), animations: {
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: UIView.AnimationOptions(), animations: {
             skipView.frame = CGRect(x: screenSize.width - 400,
                                     y: screenSize.height - 300,
                                     width: 400,
@@ -160,7 +159,7 @@ extension PlayerVC: AdHelperProtocol {
         }
     }
     
-    func addAdLabel() {
+    @objc func addAdLabel() {
         let screenSize = UIScreen.main.bounds
         let skipView = UIView(frame: CGRect(x: screenSize.width-250,
                                             y: 30,
@@ -204,7 +203,7 @@ extension PlayerVC: AdHelperProtocol {
         }
     }
     
-    func removeAdTimer() {
+    @objc func removeAdTimer() {
         self.isSkippable = false
         if let viewWithTag = self.view.viewWithTag(1001) {
             viewWithTag.removeFromSuperview()
@@ -242,7 +241,7 @@ extension PlayerVC: AdHelperProtocol {
     
     
     func observeTimerForMidrollAds() {
-        let adTimer = self.playerController.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: .main) { (time) in
+        let adTimer = self.playerController.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 1, timescale: 1), queue: .main) { (time) in
             guard self.adsData.count > 0 else {
                 self.removePeriodicTimeObserver()
                 return

@@ -106,7 +106,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentTime = CMTimeMake(250, 1)
+        currentTime = CMTimeMake(value: 250, timescale: 1)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -218,8 +218,8 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
     func addBoundaryTimeObserver(duration: CMTime) {
         
         // Divide the asset's duration into quarters.
-        let interval = CMTimeMultiplyByFloat64(duration, 0.25)
-        var currentTime = kCMTimeZero
+        let interval = CMTimeMultiplyByFloat64(duration, multiplier: 0.25)
+        var currentTime = CMTime.zero
         var timesInCMTime = [CMTime]()
         var times = [NSValue]()
         
@@ -332,7 +332,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateInstructionView), userInfo: nil, repeats: true)
     }
     
-    func updateInstructionView() {
+    @objc func updateInstructionView() {
         self.showingInstructionTime -= 1
         if self.showingInstructionTime == 0 {
             self.timer?.invalidate()
@@ -352,7 +352,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
         let player = ZypeAVPlayer(url: self.playerURL)
         player.delegate = self
         self.playerController.player = player
-        self.addChildViewController(self.playerController)
+        self.addChild(self.playerController)
         self.view.addSubview(self.playerController.view)
         self.playerController.view.frame = self.view.frame
         
@@ -370,7 +370,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
         if isResuming {
             if !currentVideo.onAir {
                 if let timeStamp = userDefaults.object(forKey: "\(currentVideo.getId())") {
-                    let time = CMTimeMakeWithSeconds(timeStamp as! Float64, 1)
+                    let time = CMTimeMakeWithSeconds(timeStamp as! Float64, preferredTimescale: 1)
                     player.seek(to: time)
                 }
             }
@@ -395,7 +395,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
         }
     }
     
-    func resumePlayingFromAds() {
+    @objc func resumePlayingFromAds() {
         self.removeAdPlayer()
         NotificationCenter.default.addObserver(self, selector: #selector(PlayerVC.contentDidFinishPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.playerController.player?.currentItem)
         
@@ -407,12 +407,12 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
         }
     }
     
-    func contentDidFinishPlaying(_ notification: Notification) {
+    @objc func contentDidFinishPlaying(_ notification: Notification) {
         // Make sure we don't call contentComplete as a result of an ad completing.
         if (self.playerController.player?.currentItem != nil) && ((notification.object as! AVPlayerItem) == self.playerController.player!.currentItem) {
             userDefaults.removeObject(forKey: self.currentVideo.getId())
             
-            self.playerController.removeFromParentViewController()
+            self.playerController.removeFromParent()
             self.playerController.view.removeFromSuperview()
             self.playerController.player?.replaceCurrentItem(with: nil)
             self.playerController = AVPlayerViewController()
