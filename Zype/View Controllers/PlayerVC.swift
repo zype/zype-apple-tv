@@ -172,6 +172,9 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
             }
             self.removePeriodicTimeObserver()
         }
+        
+        // Call this for all unhandled key presses
+        super.pressesBegan(presses, with: event)
     }
     
     // MARK: - Video Methods
