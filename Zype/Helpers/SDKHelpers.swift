@@ -53,7 +53,7 @@ extension VideoModel {
         let defaults = UserDefaults.standard
         var favorites = defaults.array(forKey: Const.kFavoritesKey) as? Array<String> ?? [String]()
         if(self.isInFavorites()) {
-            favorites.remove(at: favorites.index(of: self.ID)!)
+            favorites.remove(at: favorites.firstIndex(of: self.ID)!)
         } else {
             favorites.append(self.ID)
         }

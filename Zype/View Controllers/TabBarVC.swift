@@ -115,7 +115,7 @@ class TabBarVC: UITabBarController {
             if let prevItem = self.prevTabItem, prevItem.title?.lowercased() != "live" {
                 self.view.removeGestureRecognizer(menuPressRecognizer)
                 self.view.addGestureRecognizer(menuPressRecognizer)
-                previousIndex = (tabBar.items?.index(of: prevTabItem!))!
+                previousIndex = (tabBar.items?.firstIndex(of: prevTabItem!))!
             }
         } else {
             self.view.removeGestureRecognizer(menuPressRecognizer)

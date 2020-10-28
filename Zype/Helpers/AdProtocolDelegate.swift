@@ -91,7 +91,7 @@ extension PlayerVC: AdHelperProtocol {
         let screenSize = UIScreen.main.bounds
         self.playerView = DVPlayerView(frame: CGRect(x: 0,y: 0,width: screenSize.width, height: screenSize.height))
         
-        self.adPlayer!.playerLayer = self.playerView?.layer as! AVPlayerLayer
+        self.adPlayer!.playerLayer = self.playerView?.layer as? AVPlayerLayer
         (self.playerView?.layer as! AVPlayerLayer).player = self.adPlayer
         self.view.addSubview(self.playerView!)
         

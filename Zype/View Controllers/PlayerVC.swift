@@ -425,7 +425,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
             SegmentAnalyticsManager.sharedInstance.trackComplete()
 
             if let _ = self.playlist,
-                let currentVideoIndex = self.playlist?.index(of: self.currentVideo), self.playlist?.count > 0 {
+                let currentVideoIndex = self.playlist?.firstIndex(of: self.currentVideo), self.playlist?.count > 0 {
                 
                 if currentVideoIndex + 1 < self.playlist!.count {
                     let nextVideo = self.playlist![currentVideoIndex + 1]

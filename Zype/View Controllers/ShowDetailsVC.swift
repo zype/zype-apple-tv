@@ -156,7 +156,7 @@ class ShowDetailsVC: CollectionContainerVC {
     
     func indexPathForselectedVideo() -> IndexPath? {
         if self.selectedVideo != nil && self.selectedShow != nil {
-            return IndexPath(row: self.videos.index(of: self.selectedVideo)!, section: 0)
+            return IndexPath(row: self.videos.firstIndex(of: self.selectedVideo)!, section: 0)
         }
         return nil
     }

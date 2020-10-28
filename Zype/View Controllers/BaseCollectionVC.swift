@@ -393,7 +393,7 @@ extension BaseCollectionVC {
     }
     
     func indexOfSection(_ section: CollectionSection) -> Int{
-        if let index = self.sections.index(of: section) {
+        if let index = self.sections.firstIndex(of: section) {
             return index
         }
         return NSNotFound
