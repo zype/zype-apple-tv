@@ -405,8 +405,13 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
 //        print("Integrating with \(String(describing: AVPlayerIntegrationWrapper.getVersion()))")
         AVPlayerIntegrationWrapper.shared.enableLogTrace(logStTrace: true)
         let assetInfo = MMAssetInformation(assetURL: urlString, assetID:
-            "", assetName: "", videoId: self.currentVideo.videoId)
+            "", assetName: self.currentVideo.videoTitle, videoId: self.currentVideo.videoId)
         assetInfo.addCustomKVP("siteid", Const.kSiteId)
+        if (Const.kNativeSubscriptionEnabled == true && ZypeAppleTVBase.sharedInstance.consumer?.subscriptionIds != nil && ZypeAppleTVBase.sharedInstance.consumer?.subscriptionIds.count > 0){
+            assetInfo.addCustomKVP("subscriptionid", ZypeAppleTVBase.sharedInstance.consumer?.subscriptionIds[0] as? String ?? "")
+        }else{
+            assetInfo.addCustomKVP("subscriptionid", "")
+        }
         let registrationInfo = MMRegistrationInformation(customerID: Const.Advanced_Analytics_CustomerID, playerName: "tvos_player")
         AVPlayerIntegrationWrapper.initializeAssetForPlayer(assetInfo: assetInfo, registrationInformation: registrationInfo, player: self.playerController.player)
         //End of integration Step 1
