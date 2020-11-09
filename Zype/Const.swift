@@ -53,6 +53,10 @@ class Const: NSObject {
     static let kSegmentAnalytics = false // if enabled, make sure kSegmentAccountID has a value entered
     static let kSegmentAnalyticsWriteKey = "enter_write_key_here" // must have some value if kSegmentAnalytics is enabled
     static let kSegmentAccountID = "" // must have some value if kSegmentAnalytics is enabled
+    
+    // if enabled, the crash will be reported in firebase.
+    // make sure to include GoogleService-Info.plist file under Zype for correct account integration.
+    static let Firebase_Enabled = true
 
     // NOTE: This is a deprecated feature. DO NOT ENABLE
     static let kNativeToUniversal = false

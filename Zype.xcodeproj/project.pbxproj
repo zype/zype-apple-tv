@@ -18,6 +18,7 @@
 		47102CDC1ECBA02F0060AF02 /* AdProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */; };
 		473C514A1EE8ACA40051FC6C /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C51491EE8ACA40051FC6C /* InAppPurchaseManager.swift */; };
 		473C51501EE9A37B0051FC6C /* PurchaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C514F1EE9A37B0051FC6C /* PurchaseVC.swift */; };
+		84E62F5725592D65000B743F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84E62F5625592D65000B743F /* GoogleService-Info.plist */; };
 		A043100E25EEB737A8A50C00 /* Pods_Zype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD297F9B48CA0678CC8A6107 /* Pods_Zype.framework */; };
 		A161E9CA1DDBBAA800D01C70 /* DVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */; };
 		A161E9CB1DDBBAA800D01C70 /* DVIABPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9A31DDBBAA800D01C70 /* DVIABPlayer.m */; };
@@ -104,6 +105,7 @@
 		473C51491EE8ACA40051FC6C /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseManager.swift; sourceTree = "<group>"; };
 		473C514F1EE9A37B0051FC6C /* PurchaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseVC.swift; sourceTree = "<group>"; };
 		616762A099FB99E395235EA7 /* Pods-Zype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zype.release.xcconfig"; path = "Target Support Files/Pods-Zype/Pods-Zype.release.xcconfig"; sourceTree = "<group>"; };
+		84E62F5625592D65000B743F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A161E99E1DDBBAA800D01C70 /* DVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVPlayerView.h; sourceTree = "<group>"; };
 		A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVPlayerView.m; sourceTree = "<group>"; };
 		A161E9A21DDBBAA800D01C70 /* DVIABPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVIABPlayer.h; sourceTree = "<group>"; };
@@ -155,7 +157,6 @@
 		F5534D241BCFC64100BEA509 /* FavoritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
 		F5534D261BCFEB8200BEA509 /* CollectionContainerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionContainerVC.swift; sourceTree = "<group>"; };
 		F553AD201BC660B400A093EF /* <DOT_APP_NAME> */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = <DOT_APP_NAME>; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7EBC48023EE41FC000FED34 /* SegmentAnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentAnalyticsManager.swift; sourceTree = "<group>"; };
 		F55669311BE8DADC006A3138 /* StyledLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledLabel.swift; sourceTree = "<group>"; };
 		F55732131BDA4EBC00D323A0 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		F5577D921BCE4FDC00F174CE /* URLImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLImageView.swift; sourceTree = "<group>"; };
@@ -225,7 +226,6 @@
 				A997F922C60E08DA76F3ACF0 /* Pods-Zype.debug.xcconfig */,
 				616762A099FB99E395235EA7 /* Pods-Zype.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -354,6 +354,7 @@
 		F5582CAC1BC7DB8B0089E5E7 /* Zype */ = {
 			isa = PBXGroup;
 			children = (
+				84E62F5625592D65000B743F /* GoogleService-Info.plist */,
 				E1C681D22018EC3F00028BB4 /* Managers */,
 				F5586B051BCBB76D001DEB5B /* Helpers */,
 				F5582CC21BC7E2870089E5E7 /* Support files */,
@@ -455,6 +456,7 @@
 				F5D98CDD1BE3B6A300C986B4 /* Embed Frameworks */,
 				E1591D8E206995ED00BDE177 /* ShellScript */,
 				8DE588739C5C44536920EB14 /* [CP] Embed Pods Frameworks */,
+				84E62F5825592E9B000B743F /* FirebaseCrashlytics */,
 			);
 			buildRules = (
 			);
@@ -509,12 +511,31 @@
 				A161E9D41DDBBAA800D01C70 /* DVVAST.podspec in Resources */,
 				A161E9D51DDBBAA800D01C70 /* LICENSE.txt in Resources */,
 				F5582CBA1BC7DB8B0089E5E7 /* Main.storyboard in Resources */,
+				84E62F5725592D65000B743F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		84E62F5825592E9B000B743F /* FirebaseCrashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = FirebaseCrashlytics;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
 		8DE588739C5C44536920EB14 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -522,15 +543,19 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Zype/Pods-Zype-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Analytics/Analytics.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/ZypeAppleTVBase/ZypeAppleTVBase.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Analytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZypeAppleTVBase.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -570,7 +595,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "echo \"Target architectures: $ARCHS\"\n\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\nFRAMEWORK_TMP_PATH=\"$FRAMEWORK_EXECUTABLE_PATH-tmp\"\n\n# remove simulator's archs if location is not simulator's directory\ncase \"${TARGET_BUILD_DIR}\" in\n*\"iphonesimulator\")\necho \"No need to remove archs\"\n;;\n*)\nif $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"i386\") ; then\nlipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"i386\" \"$FRAMEWORK_EXECUTABLE_PATH\"\necho \"i386 architecture removed\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\nfi\nif $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"x86_64\") ; then\nlipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"x86_64\" \"$FRAMEWORK_EXECUTABLE_PATH\"\necho \"x86_64 architecture removed\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\nfi\n;;\nesac\n\necho \"Completed for executable $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\ndone";
+			shellScript = "echo \"Target architectures: $ARCHS\"\n\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\nFRAMEWORK_TMP_PATH=\"$FRAMEWORK_EXECUTABLE_PATH-tmp\"\n\n# remove simulator's archs if location is not simulator's directory\ncase \"${TARGET_BUILD_DIR}\" in\n*\"iphonesimulator\")\necho \"No need to remove archs\"\n;;\n*)\nif $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"i386\") ; then\nlipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"i386\" \"$FRAMEWORK_EXECUTABLE_PATH\"\necho \"i386 architecture removed\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\nfi\nif $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"x86_64\") ; then\nlipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"x86_64\" \"$FRAMEWORK_EXECUTABLE_PATH\"\necho \"x86_64 architecture removed\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\nfi\n;;\nesac\n\necho \"Completed for executable $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\ndone\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -764,6 +789,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 66JU87JGLE;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -773,11 +799,15 @@
 				INFOPLIST_FILE = Zype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lxml2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = <PRODUCT_BUNDLE_IDENTIFIER>;
 				PRODUCT_NAME = <PROJECT_NAME>;
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -798,11 +828,15 @@
 				INFOPLIST_FILE = Zype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lxml2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = <PRODUCT_BUNDLE_IDENTIFIER>;
 				PRODUCT_NAME = <PROJECT_NAME>;
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
