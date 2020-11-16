@@ -55,7 +55,7 @@ class Const: NSObject {
     static let kSegmentAccountID = "" // must have some value if kSegmentAnalytics is enabled
 
 	static let Advanced_Analytics_Enabled = true
-    static let Advanced_Analytics_CustomerID = "<customer_id_mediamelon>"
+    static let Advanced_Analytics_CustomerID = "<customer_id_advanced_analytics>"
 
     // NOTE: This is a deprecated feature. DO NOT ENABLE
     static let kNativeToUniversal = false

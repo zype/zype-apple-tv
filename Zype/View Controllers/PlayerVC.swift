@@ -384,7 +384,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
         }
 
 		if Const.Advanced_Analytics_Enabled == true{
-            self.integrateMediaMelonSDKWithAssetURL(urlString: self.playerURL.absoluteString)
+            self.integrateAdvancedAnalyticsSDKWithAssetURL(urlString: self.playerURL.absoluteString)
         }
 
         player.play()
@@ -400,17 +400,17 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
         }
     }
     
-    private func integrateMediaMelonSDKWithAssetURL(urlString: String) {
+    private func integrateAdvancedAnalyticsSDKWithAssetURL(urlString: String) {
         //Integration Step 1
 //        print("Integrating with \(String(describing: AVPlayerIntegrationWrapper.getVersion()))")
         AVPlayerIntegrationWrapper.shared.enableLogTrace(logStTrace: true)
         let assetInfo = MMAssetInformation(assetURL: urlString, assetID:
             "", assetName: self.currentVideo.videoTitle, videoId: self.currentVideo.videoId)
-        assetInfo.addCustomKVP("siteid", Const.kSiteId)
+        assetInfo.addCustomKVP("siteId", Const.kSiteId)
         if (Const.kNativeSubscriptionEnabled == true && ZypeAppleTVBase.sharedInstance.consumer?.subscriptionIds != nil && ZypeAppleTVBase.sharedInstance.consumer?.subscriptionIds.count > 0){
-            assetInfo.addCustomKVP("subscriptionid", ZypeAppleTVBase.sharedInstance.consumer?.subscriptionIds[0] as? String ?? "")
+            assetInfo.addCustomKVP("subscriptionId", ZypeAppleTVBase.sharedInstance.consumer?.subscriptionIds[0] as? String ?? "")
         }else{
-            assetInfo.addCustomKVP("subscriptionid", "")
+            assetInfo.addCustomKVP("subscriptionId", "")
         }
         let registrationInfo = MMRegistrationInformation(customerID: Const.Advanced_Analytics_CustomerID, playerName: "tvos_player")
         AVPlayerIntegrationWrapper.initializeAssetForPlayer(assetInfo: assetInfo, registrationInformation: registrationInfo, player: self.playerController.player)
