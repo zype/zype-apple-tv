@@ -148,7 +148,7 @@ class BaseCollectionVC: UICollectionViewController {
         super.viewDidLoad()
         self.activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
         if #available(tvOS 11, *) {
-            self.collectionView?.contentInsetAdjustmentBehavior = .never
+            self.collectionView?.contentInsetAdjustmentBehavior = .automatic
         }
         self.collectionView?.remembersLastFocusedIndexPath = false
     }

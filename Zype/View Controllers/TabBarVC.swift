@@ -86,7 +86,8 @@ class TabBarVC: UITabBarController {
         }
     }
     
-    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+    /// Note - Setting UITabbar custom Y position for hide/uhide doesn't work on tvOS 14.x therefore commenting this logis as it creates dancing effect with tab movement and restricted by tvOS 14.x as we can't set negative Y origin for tab bar now
+    /* override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
        if let nextFocusItem = context.nextFocusedItem {
            // We supports tvOS 11.0 as minimum OS target versions
            if #available(tvOS 11.0, *) {
@@ -104,7 +105,7 @@ class TabBarVC: UITabBarController {
                }
            }
        }
-    }
+    }*/
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if prevTabItem != item, item.title?.lowercased() == "guide" {
@@ -132,7 +133,7 @@ class TabBarVC: UITabBarController {
     @objc func hideTabBar() {
         TabBarVC.openingApp = false
         
-        setTabBarVisible(visible: false, animated: true)
+        //setTabBarVisible(visible: false, animated: true)
         
         self.selectedIndex = 0
         self.setNeedsFocusUpdate()
