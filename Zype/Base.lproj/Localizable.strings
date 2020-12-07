@@ -31,8 +31,8 @@
 
 "MyLibrary.TabTitle" = "My Library";
 "MyLibrary.Title" = "My Library";
-"MyLibrary.EmptyLibrary" = "You don't currently have any videos";
-"MyLibrary.LoginNeededMsg" = "Please log in to get My Library list";
+"MyLibrary.EmptyLibrary" = "It looks like you haven't purchased any content yet. Once purchased, your library of content will appear in this section.";
+"MyLibrary.LoginNeededMsg" = "Sign in for access to your library of purchased content.";
 
 "Settings.TabTitle" = "Account";
 
