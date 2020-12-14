@@ -21,15 +21,18 @@ class FavoriteCollectionItem: CollectionLabeledItem {
         self.videoID = videoID
     }
     
-    override func loadResources(){
+    override func loadResources(completion: ( (Bool) -> Void)?){
         let queryModel = QueryVideosModel()
         queryModel.videoID = self.videoID
         ZypeAppleTVBase.sharedInstance.getVideos(queryModel, completion: {(videos: Array<VideoModel>?, error: NSError?) in
-            if let _ = videos, videos!.count > 0 {
-                let video = videos!.first! as VideoModel
+            if let videos = videos, videos.count > 0 {
+                let video = videos.first! as VideoModel
                 self.object = video
                 self.imageURL = video.thumbnailURL() as URL?
                 self.title = video.titleString
+                completion?(true)
+            } else {
+                completion?(false)
             }
         })
     }

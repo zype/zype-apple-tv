@@ -57,7 +57,7 @@ class CollectionLabeledItem: NSObject {
     var object: BaseModel!
     var lockStyle: CollectionLockStyle?
     
-    func loadResources(){}
+    func loadResources(completion: ( (Bool) -> Void)?){}
     
 }
 
@@ -322,7 +322,7 @@ extension BaseCollectionVC {
             }
             result = cell
         }
-        data.loadResources()
+        data.loadResources(completion: nil)
         return result
     }
     
