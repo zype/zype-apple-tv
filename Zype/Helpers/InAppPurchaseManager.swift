@@ -93,7 +93,9 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
         let productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers as! Set<String>)
         self.productsRequestDelegate = ProductsRequestDelegate(callback: {(data: AnyObject?, error: NSError?) in
             if(error != nil || data == nil) {
-                callback(error ?? self.commonError)
+                DispatchQueue.main.async {
+                    callback(error ?? self.commonError)
+                }
                 return
             }
             if let products = data as? Array<SKProduct> {
@@ -101,9 +103,13 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
                 for product in products {
                     self.products!.append(product)
                 }
-                callback(nil)
+                DispatchQueue.main.async {
+                    callback(nil)
+                }
             } else {
-                callback(self.commonError)
+                DispatchQueue.main.async {
+                    callback(self.commonError)
+                }
             }
         });
         self.productsRequest = productsRequest
