@@ -66,6 +66,7 @@ class TabBarVC: UITabBarController {
             if newFrame.origin.y > 0.0 {
                 newFrame.origin.y = 0.0
             }
+                        
             self.tabBar.frame = newFrame
             print("tabBar.frame \(self.tabBar.frame)")
             return
@@ -86,26 +87,31 @@ class TabBarVC: UITabBarController {
         }
     }
     
-    /// Note - Setting UITabbar custom Y position for hide/uhide doesn't work on tvOS 14.x therefore commenting this logis as it creates dancing effect with tab movement and restricted by tvOS 14.x as we can't set negative Y origin for tab bar now
-    /* override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+    /// Note - Setting UITabbar custom Y position for hide/uhide doesn't work on tvOS 14.x therefore using alpha approach logis as it frame changes creates dancing effect with tab movement becuase standard UITabBar frame adjustments are restricted by tvOS 14.x as we can't set negative Y origin for tab bar now, also canot chnage height.
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
        if let nextFocusItem = context.nextFocusedItem {
            // We supports tvOS 11.0 as minimum OS target versions
            if #available(tvOS 11.0, *) {
-               if tabBar.contains(nextFocusItem) {
-                   setTabBarVisible(visible: true, animated: true)
-               }
-               else if self.selectedIndex == 0 {
-                   //check if it's home screen or not, show tabbar on child screens of HomeVC
-                   if let navigataionController = selectedViewController as? UINavigationController {
-                       setTabBarVisible(visible: !(navigataionController.topViewController is HomeVC), animated: true)
-                       return
-                   }
-                   
-                   setTabBarVisible(visible: false, animated: true)
+            if tabBar.contains(nextFocusItem) {
+                
+                tabBar.alpha = 1.0
+                
+                //setTabBarVisible(visible: true, animated: true)
+            } else if self.selectedIndex == 0 {
+                
+                //check if it's home screen or not, show tabbar on child screens of HomeVC
+                if let navigataionController = selectedViewController as? UINavigationController,
+                   !(navigataionController.topViewController is HomeVC) {
+                    tabBar.alpha = 1.0
+                } else {
+                    // this is the trick to make standard tab hide/unhide working along with focus key events
+                    tabBar.alpha = 0.001
+                }
+                //setTabBarVisible(visible: false, animated: true)
                }
            }
        }
-    }*/
+    }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if prevTabItem != item, item.title?.lowercased() == "guide" {
