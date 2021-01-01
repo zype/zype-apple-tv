@@ -97,16 +97,16 @@ class TabBarVC: UITabBarController {
                 tabBar.alpha = 1.0
                 
                 //setTabBarVisible(visible: true, animated: true)
-            } else if self.selectedIndex == 0 {
+            } else /*if self.selectedIndex == 0*/ {
                 
                 //check if it's home screen or not, show tabbar on child screens of HomeVC
-                if let navigataionController = selectedViewController as? UINavigationController,
+                /*if let navigataionController = selectedViewController as? UINavigationController,
                    !(navigataionController.topViewController is HomeVC) {
                     tabBar.alpha = 1.0
-                } else {
+                } else { */
                     // this is the trick to make standard tab hide/unhide working along with focus key events
                     tabBar.alpha = 0.001
-                }
+                //}
                 //setTabBarVisible(visible: false, animated: true)
                }
            }
