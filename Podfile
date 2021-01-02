@@ -16,6 +16,6 @@ pod 'Kingfisher', '~> 3.0'
 pod 'Analytics',  '~> 4.0.5'
 
 pod 'Firebase/Core'
-pod 'Firebase/Crashlytics'
+pod 'Firebase/Crashlytics', '= 6.34.0'
 
 end
