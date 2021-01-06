@@ -401,8 +401,6 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
     }
     
     private func integrateAdvancedAnalyticsSDKWithAssetURL(urlString: String) {
-        //Integration Step 1
-//        print("Integrating with \(String(describing: AVPlayerIntegrationWrapper.getVersion()))")
         AVPlayerIntegrationWrapper.shared.enableLogTrace(logStTrace: true)
         let assetInfo = MMAssetInformation(assetURL: urlString, assetID:
             "", assetName: self.currentVideo.videoTitle, videoId: self.currentVideo.videoId)
@@ -414,7 +412,6 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
         }
         let registrationInfo = MMRegistrationInformation(customerID: Const.Advanced_Analytics_CustomerID, playerName: "tvos_player")
         AVPlayerIntegrationWrapper.initializeAssetForPlayer(assetInfo: assetInfo, registrationInformation: registrationInfo, player: self.playerController.player)
-        //End of integration Step 1
     }
     
     func resumePlayingFromAds() {
