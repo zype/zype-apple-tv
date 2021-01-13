@@ -558,12 +558,14 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Zype/Pods-Zype-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Analytics/Analytics.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MMSmartStreaming/MMSmartStreaming.framework",
 				"${BUILT_PRODUCTS_DIR}/ZypeAppleTVBase/ZypeAppleTVBase.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Analytics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MMSmartStreaming.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZypeAppleTVBase.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
