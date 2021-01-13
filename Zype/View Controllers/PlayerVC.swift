@@ -10,6 +10,7 @@ import UIKit
 import AVKit
 import AVFoundation
 import ZypeAppleTVBase
+import MMSmartStreaming
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -385,6 +386,10 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
             }
         }
 
+		if Const.Advanced_Analytics_Enabled == true{
+            self.integrateAdvancedAnalyticsSDKWithAssetURL(urlString: self.playerURL.absoluteString)
+        }
+
         player.play()
         
         if !self.isLivesStream(){
@@ -396,6 +401,20 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
             self.showInstructionView()
             SegmentAnalyticsManager.sharedInstance.trackAutoPlay()
         }
+    }
+    
+    private func integrateAdvancedAnalyticsSDKWithAssetURL(urlString: String) {
+        AVPlayerIntegrationWrapper.shared.enableLogTrace(logStTrace: true)
+        let assetInfo = MMAssetInformation(assetURL: urlString, assetID:
+            "", assetName: self.currentVideo.videoTitle, videoId: self.currentVideo.videoId)
+        assetInfo.addCustomKVP("siteId", Const.kSiteId)
+        if (Const.kNativeSubscriptionEnabled == true && ZypeAppleTVBase.sharedInstance.consumer?.subscriptionIds != nil && ZypeAppleTVBase.sharedInstance.consumer?.subscriptionIds.count > 0){
+            assetInfo.addCustomKVP("subscriptionId", ZypeAppleTVBase.sharedInstance.consumer?.subscriptionIds[0] as? String ?? "")
+        }else{
+            assetInfo.addCustomKVP("subscriptionId", "")
+        }
+        let registrationInfo = MMRegistrationInformation(customerID: Const.Advanced_Analytics_CustomerID, playerName: "tvos_player")
+        AVPlayerIntegrationWrapper.initializeAssetForPlayer(assetInfo: assetInfo, registrationInformation: registrationInfo, player: self.playerController.player)
     }
     
     @objc func resumePlayingFromAds() {
@@ -423,6 +442,8 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
             self.isStopped = true
             AnalyticsManager.sharedInstance.trackStop()
             SegmentAnalyticsManager.sharedInstance.trackComplete()
+            
+            AVPlayerIntegrationWrapper.cleanUp()
 
             if let _ = self.playlist,
                 let currentVideoIndex = self.playlist?.firstIndex(of: self.currentVideo), self.playlist?.count > 0 {
