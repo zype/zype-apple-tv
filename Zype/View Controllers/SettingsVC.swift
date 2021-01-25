@@ -81,7 +81,7 @@ class SettingsVC: UIViewController {
         InAppPurchaseManager.sharedInstance.restorePurchases()
     }
     
-    func checkLoginStatus() {
+    @objc func checkLoginStatus() {
         if let isLoggedIn = ZypeAppleTVBase.sharedInstance.consumer?.isLoggedIn {
             self.loginButton.isHidden = isLoggedIn
             self.logoutButton.isHidden = !isLoggedIn
@@ -89,7 +89,7 @@ class SettingsVC: UIViewController {
         }
     }
     
-    func checkSubsciptionStatus() {
+    @objc func checkSubsciptionStatus() {
         if Const.kNativeToUniversal {
             if let subscriptionCount = ZypeAppleTVBase.sharedInstance.consumer?.subscriptionCount {
                 if subscriptionCount > 0 {

@@ -23,9 +23,9 @@ class ModalProgressVC: UIViewController {
     self.blurView.layer.cornerRadius = 20.0
     
     let tapRecognizer = UITapGestureRecognizer(target:self, action:#selector(ModalProgressVC.stub))
-    tapRecognizer.allowedPressTypes = [NSNumber(value: UIPressType.select.rawValue)]
+    tapRecognizer.allowedPressTypes = [NSNumber(value: UIPress.PressType.select.rawValue)]
     self.view.addGestureRecognizer(tapRecognizer)
   }
   
-  func stub(){}
+    @objc func stub(){}
 }

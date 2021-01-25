@@ -100,6 +100,8 @@ class FocusableView: UIView, UIGestureRecognizerDelegate {
         self.pressAnimation(true)
       }
     }
+    // Call this for all unhandled key presses
+    super.pressesBegan(presses, with: event)
   }
   
   override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
@@ -108,9 +110,13 @@ class FocusableView: UIView, UIGestureRecognizerDelegate {
         self.pressAnimation(false, completion: self.onSelected)
       }
     }
+    // Call this for all unhandled key presses
+    super.pressesEnded(presses, with: event)
   }
   
   override func pressesChanged(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+    // Call this for all unhandled key presses
+    super.pressesChanged(presses, with: event)
   }
   
   override func pressesCancelled(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
@@ -119,6 +125,8 @@ class FocusableView: UIView, UIGestureRecognizerDelegate {
         self.pressAnimation(false)
       }
     }
+    // Call this for all unhandled key presses
+    super.pressesCancelled(presses, with: event)
   }
   
 //  var startTouchPosition: CGPoint!

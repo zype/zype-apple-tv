@@ -79,7 +79,7 @@ class SearchVC: UISearchContainerViewController, UISearchControllerDelegate, UIS
     
     fileprivate func setupVersionLabel() {
         versionLabel.text = Const.kAppVersion
-        versionLabel.bringSubview(toFront: self.view)
+        versionLabel.bringSubviewToFront(self.view)
         versionLabel.textColor = .gray
     }
     

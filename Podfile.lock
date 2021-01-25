@@ -1,17 +1,22 @@
 PODS:
   - Analytics (4.0.5)
-  - Kingfisher (3.13.1)
+  - Kingfisher (5.15.3):
+    - Kingfisher/Core (= 5.15.3)
+  - Kingfisher/Core (5.15.3)
+  - MMSmartStreaming/AVPlayer (3.8.8)
   - ZypeAppleTVBase (0.5.5.2)
 
 DEPENDENCIES:
   - Analytics (~> 4.0.5)
-  - Kingfisher (~> 3.0)
+  - Kingfisher (~> 5.0)
+  - MMSmartStreaming/AVPlayer (~> 3.8.1)
   - ZypeAppleTVBase (from `https://github.com/zype/ZypeAppleTVBase.git`)
 
 SPEC REPOS:
   trunk:
     - Analytics
     - Kingfisher
+    - MMSmartStreaming
 
 EXTERNAL SOURCES:
   ZypeAppleTVBase:
@@ -24,9 +29,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Analytics: 4bcf052c91e1f3339219e83d6a036fb2bd7c218d
-  Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
+  Kingfisher: 2fef2f4d9e809285aff7f6195b5290520904f3fa
+  MMSmartStreaming: ae202e2885085e6fde29e9f65bf8be6a759ff60e
   ZypeAppleTVBase: 674345ca8d135453d25af18c0fecc7bd8d52a90b
 
-PODFILE CHECKSUM: 68638fae524e97ffa93f17f17fe958929f3a4897
+PODFILE CHECKSUM: 13d785556af86b5d203c9db8872572092aea588b
 
 COCOAPODS: 1.9.3

@@ -57,7 +57,7 @@ class CollectionLabeledItem: NSObject {
     var object: BaseModel!
     var lockStyle: CollectionLockStyle?
     
-    func loadResources(){}
+    func loadResources(completion: ( (Bool) -> Void)?){}
     
 }
 
@@ -148,7 +148,7 @@ class BaseCollectionVC: UICollectionViewController {
         super.viewDidLoad()
         self.activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
         if #available(tvOS 11, *) {
-            self.collectionView?.contentInsetAdjustmentBehavior = .never
+            self.collectionView?.contentInsetAdjustmentBehavior = .automatic
         }
         self.collectionView?.remembersLastFocusedIndexPath = false
     }
@@ -181,7 +181,7 @@ class BaseCollectionVC: UICollectionViewController {
         return section
     }
     
-    func scrollToNextItem() {
+    @objc func scrollToNextItem() {
         if self.focusedCell() == nil {
             if let paths = self.collectionView?.indexPathsForVisibleItems {
                 let sorted = paths.sorted(by: {(path1, path2) in
@@ -203,7 +203,7 @@ class BaseCollectionVC: UICollectionViewController {
                 }
             }
         }
-        for controller in self.childViewControllers {
+        for controller in self.children {
             if(controller.isKind(of: BaseCollectionVC.self)) {
                 if let vc = controller as? BaseCollectionVC,
                     let cell = vc.focusedCell() {
@@ -245,7 +245,7 @@ class BaseCollectionVC: UICollectionViewController {
     func reloadHeaders() {
         for index in 0 ..< self.sections.count {
             let indexPath = IndexPath(row: 0, section: index)
-            if let header = self.collectionView?.supplementaryView(forElementKind: UICollectionElementKindSectionHeader, at: indexPath) as? HeaderCell {
+            if let header = self.collectionView?.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: indexPath) as? HeaderCell {
                 self.configHeader(header, indexPath: indexPath)
             }
         }
@@ -322,12 +322,12 @@ extension BaseCollectionVC {
             }
             result = cell
         }
-        data.loadResources()
+        data.loadResources(completion: nil)
         return result
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! HeaderCell
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! HeaderCell
         self.configHeader(header, indexPath: indexPath)
         return header
     }
@@ -393,7 +393,7 @@ extension BaseCollectionVC {
     }
     
     func indexOfSection(_ section: CollectionSection) -> Int{
-        if let index = self.sections.index(of: section) {
+        if let index = self.sections.firstIndex(of: section) {
             return index
         }
         return NSNotFound

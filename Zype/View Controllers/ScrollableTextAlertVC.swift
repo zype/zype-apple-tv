@@ -18,7 +18,7 @@ class ScrollableTextAlertVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.textView.panGestureRecognizer.allowedTouchTypes = [NSNumber(value: UITouchType.indirect.rawValue as Int)]
+    self.textView.panGestureRecognizer.allowedTouchTypes = [NSNumber(value: UITouch.TouchType.indirect.rawValue as Int)]
     self.textView.isUserInteractionEnabled = true
     self.textView.isSelectable = true
     self.clipView.mask = GradientMaskView(frame: self.textView.bounds, insets: Const.kScrollableTextVCMaskInsets)
@@ -28,13 +28,13 @@ class ScrollableTextAlertVC: UIViewController {
     let text = self.header == nil ? self.text : (self.header + "\n\n\n\n" + self.text)
     let string = NSMutableAttributedString(string: text!)
     if(self.header != nil) {
-      let range = NSMakeRange(0, self.header.characters.count)
+      let range = NSMakeRange(0, self.header.count)
       let headerStyle = NSMutableParagraphStyle()
       headerStyle.alignment = .center
-      string.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: 38), range: range)
-      string.addAttribute(NSParagraphStyleAttributeName, value: headerStyle, range: range)
+        string.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 38), range: range)
+        string.addAttribute(NSAttributedString.Key.paragraphStyle, value: headerStyle, range: range)
     }
-    string.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: 24), range: NSMakeRange((text?.characters.count)! - self.text.characters.count, self.text.characters.count))
+    string.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 24), range: NSMakeRange((text?.count)! - self.text.count, self.text.count))
     self.textView.attributedText = string
   }
   func configWithText(_ text: String, header: String? = nil, title: String){

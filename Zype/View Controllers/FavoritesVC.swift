@@ -70,7 +70,13 @@ class FavoritesVC: CollectionContainerVC {
         section.title = localized("Favorites.Title")
         for videoID in favorites {
             let item = self.cachedFavoriteByVideoID(videoID) ?? FavoriteCollectionItem(videoID: videoID)
-            item.loadResources()
+            item.loadResources() { success in
+                if success {
+                    DispatchQueue.main.async {
+                        self.collectionVC.collectionView.reloadData()
+                    }
+                }
+            }
             section.items.append(item)
         }
         if !self.collectionVC.isConfigurated {

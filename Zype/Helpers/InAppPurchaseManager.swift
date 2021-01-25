@@ -73,7 +73,7 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
     fileprivate var receiptRenewRequest: SKReceiptRefreshRequest?
     fileprivate var requestDelegate: RequestDelegate?
     fileprivate var commonError = NSError(domain: InAppPurchaseManager.kPurchaseErrorDomain, code: 999, userInfo: nil)
-    fileprivate var restoringCallback: ((Bool, NSError?)->()) = { _ in }
+    fileprivate var restoringCallback: ((Bool, NSError?)->()) = { _,_  in }
     
     // MARK: - Lifecycle
     
@@ -93,7 +93,9 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
         let productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers as! Set<String>)
         self.productsRequestDelegate = ProductsRequestDelegate(callback: {(data: AnyObject?, error: NSError?) in
             if(error != nil || data == nil) {
-                callback(error ?? self.commonError)
+                DispatchQueue.main.async {
+                    callback(error ?? self.commonError)
+                }
                 return
             }
             if let products = data as? Array<SKProduct> {
@@ -101,9 +103,13 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
                 for product in products {
                     self.products!.append(product)
                 }
-                callback(nil)
+                DispatchQueue.main.async {
+                    callback(nil)
+                }
             } else {
-                callback(self.commonError)
+                DispatchQueue.main.async {
+                    callback(self.commonError)
+                }
             }
         });
         self.productsRequest = productsRequest
@@ -221,7 +227,7 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
             formatter.locale = Locale(identifier: "en_US")
             formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss z"
             formatter.timeZone = TimeZone(identifier: "GMT")
-            if let currentDate = formatter.date(from: dateStr) as Date! {
+            if let currentDate = formatter.date(from: dateStr) as Date? {
                 return currentDate
             }
         }
@@ -233,7 +239,7 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
             let lastReceipt = receiptInfo.lastObject as! NSDictionary
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ss VV"
-            if let expirationDate = formatter.date(from: lastReceipt["expires_date"] as! String) as Date! {
+            if let expirationDate = formatter.date(from: lastReceipt["expires_date"] as! String) as Date? {
                 return expirationDate
             }
         }
@@ -251,13 +257,13 @@ class InAppPurchaseManager: NSObject, SKPaymentTransactionObserver {
     
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
         self.restoringCallback(true, nil)
-        self.restoringCallback = {_ in}
+        self.restoringCallback = {_, _ in}
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
         let error = error as NSError
         self.restoringCallback(false, error)
-        self.restoringCallback = {_ in}
+        self.restoringCallback = {_, _ in}
     }
     
     

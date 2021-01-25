@@ -21,15 +21,18 @@ class FavoriteCollectionItem: CollectionLabeledItem {
         self.videoID = videoID
     }
     
-    override func loadResources(){
+    override func loadResources(completion: ( (Bool) -> Void)?){
         let queryModel = QueryVideosModel()
         queryModel.videoID = self.videoID
         ZypeAppleTVBase.sharedInstance.getVideos(queryModel, completion: {(videos: Array<VideoModel>?, error: NSError?) in
-            if let _ = videos, videos!.count > 0 {
-                let video = videos!.first! as VideoModel
+            if let videos = videos, videos.count > 0 {
+                let video = videos.first! as VideoModel
                 self.object = video
-                self.imageURL = video.thumbnailURL() as URL!
+                self.imageURL = video.thumbnailURL() as URL?
                 self.title = video.titleString
+                completion?(true)
+            } else {
+                completion?(false)
             }
         })
     }
@@ -40,9 +43,9 @@ class VideoCollectionItem: CollectionLabeledItem {
     init(video: VideoModel) {
         super.init()
         self.title = video.titleString
-        self.imageURL = video.thumbnailURL() as URL!
+        self.imageURL = video.thumbnailURL() as URL?
         if let posterURL = video.posterOrientationURL() {
-            self.posterURL = posterURL as URL!
+            self.posterURL = posterURL as URL?
         }
         self.object = video
         self.lockStyle = .empty
@@ -77,7 +80,7 @@ class PagerCollectionItem: CollectionLabeledItem {
     init(object: ZobjectModel) {
         super.init()
         if(object.pictures.count > 0) {
-            self.imageURL = NSURL(string: object.pictures.first!.url) as URL!
+            self.imageURL = NSURL(string: object.pictures.first!.url) as URL?
         }
         self.object = object
     }
@@ -159,7 +162,7 @@ class CollectionContainerVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        for vc in self.childViewControllers {
+        for vc in self.children {
             if(vc.isKind(of: BaseCollectionVC.self)) {
                 self.collectionVC = vc as! BaseCollectionVC
                 break
