@@ -31,7 +31,7 @@
 
 "MyLibrary.TabTitle" = "My Library";
 "MyLibrary.Title" = "My Library";
-"MyLibrary.EmptyLibrary" = "It looks like you haven't purchased any content yet. Once purchased, your library of content will appear in this section.";
+"MyLibrary.EmptyLibrary" = "It looks like you haven't purchased any content yet.\n\nOnce purchased, your library of content will appear in this section.";
 "MyLibrary.LoginNeededMsg" = "Sign in for access to your library of purchased content.";
 
 "Settings.TabTitle" = "Account";
