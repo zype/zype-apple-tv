@@ -15,4 +15,6 @@ pod 'ZypeAppleTVBase', :git => 'https://github.com/zype/ZypeAppleTVBase.git'
 pod 'Kingfisher', '~> 5.0'
 pod 'Analytics',  '~> 4.0.5'
 pod 'MMSmartStreaming/AVPlayer', '~> 3.8.1'
+pod 'Firebase/Core'
+pod 'Firebase/Crashlytics'
 end

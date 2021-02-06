@@ -8,6 +8,7 @@
 
 import UIKit
 import Analytics
+import Firebase
 import ZypeAppleTVBase
 
 @UIApplicationMain
@@ -31,6 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // setup identity
         Analytics.shared().identify(Const.kSegmentAccountID)
     }
+        
+        if Const.Firebase_Enabled {
+            FirebaseApp.configure()
+        }
     
     return true
   }

@@ -57,6 +57,10 @@ class Const: NSObject {
 	static let Advanced_Analytics_Enabled = true
     static let Advanced_Analytics_CustomerID = "<customer_id_advanced_analytics>"
 
+    // If enabled, the crash will be reported in firebase.
+    // make sure to include GoogleService-Info.plist file under Zype for correct account integration.
+    static let Firebase_Enabled = false
+    
     // NOTE: This is a deprecated feature. DO NOT ENABLE
     static let kNativeToUniversal = false
 
