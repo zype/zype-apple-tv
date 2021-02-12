@@ -18,6 +18,7 @@
 		47102CDC1ECBA02F0060AF02 /* AdProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */; };
 		473C514A1EE8ACA40051FC6C /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C51491EE8ACA40051FC6C /* InAppPurchaseManager.swift */; };
 		473C51501EE9A37B0051FC6C /* PurchaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C514F1EE9A37B0051FC6C /* PurchaseVC.swift */; };
+		5625B1E325CE635300F313E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5625B1E225CE635300F313E6 /* GoogleService-Info.plist */; };
 		8F103F56E34DE586D9703D30 /* Pods_Zype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8E3F25EC03F59FC6E1A093 /* Pods_Zype.framework */; };
 		A161E9CA1DDBBAA800D01C70 /* DVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */; };
 		A161E9CB1DDBBAA800D01C70 /* DVIABPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A161E9A31DDBBAA800D01C70 /* DVIABPlayer.m */; };
@@ -103,6 +104,7 @@
 		47102CDB1ECBA02F0060AF02 /* AdProtocolDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProtocolDelegate.swift; sourceTree = "<group>"; };
 		473C51491EE8ACA40051FC6C /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseManager.swift; sourceTree = "<group>"; };
 		473C514F1EE9A37B0051FC6C /* PurchaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseVC.swift; sourceTree = "<group>"; };
+		5625B1E225CE635300F313E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A161E99E1DDBBAA800D01C70 /* DVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVPlayerView.h; sourceTree = "<group>"; };
 		A161E99F1DDBBAA800D01C70 /* DVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVPlayerView.m; sourceTree = "<group>"; };
 		A161E9A21DDBBAA800D01C70 /* DVIABPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVIABPlayer.h; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 		F5582CC21BC7E2870089E5E7 /* Support files */ = {
 			isa = PBXGroup;
 			children = (
+				5625B1E225CE635300F313E6 /* GoogleService-Info.plist */,
 				F5582CAE1BC7DB8B0089E5E7 /* Assets.xcassets */,
 				F5582CB51BC7DB8B0089E5E7 /* Info.plist */,
 				F51158181BDE441000DB1774 /* Localizable.strings */,
@@ -508,6 +511,7 @@
 				A161E9D41DDBBAA800D01C70 /* DVVAST.podspec in Resources */,
 				A161E9D51DDBBAA800D01C70 /* LICENSE.txt in Resources */,
 				F5582CBA1BC7DB8B0089E5E7 /* Main.storyboard in Resources */,
+				5625B1E325CE635300F313E6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,16 +561,32 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Zype/Pods-Zype-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Analytics/Analytics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MMSmartStreaming/MMSmartStreaming.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/ZypeAppleTVBase/ZypeAppleTVBase.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Analytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MMSmartStreaming.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZypeAppleTVBase.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
