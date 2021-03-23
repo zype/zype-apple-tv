@@ -1,13 +1,57 @@
 PODS:
   - Analytics (4.0.5)
-  - Kingfisher (5.15.3):
-    - Kingfisher/Core (= 5.15.3)
-  - Kingfisher/Core (5.15.3)
-  - MMSmartStreaming/AVPlayer (3.8.8)
+  - Firebase/Core (7.7.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 7.7.0)
+  - Firebase/CoreOnly (7.7.0):
+    - FirebaseCore (= 7.7.0)
+  - Firebase/Crashlytics (7.7.0):
+    - Firebase/CoreOnly
+    - FirebaseCrashlytics (~> 7.7.0)
+  - FirebaseCore (7.7.0):
+    - FirebaseCoreDiagnostics (~> 7.4)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Logger (~> 7.0)
+  - FirebaseCoreDiagnostics (7.7.0):
+    - GoogleDataTransport (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Logger (~> 7.0)
+    - nanopb (~> 2.30907.0)
+  - FirebaseCrashlytics (7.7.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstallations (~> 7.0)
+    - GoogleDataTransport (~> 8.0)
+    - nanopb (~> 2.30907.0)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstallations (7.7.0):
+    - FirebaseCore (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
+    - PromisesObjC (~> 1.2)
+  - GoogleDataTransport (8.2.0):
+    - nanopb (~> 2.30907.0)
+  - GoogleUtilities/Environment (7.2.2):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (7.2.2):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/UserDefaults (7.2.2):
+    - GoogleUtilities/Logger
+  - Kingfisher (5.15.8):
+    - Kingfisher/Core (= 5.15.8)
+  - Kingfisher/Core (5.15.8)
+  - MMSmartStreaming/AVPlayer (3.8.9)
+  - nanopb (2.30907.0):
+    - nanopb/decode (= 2.30907.0)
+    - nanopb/encode (= 2.30907.0)
+  - nanopb/decode (2.30907.0)
+  - nanopb/encode (2.30907.0)
+  - PromisesObjC (1.2.12)
   - ZypeAppleTVBase (0.5.5.2)
 
 DEPENDENCIES:
   - Analytics (~> 4.0.5)
+  - Firebase/Core
+  - Firebase/Crashlytics
   - Kingfisher (~> 5.0)
   - MMSmartStreaming/AVPlayer (~> 3.8.1)
   - ZypeAppleTVBase (from `https://github.com/zype/ZypeAppleTVBase.git`)
@@ -15,8 +59,17 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Analytics
+    - Firebase
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCrashlytics
+    - FirebaseInstallations
+    - GoogleDataTransport
+    - GoogleUtilities
     - Kingfisher
     - MMSmartStreaming
+    - nanopb
+    - PromisesObjC
 
 EXTERNAL SOURCES:
   ZypeAppleTVBase:
@@ -24,15 +77,24 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   ZypeAppleTVBase:
-    :commit: 49be56eeb5db70b824578b95496470030142f791
+    :commit: 58753618c9bfa6638632a920c56d423c659b2b85
     :git: https://github.com/zype/ZypeAppleTVBase.git
 
 SPEC CHECKSUMS:
   Analytics: 4bcf052c91e1f3339219e83d6a036fb2bd7c218d
-  Kingfisher: 2fef2f4d9e809285aff7f6195b5290520904f3fa
-  MMSmartStreaming: ae202e2885085e6fde29e9f65bf8be6a759ff60e
+  Firebase: cd2ab85eec8170dc260186159f21072ecb679ad5
+  FirebaseCore: ac35d680a0bf32319a59966a1478e0741536b97b
+  FirebaseCoreDiagnostics: 179bf3831213451c8addd036aca7fcf5492ec154
+  FirebaseCrashlytics: 47af228115805e190b566db12c028263531b8ce0
+  FirebaseInstallations: 42c86e7b02ff75b7f27f85833bf5dcb5f38a9774
+  GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
+  GoogleUtilities: 31c5b01f978a70c6cff2afc6272b3f1921614b43
+  Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
+  MMSmartStreaming: 22f9fb512d33406c29ca02dfbee73a55f248e2b9
+  nanopb: 59221d7f958fb711001e6a449489542d92ae113e
+  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   ZypeAppleTVBase: 674345ca8d135453d25af18c0fecc7bd8d52a90b
 
-PODFILE CHECKSUM: 13d785556af86b5d203c9db8872572092aea588b
+PODFILE CHECKSUM: cf1584d6fc26b1f251b07833b316176393d63fd6
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1
