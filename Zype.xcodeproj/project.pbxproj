@@ -800,7 +800,7 @@
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 5.0;
 				TVOS_DEPLOYMENT_TARGET = 11.0;
-				VALIDATE_WORKSPACE = YES;
+				VALIDATE_WORKSPACE = NO;
 			};
 			name = Debug;
 		};
@@ -827,7 +827,7 @@
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 5.0;
 				TVOS_DEPLOYMENT_TARGET = 11.0;
-				VALIDATE_WORKSPACE = YES;
+				VALIDATE_WORKSPACE = NO;
 			};
 			name = Release;
 		};
