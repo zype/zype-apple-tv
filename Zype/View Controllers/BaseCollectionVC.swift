@@ -135,7 +135,8 @@ class BaseCollectionVC: UICollectionViewController {
     var lastSelectedItemIndexPath: IndexPath!
     var timer: Timer!
     var manualFocusIndexPath: IndexPath?
-    
+    var isChildContainer: Bool = false
+
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     deinit {
@@ -148,7 +149,7 @@ class BaseCollectionVC: UICollectionViewController {
         super.viewDidLoad()
         self.activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
         if #available(tvOS 11, *) {
-            self.collectionView?.contentInsetAdjustmentBehavior = .automatic
+            self.collectionView?.contentInsetAdjustmentBehavior = isChildContainer ? .never : .automatic
         }
         self.collectionView?.remembersLastFocusedIndexPath = false
     }
@@ -443,7 +444,12 @@ extension BaseCollectionVC : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return self.sections[section].insets
+        let sectionController = self.sections[section]
+        if sectionController.isPager {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        } else {
+            return self.sections[section].insets
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
