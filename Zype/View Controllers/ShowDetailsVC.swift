@@ -89,6 +89,10 @@ class ShowDetailsVC: CollectionContainerVC {
         self.button3.label = self.label3
         self.button4.label = self.label4
 
+        if #available(tvOS 11, *) {
+            self.collectionVC.collectionView.contentInsetAdjustmentBehavior = .never
+        }
+        
         self.posterImage.shouldAnimate = true
         if self.selectedShow != nil {
             self.titleLabel.text = self.selectedShow.titleString

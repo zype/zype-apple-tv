@@ -302,6 +302,7 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
             controllerSection = CollectionSection()
             controller = self.storyboard?.instantiateViewController(withIdentifier: "BaseCollectionVC") as! BaseCollectionVC
         }
+        controller.isChildContainer = true
         
         if value.playlistItemCount > 0 {
             value.getVideos(completion: {(videos: Array<VideoModel>?, error: NSError?) -> Void in
