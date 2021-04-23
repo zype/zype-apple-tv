@@ -80,6 +80,18 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
     
     var completionDelegate: ChangeVideoDelegate? = nil
     
+    static let supportedAudioFormats: [String] = [
+        "MP3",
+        "M4A",
+        "WAV",
+        "WMA",
+        "AIFF",
+        "FLAC",
+        "AAC",
+        "PCM",
+        "AC3"
+    ]
+    
     // MARK: - View Lifecycle
     deinit {
         print("Destroying")
@@ -400,6 +412,47 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
         if self.isAutoPlay {
             self.showInstructionView()
             SegmentAnalyticsManager.sharedInstance.trackAutoPlay()
+        }
+        
+        if player.currentItem?.asset.tracks.count == 1 {
+            self.addThumbnailToPlayer()
+        }
+    }
+    
+    func isAudioContent(url: String) -> Bool {
+        let format = url.components(separatedBy: "/").last?.components(separatedBy: ".").last ?? ""
+        return PlayerVC.supportedAudioFormats.contains(format.uppercased())
+    }
+    
+    func addThumbnailToPlayer(){
+        guard self.playerController.player != nil else { return }
+        guard let videoUrl = url?.absoluteString else { return }
+        guard isAudioContent(url: videoUrl) else { return }
+        
+        var squareThumbnailFound: Bool = false
+        currentVideo.images.forEach {
+            if $0.name == "square_thumbnail",
+               let url = NSURL(string: $0.imageURL) {
+                let imageView = URLImageView(frame: CGRect(x: 0, y: 0, width: view.width, height: view.height))
+                imageView.contentMode = .scaleAspectFit
+                imageView.configWithURL(url as URL, nil)
+                self.playerController.contentOverlayView?.addSubview(imageView)
+                squareThumbnailFound = true
+            }
+        }
+        
+        if !squareThumbnailFound {
+            currentVideo.thumbnails.forEach {
+                if CGFloat($0.height) == view.height,
+                   CGFloat($0.width) == view.width,
+                   let url = NSURL(string: $0.imageURL) {
+                    let imageView = URLImageView(frame: CGRect(x: 0, y: 0, width: $0.width, height: $0.height))
+                    imageView.contentMode = .scaleAspectFit
+                    imageView.configWithURL(url as URL, nil)
+                    self.playerController.contentOverlayView?.addSubview(imageView)
+                    squareThumbnailFound = true
+                }
+            }
         }
     }
     
