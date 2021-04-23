@@ -25,8 +25,8 @@ class StyledLabel: UILabel {
   
 //   This base color needs to be changed based on the theme
 //   If the theme is dark, keep it white. If the theme is light, make this as black.
-    static let kBaseColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-  static let kFocusedColor = UIColor.black
+    static let kBaseColor = (Bundle.main.object(forInfoDictionaryKey: "UIUserInterfaceStyle") as? String) == "Dark" ? UIColor.white : UIColor.black
+    static let kFocusedColor = (Bundle.main.object(forInfoDictionaryKey: "UIUserInterfaceStyle") as? String) == "Dark" ? UIColor.white : UIColor.black
   
   @IBInspectable var style: Int = LabelStyle.default.rawValue {
     didSet {
