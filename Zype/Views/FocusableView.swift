@@ -45,7 +45,7 @@ class FocusableView: UIView, UIGestureRecognizerDelegate {
     coordinator.addCoordinatedAnimations({ [unowned self] in
       if(self.isFocused){
         self.contentView.layer.zPosition = 999
-        self.contentView.layer.backgroundColor = UIColor.gray.cgColor
+        self.contentView.layer.backgroundColor = UIColor(red: 128/255, green: 128/255, blue: 128/255, alpha: 0.6).cgColor
         self.resizeContent(false)
       } else {
         self.contentView.layer.zPosition = 0
