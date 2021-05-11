@@ -53,9 +53,9 @@ class FocusableView: UIView, UIGestureRecognizerDelegate {
         self.resizeContent(true)
       }
     }, completion: {
-      if(self.isFocused) {
-        self.contentView.layer.shadowOpacity = 0.2
-      }
+//      if(self.isFocused) {
+//        self.contentView.layer.shadowOpacity = 0.2
+//      }
     })
   }
   
