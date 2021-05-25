@@ -136,7 +136,8 @@ class BaseCollectionVC: UICollectionViewController {
     var timer: Timer!
     var manualFocusIndexPath: IndexPath?
     var isChildContainer: Bool = false
-
+    var isFirstAutoScroll = false
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     deinit {
@@ -157,6 +158,7 @@ class BaseCollectionVC: UICollectionViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if self.isInfinityScrolling {
+            self.isFirstAutoScroll = true
             self.timer = Timer.scheduledTimer(timeInterval: BaseCollectionVC.autoscrollInterval, target: self, selector: #selector(BaseCollectionVC.scrollToNextItem), userInfo: nil, repeats: true)
         }
     }
@@ -189,7 +191,11 @@ class BaseCollectionVC: UICollectionViewController {
                     return path1.row < path2.row
                 })
                 if(sorted.count > 1) {
-                    let nextIndex = sorted[1].row + 1 < BaseCollectionVC.maxCellIndex ? sorted[1].row + 1 : BaseCollectionVC.maxCellIndex / 2
+                    var nextIndex = sorted[1].row + 1 < BaseCollectionVC.maxCellIndex ? sorted[1].row + 1 : BaseCollectionVC.maxCellIndex / 2
+                    if isFirstAutoScroll, nextIndex > 1 {
+                        nextIndex = 1
+                        isFirstAutoScroll = false
+                    }
                     self.collectionView?.scrollToItem(at: IndexPath(row: nextIndex, section: 0), at: .centeredHorizontally, animated: true)
                 }
             }
