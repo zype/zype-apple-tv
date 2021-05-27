@@ -198,6 +198,7 @@ class BaseCollectionVC: UICollectionViewController {
                         nextIndex = 1
                         isFirstAutoScroll = false
                         UserDefaults.standard.set(true, forKey: "firstAutoScrollHandled")
+                        UserDefaults.standard.synchronize()
                     }
                     self.collectionView?.scrollToItem(at: IndexPath(row: nextIndex, section: 0), at: .centeredHorizontally, animated: true)
                 }

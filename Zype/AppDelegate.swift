@@ -37,6 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             FirebaseApp.configure()
         }
     
+    // setup hero slider scroll default settings
+    UserDefaults.standard.set(false, forKey: "firstAutoScrollHandled")
+    UserDefaults.standard.synchronize()
     return true
   }
   
