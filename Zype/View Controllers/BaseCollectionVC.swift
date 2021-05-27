@@ -192,9 +192,12 @@ class BaseCollectionVC: UICollectionViewController {
                 })
                 if(sorted.count > 1) {
                     var nextIndex = sorted[1].row + 1 < BaseCollectionVC.maxCellIndex ? sorted[1].row + 1 : BaseCollectionVC.maxCellIndex / 2
-                    if isFirstAutoScroll, nextIndex > 1 {
+                    if isFirstAutoScroll,
+                       nextIndex > 1,
+                       !UserDefaults.standard.bool(forKey: "firstAutoScrollHandled") {
                         nextIndex = 1
                         isFirstAutoScroll = false
+                        UserDefaults.standard.set(true, forKey: "firstAutoScrollHandled")
                     }
                     self.collectionView?.scrollToItem(at: IndexPath(row: nextIndex, section: 0), at: .centeredHorizontally, animated: true)
                 }
