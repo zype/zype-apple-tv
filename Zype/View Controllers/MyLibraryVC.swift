@@ -78,6 +78,16 @@ class MyLibraryVC: CollectionContainerVC {
                     self.collectionVC.update([section])
                 }
                 
+                section.items.forEach {
+                    $0.loadResources() { success in
+                        if success {
+                            DispatchQueue.main.async { [weak self] in
+                                self?.collectionVC.collectionView.reloadData()
+                            }
+                        }
+                    }
+                }
+                
                 if (error != nil) {
                     displayError(error)
                 }
