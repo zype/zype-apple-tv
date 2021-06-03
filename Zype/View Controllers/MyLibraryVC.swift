@@ -28,6 +28,11 @@ class MyLibraryVC: CollectionContainerVC {
         self.getLibrary()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        clearLibrary()
+    }
+    
     func displayInfo(info: String) {
         self.infoLabel.text = info
         self.infoLabel.isHidden = false
@@ -51,6 +56,18 @@ class MyLibraryVC: CollectionContainerVC {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func clearLibrary() {
+        let section = CollectionSection()
+        section.headerStyle = .centered
+        section.title = localized("MyLibrary.Title")
+        
+        if (!self.collectionVC.isConfigurated) {
+            self.collectionVC.configWithSections([section])
+        } else {
+            self.collectionVC.update([section])
+        }
     }
     
     func getLibrary() {
@@ -81,7 +98,7 @@ class MyLibraryVC: CollectionContainerVC {
                 section.items.forEach {
                     $0.loadResources() { success in
                         if success {
-                            DispatchQueue.main.async { [weak self] in
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
                                 self?.collectionVC.collectionView.reloadData()
                             }
                         }
