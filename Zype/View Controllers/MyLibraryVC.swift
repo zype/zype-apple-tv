@@ -28,11 +28,6 @@ class MyLibraryVC: CollectionContainerVC {
         self.getLibrary()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        clearLibrary()
-    }
-    
     func displayInfo(info: String) {
         self.infoLabel.text = info
         self.infoLabel.isHidden = false
@@ -58,23 +53,11 @@ class MyLibraryVC: CollectionContainerVC {
         // Dispose of any resources that can be recreated.
     }
     
-    func clearLibrary() {
-        let section = CollectionSection()
-        section.headerStyle = .centered
-        section.title = localized("MyLibrary.Title")
-        
-        if (!self.collectionVC.isConfigurated) {
-            self.collectionVC.configWithSections([section])
-        } else {
-            self.collectionVC.update([section])
-        }
-    }
-    
     func getLibrary() {
         
         if (ZypeAppleTVBase.sharedInstance.consumer?.isLoggedIn == true) {
-            ZypeAppleTVBase.sharedInstance.getMyLibrary({ (videos, error) -> Void in
-                //print(videos?.count)
+            ZypeAppleTVBase.sharedInstance.getMyLibrary({ [weak self] (videos, error) -> Void in
+                guard let self = self else { return }
                 let section = CollectionSection()
                 section.headerStyle = .centered
                 section.title = localized("MyLibrary.Title")
@@ -85,7 +68,7 @@ class MyLibraryVC: CollectionContainerVC {
                     } else {
                         let uniqueVideos = videos?.unique{ $0.objectID }
                         for model in uniqueVideos! {
-                            section.items.append(FavoriteCollectionItem(videoID: model.objectID))
+                            section.items.append(self.cachedLibraryByVideoID(model.objectID) ?? FavoriteCollectionItem(videoID: model.objectID))
                         }
                     }
                 }
@@ -113,7 +96,18 @@ class MyLibraryVC: CollectionContainerVC {
         } else {
             self.displayInfo(info: localized("MyLibrary.LoginNeededMsg"))
         }
-        
+    }
+    
+    func cachedLibraryByVideoID(_ ID: String) -> FavoriteCollectionItem? {
+        if(self.collectionVC.sections.count > 0){
+            guard let items = self.collectionVC.sections.first?.items as? Array<FavoriteCollectionItem> else { return nil }
+            for item in items {
+                if(item.videoID == ID) {
+                    return item
+                }
+            }
+        }
+        return nil
     }
 
     override func onItemSelected(_ item: CollectionLabeledItem, section: CollectionSection?) {
