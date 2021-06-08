@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="y8r-a1-i1C">
-    <device id="appleTV" appearance="light"/>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="AppleTV" propertyAccessControl="none" colorMatched="YES" initialViewController="y8r-a1-i1C">
+    <device id="appleTV" orientation="landscape">
+        <adaptation id="light"/>
+    </device>
     <dependencies>
         <deployment identifier="tvOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,29 +45,25 @@
         <!--GuideVC-->
         <scene sceneID="K8v-xc-oZF">
             <objects>
-                <viewController storyboardIdentifier="GuideVC" id="Gik-aM-vZ9" customClass="GuideVC" customModule="Zype" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="nYt-NP-Yfp"/>
-                        <viewControllerLayoutGuide type="bottom" id="sey-JA-EQA"/>
-                    </layoutGuides>
+                <viewController storyboardIdentifier="GuideVC" id="Gik-aM-vZ9" customClass="GuideVC" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="N9y-8u-ddr">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Aob-Ze-DR5">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Aob-Ze-DR5">
                                 <rect key="frame" x="0.0" y="160" width="1920" height="924"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewLayout key="collectionViewLayout" id="e8y-gu-dhB" customClass="GuideCollectionViewLayout" customModule="Zype" customModuleProvider="target"/>
+                                <collectionViewLayout key="collectionViewLayout" id="e8y-gu-dhB" customClass="GuideCollectionViewLayout" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target"/>
                                 <cells>
-                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GuideCell" id="Azt-TX-0og" customClass="GuideCell" customModule="Zype" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GuideCell" id="Azt-TX-0og" customClass="GuideCell" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="172" height="258"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="172" height="258"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="05T-0J-HMa">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="05T-0J-HMa">
                                                     <rect key="frame" x="20" y="0.0" width="152" height="258"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
@@ -78,32 +76,32 @@
                                             <outlet property="lblTitle" destination="05T-0J-HMa" id="5M4-qS-1Nf"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GuideDetailCell" id="j6j-cc-Bbu" customClass="GuideDetailCell" customModule="Zype" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GuideDetailCell" id="j6j-cc-Bbu" customClass="GuideDetailCell" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                         <rect key="frame" x="224" y="14" width="1624" height="230"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="1624" height="230"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="gSJ-Yo-vaQ">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" id="gSJ-Yo-vaQ">
                                                     <rect key="frame" x="34" y="35" width="240" height="160"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30 for 30: The untold story of space Basketball" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TGT-d5-7J3">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 for 30: The untold story of space Basketball" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="TGT-d5-7J3">
                                                     <rect key="frame" x="309" y="50" width="1243" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10:00 AM - 12:30 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLI-fK-CLi">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00 AM - 12:30 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CLI-fK-CLi">
                                                     <rect key="frame" x="309" y="89" width="191" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXr-vE-Bqt">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tXr-vE-Bqt">
                                                     <rect key="frame" x="309" y="124" width="1243" height="56"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <string key="text">join your hostjoin your hostjoin your hostjoin your hostjoin your hostjoin your hostjoin your hostjoin your hostjoin your hostjoin your hostjoin your hostjoin your hostjoin your hostjoin your hostjoin your hostjoin your hostjoin your hostjoin your hostjoin your host</string>
@@ -121,16 +119,16 @@
                                     <outlet property="delegate" destination="Gik-aM-vZ9" id="ZwW-ST-Mko"/>
                                 </connections>
                             </collectionView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="BTA-Rq-qaa">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="BTA-Rq-qaa">
                                 <rect key="frame" x="928" y="508" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="fHw-xu-lm7">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" id="fHw-xu-lm7">
                                 <rect key="frame" x="30" y="30" width="150" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4QM-Qd-1zp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4QM-Qd-1zp">
                                 <rect key="frame" x="1677" y="60" width="200" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
@@ -153,16 +151,12 @@
         <!--SearchVC-->
         <scene sceneID="nBv-Zg-8D2">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" modalTransitionStyle="crossDissolve" id="iVJ-rO-YcO" customClass="SearchVC" customModule="Zype" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="rNW-mQ-Zct"/>
-                        <viewControllerLayoutGuide type="bottom" id="q7R-mS-dIX"/>
-                    </layoutGuides>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" modalTransitionStyle="crossDissolve" id="iVJ-rO-YcO" customClass="SearchVC" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8yg-r8-s7K">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4A-eb-tga">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W4A-eb-tga">
                                 <rect key="frame" x="1783" y="997" width="117" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -183,16 +177,12 @@
         <!--SettingsVC-->
         <scene sceneID="fnU-cn-9hI">
             <objects>
-                <viewController storyboardIdentifier="SettingsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DaQ-vR-jxk" customClass="SettingsVC" customModule="Zype" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Gv9-Pb-Ktf"/>
-                        <viewControllerLayoutGuide type="bottom" id="P13-El-fRk"/>
-                    </layoutGuides>
+                <viewController storyboardIdentifier="SettingsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DaQ-vR-jxk" customClass="SettingsVC" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wnj-SN-6UA">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uBB-zG-uWL">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uBB-zG-uWL">
                                 <rect key="frame" x="390" y="497" width="450" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.97636479139999999" green="0.97653168440000004" blue="0.9763541818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -202,21 +192,21 @@
                                     <action selector="logoutClicked:" destination="DaQ-vR-jxk" eventType="primaryActionTriggered" id="SBM-nA-tCI"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are not currently signed in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ab-4a-XvY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are not currently signed in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9ab-4a-XvY">
                                 <rect key="frame" x="307" y="365" width="617" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You will be logged out from the app and you will not be able to see any video that you've purchased until you log in again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIF-3S-YwR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will be logged out from the app and you will not be able to see any video that you've purchased until you log in again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nIF-3S-YwR">
                                 <rect key="frame" x="190" y="873" width="1540" height="147"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SsC-uh-XiW">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SsC-uh-XiW">
                                 <rect key="frame" x="1080" y="497" width="450" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.97636479139999999" green="0.97653168440000004" blue="0.9763541818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -227,21 +217,21 @@
                                     <action selector="restorePurchaseClicked:" destination="DaQ-vR-jxk" eventType="primaryActionTriggered" id="qCE-At-d0I"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Purchases" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gk7-1Q-RBA">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchases" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gk7-1Q-RBA">
                                 <rect key="frame" x="1033" y="384" width="545" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6k-fH-LcJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q6k-fH-LcJ">
                                 <rect key="frame" x="1033" y="644" width="545" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujk-Vw-8nz">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ujk-Vw-8nz">
                                 <rect key="frame" x="390" y="497" width="450" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
@@ -269,16 +259,12 @@
         <!--My LibraryVC-->
         <scene sceneID="L66-Yi-Fp1">
             <objects>
-                <viewController storyboardIdentifier="MyLibraryVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LHo-nA-DMa" customClass="MyLibraryVC" customModule="Zype" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Wux-TF-0X3"/>
-                        <viewControllerLayoutGuide type="bottom" id="dk1-He-vnI"/>
-                    </layoutGuides>
+                <viewController storyboardIdentifier="MyLibraryVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LHo-nA-DMa" customClass="MyLibraryVC" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uIk-MD-Nc8">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please LogIn to get My Library list" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zu3-lu-13x" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please LogIn to get My Library list" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zu3-lu-13x" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
@@ -290,14 +276,14 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0dz-93-rwK">
+                            <containerView opaque="NO" contentMode="scaleToFill" id="0dz-93-rwK">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <segue destination="6Pp-yV-woX" kind="embed" id="rZ7-K6-AxG"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4KT-Me-5J0">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4KT-Me-5J0">
                                 <rect key="frame" x="845" y="600" width="230" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
@@ -337,16 +323,12 @@
         <!--FavoritesVC-->
         <scene sceneID="5Mc-sa-hcA">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Teu-ca-loB" customClass="FavoritesVC" customModule="Zype" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="oC3-bu-s5y"/>
-                        <viewControllerLayoutGuide type="bottom" id="m70-KW-aJ5"/>
-                    </layoutGuides>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Teu-ca-loB" customClass="FavoritesVC" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fro-XQ-biX">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please log in to get Favorites list" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usN-mc-95a" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please log in to get Favorites list" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="usN-mc-95a" customClass="StyledLabel" customModule="painttube_appletv" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
@@ -358,7 +340,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yab-nS-IEE">
+                            <containerView opaque="NO" contentMode="scaleToFill" id="yab-nS-IEE">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
@@ -380,16 +362,12 @@
         <!--Splash ScreenVC-->
         <scene sceneID="Xue-Qu-gtp">
             <objects>
-                <viewController id="y8r-a1-i1C" customClass="SplashScreenVC" customModule="Zype" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="z56-La-QCH"/>
-                        <viewControllerLayoutGuide type="bottom" id="GGh-ih-Izf"/>
-                    </layoutGuides>
+                <viewController id="y8r-a1-i1C" customClass="SplashScreenVC" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jZY-0T-NW8">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vl2-lR-Rkz">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="vl2-lR-Rkz">
                                 <rect key="frame" x="928" y="508" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -398,7 +376,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="vl2-lR-Rkz" id="Wgy-ot-BV6"/>
-                        <segue destination="cZF-Ut-RTH" kind="custom" identifier="ShowTabBar" customClass="ReplaceSegue" customModule="Zype" customModuleProvider="target" id="HKX-5L-vcg"/>
+                        <segue destination="cZF-Ut-RTH" kind="custom" identifier="ShowTabBar" customClass="ReplaceSegue" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" id="HKX-5L-vcg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K44-mC-n4j" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -408,7 +386,7 @@
         <!--Tab BarVC-->
         <scene sceneID="tUh-MA-OMl">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarVC" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" id="cZF-Ut-RTH" customClass="TabBarVC" customModule="Zype" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarVC" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" id="cZF-Ut-RTH" customClass="TabBarVC" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedTabBarMetrics key="simulatedTopBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="YxL-xQ-lzN">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="140"/>
@@ -428,23 +406,19 @@
         <!--Modal ProgressVC-->
         <scene sceneID="Ol8-xW-Fcc">
             <objects>
-                <viewController storyboardIdentifier="ModalProgressVC" id="ikl-2V-gb6" customClass="ModalProgressVC" customModule="Zype" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="WTd-2g-6xC"/>
-                        <viewControllerLayoutGuide type="bottom" id="j8S-Iz-IWZ"/>
-                    </layoutGuides>
+                <viewController storyboardIdentifier="ModalProgressVC" id="ikl-2V-gb6" customClass="ModalProgressVC" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mui-UI-Nkg">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Oh-Sa-2U1">
+                            <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="9Oh-Sa-2U1">
                                 <rect key="frame" x="710" y="440" width="500" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ZX0-PR-BaD">
                                     <rect key="frame" x="0.0" y="0.0" width="500" height="200"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1EZ-nD-Dl2" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1EZ-nD-Dl2" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                             <rect key="frame" x="8" y="8" width="484" height="94"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -456,7 +430,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="YYf-H2-JDx">
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" id="YYf-H2-JDx">
                                             <rect key="frame" x="230" y="129" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </activityIndicatorView>
@@ -479,34 +453,30 @@
         <!--PurchaseVC-->
         <scene sceneID="GAM-1Q-psW">
             <objects>
-                <viewController storyboardIdentifier="PurchaseVC" id="Mez-m6-YQ6" customClass="PurchaseVC" customModule="Zype" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Hre-AN-yOs"/>
-                        <viewControllerLayoutGuide type="bottom" id="K2h-Pu-0LH"/>
-                    </layoutGuides>
+                <viewController storyboardIdentifier="PurchaseVC" id="Mez-m6-YQ6" customClass="PurchaseVC" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="61u-my-umQ">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nqa-N8-5Q1">
+                            <view contentMode="scaleToFill" id="nqa-N8-5Q1">
                                 <rect key="frame" x="263" y="238" width="1395" height="587"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose an option" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC5-Ss-ck8" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose an option" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bC5-Ss-ck8" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                         <rect key="frame" x="242" y="8" width="911" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="46"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please select one of the following options to watch this content" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAc-iV-J67">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select one of the following options to watch this content" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uAc-iV-J67">
                                         <rect key="frame" x="83" y="88" width="1228" height="99"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n4J-qG-EsO">
+                                    <view contentMode="scaleToFill" id="n4J-qG-EsO">
                                         <rect key="frame" x="-160" y="300" width="1715" height="237"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -514,18 +484,18 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uo2-M0-D6r">
+                            <view contentMode="scaleToFill" id="Uo2-M0-D6r">
                                 <rect key="frame" x="263" y="888" width="1395" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNZ-bI-uix">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sNZ-bI-uix">
                                         <rect key="frame" x="376" y="41" width="695" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mpw-3x-8Th">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mpw-3x-8Th">
                                         <rect key="frame" x="845" y="21" width="195" height="86"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
@@ -537,11 +507,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="mtX-1i-Maj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" id="mtX-1i-Maj">
                                 <rect key="frame" x="860" y="30" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="ReF-K8-BDh">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" id="ReF-K8-BDh">
                                 <rect key="frame" x="950" y="520" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
@@ -562,23 +532,20 @@
         <!--Scrollable Text AlertVC-->
         <scene sceneID="73p-E4-NMb">
             <objects>
-                <viewController storyboardIdentifier="ScrollableTextAlertVC" automaticallyAdjustsScrollViewInsets="NO" id="b0p-De-89k" customClass="ScrollableTextAlertVC" customModule="Zype" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dwA-0q-Gwb"/>
-                        <viewControllerLayoutGuide type="bottom" id="Puh-d1-7tc"/>
-                    </layoutGuides>
+                <viewController storyboardIdentifier="ScrollableTextAlertVC" automaticallyAdjustsScrollViewInsets="NO" id="b0p-De-89k" customClass="ScrollableTextAlertVC" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qok-vI-6H6">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="puE-EZ-Clf">
+                            <view contentMode="scaleToFill" id="puE-EZ-Clf">
                                 <rect key="frame" x="190" y="120" width="1540" height="840"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEw-UM-A2k">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" id="DEw-UM-A2k">
                                         <rect key="frame" x="0.0" y="0.0" width="1540" height="840"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="30"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -598,24 +565,20 @@
         <!--Show DetailsVC-->
         <scene sceneID="Vld-u9-x4h">
             <objects>
-                <viewController storyboardIdentifier="ShowDetailsVC" automaticallyAdjustsScrollViewInsets="NO" id="QVW-Vl-rtx" customClass="ShowDetailsVC" customModule="Zype" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ggU-Hv-soI"/>
-                        <viewControllerLayoutGuide type="bottom" id="RMx-Tf-QM7"/>
-                    </layoutGuides>
+                <viewController storyboardIdentifier="ShowDetailsVC" automaticallyAdjustsScrollViewInsets="NO" id="QVW-Vl-rtx" customClass="ShowDetailsVC" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ly7-0E-dRD">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GmF-HL-8Sq">
+                            <view contentMode="scaleToFill" id="GmF-HL-8Sq">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="593"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhs-yQ-xcJ">
+                                    <view contentMode="scaleToFill" id="hhs-yQ-xcJ">
                                         <rect key="frame" x="100" y="121" width="820" height="315"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e12-YQ-hF7" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e12-YQ-hF7" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="0.0" width="810" height="63"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="70"/>
@@ -627,7 +590,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wkv-cB-oiB" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wkv-cB-oiB" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="63" width="810" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
@@ -639,7 +602,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOU-i3-39M" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cOU-i3-39M" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="121" width="810" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
@@ -651,11 +614,11 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4To-KK-0YS" customClass="FocusableView" customModule="Zype" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" id="4To-KK-0YS" customClass="FocusableView" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="184" width="820" height="131"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cxd-tF-0RV">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cxd-tF-0RV">
                                                         <rect key="frame" x="10" y="8" width="800" height="105"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
@@ -666,11 +629,11 @@
                                             </view>
                                         </subviews>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3yy-ku-ozB">
+                                    <view contentMode="scaleToFill" id="3yy-ku-ozB">
                                         <rect key="frame" x="110" y="444" width="1780" height="129"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gr6-o5-BOz" customClass="FocusableButton" customModule="Zype" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Gr6-o5-BOz" customClass="FocusableButton" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="10" width="150" height="84"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" backgroundImage="Subscribe"/>
@@ -678,7 +641,7 @@
                                                     <action selector="onButton0:" destination="QVW-Vl-rtx" eventType="primaryActionTriggered" id="EGx-O9-TDD"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kB2-gZ-9oS" customClass="FocusableButton" customModule="Zype" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="kB2-gZ-9oS" customClass="FocusableButton" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                                 <rect key="frame" x="170" y="10" width="150" height="84"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -687,7 +650,7 @@
                                                     <action selector="onButton1:" destination="QVW-Vl-rtx" eventType="primaryActionTriggered" id="e9v-Lv-Xs6"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Subscribe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTn-j7-y56" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bTn-j7-y56" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                                 <rect key="frame" x="-5" y="100" width="160" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -700,7 +663,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Favorite" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSI-Rh-6hd" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorite" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dSI-Rh-6hd" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                                 <rect key="frame" x="165" y="100" width="160" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -713,7 +676,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z0r-qp-3g1" customClass="FocusableButton" customModule="Zype" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="Z0r-qp-3g1" customClass="FocusableButton" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                                 <rect key="frame" x="340" y="10" width="150" height="84"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -721,7 +684,7 @@
                                                     <action selector="onButton2:" destination="QVW-Vl-rtx" eventType="primaryActionTriggered" id="8rO-Pd-4kT"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMU-Nx-YEH" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HMU-Nx-YEH" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                                 <rect key="frame" x="335" y="100" width="160" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -734,7 +697,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWg-Ed-Y7N" customClass="FocusableButton" customModule="Zype" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="WWg-Ed-Y7N" customClass="FocusableButton" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                                 <rect key="frame" x="510" y="10" width="150" height="84"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
@@ -742,7 +705,7 @@
                                                     <action selector="onButton3:" destination="QVW-Vl-rtx" eventType="primaryActionTriggered" id="xnk-VA-hdZ"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4K-wm-x4x" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r4K-wm-x4x" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                                 <rect key="frame" x="505" y="100" width="160" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -755,7 +718,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="peH-HM-C7C" userLabel="Button4" customClass="FocusableButton" customModule="Zype" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="peH-HM-C7C" userLabel="Button4" customClass="FocusableButton" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                                 <rect key="frame" x="681" y="10" width="150" height="84"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
@@ -763,7 +726,7 @@
                                                     <action selector="onButton4:" destination="QVW-Vl-rtx" eventType="primaryActionTriggered" id="EU5-5p-lAr"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hjo-26-qAI" userLabel="Label4" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hjo-26-qAI" userLabel="Label4" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                                 <rect key="frame" x="676" y="100" width="160" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -776,7 +739,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7GR-4l-4Ms" customClass="FocusableButton" customModule="Zype" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7GR-4l-4Ms" customClass="FocusableButton" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                                 <rect key="frame" x="850" y="10" width="150" height="84"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
@@ -785,7 +748,7 @@
                                                     <action selector="onButton5:" destination="QVW-Vl-rtx" eventType="primaryActionTriggered" id="3a1-oq-zf8"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOH-qy-cvn" userLabel="Label4" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BOH-qy-cvn" userLabel="Label4" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                                 <rect key="frame" x="840" y="110" width="160" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -800,14 +763,14 @@
                                             </label>
                                         </subviews>
                                     </view>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cDg-pl-fwV" customClass="URLImageView" customModule="Zype" customModuleProvider="target">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="cDg-pl-fwV" customClass="URLImageView" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                         <rect key="frame" x="1020" y="121" width="800" height="452"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                 </subviews>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q49-b9-37Z">
+                            <containerView opaque="NO" contentMode="scaleToFill" id="q49-b9-37Z">
                                 <rect key="frame" x="0.0" y="630" width="1920" height="450"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
@@ -815,7 +778,7 @@
                                     <segue destination="6Pp-yV-woX" kind="embed" id="a18-Ts-CvM"/>
                                 </connections>
                             </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lY-nt-SuW" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6lY-nt-SuW" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                 <rect key="frame" x="110" y="658" width="571" height="52"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -827,7 +790,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This broadcast is currently not available. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gg0-wW-IDa" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This broadcast is currently not available. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gg0-wW-IDa" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                 <rect key="frame" x="110" y="517" width="1700" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
@@ -839,7 +802,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="5U1-s2-wIe">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="5U1-s2-wIe">
                                 <rect key="frame" x="928" y="508" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
@@ -880,20 +843,16 @@
         <!--HomeVC-->
         <scene sceneID="hpN-Og-wkj">
             <objects>
-                <viewController storyboardIdentifier="HomeVC" automaticallyAdjustsScrollViewInsets="NO" id="e6U-ja-SND" customClass="HomeVC" customModule="Zype" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="JAN-kp-duw"/>
-                        <viewControllerLayoutGuide type="bottom" id="H26-Xc-Ow9"/>
-                    </layoutGuides>
+                <viewController storyboardIdentifier="HomeVC" automaticallyAdjustsScrollViewInsets="NO" id="e6U-ja-SND" customClass="HomeVC" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NOl-ef-c1s">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UUm-NE-Zhb">
+                            <view hidden="YES" contentMode="scaleToFill" id="UUm-NE-Zhb">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please log in to get Favorites list" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUA-WI-o1T" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please log in to get Favorites list" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NUA-WI-o1T" customClass="StyledLabel" customModule="painttube_appletv" customModuleProvider="target">
                                         <rect key="frame" x="460" y="0.0" width="1000" height="1080"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="38"/>
@@ -905,7 +864,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8M0-12-Jp5">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8M0-12-Jp5">
                                         <rect key="frame" x="810" y="650" width="300" height="86"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
@@ -916,14 +875,14 @@
                                     </button>
                                 </subviews>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pqb-dn-qlw">
+                            <containerView opaque="NO" contentMode="scaleToFill" id="pqb-dn-qlw">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <segue destination="6Pp-yV-woX" kind="embed" id="FCR-gJ-gcb"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nhx-RL-ANk" customClass="TransparentFocusableView" customModule="Zype" customModuleProvider="target">
+                            <view contentMode="scaleToFill" id="nhx-RL-ANk" customClass="TransparentFocusableView" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                 <rect key="frame" x="20" y="20" width="100" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -949,7 +908,7 @@
         <!--Base CollectionVC-->
         <scene sceneID="AKE-fp-1PD">
             <objects>
-                <collectionViewController storyboardIdentifier="BaseCollectionVC" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="6Pp-yV-woX" customClass="BaseCollectionVC" customModule="Zype" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="BaseCollectionVC" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="6Pp-yV-woX" customClass="BaseCollectionVC" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="CX6-6d-zQs">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="450"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -960,18 +919,18 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" id="vP8-eg-LL0">
-                            <rect key="frame" x="0.0" y="0.0" width="1920" height="450"/>
+                            <rect key="frame" x="0.0" y="-60" width="1920" height="450"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <cells>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PagerCell" id="fvq-qC-BVZ" customClass="PagerCell" customModule="Zype" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PagerCell" id="fvq-qC-BVZ" customClass="PagerCell" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="45" width="500" height="500"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" adjustsImageWhenAncestorFocused="YES" translatesAutoresizingMaskIntoConstraints="NO" id="awk-V3-Fs5" customClass="URLImageView" customModule="Zype" customModuleProvider="target">
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageWhenAncestorFocused="YES" id="awk-V3-Fs5" customClass="URLImageView" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
@@ -981,18 +940,18 @@
                                     <outlet property="imageView" destination="awk-V3-Fs5" id="Y9u-hx-XAN"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="b7a-kj-grq" customClass="ImageCell" customModule="Zype" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="b7a-kj-grq" customClass="ImageCell" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                 <rect key="frame" x="1420" y="45" width="500" height="500"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" adjustsImageWhenAncestorFocused="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fuT-eh-Lml" customClass="URLImageView" customModule="Zype" customModuleProvider="target">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageWhenAncestorFocused="YES" id="fuT-eh-Lml" customClass="URLImageView" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="500" height="455"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adT-Wt-FvD" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="adT-Wt-FvD" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                             <rect key="frame" x="8" y="454" width="484" height="46"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -1005,7 +964,7 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFade" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Pu-Jq-LCS" userLabel="lockImage">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1Pu-Jq-LCS" userLabel="lockImage">
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -1017,7 +976,7 @@
                                     <outlet property="lockImage" destination="1Pu-Jq-LCS" id="fU6-2o-Qdz"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ControllerCell" id="Adw-a8-YCY" customClass="ControllerCell" customModule="Zype" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ControllerCell" id="Adw-a8-YCY" customClass="ControllerCell" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="555" width="1920" height="1080"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1027,11 +986,11 @@
                                 <size key="customSize" width="1920" height="1080"/>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="tqX-PM-AmK" customClass="HeaderCell" customModule="Zype" customModuleProvider="target">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="tqX-PM-AmK" customClass="HeaderCell" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="1920" height="45"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shows" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjn-Tp-JNC" customClass="StyledLabel" customModule="Zype" customModuleProvider="target">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shows" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mjn-Tp-JNC" customClass="StyledLabel" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target">
                                     <rect key="frame" x="90" y="0.0" width="1740" height="45"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="38"/>
@@ -1064,60 +1023,20 @@
         <!--AV Player View Controller-->
         <scene sceneID="z39-of-MwK">
             <objects>
-                <avPlayerViewController storyboardIdentifier="PlayerVC" automaticallyAdjustsScrollViewInsets="NO" videoGravity="AVLayerVideoGravityResizeAspect" id="9o9-Bw-tKR" customClass="PlayerVC" customModule="Zype" customModuleProvider="target" sceneMemberID="viewController"/>
+                <avPlayerViewController storyboardIdentifier="PlayerVC" automaticallyAdjustsScrollViewInsets="NO" videoGravity="AVLayerVideoGravityResizeAspect" id="9o9-Bw-tKR" customClass="PlayerVC" customModule="DeveloperChallengeAppleTVApp" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tAL-HP-Y0Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1241" y="1303"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="1EZ-nD-Dl2"/>
-        <designable name="6lY-nt-SuW"/>
-        <designable name="BOH-qy-cvn"/>
-        <designable name="Gg0-wW-IDa">
-            <size key="intrinsicContentSize" width="1031" height="43"/>
-        </designable>
-        <designable name="HMU-Nx-YEH"/>
-        <designable name="Hjo-26-qAI"/>
-        <designable name="NUA-WI-o1T">
-            <size key="intrinsicContentSize" width="532" height="43"/>
-        </designable>
-        <designable name="Zu3-lu-13x">
-            <size key="intrinsicContentSize" width="558" height="43"/>
-        </designable>
-        <designable name="adT-Wt-FvD">
-            <size key="intrinsicContentSize" width="57" height="29"/>
-        </designable>
-        <designable name="bC5-Ss-ck8">
-            <size key="intrinsicContentSize" width="344" height="55"/>
-        </designable>
-        <designable name="bTn-j7-y56">
-            <size key="intrinsicContentSize" width="105" height="29"/>
-        </designable>
-        <designable name="cOU-i3-39M">
-            <size key="intrinsicContentSize" width="57" height="29"/>
-        </designable>
-        <designable name="dSI-Rh-6hd">
-            <size key="intrinsicContentSize" width="82" height="29"/>
-        </designable>
-        <designable name="e12-YQ-hF7"/>
-        <designable name="mjn-Tp-JNC">
-            <size key="intrinsicContentSize" width="120" height="46"/>
-        </designable>
-        <designable name="r4K-wm-x4x"/>
-        <designable name="usN-mc-95a">
-            <size key="intrinsicContentSize" width="532" height="43"/>
-        </designable>
-        <designable name="wkv-cB-oiB"/>
-    </designables>
-    <inferredMetricsTieBreakers>
-        <segue reference="a18-Ts-CvM"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="FavoritesAdd" width="180" height="100"/>
         <image name="Logo" width="134" height="133"/>
-        <image name="Subscribe" width="180" height="100"/>
+        <image name="Subscribe" width="51.840000152587891" height="28.799999237060547"/>
         <image name="WatchTrailer" width="180" height="100"/>
         <image name="background" width="1920" height="1080"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="a18-Ts-CvM"/>
+    </inferredMetricsTieBreakers>
 </document>
