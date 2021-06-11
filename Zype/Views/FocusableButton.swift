@@ -20,7 +20,7 @@ class FocusableButton: UIButton {
     super.didUpdateFocus(in: context, with: coordinator)
     if(self.label != nil) {
       self.label.textColor = self.isFocused ? StyledLabel.kFocusedColor : StyledLabel.kBaseColor
-        self.label.shadowColor = !self.isFocused ? nil : StyledLabel.kBaseColor
+      self.label.shadowColor = !self.isFocused ? StyledLabel.kFocusedColor : StyledLabel.kBaseColor
     }
 //    coordinator.addCoordinatedAnimations({ [unowned self] in
 //      if(self.focused){

@@ -116,11 +116,7 @@ class TabBarVC: UITabBarController {
             background.configWithURL(URL(string: backgroundUrl), nil)
 
         } else {
-            if ((Bundle.main.object(forInfoDictionaryKey: "UIUserInterfaceStyle") as? String) == "Dark"){
-                background.image = UIImage(named: "background_dark")
-            }else{
-                background.image = UIImage(named: "background_light")
-            }
+            background.image = UIImage(named: "background_dark")
         }
         self.view.insertSubview(background, at: 0)
     }
