@@ -78,7 +78,9 @@ func getPlaylistBannerImageURL(with model: PlaylistModel) -> URL {
 }
 
 func getThumbnailImageURL(with model: PlaylistModel) -> URL {
-    if let thumbnail = findLargestThumbnail(with: model) {
+    if let poster = findPoster(with: model) {
+        return poster
+    } else if let thumbnail = findLargestThumbnail(with: model) {
         return thumbnail
     }
     else {
@@ -97,8 +99,17 @@ private func findLargestThumbnail(with model: PlaylistModel) -> URL? {
         }
         return URL(string: largest.imageURL)!
     }
-    else {
-        return nil
-    }
+
+    return nil
 }
+
+private func findPoster(with model: PlaylistModel) -> URL? {
+    for image in model.images {
+        guard image.layout == .poster else { continue }
+        return URL(string: image.imageURL)
+    }
+    
+    return nil
+}
+
 
