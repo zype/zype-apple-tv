@@ -68,6 +68,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
     var adsData: [adObject] = [adObject]()
     var adTimer: Timer!
     var currentTime: CMTime!
+    var contentFormat: String?
     
     var userDefaults = UserDefaults.standard
     var timeObserverToken: Any?
@@ -79,6 +80,19 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
     var endTime: String? = nil
     
     var completionDelegate: ChangeVideoDelegate? = nil
+    
+    static let supportedAudioFormats: [String] = [
+        "MP3",
+        "M4A",
+        "WAV",
+        "WMA",
+        "AIFF",
+        "FLAC",
+        "AAC",
+        "PCM",
+        "AC3",
+        "M3U8"
+    ]
     
     // MARK: - View Lifecycle
     deinit {
@@ -268,7 +282,7 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
                     }
                     url = newUrl
                 }
-                
+                self.contentFormat = playerObject?.contentFormat
                 self.currentVideo = model
                 if self.validateEntitlement(for: playerObject) {
                     let adsArray = self.getAdsFromResponse(playerObject)
@@ -400,6 +414,51 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
         if self.isAutoPlay {
             self.showInstructionView()
             SegmentAnalyticsManager.sharedInstance.trackAutoPlay()
+        }
+        
+        self.addThumbnailToPlayer()
+    }
+    
+    func isAudioContent(format: String?) -> Bool {
+        guard let format = format else { return false }
+        return PlayerVC.supportedAudioFormats.contains(format.uppercased())
+    }
+
+    func addThumbnailToPlayer(){
+        guard self.playerController.player != nil else { return }
+        guard isAudioContent(format: contentFormat) else { return }
+
+        var squareThumbnailFound: Bool = false
+        currentVideo.images.forEach {
+            if $0.name == "square_thumbnail",
+               $0.layout == .square,
+               let url = NSURL(string: $0.imageURL) {
+                let imageView = URLImageView(frame: CGRect(x: 0, y: 0, width: view.width, height: view.height))
+                imageView.contentMode = .scaleAspectFit
+                imageView.configWithURL(url as URL, nil)
+                self.playerController.contentOverlayView?.addSubview(imageView)
+                squareThumbnailFound = true
+            }
+        }
+        
+        if !squareThumbnailFound {
+            currentVideo.thumbnails.forEach {
+                if CGFloat($0.height) == view.height,
+                   CGFloat($0.width) == view.width,
+                   let url = NSURL(string: $0.imageURL) {
+                    let imageView = URLImageView(frame: CGRect(x: 0, y: 0, width: $0.width, height: $0.height))
+                    imageView.contentMode = .scaleAspectFit
+                    imageView.configWithURL(url as URL, nil)
+                    self.playerController.contentOverlayView?.addSubview(imageView)
+                    squareThumbnailFound = true
+                }
+            }
+        }
+        
+        if isDarkModeEnabled {
+            self.playerController.contentOverlayView?.backgroundColor = .black
+        } else {
+            self.playerController.contentOverlayView?.backgroundColor = .white
         }
     }
     

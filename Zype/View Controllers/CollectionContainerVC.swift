@@ -99,6 +99,12 @@ class ShowCollectionItem: CollectionLabeledItem {
 
 extension UIViewController {
     
+    var isDarkModeEnabled : Bool {
+        get {
+            return traitCollection.userInterfaceStyle == .dark
+        }
+    }
+    
     func playVideo(_ model: VideoModel, playlist: Array<VideoModel>? = nil, isResuming: Bool = true,
                    startTime: String? = nil, endTime: String? = nil, isAutoPlay: Bool = false, completionDelegate: ChangeVideoDelegate? = nil) {
         if (model.onAir) {
