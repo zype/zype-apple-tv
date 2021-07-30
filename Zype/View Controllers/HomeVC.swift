@@ -36,11 +36,12 @@ class HomeVC: CollectionContainerVC, UINavigationControllerDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name(rawValue: "ready_to_load_playlists"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCollection), name: NSNotification.Name(rawValue: kZypeReloadScreenNotification), object: nil)
+        
+        self.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.reloadData()
         self.secondPress = false
         
         if Const.kNativeSubscriptionEnabled || Const.kNativeToUniversal {
