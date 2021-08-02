@@ -17,6 +17,7 @@ class ImageCell: UICollectionViewCell {
     
     var item: CollectionLabeledItem!
     fileprivate var observerContext = 0
+    private var orientation: LayoutOrientation?
     
     deinit {
         self.removeItemObservers()
@@ -58,6 +59,9 @@ class ImageCell: UICollectionViewCell {
         super.didUpdateFocus(in: context, with: coordinator)
         coordinator.addCoordinatedAnimations({ [unowned self] in
             if(self.isFocused) {
+                if orientation == .poster {
+                    self.imageView.transform = CGAffineTransform(scaleX: 1.0, y: 0.95).concatenating(CGAffineTransform(translationX: 0, y: 0))
+                }
                 self.label.transform = CGAffineTransform(scaleX: 1.2, y: 1.2).concatenating(CGAffineTransform(translationX: 0, y: 20))
                 if #available(tvOS 10.0, *) {
                     if self.traitCollection.userInterfaceStyle == .dark {
@@ -70,6 +74,9 @@ class ImageCell: UICollectionViewCell {
                 }
             }
             else {
+                if orientation == .poster {
+                    self.imageView.transform = CGAffineTransform.identity
+                }
                 self.label.transform = CGAffineTransform.identity
                 self.label.textColor = StyledLabel.kBaseColor
             }
@@ -112,6 +119,7 @@ class ImageCell: UICollectionViewCell {
     func configWithItem(_ item: CollectionLabeledItem, orientation: LayoutOrientation){
         self.removeItemObservers()
         self.label.text = item.title
+        self.orientation = orientation
         
         if (Const.kInlineTitleTextDisplay) {
             self.label.lineBreakMode = .byTruncatingTail
