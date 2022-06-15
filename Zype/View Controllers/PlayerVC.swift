@@ -80,6 +80,8 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
     
     var completionDelegate: ChangeVideoDelegate? = nil
     
+    var menuPressRecognizer: UITapGestureRecognizer!
+    
     // MARK: - View Lifecycle
     deinit {
         print("Destroying")
@@ -108,6 +110,10 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         currentTime = CMTimeMake(value: 250, timescale: 1)
+        menuPressRecognizer = UITapGestureRecognizer()
+        menuPressRecognizer.addTarget(self, action: #selector(self.menuButtonAction(recognizer:)))
+        menuPressRecognizer.allowedPressTypes = [NSNumber(value: UIPress.PressType.menu.rawValue)]
+        self.view.addGestureRecognizer(menuPressRecognizer)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -128,6 +134,11 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
         }
     }
 
+    @objc func menuButtonAction(recognizer: UITapGestureRecognizer) {
+        self.view.removeGestureRecognizer(menuPressRecognizer)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - User Interaction
     override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
         
