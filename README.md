@@ -1,4 +1,4 @@
-Don't know what Zype is? Check this [overview](http://www.zype.com/).
+Want to learn more about Zype’s solutions for OTT apps, video streaming and playout? Visit our [website](http://www.zype.com/).
 
 # Zype Apple TV SDK
 
