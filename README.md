@@ -17,12 +17,12 @@ This legacy open source app template is no longer supported by Zype. If you are 
 
 - Closed Caption Support 
 
-## Monetizations Supported
+## Monetization Support
 
 - Pre-roll Ads (VAST)
-- Midroll ads (VAST)
-- Native SVOD via In App Purchases
-- Universal SVOD via login
+- Mid-roll Ads (VAST)
+- Native SVOD via In-App Purchases
+- Universal SVOD via Login
 
 ## Creating a New Applcation with the SDK
 
@@ -46,11 +46,8 @@ Enhanced Playlists
 Monetization
 1. In order to use Native SVOD in the apps, some settings need to be updated on the Zype platform to enable Ownership validation and Consumer Entitlements. Please contact Zype support to configure settings in order for your app to function normally when using Native SVOD.
 
-## Device Endpoint Notes
 
-Supports Apple TV 4th generation with tvOS10+
-
-## Contributing to the repo
+## Contributing to the Repository
 
 We welcome contributions to Apple TV SDK. If you have any suggestions or notice any bugs you can raise an issue. If you have any changes to the code base that you want to see added, you can fork the repository, then submit a pull request with your changes explaining what you changed, why you believe it should be added, and how one would test these changes. Thank you to the community!
 
