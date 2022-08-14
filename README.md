@@ -4,25 +4,6 @@ Want to learn more about Zype’s solutions for OTT apps, video streaming and pl
 
 This legacy open source app template is no longer supported by Zype. If you are looking to build streaming applications for OTT, we recommend using [Zype Apps Creator](https://www.zype.com/product/apps-creator) for the latest app building features and functionality. 
 
-## Supported Features
-
-- Populates your app with content from enhanced playlists
-- Video Search
-- Live Streaming videos
-- Video Favorites 
-- Dynamic theme colors
-- Resume watch functionality
-
-## Unsupported Features
-
-- Closed Caption Support 
-
-## Monetization Support
-
-- Pre-roll Ads (VAST)
-- Mid-roll Ads (VAST)
-- Native SVOD via In-App Purchases
-- Universal SVOD via Login
 
 ## Creating a New Applcation with the SDK
 
@@ -37,14 +18,6 @@ This legacy open source app template is no longer supported by Zype. If you are 
 5. You can now take a look at your app by running it in tvOS Simulator.
 
 6. __(Optional)__ You can update the app's theme color by setting the _theme_ inside _Zype/Info.plist_. The theme can be set to: "dark" or "light". 
-
-## Requirements and Prerequisites
-
-Enhanced Playlists
-1. To set up enhanced playlists, there needs to be a root playlist set up on the platform. To set the root playlist, you can go to your Apple TV app settings under __Manage Apps__ and set the __Featured Playlist__ to your root playlist's id.
-
-Monetization
-1. In order to use Native SVOD in the apps, some settings need to be updated on the Zype platform to enable Ownership validation and Consumer Entitlements. Please contact Zype support to configure settings in order for your app to function normally when using Native SVOD.
 
 
 ## Contributing to the Repository
