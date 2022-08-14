@@ -5,7 +5,7 @@ Want to learn more about Zype’s solutions for OTT apps, video streaming and pl
 This legacy open source app template is no longer supported by Zype. If you are looking to build streaming applications for OTT, we recommend using [Zype Apps Creator](https://www.zype.com/product/apps-creator) for the latest app building features and functionality. 
 
 
-## Creating a New Applcation with the SDK
+## Creating a New Application with the SDK
 
 1. In order to create an Apple TV app using the SDK, you will need to create a Apple TV app on the Zype platform. If you have not done this you can do that on the Zype platform in the Dashboard in the __Manage Apps__ tab under __Publish__. You will see a button to create a new app; just follow the instructions there.
 
