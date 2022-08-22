@@ -183,6 +183,9 @@ class PlayerVC: UIViewController, DVIABPlayerDelegate, ZypePlayerDelegate {
                 AnalyticsManager.sharedInstance.trackStop()
             }
             self.removePeriodicTimeObserver()
+            self.view.removeGestureRecognizer(menuPressRecognizer)
+            self.dismiss(animated: true, completion: nil)
+            return
         }
         
         // Call this for all unhandled key presses
