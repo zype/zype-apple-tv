@@ -176,7 +176,10 @@ class GuideVC: UIViewController {
         } else {
             let nowTimeInterval = Date().timeIntervalSince1970
             var minsFromNow = 0.0
-            var closestIndexPath: IndexPath = IndexPath(item: 0, section: 0)
+            var closestIndexPath: IndexPath? = nil
+            if self.guides.count > 0 {
+                closestIndexPath = IndexPath(item: 0, section: 0)
+            }
             
             for section in 0..<self.guides.count {
                 if self.guides[section].programs.count > 0 {
@@ -193,8 +196,10 @@ class GuideVC: UIViewController {
                     }
                 }
             }
-            self.focusedIndexPath = closestIndexPath
-            self.collectionView.scrollToItem(at: self.focusedIndexPath!, at: .left, animated: true)
+            if let closestIndexPath = closestIndexPath {
+                self.focusedIndexPath = closestIndexPath
+                self.collectionView.scrollToItem(at: self.focusedIndexPath!, at: .left, animated: true)
+            }
         }
         self.view.removeGestureRecognizer(self.menuPressRecognizer)
     }
